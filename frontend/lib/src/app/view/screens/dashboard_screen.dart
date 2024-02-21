@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/src/app/controller/step_number_controller.dart';
 import 'package:frontend/src/app/view/screens/step_number_screen.dart';
 
 import 'test_for_convergence_screen.dart';
 
-class DashBoard extends StatefulWidget {
-  const DashBoard({super.key});
+final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+class DashboardScreen extends ConsumerStatefulWidget {
+  const DashboardScreen({super.key});
   @override
-  State<DashBoard> createState() => _DashBoardState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _DashboardScreenState();
 }
 
-class _DashBoardState extends State<DashBoard> {
+class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   int currentStep = 0;
+
   List<Step> steps = [
     const Step(
       title: Text("Step 1: Step Number of Method"),
@@ -45,56 +50,57 @@ class _DashBoardState extends State<DashBoard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Material(
-              child: Stepper(
-                steps: steps,
-                currentStep: currentStep,
-                connectorColor: MaterialStateColor.resolveWith(
-                  (states) => Theme.of(context).primaryColor,
-                ),
-                controlsBuilder: (context, details) {
-                  return Row(
-                    children: [
-                      if (currentStep != 0)
-                         TextButton(
-                          onPressed: (){
-                         
-                            
-                            setState(() {
-                              currentStep -= 1;
-                            });
-                          },
-                          child: const Text("Back"),
-                                               ),
-                      if (currentStep != steps.length - 1)
-                        CallbackShortcuts(
-                          bindings: <ShortcutActivator, VoidCallback>{
-                            SingleActivator(LogicalKeyboardKey.enter):() {
-                              // TODO: Contiue from here
-                            }
-                          
-                          },
-                          child: TextButton(
-                            onPressed: () {
-                              setState(() {
-                                currentStep = currentStep + 1;
-                              });
-                            },
-                            child: const Text("Next"),
-                          ),
-                        ),
-                    ],
-                  );
-                },
-                onStepContinue: () {
-                  if (currentStep == 0) {}
-                },
+            child: Stepper(
+              steps: steps,
+              currentStep: currentStep,
+              onStepTapped: (step) {
+                setState(() {
+                  currentStep = step;
+                });
+              },
+              connectorColor: MaterialStateColor.resolveWith(
+                (states) => Theme.of(context).primaryColor,
               ),
+              controlsBuilder: (context, details) {
+                return Row(
+                  children: [
+                    if (currentStep != 0)
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            currentStep -= 1;
+                          });
+                        },
+                        child: const Text("Back"),
+                      ),
+                    if (currentStep != steps.length - 1)
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            currentStep += 1;
+                          });
+                        },
+                        child: const Text("Next"),
+                      ),
+                  ],
+                );
+              },
             ),
           ),
-          const Expanded(
-            child: Placeholder(
-              color: Colors.blue,
+          Expanded(
+            child: Container(
+              decoration: const BoxDecoration(color: Colors.blueGrey),
+              child: const Column(
+                children: [
+                  Text(
+                    "Grapher",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 32,
+                    ),
+                  )
+                ],
+              ),
             ),
           )
         ],

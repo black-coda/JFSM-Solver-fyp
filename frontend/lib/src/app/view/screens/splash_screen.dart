@@ -45,11 +45,10 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
-                  onPressed: () {
-                    debugPrint("statement");
+                  onPressed: () async {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const DashBoard(),
+                        builder: (context) => const DashboardScreen(),
                       ),
                     );
                   },

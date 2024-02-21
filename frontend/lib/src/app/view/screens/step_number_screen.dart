@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/src/app/controller/step_number_controller.dart';
 import 'package:frontend/src/app/view/widgets/dynamic_input_widget.dart';
+import 'package:frontend/src/utils/devtool/devtool.dart';
 import 'package:frontend/src/utils/extension/int_validator.dart';
 import 'package:frontend/src/utils/validators/validators.dart';
 
@@ -20,13 +22,6 @@ class _StepNumberScreenState extends ConsumerState<StepNumberScreen> {
     super.initState();
     _controller = TextEditingController();
     _focusNode = FocusNode();
-
-    _controller.addListener(
-      () {
-        final text = _controller.text;
-        debugPrint(text);
-      },
-    );
   }
 
   @override
@@ -48,6 +43,14 @@ class _StepNumberScreenState extends ConsumerState<StepNumberScreen> {
         focusNode: _focusNode,
         labelText: const Text("K-step"),
         validator: Validator.stepNumberValidator,
+        onChanged: (value) {
+          if (value.isEmpty) {
+            value = 0.toString();
+          }
+          ref.watch(stepNumberStateProvider.notifier).state = int.parse(value);
+
+          ref.read(stepNumberStateProvider.notifier).state.log();
+        },
       ),
     );
   }

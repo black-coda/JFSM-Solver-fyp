@@ -1,5 +1,6 @@
 class Validator{
   static String? stepNumberValidator(String ? val){
+    
     if (val == null || val.isEmpty) {
       return 'Value cannot be empty';
     }

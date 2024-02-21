@@ -13,6 +13,8 @@ class NumericalInputField extends StatelessWidget {
     this.validator,
     this.hintText,
     this.onChanged,
+    this.onFieldSubmitted,
+    this.initialText,
   });
 
   final TextInputType textInputType;
@@ -25,10 +27,15 @@ class NumericalInputField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String? hintText;
   final Function(String)? onChanged;
+  final Function(String)? onFieldSubmitted;
+  final String ? initialText;
+
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialText,
+      onFieldSubmitted: onFieldSubmitted,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,
       onChanged: onChanged,

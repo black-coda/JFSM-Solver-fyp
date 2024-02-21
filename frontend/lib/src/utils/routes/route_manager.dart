@@ -14,7 +14,7 @@ class RouteManager {
     switch (settings.name) {
       case dashboardView:
         return MaterialPageRoute(
-          builder: (context) => const DashBoard(),
+          builder: (context) => const DashboardScreen(),
         );
       case splashScreen:
         return MaterialPageRoute(
