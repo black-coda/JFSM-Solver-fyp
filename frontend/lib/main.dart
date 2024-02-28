@@ -14,9 +14,10 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.from(
+      theme: ThemeData(
+        fontFamily: "Anta",
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blueGrey,
+          seedColor: const Color(0xff0fa968),
         ),
       ),
       debugShowCheckedModeBanner: false,

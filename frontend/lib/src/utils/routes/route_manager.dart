@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/src/app/view/screens/dashboard.dart';
 import 'package:frontend/src/app/view/screens/dashboard_screen.dart';
 import '../../app/view/screens/splash_screen.dart';
 
@@ -14,14 +15,13 @@ class RouteManager {
     switch (settings.name) {
       case dashboardView:
         return MaterialPageRoute(
-          builder: (context) => const DashboardScreen(),
+          builder: (context) => const DashboardView(),
         );
       case splashScreen:
         return MaterialPageRoute(
           builder: (context) => const SplashScreen(),
         );
 
-      
       default:
         throw const FormatException();
     }

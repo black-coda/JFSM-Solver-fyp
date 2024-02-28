@@ -1,5 +1,8 @@
 import 'dart:math';
 
+import 'package:frontend/src/utils/devtool/devtool.dart';
+import 'package:frontend/src/utils/extension/factorial.dart';
+
 extension ApproximateToPrecision on num {
   double approximate(int precision) {
     double mod = pow(10.0, precision).toDouble();
@@ -13,40 +16,54 @@ extension ApproximateToPrecision on num {
 }
 
 void main() {
-  List<double> a = [0, 0, 0, -1, 1];
-  List<double> b = [-9 / 24, 37 / 24, -59 / 24, 55 / 24, 0];
+  int kSteps = 0;
+  // List<double> alpha = [0, 0, -1, 1];
+  // List<double> beta = [0, -1 / 12, 8 / 12, 5 / 12];
+
+  List<double> alpha = [0,0];
+  List<double> beta = [0,0];
+
+  //  List<double> alpha = [-1, 8 / 19, 0, -(8 / 19), 1]; // Coefficients for the method
+  // List<double> beta = [6 / 19, 24 / 19, 0, 24 / 19, 6 / 19];
 
   List<double> c0 = [];
   double r = 0;
   double total = 0;
 
+  // List<double> c0 = [];
+  double sumOfC0 = 0;
+  double errorConstant = 0;
+
   int cp = 2;
   while (true) {
-    print("cp: $cp");
-    for (var i = 0; i <= 4; i++) {
-      final t = (pow(i, cp) * a[i] / cp.factorials()) -
-          ((pow(i, cp - 1) * b[i]) / (cp - 1).factorials());
-      print("i: $i");
-      print("t: $t");
-      r += t;
-      print("r: $r");
+    for (var i = 0; i <= kSteps; i++) {
+      print("cp -> $cp");
+      final term = (pow(i, cp) * alpha[i] / cp.factorial()) -
+          ((pow(i, cp - 1) * beta[i]) / (cp - 1).factorial());
+      print("$i -> $term");
+      sumOfC0 = sumOfC0 + term;
+      // c0.add(sumOfC0);
+      print("sum of c0 => $sumOfC0");
 
-      if (i == 4) {
-        final approximatedR = r.approximate(6);
+      if (i == kSteps) {
+        final approximatedR = sumOfC0.approximate(6);
         c0.add(approximatedR);
-        print("after adding $r, c0 is: $c0, at $i");
       }
     }
 
-    print("c: $c0");
-    total = c0.reduce((value, element) => value + element);
-    print("total: $total");
-
-    if (total != 0) {
+    if (c0.isNotEmpty) {
+      errorConstant += c0.reduce((value, element) => value + element);
+      print("error konstant -> $errorConstant");
+      if (errorConstant == 0) {
+        cp += 1;
+        sumOfC0 = 0;
+        continue;
+      }
+      break;
+    } else {
       break;
     }
-
-    cp++;
-    r = 0;
   }
+
+  print("$errorConstant, ${c0.length.toString()}");
 }
