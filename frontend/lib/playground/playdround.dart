@@ -2,8 +2,11 @@
 
 import 'dart:math';
 
+import 'package:equations/equations.dart';
 import 'package:frontend/src/utils/extension/approximation.dart';
 import 'package:frontend/src/utils/extension/factorial.dart';
+import 'package:frontend/src/utils/extension/unique_element_checker.dart';
+import 'package:frontend/src/utils/extension/value_greater_than_or_equal_to_one.dart';
 
 bool checkConsistency(List<double> a, List<double> b) {
   double sumA = a.reduce((value, element) => value + element);
@@ -59,64 +62,39 @@ int orderOfLmm(List<double> alpha, List<double> beta, int kStep) {
   return 0;
 }
 
+Complex a = const Complex(1, 2);
 void main() {
-  List<double> a = [-1, 8 / 19, 0, -(8 / 19), 1]; // Coefficients for the method
-  List<double> b = [
-    6 / 19,
-    24 / 19,
-    0,
-    24 / 19,
-    6 / 19
-  ]; // Coefficients for the method
-  // List<double> c = [-5, 4, 1, 2, 4, 0]; // Coefficients for the method
-  // List<double> d = [...a, ...b]; // Concatenation of the two lists
-  // List<double> a = [0, 0, 0, -1, 1];
-  // List<double> b = [-9 / 24, 37 / 24, -59 / 24, 55 / 24, 0];
-  final answwwer  = orderAndErrorConstantCalculator(a, b);
-  print(answwwer);
-}
+  // f(x) = 3 - x
+  // final eq = Quartic(
+  //   a: Complex.fromReal(1),
+  //   b: Complex.fromFraction(Fraction(3, 1), Fraction(1, 1),
+  //   c: Complex.fromReal(0),
+  //   d: (8/19),
+  //   e: -1,
+  // );
 
-(int, double) orderAndErrorConstantCalculator(List<double> a, List<double> b) {
-  List<double> c0 = [];
-  double r = 0;
-  double errorConstant = 0;
-
-  int cp = 2;
-  while (true) {
-    print("cp: $cp");
-    for (var i = 0; i <= 4; i++) {
-      final t = (pow(i, cp) * a[i] / cp.factorial()) -
-          ((pow(i, cp - 1) * b[i]) / (cp - 1).factorial());
-      print("i: $i");
-      print("t: $t");
-      r = r + t;
-      print("r: $r");
-      //  print(tList);
-      if (i == 4) {
-        print("this is precision: ${r.approximate(6)}");
-
-        final approximatedR = r.approximate(6);
-        c0.add(approximatedR);
-
-        print("after adding $r, c0 is: $c0, at $i");
-      }
-    }
-
-    print("c: ${c0}");
-    if (c0.isNotEmpty) {
-      errorConstant += c0.reduce((value, element) => value + element);
-      print("total: $errorConstant");
-      if (errorConstant == 0) {
-        cp += 1;
-        r = 0;
-        print("r:$r");
-        continue;
-      }
-      break;
-    } else {
-      break;
-    }
+  final eq = Quartic(
+    a: const Complex.fromReal(1),
+    b: Complex.fromRealFraction(Fraction(-8, 9)),
+    c: const Complex.fromReal(0),
+    d: Complex.fromRealFraction(Fraction(8, 19)),
+    e: const Complex.fromReal(-1),
+  );
+  print(eq);
+  print(eq.runtimeType);
+  // final t = 
+  // print(eq.solutions());
+  final solutions = eq.solutions();
+  for (var element in solutions) {
+    print(element.abs());
+    
   }
-
-  return (c0.length + 1, errorConstant);
+  final solutionGreaterThanOne =
+      solutions.where((element) => element.abs() >= 1).toList();
+  final solutionLesserThanOne =
+      solutions.where((element) => element.abs() < 1).toList();
+  print(">1: ${solutionGreaterThanOne.length}");
+  print("<1: ${solutionLesserThanOne.length}");
+  print(solutions.hasUniqueElements());
+  print(solutions.hasValueGreaterThanOrEqualToOne());
 }

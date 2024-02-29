@@ -13,6 +13,7 @@ class AnalysisResultScreen extends ConsumerWidget {
     final isConsistent = methodProviderValues.isConsistent();
     debugPrint("yes -> $isConsistent");
     final errorConstant = methodProviderValues.orderAndErrorConstant();
+    final isZeroStable = methodProviderValues.isZeroStable();
     debugPrint("errorConstant -> $errorConstant");
 
     return CustomScrollView(
@@ -95,6 +96,20 @@ class AnalysisResultScreen extends ConsumerWidget {
                         ),
                         Text(
                           errorConstant.$2.toString(),
+                        ),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        const Text(
+                          "Is Zero Stable",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                          ),
+                        ),
+                        Text(
+                          isZeroStable.toString(),
                         ),
                       ],
                     ),
