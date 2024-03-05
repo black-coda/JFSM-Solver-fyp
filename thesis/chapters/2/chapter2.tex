@@ -1,0 +1,149 @@
+\chapter{Literature Review}
+% \setcounter{section} 
+\section{Introduction}
+One of the more challenging classes of problems in numerical computation is the solution of stiff equations and stiff systems. These problems arise from various physical situations but were likely first identified in chemical kinetics. Finding numerical solutions to stiff systems has been a significant challenge for numerical analysts. A potentially good numerical method for solutions of stiff systems must possess certain qualities in terms of its region of absolute stability and accuracy \cite{QURESH2024}.
+
+In quantum mechanics, stiff equations are used to model the behavior of particles in potential wells. For example, the finite square well problem, where a particle is confined in a box, is a classic application of stiff boundary value problems (BVPs) \cite{cappellaro:bound-problems}. In nuclear physics, stiff BVPs are employed to model the decay of radioactive substances. An example of this is the unbound problem in quantum mechanics, where a particle moves freely in a potential barrier \cite{cappellaro:unbound-problems}, and many other fields where stiff BVPs arise.Hence there is a need to develop numerical methods to solve this cases.
+
+
+\section{Stiff Ordinary Differential Equations in Scientific and Engineering Applications}
+Stiff Boundary Value and Initial Value Problems (BVPs) are prevalent in various scientific and engineering fields due to their complex nature. These problems often arise in areas such as mathematical physics, fluid dynamics, and electrical engineering. They pose challenges because of the difficulty in finding exact solutions and the sensitivity to small changes in the problem parameters.
+
+One example of a stiff BVP is the Troesch's problem, which is often used in numerical analysis for studying the behavior of stiff differential equations.
+Consider the second-order linear ordinary differential equation (ODE):
+\begin{equation}
+    y''(x) + p(x) \cdot y'(x) + q(x) \cdot y(x) = f(x)
+\end{equation}
+
+For Troesch's problem, specific functions are chosen for $p(x)$, $q(x)$, and $f(x)$ that make the solution challenging for numerical methods. The exact solution is provided as part of the problem formulation.The problem exhibits a stiffness, which makes it a challenging.In a research by \cite{dragunov2021transformation}, stiff BVPs are addressed through transformation-based approach, where the auth \cite{dragunov2021transformation} proposed series of transformations that can reduce the stiffness of the problem, making it easier to find a numerical solution. The methodology framework presented in this work can be seen as an approach that enhances the "stiffness resistance" of virtually all existing numerical techniques designed for the solution of two-point boundary value problems (BVPs) \cite{dragunov2021transformation}.In this chapter we focus on different numerical methods that can be used to solve stiff problems
+
+\section{Implicit Methods}
+Implicit methods are commonly used to solve stiff systems of ordinary differential equations (ODEs). They involve the solution at the next step, which requires solving a nonlinear equation at each step. These methods are generally more stable than explicit methods, which only use the current step's solution. However, they can be more computationally expensive due to the need to solve a system of equations at each step \cite{thohura2013numerical}.
+
+One of the mostly widely used implicit methods for stiff ODEs is the Backward Differentiation Formula (BDF).Backward Differentiation Formulas (BDFs) are a family of implicit numerical methods commonly used to solve stiff systems of ordinary differential equations (ODEs).BDFs use information from the future (at the next time level) to update the solution at the current time level. The backward nature of the method enables stability for stiff problems \cite{numericalrecipes}.
+
+The general form of a BDF of order \(k\) is given by:
+\[
+\alpha_0 y_n + \alpha_1 y_{n-1} + \alpha_2 y_{n-2} + \ldots + \alpha_k y_{n-k} = h \cdot f(t_n, y_n)
+\]
+
+For example, the BDF of order 1 (Backward Euler method) is:
+\[
+y_n = y_{n-1} + h \cdot f(t_n, y_n)
+\]
+
+And the BDF of order 2 is:
+\[
+\frac{3}{2} y_n - 2y_{n-1} + \frac{1}{2} y_{n-2} = h \cdot f(t_n, y_n)
+\]
+
+It works by approximating the solution at the next step using a polynomial of degree less than or equal to the method order. This makes BDF suitable for stiff ODEs, as it avoids the loss of accuracy associated with steep slopes in the solution.BDFs are widely implemented in numerical software packages for solving stiff ODEs. Popular implementations include ode23s and ode45s \cite{shampine1997matlab},the Livermore Solver for Ordinary Differential Equations (LSODA),the Differential Algebraic System Solver (DASSL),GEAR, DIFSUB, and EPISODE \cite{Yatim2013} which is a collection of FORTRAN subroutines designed to facilitate the automated resolution of problems, minimizing the level of effort needed when encountering potential challenges in the problem-solving process \cite{thohura2013numerical}.Each of this tools have their strength and weakness; DIFSUB has no graphical user interface which makes it harder for users who are not comfortable working from command-line or with text-based interfaces and it a very old package, therefore finding support becomes challenging; GEAR uses FORTRAN package, uses need to have some knowledge of FORTRAN to use it effectively; EPISODE is a deprecated package which performs faster than GEAR in solving waves or active solutions, but the reverse for linear or decaying problems \cite{BYRNE1977125},With this limitations comes the aim of this project.
+
+The Runge-Kutta-Fehlberg (RKF45), is another widely used implicit method for solving ordinary differential equations, including stiff ODEs. it combines both explicit and implicit methods to achieve high accuracy and stability \cite{stone2017accelerating}.
+
+\begin{eqnarray*}
+  k_1 & = & h \cdot f(t_n, y_n), \\
+  k_2 & = & h \cdot f(t_n + \frac{1}{4}h, y_n + \frac{1}{4}k_1), \\
+  k_3 & = & h \cdot f(t_n + \frac{3}{8}h, y_n + \frac{3}{32}k_1 + \frac{9}{32}k_2), \\
+  k_4 & = & h \cdot f(t_n + \frac{12}{13}h, y_n + \frac{1932}{2197}k_1 - \frac{7200}{2197}k_2 + \frac{7296}{2197}k_3), \\
+  k_5 & = & h \cdot f(t_n + h, y_n + \frac{439}{216}k_1 - 8k_2 + \frac{3680}{513}k_3 - \frac{845}{4104}k_4), \\
+  k_6 & = & h \cdot f(t_n + \frac{1}{2}h, y_n - \frac{8}{27}k_1 + 2k_2 - \frac{3544}{2565}k_3 + \frac{1859}{4104}k_4 - \frac{11}{40}k_5).
+  \end{eqnarray*}
+  
+  \begin{math}
+    y_{n+1} = y_n + \frac{16}{135}k_1 + \frac{6656}{12825}k_3 + \frac{28561}{56430}k_4 - \frac{9}{50}k_5 + \frac{2}{55}k_6.
+  \end{math}
+
+\begin{math}
+  \mathtt{Error} = \frac{1}{360}h(-127k_1 + 845k_3 - 28561k_4 + 9k_5 - 2k_6).
+\end{math}
+  
+  
+Although there exist no specific stiff system solver that utilizes the RKF45 method exclusively.The RKF45 method is a variant of the Dormand-Prince method, which is a popular implicit Runge-Kutta method used in MATLAB's ode15s solver \cite{BurkardtRKF45}.
+It's worth noting that while the RKF45 method is not used by a specific stiff system solver, it is a powerful tool for solving stiff systems of ODEs. Its ability to accurately estimate the local truncation error and adapt the step size accordingly allows it to handle stiff problems effectively.\cite{BurkardtRKF45}
+  
+
+\section{Collocation Methods}
+Collocation methods are a class of numerical methods used to solve ordinary differential equations (ODEs), including stiff systems. They work by choosing specific points (collocation points) within the domain where the solution is sought. The solution is then approximated as a polynomial at these points, and the differential equation is converted into a set of algebraic equations by enforcing the equations at these points.
+Numerous studies have demonstrated the efficacy of collocation methods in various scientific and engineering applications. Examples include the modeling of chemical reactions, structural dynamics, and climate phenomena. The ability of collocation methods to efficiently capture rapid changes in the system dynamics makes them well-suited for problems characterized by stiff components.
+In the realm of stiff systems, collocation methods exhibit notable advantages, offering enhanced efficiency by directly manipulating the coefficients of the differential equation, ensuring heightened accuracy in capturing stiff behavior, and providing increased stability; however, their implementation complexity and sensitivity to the choice of collocation points present challenges\cite{Faleichik2009ExplicitIO}.
+
+Let's consider a simple second-order ordinary differential equation (ODE) as an example:
+
+\[
+y''(t) = f(t, y, y')
+\]
+
+with boundary conditions \(y(a) = \alpha\) and \(y(b) = \beta\). The objective is to find the function \(y(t)\) that satisfies the differential equation and boundary conditions.
+
+The collocation method involves selecting a set of collocation points \(\{t_1, t_2, \ldots, t_n\}\) within the domain \([a, b]\). At these collocation points, the differential equation is enforced. This results in a system of algebraic equations that can be solved to obtain the values of \(y(t_i)\) at the collocation points.
+
+Let \(y_i = y(t_i)\) and \(y_i' = y'(t_i)\). Applying the collocation method to the differential equation, we have:
+
+\[
+y_i'' = f(t_i, y_i, y_i')
+\]
+
+This equation is enforced at each collocation point \(t_i\), resulting in a set of algebraic equations:
+
+\[
+y_1'' = f(t_1, y_1, y_1')
+\]
+\[
+y_2'' = f(t_2, y_2, y_2')
+\]
+\[
+\vdots
+\]
+\[
+y_n'' = f(t_n, y_n, y_n')
+\]
+
+Together with the boundary conditions, these equations form a system that can be solved for the unknowns \(y_i\) and \(y_i'\). The accuracy and stability of the collocation method depend on the choice of collocation points and the method used to solve the resulting system of equations.
+
+
+
+\section{Multistep Methods}
+Multistep methods are a category of numerical methods used to solve ordinary differential equations (ODEs), including stiff systems. They are called "multistep" because they use information from multiple previous steps to compute the next step. This makes them particularly effective for problems with stiff behavior, where the slope of the solution changes rapidly \cite{math7121158}.
+One of the main strengths of multistep methods is their ability to handle temporal evolution. Because they use information from previous steps, they can adapt to changes in the behavior of the solution over time. This makes them particularly effective for problems where the solution evolves in a complex way, such as stiff systems \cite{math7121158}.
+
+In terms of applications, multistep methods are widely used in various fields, including physics, engineering, and economics. They are used to solve a wide range of problems, from simulating the motion of celestial bodies to modeling economic growth. In the context of boundary value problems (BVPs), multistep methods can be used to solve problems where the solution varies over time and space \cite{math7121158}.
+
+A general linear multistep method can be expressed as:
+
+\[
+\sum_{j=0}^{k} \alpha_j y_{n+j} = h \sum_{j=0}^{k} \beta_j f(t_{n+j}, y_{n+j})
+\]
+
+where:
+
+
+\begin{itemize}
+  \item \(k\) is the number of previous steps to use
+  \item \(h\) is the step length
+  \item \(t_n\) is the current time
+  \item \(y_n\) is the solution at the current time
+  \item \(f(t_n, y_n)\) is the derivative of the solution at the current time
+  \item \(\alpha_j\) and \(\beta_j\) are the coefficients of the method
+  \item \(y_{n+j}\) is the solution at the previous time steps
+\end{itemize}
+
+
+Linear multistep methods are generally defined by their coefficients \(\alpha_j\) and \(\beta_j\), and the choice of these coefficients determines the order and stability properties of the method. Common examples of linear multistep methods include the backward Euler method, the Adams-Bashforth methods, and the Adams-Moulton methods.
+
+The solution at the next time step, \(y_{n+1}\), can be obtained by rearranging the terms in the above formula:
+
+\[
+y_{n+1} = \frac{1}{\alpha_0} \left(h \sum_{j=0}^{k} \beta_j f(t_{n+j}, y_{n+j}) - \sum_{j=1}^{k} \alpha_j y_{n+j}\right)
+\]
+
+
+
+\subsection*{title}
+
+
+
+
+However, like all numerical methods, multistep methods have their limitations. For example, they can suffer from numerical diffusion, where the solution becomes smoother than expected due to roundoff errors. This can lead to inaccuracies in the solution, especially for problems with stiff behavior. Furthermore, the choice of the number of previous steps to use can significantly affect the performance of the method. More steps can lead to more accurate solutions, but they also increase the computational cost \cite{math7121158}.
+The ode15s and ode23 solvers in MATLAB are examples of multistep methods used for solving stiff systems of BVPs or IVPs. The ode15s solver uses an implicit Runge-Kutta method of order 15, with the embedded 6th order BDF method as a predictor. It is able to handle stiff and nonstiff problems and can be used with either the Jacobian of the system or a numerical approximation. On the other hand, the ode23 solver uses an implicit Runge-Kutta method of order 2, with the embedded 3rd order BDF method as a predictor. It is also able to handle stiff and nonstiff problems \cite{wong2020lecture}.
+The bvp4c and bvp5c solvers in MATLAB are examples of multistep methods used for solving BVPs. They use a collocation method with a finite difference code that implements the Lobatto IIIa formula. This is a collocation formula, and the collocation polynomial provides a C1-continuous solution that is fourth-order or fifth-order accurate uniformly in the interval of integration(MatLab).

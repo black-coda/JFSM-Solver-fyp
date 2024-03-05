@@ -1,0 +1,72 @@
+\chapter{Methodology}
+
+\section{Introduction}
+
+This chapter outlines the detailed methodology employed to address the numerical challenges associated with stiff systems of ordinary differential equations (ODEs). Stiffness arises in systems characterized by vastly different timescales, rapid transitions, or abrupt changes in dynamics. The goal of this methodology is to implement effective numerical techniques, specifically collocation and multistep methods, to provide accurate and stable solutions for stiff ODEs.
+
+\section{Problem Formulation}
+
+The starting point involves a clear definition of the stiff boundary value problem (BVP). The problem is expressed as a set of ordinary differential equations subject to appropriate boundary conditions. In this study, we focus on two-point BVPs, and the differential equation, boundary conditions, and relevant parameters are clearly specified.
+
+\section{Choice of Methods}
+
+To tackle stiffness, a careful selection of numerical methods is crucial. We opt for a combined approach involving collocation and multistep methods. Collocation points are strategically chosen within the problem domain, and the differential equation is enforced at these points. For time integration, multistep methods, known for their stability and efficiency, are chosen.
+
+\section{Discretization and System Formulation}
+
+The problem domain is discretized into intervals, and collocation points are judiciously selected. The chosen collocation method is then employed to formulate a system of algebraic equations based on the discretized differential equation. Additionally, for multistep methods, initial conditions and recurrence relations are established.
+
+\section{Implementation}
+
+The solver is implemented in Python, leveraging its versatile libraries for efficient mathematical operations. Functions and classes representing the solver are developed, incorporating numerical algorithms such as Newton-Raphson iteration for solving algebraic systems.
+
+\section{Time Stepping}
+
+For multistep methods, the time-stepping process is implemented. The solution is updated at each time step using the recurrence relations derived earlier. This step ensures the accurate propagation of the solution through time.
+
+\section{Boundary Conditions}
+
+Incorporating boundary conditions into the solver is crucial for obtaining physically meaningful solutions. The solver is designed to satisfy both the differential equation and the specified boundary conditions.
+
+\section{Post-Processing}
+
+After obtaining the numerical solution, post-processing steps are implemented. This includes visualization and analysis of results, aiding in a deeper understanding of the system's behavior.
+
+\section{Validation and Optimization}
+
+To validate the implemented solver, comparisons are made with analytical solutions or benchmark problems. Optimization is performed to enhance the code's efficiency, with considerations for vectorization and parallelization.
+
+\section{Documentation and Testing}
+
+Comprehensive documentation is provided, detailing the algorithms and methodologies employed. Rigorous testing is conducted to ensure the accuracy and reliability of the solver under various scenarios.
+
+\section{Utilizing Libraries and Frameworks}
+
+Existing Python libraries, such as NumPy and SciPy, are leveraged for efficient mathematical operations. This ensures that the implementation benefits from optimized, well-established routines.
+
+\section{Iterative Refinement}
+
+The methodology undergoes iterative refinement based on feedback, experiments, and identified areas of improvement. This iterative process aims to enhance the solver's performance and robustness.
+
+
+\begin{table}[htbp]
+   \centering
+   \caption{Comparison of Solvers}
+   \resizebox{\textwidth}{!}{%
+   \begin{tabular}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+   \hline
+   \textbf{Solver} & \textbf{Method Used} & \textbf{UI Interface} & \textbf{Programming Language} & \textbf{Speed} & \textbf{Ease of Learning} \\ \hline
+   \textbf{Your Project} & Collocation \& Multistep & Custom UI (if applicable) & Python \& Flutter & TBD & Moderate \\ \hline
+   \textbf{GEAR} & Implicit Methods & Command Line & Fortran & High & Moderate \\ \hline
+   \textbf{EPISODE} & Explicit Methods & Graphical UI & C++ & Moderate & Moderate \\ \hline
+   \textbf{MATLAB} & Various (ode15s, ode23, etc.) & MATLAB GUI & MATLAB & High & Easy \\ \hline
+   \end{tabular}%
+   }
+   \label{tab:solver-comparison}
+\end{table}
+   
+
+\section{Conclusion}
+
+This chapter elucidates a systematic and comprehensive methodology for addressing stiff ODEs through a combination of collocation and multistep methods. The methodology is designed to be flexible and adaptable, allowing for the incorporation of additional numerical techniques and algorithms. The next chapter presents the results of applying this methodology to a variety of stiff BVPs and IVPs.
+

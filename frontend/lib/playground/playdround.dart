@@ -73,28 +73,30 @@ void main() {
   //   e: -1,
   // );
 
-  final eq = Quartic(
+  final e = Quartic(
     a: const Complex.fromReal(1),
-    b: Complex.fromRealFraction(Fraction(-8, 9)),
+    b: Complex.fromRealFraction(Fraction(-1, 1)),
     c: const Complex.fromReal(0),
-    d: Complex.fromRealFraction(Fraction(8, 19)),
-    e: const Complex.fromReal(-1),
+    d: const Complex.fromReal(0),
+    e: const Complex.fromReal(0),
   );
+
+  final eq = DurandKerner.realEquation(coefficients: [1, -1, 0, 0, 0]);
   print(eq);
   print(eq.runtimeType);
-  // final t = 
-  // print(eq.solutions());
+  // final t =
+  print(eq.solutions().runtimeType);
   final solutions = eq.solutions();
   for (var element in solutions) {
     print(element.abs());
-    
   }
   final solutionGreaterThanOne =
-      solutions.where((element) => element.abs() >= 1).toList();
+      solutions.where((element) => element.abs() > 1).toList();
   final solutionLesserThanOne =
       solutions.where((element) => element.abs() < 1).toList();
-  print(">1: ${solutionGreaterThanOne.length}");
-  print("<1: ${solutionLesserThanOne.length}");
-  print(solutions.hasUniqueElements());
+  // print(">1: ${solutionGreaterThanOne.length}");
+  // print("<1: ${solutionLesserThanOne.length}");
+  print(solutions.containsMoreThanOneOne());
   print(solutions.hasValueGreaterThanOrEqualToOne());
+ 
 }

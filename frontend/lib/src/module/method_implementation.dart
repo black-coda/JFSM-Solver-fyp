@@ -39,7 +39,8 @@ class MethodImplementation implements LinearMultiStepMethod {
       sumOfAlphaMultipliedByIndex += i * alpha.elementAt(i);
     }
     final c1 = sumOfAlphaMultipliedByIndex - sumOfBeta;
-    return c0 == 0 && c1 == 0;
+    debugPrint("c1: $c1, c0: $c0");
+    return c0.approximate(6) == 0 && c1.approximate(6) == 0;
   }
 
   @override
@@ -55,38 +56,37 @@ class MethodImplementation implements LinearMultiStepMethod {
     List<Complex> algebraicSolution = [];
     if (alpha.isNotEmpty) {
       Algebraic eq;
+
       final reversedAlpha = alpha.reversed.toList();
-      final degree = reversedAlpha.length - 1;
-      debugPrint("degree: $degree");
-      switch (degree) {
-      
-        
+
+      switch (kSteps) {
         case 1:
           eq = Linear.realEquation(
-            a: reversedAlpha.elementAt(1),
-            b: reversedAlpha.elementAt(0),
+            a: alpha.elementAt(1),
+            b: alpha.elementAt(0),
           );
         case 2:
           eq = Quadratic.realEquation(
-            a: reversedAlpha.elementAt(2),
-            b: reversedAlpha.elementAt(1),
-            c: reversedAlpha.elementAt(0),
+            a: alpha.elementAt(2),
+            b: alpha.elementAt(1),
+            c: alpha.elementAt(0),
           );
         case 3:
           eq = Cubic.realEquation(
-            a: reversedAlpha.elementAt(3),
-            b: reversedAlpha.elementAt(2),
-            c: reversedAlpha.elementAt(1),
-            d: reversedAlpha.elementAt(0),
+            a: alpha.elementAt(3),
+            b: alpha.elementAt(2),
+            c: alpha.elementAt(1),
+            d: alpha.elementAt(0),
           );
-        case 4:
-          eq = Quartic.realEquation(
-            a: reversedAlpha.elementAt(4),
-            b: reversedAlpha.elementAt(3),
-            c: reversedAlpha.elementAt(2),
-            d: reversedAlpha.elementAt(1),
-            e: reversedAlpha.elementAt(0),
-          );
+        // case 4:
+
+        //   eq = Quartic.realEquation(
+        //     a: alpha.elementAt(4),
+        //     b: alpha.elementAt(3),
+        //     c: alpha.elementAt(2),
+        //     d: alpha.elementAt(1),
+        //     e: alpha.elementAt(0),
+        //   );
         default:
           eq = DurandKerner.realEquation(
             coefficients: reversedAlpha,

@@ -10,6 +10,7 @@ extension UniqueElementsExtension<T> on List<T> {
   bool containsMoreThanOneOne() {
     // Count the occurrences of "1" in the list
     int count = where((element) => element == 1).length;
+    print("length of count 1 -> $count");
 
     // Check if the count is greater than 1
     return count > 1;

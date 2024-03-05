@@ -1,0 +1,105 @@
+\chapter{Introduction}
+
+% \addcontentsline{toc}{chapter}{Introduction}
+
+\section{Background of Study}
+% \addcontentsline{toc}{section}{1.0 Background of Study}
+Mathematical models in a vast range of disciplines, from science and technology to sociology and business, describe how quantities \textsl{change}. This leads naturally to a language of ordinary differential equations (ODEs).
+Ordinary Differential Equations (ODEs) are a type of differential equation that involves an unknown function and its derivatives. \\
+ODEs are of paramount significance in mathematical modeling because they provide a concise and powerful way to describe how a quantity changes concerning time or another independent variable. The ability to capture the rate of change of a variable makes ODEs essential in understanding dynamic processes, predicting future states, and optimizing system behavior.
+In many important cases of differential equations, analytic solutions are difficult or impossible to obtain and time
+consuming.
+The mathematical modelling of many problems in physics, engineering, chemistry, biology, and many more gives rise to systems of ordinary differential equation. Yet, the number of instances where an exact solution can be found by analytical means is very limited\cite{lambert1977}.In many important cases of differential equations, analytic solutions are difficult or impossible to obtain and time
+consuming, Hence the need for an approximate, or a numerical method.
+
+In contemporary scientific and engineering research, the formulation of complex mathematical models often leads to the generation of differential equations that defy closed-form solutions. This persistent challenge has underscored the growing significance of approximate, or numerical, methods in tackling intricate mathematical problems. Among these methods, numerical techniques for ordinary differential equations (ODEs) stand out as indispensable tools, providing a robust means to compute numerical approximations to the solutions of these challenging equations.This necessity becomes even more pronounced when dealing with stiff systems of differential equations, where rapid variations in solution components pose additional complexities.Classical analytical methods, while powerful and elegant, encounter limitations when confronted with intricate mathematical formulations. Numerical methods step in precisely where analytical methods fall short, offering a practical avenue to obtain solutions when exact expressions are elusive.
+
+Various advanced numerical techniques, such as implicit methods, exponential integrators, and collocation multistep methods, have proven effective in addressing the challenges posed by stiff systems. These methods excel in capturing the dynamics of stiff ODEs by incorporating strategies that adapt to the varying time scales inherent in the system. Implicit methods, for instance, allow for larger time steps, enhancing stability in the presence of stiffness.
+
+With the advent of powerful computing technologies, numerical methods for ODEs have witnessed significant advancements. High-performance computing allows researchers and engineers to tackle more complex problems, simulate intricate physical phenomena, and explore the behavior of systems over extended time-frames. These simulations not only aid in understanding complex systems but also contribute to the optimization and design of real-world applications.
+
+\section{Problem Statement}
+% Existing numerical methods for stiff BVPs require a trade-off between accuracy and computational efficiency due to the absence of a unified framework.
+
+Many studies on solving the equations of stiff ordinary differential equations (ODEs) have been done by researchers or mathematicians specifically. With the number of numerical methods that currently exist,extensive research has been done to unveil the comparison between their rate of convergence, number of computations, accuracy, and capability to solve certain type of test problems \cite{Enright1975} . The well-known numerical methods that are used widely are from the class of BDFs or commonly understood as Gear’s Method \cite{BYRNE1977125}. 
+However, many other methods that have evolved to this date are for solving stiff ODEs which arise in many fields of the applied sciences \cite{Yatim2013}. The class of methods to consider in this project are Linear Multistep methods for the solutions of Initial and Boundary value problems of Ordinary Differential Equations.
+
+In the field of computational mathematics and scientific computing, the effective analysis and numerical solution of ordinary differential equations (ODEs) play a pivotal role in modeling and understanding various real-world phenomena.ODEs arise in diverse contexts, ranging from modeling physical phenomena to simulating engineering systems, often exhibiting a spectrum of behaviors from stiff to non-stiff dynamics. Furthermore, both boundary value problems (BVPs) and initial value problems (IVPs) are prevalent scenarios requiring accurate and efficient numerical solutions.Linear multistep methods (LMMs) stand as prominent numerical techniques extensively utilized for solving ODEs, offering a balance between accuracy and computational efficiency. However, the implementation, analysis, and utilization of LMMs for tackling diverse ODE scenarios, including stiff and non-stiff problems, BVPs, and IVPs, pose significant challenges to researchers and practitioners in computational mathematics.
+
+Existing software solutions tailored for LMM analysis and ODE solving often lack robust capabilities to address the complexity and diversity of real-world ODE problems. For instance, proprietary software solutions like MATLAB and Wolfram Mathematica offer built-in functions for ODE solving, but they may not provide specific support for LMMs, potentially limiting the accuracy or efficiency of LMM-based solutions. Open-source libraries like SciPy and GNU Octave offer broader accessibility but may not offer as extensive support for LMM-specific analysis and customization compared to specialized software.
+
+Furthermore, these software solutions may suffer from limitations such as:
+
+\begin{itemize}
+    \item \textbf{Proprietary nature:} restricting access for users who cannot afford licenses or prefer open-source solutions.
+    \item \textbf{Limited customization or extension capabilities:} particularly in commercial software, which may restrict users from implementing specialized algorithms or analyses.
+    \item \textbf{User interface and documentation:} may not be as intuitive or user-friendly compared to specialized software designed specifically for LMM analysis and ODE solving.
+\end{itemize}
+
+The proposed solution seeks to empower users to explore, analyze, and apply LMMs with unprecedented ease and efficiency across a broad spectrum of ODE scenarios. This initiative is motivated by the recognition that the existing software solutions often fall short in providing comprehensive support for the complexity and diversity of real-world ODE problems. These limitations are particularly evident when attempting to solve stiff and non-stiff problems, as well as when dealing with BVPs and IVPs.
+
+The development of this desktop application is grounded in the recognition of the critical role of computational tools in advancing computational mathematics education and research. By offering a unified platform that facilitates the analysis and numerical solution of ODEs, this application aims to enhance the capabilities of researchers, educators, and students in effectively utilizing LMMs for a wide range of ODE scenarios. This, in turn, supports the advancement of computational mathematics by providing a more efficient and effective means to tackle real-world problems effectively.
+
+The development of such a sophisticated application necessitates a deep understanding of the mathematical principles underlying LMMs and the specific challenges associated with solving ODEs. This includes the identification and management of stiffness in ODEs, the selection of appropriate numerical methods, and the implementation of advanced analysis tools for error control and stability analysis. Furthermore, the application must be designed to support both BVPs and IVPs, requiring the development of algorithms that can adapt to the specific characteristics of these problem types.
+
+By addressing these challenges, the proposed desktop application aims to fill a critical gap in the field of computational mathematics, providing researchers and practitioners with a powerful tool for the analysis of LMM and solution of ODEs. This initiative is expected to contribute significantly to the advancement of computational mathematics education and research, enabling more effective problem-solving and decision-making in various disciplines
+
+\section{Aim and Objectives}
+\subsubsection{Aim:}
+The aim of this project is to develop a unified codebase that provides a comprehensive platform for the analysis and numerical solution of ordinary differential equations (ODEs) using linear multistep methods (LMMs). The codebase aims to address the complexities and diverse scenarios encountered in real-world ODE problems, including stiff and non-stiff dynamics, as well as both boundary value problems (BVPs) and initial value problems (IVPs)
+\subsubsection{Objectives:}
+\begin{enumerate}
+  \item Develop a unified code that seamlessly integrates collocation and multistep methods.
+  \item Assess the accuracy, efficiency, and versatility of the proposed code.
+  \item Provide a user-friendly tool for researchers and practitioners working with stiff initial and boundary value problems(IVPs and BVPs).
+\end{enumerate}
+
+\section{Scope of Study}
+The project centers on the implementation of a numerical code using the Python programming language that integrates collocation and multistep methods. The code aims to solve stiff systems of initial and boundary value problems(IVPs and BVPs) efficiently and accurately and also designing the code with a user-friendly interface to cater to researchers and practitioners working with stiff IVPs and BVPs in flutter.
+
+\section{Significance of Study}
+This codebase tends to provide a tool that combines the strengths of collocation and multistep methods, offering a more comprehensive approach to solving stiff BVPs, and also a user-friendly interface for researchers and practitioners working with stiff initial and boundary value problems(IVPs and BVPs) in flutter.
+
+
+\section{Definition of Terms}
+\begin{enumerate}
+  \item Ordinary differential equation:
+  \item Numerical method: A numerical method is a difference equation involving a number of consecutive approximations $y_{n+j}, j = 0,1,2 \dots k$ from which it be possible to compute sequentially the sequence ${y_{n}|n = 0,1,2, \dots N}$. The integer $k$ is called a step-number; if$k=1,$ the method is called a one-step method, while if $k>1$, the method is called a \textit{one-step method}
+  \item Step Length (Mesh-Size): A point within the solution domain where the solution is approximated or calculated. The \textbf{step length} (\(h\)) is the size of the interval between consecutive points in the independent variable (e.g., time or space) at which the solution of a differential equation is calculated. It plays a crucial role in determining the granularity of the numerical approximation and impacts the accuracy and efficiency of the solution. A smaller step length typically leads to a more accurate but computationally expensive solution, while a larger step length may sacrifice accuracy for computational efficiency. The choice of an appropriate step length is a critical consideration in the numerical solution of differential equations.
+  \item Stiff and Non-Stiff system: 
+  In the context of research, J. D. Lambert characterizes stiffness as follows:
+
+  When employing a numerical method possessing a finite region of absolute stability on a system with arbitrary initial conditions, if the method necessitates the utilization of an exceptionally small step length within a specific integration interval, relative to the smoothness of the exact solution in that range, then the system is identified as stiff during that interval \cite{lambert1977}.
+  A system is considered stiff if it contains components or features that vary widely in terms of their natural frequencies or time scales. Stiff systems often involve rapid and slow modes of response, and the stiffness of the system can lead to numerical challenges in solving the associated differential equations.
+
+
+  It can be deduced that stiffness in a dynamic system refers to the difference in time scales or natural frequencies of its components. Stiff systems require special consideration in numerical simulations due to the challenges associated with solving the corresponding stiff ODEs. Non-stiff systems, on the other hand, are generally easier to simulate numerically.
+
+  \item Algorithms or Packages: These are computer code which implements numerical method, in addition to find the approximate/numerical method, it may perform other task such as estimating the error of a particular method, monitoring and updating the value of the step-length $h$ and deciding which of the family of methods to employ at a particular stage in the solution \cite{lambert1977} 
+
+  \item Collocation method:  is a numerical technique used to solve ordinary differential equations, partial differential equations, and integral equations. The method involves selecting a finite-dimensional space of candidate solutions, usually polynomials up to a certain degree, and a number of points in the domain called collocation points. The idea is to select the solution that satisfies the given equation at the collocation points. The method provides high order accuracy and globally continuous differentiable solutions. \cite{enwiki:1166346639}
+  
+  \item Multistep and Singlestep methods: A single-step method is a numerical method for solving ordinary differential equations that calculates the approximate solution only using the information from the current step.Examples of this are the Taylor algorithm of order K and Runge-Kutta Methods.A multistep method is a numerical method for solving ordinary differential equations that calculates the approximate solution using the information from the current step and one or more previous steps.A crucial characteristic of multistep methods is the necessity to compute prior values of \(y_n\) (where \(n\) takes on values \(1, 2, 3, \ldots, N\)) for \(f_n\) (where \(n\) takes on values \(1, 2, 3, \ldots, N\)) through alternative methods, such as Runge-Kutta methods. This is essential for obtaining accurate values when starting the utilization of multistep methods. Alternatively, if the exact solution is known, \(y_n\) can be directly calculated \cite{powerseriesJFatokun}.For example:
+  \begin{eqnarray}
+   y_{n+1} = y_n + h \cdot f(t_n, y_n) \\
+   y_{n+2} = y_{n+1} + \frac{h}{2} \left[ 3f(t_{n+1}, y_{n+1}) - f(t_n, y_n) \right]
+  \end{eqnarray}
+
+  A disadvantage of multistep methods is that they are not self-starting.But on the other hand, they are faster than the single-step methods. In addition, Multistep methods can be more stable and efficient for certain types of ODEs, especially when dealing with stiff systems \cite{powerseriesJFatokun}.
+
+  \item \textbf{Linear Multistep Method (LMM):} A numerical method for approximating the solution of an ordinary differential equation (ODE) at discrete time points using a linear combination of past and present function values. LMMs typically involve using multiple previous function values to compute the next value, hence the term "multistep."
+    
+    \item \textbf{Explicit Method:} A type of linear multistep method in which the value of the unknown function at the next time step is explicitly computed using only known values at previous time steps. The formula for the next value does not involve solving any equations or iterative procedures.
+    
+    \item \textbf{Implicit Method:} A type of linear multistep method in which the value of the unknown function at the next time step is computed using known values at previous time steps, as well as the value at the next time step itself. The formula for the next value involves solving equations or iterative procedures, making implicit methods more computationally intensive than explicit methods.
+    
+    \item \textbf{Adams-Bashforth Method:} A specific family of explicit linear multistep methods used for numerical integration of ordinary differential equations. Adams-Bashforth methods use interpolation of previous function values to approximate the derivative of the function, allowing for the computation of future function values.
+    
+    \item \textbf{Adams-Moulton Method:} A specific family of implicit linear multistep methods used for numerical integration of ordinary differential equations. Adams-Moulton methods involve using interpolation of previous function values, as well as the value at the next time step, to compute the next function value, typically requiring solving equations or iterative procedures.
+    
+    \item \textbf{Stability:} A property of linear multistep methods indicating the behavior of the numerical solution with respect to small perturbations or errors. A stable method produces a solution that does not grow exponentially with time and remains bounded, ensuring accuracy and reliability of the numerical solution.
+    
+    \item \textbf{Convergence:} A property of linear multistep methods indicating the behavior of the numerical solution as the step size approaches zero. A convergent method produces a solution that approaches the true solution of the ordinary differential equation as the step size decreases, ensuring accuracy and consistency of the numerical solution.
+    
+    \item \textbf{Order of Accuracy:} A measure of the accuracy of a linear multistep method, indicating the rate at which the numerical solution approaches the true solution as the step size decreases. Higher-order methods have higher order of accuracy, meaning they converge to the true solution faster as the step size decreases.
+\end{enumerate}

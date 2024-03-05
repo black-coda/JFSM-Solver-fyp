@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/app/controller/method_implementation_controller.dart';
-import 'package:frontend/src/utils/devtool/devtool.dart';
+
 
 class AnalysisResultScreen extends ConsumerWidget {
   const AnalysisResultScreen({super.key});

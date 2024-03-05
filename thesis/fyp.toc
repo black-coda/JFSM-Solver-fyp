@@ -1,0 +1,30 @@
+\contentsline {chapter}{\numberline {1}Introduction}{4}{}%
+\contentsline {section}{\numberline {1.1}Background of Study}{4}{}%
+\contentsline {section}{\numberline {1.2}Problem Statement}{5}{}%
+\contentsline {section}{\numberline {1.3}Aim and Objectives}{7}{}%
+\contentsline {subsubsection}{Aim:}{7}{}%
+\contentsline {subsubsection}{Objectives:}{8}{}%
+\contentsline {section}{\numberline {1.4}Scope of Study}{8}{}%
+\contentsline {section}{\numberline {1.5}Significance of Study}{8}{}%
+\contentsline {section}{\numberline {1.6}Definition of Terms}{8}{}%
+\contentsline {chapter}{\numberline {2}Literature Review}{12}{}%
+\contentsline {section}{\numberline {2.1}Introduction}{12}{}%
+\contentsline {section}{\numberline {2.2}Stiff Ordinary Differential Equations in Scientific and Engineering Applications}{13}{}%
+\contentsline {section}{\numberline {2.3}Implicit Methods}{13}{}%
+\contentsline {section}{\numberline {2.4}Collocation Methods}{15}{}%
+\contentsline {section}{\numberline {2.5}Multistep Methods}{17}{}%
+\contentsline {chapter}{\numberline {3}Methodology}{19}{}%
+\contentsline {section}{\numberline {3.1}Introduction}{19}{}%
+\contentsline {section}{\numberline {3.2}Problem Formulation}{19}{}%
+\contentsline {section}{\numberline {3.3}Choice of Methods}{19}{}%
+\contentsline {section}{\numberline {3.4}Discretization and System Formulation}{20}{}%
+\contentsline {section}{\numberline {3.5}Implementation}{20}{}%
+\contentsline {section}{\numberline {3.6}Time Stepping}{20}{}%
+\contentsline {section}{\numberline {3.7}Boundary Conditions}{20}{}%
+\contentsline {section}{\numberline {3.8}Post-Processing}{21}{}%
+\contentsline {section}{\numberline {3.9}Validation and Optimization}{21}{}%
+\contentsline {section}{\numberline {3.10}Documentation and Testing}{21}{}%
+\contentsline {section}{\numberline {3.11}Utilizing Libraries and Frameworks}{21}{}%
+\contentsline {section}{\numberline {3.12}Iterative Refinement}{21}{}%
+\contentsline {section}{\numberline {3.13}Conclusion}{22}{}%
+\contentsline {chapter}{References}{23}{}%

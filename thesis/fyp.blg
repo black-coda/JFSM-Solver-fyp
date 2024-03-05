@@ -1,0 +1,66 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: fyp.aux
+Reallocating 'name_of_file' (item size: 1) to 8 items.
+The style file: apacite.bst
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+Reallocating 'glb_str_end' (item size: 4) to 20 items.
+Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
+Reallocating 'global_strs' (item size: 1) to 4000000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 9000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Database file #1: bib/Proposal.bib
+Warning--entry type for "Faleichik2009ExplicitIO" isn't style-file defined
+--line 285 of file bib/Proposal.bib
+Warning--entry type for "cappellaro:bound-problems" isn't style-file defined
+--line 303 of file bib/Proposal.bib
+Warning--entry type for "cappellaro:unbound-problems" isn't style-file defined
+--line 321 of file bib/Proposal.bib
+Warning--I didn't find a database entry for "powerseriesJFatokun"
+apacite.bst [2013/07/21 v6.03 APA bibliography style]
+You've used 17 entries,
+            6951 wiz_defined-function locations,
+            1391 strings with 14783 characters,
+and the built_in function-call counts, 34902 in all, are:
+= -- 4417
+> -- 269
+< -- 1725
++ -- 1796
+- -- 41
+* -- 2230
+:= -- 6423
+add.period$ -- 72
+call.type$ -- 17
+change.case$ -- 312
+chr.to.int$ -- 0
+cite$ -- 34
+duplicate$ -- 861
+empty$ -- 1302
+format.name$ -- 432
+if$ -- 6591
+int.to.chr$ -- 0
+int.to.str$ -- 55
+missing$ -- 0
+newline$ -- 449
+num.names$ -- 138
+pop$ -- 579
+preamble$ -- 1
+purify$ -- 74
+quote$ -- 0
+skip$ -- 2280
+stack$ -- 0
+substring$ -- 1943
+swap$ -- 465
+text.length$ -- 49
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 1640
+warning$ -- 0
+while$ -- 157
+width$ -- 0
+write$ -- 549
+(There were 4 warnings)

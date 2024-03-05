@@ -14,15 +14,19 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        fontFamily: "Anta",
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xff0fa968),
-        ),
-      ),
+      theme: _theming(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteManager.generateRoute,
       initialRoute: RouteManager.splashScreen,
+    );
+  }
+
+  ThemeData _theming() {
+    return ThemeData(
+      fontFamily: "Anta",
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: const Color(0xff0fa968),
+      ),
     );
   }
 }

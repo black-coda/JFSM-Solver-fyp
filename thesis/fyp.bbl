@@ -1,0 +1,496 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Burkardt%
+}{%
+Burkardt%
+}{%
+{\protect \APACyear {2010}}%
+}]{%
+BurkardtRKF45}
+\APACinsertmetastar {%
+BurkardtRKF45}%
+\begin{APACrefauthors}%
+Burkardt, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{March}{}.
+\newblock
+\APACrefbtitle {RKF45 - A FORTRAN90 Library which implements the
+  Runge-Kutta-Fehlberg ODE solver.} {Rkf45 - a fortran90 library which
+  implements the runge-kutta-fehlberg ode solver.}
+\newblock
+\APAChowpublished
+  {\url{https://people.math.sc.edu/Burkardt/f_src/rkf45/rkf45.html}}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Byrne%
+, Hindmarsh%
+, Jackson%
+\BCBL {}\ \BBA {} Brown%
+}{%
+Byrne%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1977}}%
+}]{%
+BYRNE1977125}
+\APACinsertmetastar {%
+BYRNE1977125}%
+\begin{APACrefauthors}%
+Byrne, G\BPBI D.%
+, Hindmarsh, A\BPBI C.%
+, Jackson, K\BPBI R.%
+\BCBL {}\ \BBA {} Brown, H\BPBI G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1977}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A comparison of two ODE codes: GEAR and EPISODE} {A
+  comparison of two ode codes: Gear and episode}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computers \& Chemical Engineering}{1}{2}{125--131}.
+\newblock
+\begin{APACrefURL}
+  \url{https://www.sciencedirect.com/science/article/pii/0098135477800185}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1016/0098-1354(77)80018-5} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Cappellaro%
+}{%
+Cappellaro%
+}{%
+{\protect \APACyear {Year of Publication}}%
+{\protect \APACexlab {{\protect \BCnt {1}}}}}]{%
+cappellaro:bound-problems}
+\APACinsertmetastar {%
+cappellaro:bound-problems}%
+\begin{APACrefauthors}%
+Cappellaro.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{Year of Publication{\protect \BCnt {1}}}{}{}.
+\newblock
+\APACrefbtitle {Bound Problems.} {Bound problems.}
+\newblock
+\begin{APACrefURL}
+  \url{https://phys.libretexts.org/Bookshelves/Nuclear_and_Particle_Physics/Introduction_to_Applied_Nuclear_Physics_(Cappellaro)/04%3A_Energy_Levels/4.01%3A_Bound_Problems}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Cappellaro%
+}{%
+Cappellaro%
+}{%
+{\protect \APACyear {Year of Publication}}%
+{\protect \APACexlab {{\protect \BCnt {2}}}}}]{%
+cappellaro:unbound-problems}
+\APACinsertmetastar {%
+cappellaro:unbound-problems}%
+\begin{APACrefauthors}%
+Cappellaro.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{Year of Publication{\protect \BCnt {2}}}{}{}.
+\newblock
+\APACrefbtitle {Unbound Problems in Quantum Mechanics.} {Unbound problems in
+  quantum mechanics.}
+\newblock
+\begin{APACrefURL}
+  \url{https://phys.libretexts.org/Bookshelves/Nuclear_and_Particle_Physics/Introduction_to_Applied_Nuclear_Physics_(Cappellaro)/03%3A_Radioactive_Decay_Part_I/3.02%3A_Unbound_Problems_in_Quantum_Mechanics}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Dragunov%
+}{%
+Dragunov%
+}{%
+{\protect \APACyear {2021}}%
+}]{%
+dragunov2021transformation}
+\APACinsertmetastar {%
+dragunov2021transformation}%
+\begin{APACrefauthors}%
+Dragunov, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A transformation-based approach for solving stiff
+  two-point boundary value problems} {A transformation-based approach for
+  solving stiff two-point boundary value problems}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{arXiv}{}{}{}.
+\newblock
+\APACrefnote{Submitted on 18 Jun 2021 (v1), last revised 28 Nov 2021 (this
+  version, v2)}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Enright%
+, Hull%
+\BCBL {}\ \BBA {} Lindberg%
+}{%
+Enright%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1975}}%
+}]{%
+Enright1975}
+\APACinsertmetastar {%
+Enright1975}%
+\begin{APACrefauthors}%
+Enright, W\BPBI H.%
+, Hull, T\BPBI E.%
+\BCBL {}\ \BBA {} Lindberg, B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1975}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Comparing numerical methods for stiff systems of
+  O.D.E:s} {Comparing numerical methods for stiff systems of o.d.e:s}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{BIT Numerical Mathematics}{15}{1}{10--48}.
+\newblock
+\begin{APACrefURL} \url{https://doi.org/10.1007/BF01932994} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1007/BF01932994} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Faleichik%
+}{%
+Faleichik%
+}{%
+{\protect \APACyear {2009}}%
+}]{%
+Faleichik2009ExplicitIO}
+\APACinsertmetastar {%
+Faleichik2009ExplicitIO}%
+\begin{APACrefauthors}%
+Faleichik, B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{April}{}.
+\newblock
+\APACrefbtitle {Explicit Implementation of Collocation Methods for Stiff
+  Systems with Complex Spectrum 1.} {Explicit implementation of collocation
+  methods for stiff systems with complex spectrum 1.}
+\newblock
+\begin{APACrefURL} \url{https://api.semanticscholar.org/CorpusID:9177554}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Jeon%
+, Bak%
+\BCBL {}\ \BBA {} Bu%
+}{%
+Jeon%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+math7121158}
+\APACinsertmetastar {%
+math7121158}%
+\begin{APACrefauthors}%
+Jeon, Y.%
+, Bak, S.%
+\BCBL {}\ \BBA {} Bu, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Reinterpretation of Multi-Stage Methods for Stiff
+  Systems: A Comprehensive Review on Current Perspectives and Recommendations}
+  {Reinterpretation of multi-stage methods for stiff systems: A comprehensive
+  review on current perspectives and recommendations}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Mathematics}{7}{12}{}.
+\newblock
+\begin{APACrefURL} \url{https://www.mdpi.com/2227-7390/7/12/1158}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.3390/math7121158} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Lambert%
+}{%
+Lambert%
+}{%
+{\protect \APACyear {1977}}%
+}]{%
+lambert1977}
+\APACinsertmetastar {%
+lambert1977}%
+\begin{APACrefauthors}%
+Lambert, J\BPBI D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1977}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The initial value problem for ordinary differential
+  equations} {The initial value problem for ordinary differential
+  equations}.{\BBCQ}
+\newblock
+\BIn{} D.~Jacobs\ (\BED), \APACrefbtitle {The State of the Art in Numerical
+  Analysis} {The state of the art in numerical analysis}\ (\BPGS\ 451--501).
+\newblock
+\APACaddressPublisher{New York}{Academic Press}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Press%
+, Teukolsky%
+, Vetterling%
+\BCBL {}\ \BBA {} Flannery%
+}{%
+Press%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2007}}%
+}]{%
+numericalrecipes}
+\APACinsertmetastar {%
+numericalrecipes}%
+\begin{APACrefauthors}%
+Press, W\BPBI H.%
+, Teukolsky, S\BPBI A.%
+, Vetterling, W\BPBI T.%
+\BCBL {}\ \BBA {} Flannery, B\BPBI P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2007}.
+\newblock
+\APACrefbtitle {Numerical Recipes: The Art of Scientific Computing} {Numerical
+  recipes: The art of scientific computing}\ (\PrintOrdinal{3rd}\ \BEd).
+\newblock
+\APACaddressPublisher{}{Cambridge University Press}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Quresh%
+, Ramos%
+, Soomro%
+, Akinfenwa%
+\BCBL {}\ \BBA {} Akanbi%
+}{%
+Quresh%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2024}}%
+}]{%
+QURESH2024}
+\APACinsertmetastar {%
+QURESH2024}%
+\begin{APACrefauthors}%
+Quresh, S.%
+, Ramos, H.%
+, Soomro, A.%
+, Akinfenwa, O\BPBI A.%
+\BCBL {}\ \BBA {} Akanbi, M\BPBI A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Numerical integration of stiff problems using a new
+  time-efficient hybrid block solver based on collocation and interpolation
+  techniques} {Numerical integration of stiff problems using a new
+  time-efficient hybrid block solver based on collocation and interpolation
+  techniques}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Mathematics and Computers in Simulation}{}{}{}.
+\newblock
+\begin{APACrefURL}
+  \url{https://www.sciencedirect.com/science/article/pii/S0378475424000016}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{https://doi.org/10.1016/j.matcom.2024.01.001}
+  \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Shampine%
+\ \BBA {} Reichelt%
+}{%
+Shampine%
+\ \BBA {} Reichelt%
+}{%
+{\protect \APACyear {1997}}%
+}]{%
+shampine1997matlab}
+\APACinsertmetastar {%
+shampine1997matlab}%
+\begin{APACrefauthors}%
+Shampine, L\BPBI F.%
+\BCBT {}\ \BBA {} Reichelt, M\BPBI W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1997}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The MATLAB ODE Suite} {The matlab ode suite}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{SIAM Journal on Scientific Computing}{18}{}{1--22}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Stone%
+, Alferman%
+\BCBL {}\ \BBA {} Niemeyer%
+}{%
+Stone%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+stone2017accelerating}
+\APACinsertmetastar {%
+stone2017accelerating}%
+\begin{APACrefauthors}%
+Stone, C\BPBI P.%
+, Alferman, A\BPBI T.%
+\BCBL {}\ \BBA {} Niemeyer, K\BPBI E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Accelerating Finite-Rate Chemical Kinetics with
+  Coprocessors: Comparing Vectorization Methods on GPUs, MICs, and CPUs}
+  {Accelerating finite-rate chemical kinetics with coprocessors: Comparing
+  vectorization methods on gpus, mics, and cpus}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Computational Science and Engineering, LLC}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Thohura%
+\ \BBA {} Rahman%
+}{%
+Thohura%
+\ \BBA {} Rahman%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+thohura2013numerical}
+\APACinsertmetastar {%
+thohura2013numerical}%
+\begin{APACrefauthors}%
+Thohura, S.%
+\BCBT {}\ \BBA {} Rahman, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Numerical Approach for Solving Stiff Differential
+  Equations: A Comparative Study} {Numerical approach for solving stiff
+  differential equations: A comparative study}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Global Journal of Science Frontier Research.
+  Mathematics and Decision Sciences}{13}{6}{Version 1.0}.
+\newblock
+\APACrefnote{Type: Double Blind Peer Reviewed International Research Journal}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Wikipedia contributors}%
+}{%
+{Wikipedia contributors}%
+}{%
+{\protect \APACyear {2023}}%
+}]{%
+enwiki:1166346639}
+\APACinsertmetastar {%
+enwiki:1166346639}%
+\begin{APACrefauthors}%
+{Wikipedia contributors}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+\APACrefbtitle {Collocation method --- {Wikipedia}{,} The Free Encyclopedia.}
+  {Collocation method --- {Wikipedia}{,} the free encyclopedia.}
+\newblock
+\begin{APACrefURL}
+  \url{https://en.wikipedia.org/w/index.php?title=Collocation_method&oldid=1166346639}
+  \end{APACrefURL}
+\newblock
+\APACrefnote{[Online; accessed 14-January-2024]}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Wong%
+}{%
+Wong%
+}{%
+{\protect \APACyear {2020}}%
+}]{%
+wong2020lecture}
+\APACinsertmetastar {%
+wong2020lecture}%
+\begin{APACrefauthors}%
+Wong, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{April 12}{}.
+\newblock
+\APACrefbtitle {Math 563 Lecture Notes: Numerical Methods for Boundary Value
+  Problems.} {Math 563 lecture notes: Numerical methods for boundary value
+  problems.}
+\newblock
+\APAChowpublished {Lecture Notes}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Yatim%
+, Ibrahim%
+, Othman%
+\BCBL {}\ \BBA {} Suleiman%
+}{%
+Yatim%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2013}}%
+}]{%
+Yatim2013}
+\APACinsertmetastar {%
+Yatim2013}%
+\begin{APACrefauthors}%
+Yatim, S\BPBI A\BPBI M.%
+, Ibrahim, Z\BPBI B.%
+, Othman, K\BPBI I.%
+\BCBL {}\ \BBA {} Suleiman, M\BPBI B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A Numerical Algorithm for Solving Stiff Ordinary
+  Differential Equations} {A numerical algorithm for solving stiff ordinary
+  differential equations}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Mathematical Problems in Engineering}{2013}{}{Article
+  ID 989381, 11}.
+\newblock
+\begin{APACrefURL} \url{https://doi.org/10.1155/2013/989381} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1155/2013/989381} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}
