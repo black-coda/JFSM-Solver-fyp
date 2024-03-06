@@ -1,7 +1,8 @@
 import 'package:equations/equations.dart';
 import 'package:flutter/foundation.dart';
+import 'package:frontend/src/module/linear_multistep_analysis_method.dart';
 import 'package:frontend/src/utils/devtool/devtool.dart';
-import 'package:frontend/src/module/linear_multistep_method.dart';
+
 import 'package:frontend/src/utils/extension/approximation.dart';
 import "dart:math";
 
@@ -9,7 +10,7 @@ import 'package:frontend/src/utils/extension/factorial.dart';
 import 'package:frontend/src/utils/extension/unique_element_checker.dart';
 import 'package:frontend/src/utils/extension/value_greater_than_or_equal_to_one.dart';
 
-class MethodImplementation implements LinearMultiStepMethod {
+class MethodImplementation implements LinearMultiStepAnalysisMethod {
   final int kSteps;
   final List<double> alpha;
   final List<double> beta;
@@ -78,6 +79,8 @@ class MethodImplementation implements LinearMultiStepMethod {
             c: alpha.elementAt(1),
             d: alpha.elementAt(0),
           );
+
+        // TODO: Implement the method for solving the quartic equation.
         // case 4:
 
         //   eq = Quartic.realEquation(

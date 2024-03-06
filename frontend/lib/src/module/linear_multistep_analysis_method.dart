@@ -1,4 +1,4 @@
-abstract class LinearMultiStepMethod {
+abstract class LinearMultiStepAnalysisMethod {
   bool isConsistent() {
     // TODO: Implement the consistency check for the linear multi-step method.
     throw UnimplementedError();
