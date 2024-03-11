@@ -26,6 +26,41 @@ Burkardt, J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Butcher%
+}{%
+Butcher%
+}{%
+{\protect \APACyear {2009}}%
+}]{%
+BUTCHER20091834}
+\APACinsertmetastar {%
+BUTCHER20091834}%
+\begin{APACrefauthors}%
+Butcher, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {General linear methods for ordinary differential
+  equations} {General linear methods for ordinary differential
+  equations}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Mathematics and Computers in
+  Simulation}{79}{6}{1834-1845}.
+\newblock
+\begin{APACrefURL}
+  \url{https://www.sciencedirect.com/science/article/pii/S0378475407001462}
+  \end{APACrefURL}
+\newblock
+\APACrefnote{Applied and Computational MathematicsSelected Papers of the Sixth
+  PanAmerican WorkshopJuly 23-28, 2006, Huatulco-Oaxaca, Mexico}
+\newblock
+\begin{APACrefDOI} \doi{https://doi.org/10.1016/j.matcom.2007.02.006}
+  \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Byrne%
 , Hindmarsh%
 , Jackson%
@@ -58,82 +93,6 @@ Byrne, G\BPBI D.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1016/0098-1354(77)80018-5} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Cappellaro%
-}{%
-Cappellaro%
-}{%
-{\protect \APACyear {Year of Publication}}%
-{\protect \APACexlab {{\protect \BCnt {1}}}}}]{%
-cappellaro:bound-problems}
-\APACinsertmetastar {%
-cappellaro:bound-problems}%
-\begin{APACrefauthors}%
-Cappellaro.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{Year of Publication{\protect \BCnt {1}}}{}{}.
-\newblock
-\APACrefbtitle {Bound Problems.} {Bound problems.}
-\newblock
-\begin{APACrefURL}
-  \url{https://phys.libretexts.org/Bookshelves/Nuclear_and_Particle_Physics/Introduction_to_Applied_Nuclear_Physics_(Cappellaro)/04%3A_Energy_Levels/4.01%3A_Bound_Problems}
-  \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Cappellaro%
-}{%
-Cappellaro%
-}{%
-{\protect \APACyear {Year of Publication}}%
-{\protect \APACexlab {{\protect \BCnt {2}}}}}]{%
-cappellaro:unbound-problems}
-\APACinsertmetastar {%
-cappellaro:unbound-problems}%
-\begin{APACrefauthors}%
-Cappellaro.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{Year of Publication{\protect \BCnt {2}}}{}{}.
-\newblock
-\APACrefbtitle {Unbound Problems in Quantum Mechanics.} {Unbound problems in
-  quantum mechanics.}
-\newblock
-\begin{APACrefURL}
-  \url{https://phys.libretexts.org/Bookshelves/Nuclear_and_Particle_Physics/Introduction_to_Applied_Nuclear_Physics_(Cappellaro)/03%3A_Radioactive_Decay_Part_I/3.02%3A_Unbound_Problems_in_Quantum_Mechanics}
-  \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Dragunov%
-}{%
-Dragunov%
-}{%
-{\protect \APACyear {2021}}%
-}]{%
-dragunov2021transformation}
-\APACinsertmetastar {%
-dragunov2021transformation}%
-\begin{APACrefauthors}%
-Dragunov, D.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2021}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {A transformation-based approach for solving stiff
-  two-point boundary value problems} {A transformation-based approach for
-  solving stiff two-point boundary value problems}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{arXiv}{}{}{}.
-\newblock
-\APACrefnote{Submitted on 18 Jun 2021 (v1), last revised 28 Nov 2021 (this
-  version, v2)}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -190,6 +149,30 @@ Faleichik, B.%
 \newblock
 \begin{APACrefURL} \url{https://api.semanticscholar.org/CorpusID:9177554}
   \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Fatokun%
+}{%
+Fatokun%
+}{%
+{\protect \APACyear {1992}}%
+}]{%
+powerseriesJFatokun}
+\APACinsertmetastar {%
+powerseriesJFatokun}%
+\begin{APACrefauthors}%
+Fatokun, J\BPBI O.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1992}{August}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Power Series Collocation methods for the initial value
+  problems} {Power series collocation methods for the initial value
+  problems}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Unilorin}{1}{}{10}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -251,6 +234,27 @@ Lambert, J\BPBI D.%
   Analysis} {The state of the art in numerical analysis}\ (\BPGS\ 451--501).
 \newblock
 \APACaddressPublisher{New York}{Academic Press}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+\APACcitebtitle {Multistep methods — Fundamentals of Numerical
+  Computation}}{%
+\APACcitebtitle {Multistep methods — Fundamentals of Numerical
+  Computation}}{%
+{\protect \APACyear {{\protect \bibnodate {}}}}%
+}]{%
+fnc_multistep_methods}
+\APACinsertmetastar {%
+fnc_multistep_methods}%
+\APACrefbtitle {Multistep methods — Fundamentals of Numerical Computation.}
+  {Multistep methods — fundamentals of numerical computation.}
+\newblock
+\APACrefYearMonthDay{{\protect \bibnodate {}}}{}{}.
+\newblock
+\begin{APACrefURL} \url{https://fncbook.github.io/fnc/ivp/multistep.html}
+  \end{APACrefURL}
+\newblock
+\APACrefnote{Accessed: 2023-09-03}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

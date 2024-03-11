@@ -1,0 +1,32 @@
+# LaTeX files
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.pdf
+
+# LaTeX build output
+build/
+# LaTeX-specific files
+*.aux
+*.log
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.out
+*.toc
+*.gz
+
+# Compiler output
+*.pdf
+*.dvi
+
+# Editor-specific files
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Build directories
+_build/
+out/
