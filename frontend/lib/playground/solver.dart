@@ -21,7 +21,15 @@ void main() {
 
   final solver = SolverImplementation();
   final t = solver.explicitLinearMultistepMethod(
-      2, alpha, beta, func, y0, x0, stepSize, N);
+    stepNumber: 2,
+    alpha: alpha,
+    beta: beta,
+    func: func,
+    y0: y0,
+    x0: x0,
+    stepSize: stepSize,
+    N: N,
+  );
 
   print(t);
 }

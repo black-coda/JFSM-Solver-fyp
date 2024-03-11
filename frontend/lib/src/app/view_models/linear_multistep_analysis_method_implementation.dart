@@ -10,13 +10,35 @@ import 'package:frontend/src/utils/extension/factorial.dart';
 import 'package:frontend/src/utils/extension/unique_element_checker.dart';
 import 'package:frontend/src/utils/extension/value_greater_than_or_equal_to_one.dart';
 
+/// A class implementing analysis methods for linear multistep numerical methods.
+///
+/// Linear multistep analysis methods evaluate the properties of numerical methods
+/// for solving ordinary differential equations (ODEs). This class provides
+/// functionality to check the consistency, stability, convergence, order of
+/// convergence, and error constant of linear multistep methods.
 class MethodImplementation implements LinearMultiStepAnalysisMethod {
+  /// The number of steps in the linear multistep method.
   final int kSteps;
-  final List<double> alpha;
-  final List<double> beta;
-  MethodImplementation(
-      {required this.kSteps, required this.alpha, required this.beta});
 
+  /// Coefficients of the terms involving alpha values of a LMM.
+  final List<double> alpha;
+
+  /// Coefficients of the terms involving beta values of a LMM.
+  final List<double> beta;
+
+  /// Constructs a [MethodImplementation] instance with the given parameters
+  /// representing the coefficients of a linear multistep method.
+  ///  - [kSteps]: The number of steps in the linear multistep method.
+  /// - [alpha]: Coefficients of the terms involving alpha values of a LMM.
+  /// - [beta]: Coefficients of the terms involving beta values of a LMM.
+
+  MethodImplementation({
+    required this.kSteps,
+    required this.alpha,
+    required this.beta,
+  });
+
+  /// Constructs a [MethodImplementation] instance with initial state.
   MethodImplementation.initialState()
       : kSteps = 0,
         alpha = const [0, 0],
@@ -24,6 +46,12 @@ class MethodImplementation implements LinearMultiStepAnalysisMethod {
 
   @override
   bool isConsistent() {
+    /// Checks whether the linear multistep method is consistent.
+    ///
+    /// Consistency refers to the property of a numerical method where the
+    /// truncation error approaches zero as the step size tends to zero.
+    ///
+    /// Returns `true` if the method is consistent, otherwise `false`.
     final List<double> parameters = [...alpha, ...beta];
     double sumOfAlphaMultipliedByIndex = 0;
 
@@ -46,6 +74,12 @@ class MethodImplementation implements LinearMultiStepAnalysisMethod {
 
   @override
   bool isConvergent() {
+    /// Checks whether the linear multistep method is convergent.
+    ///
+    /// Convergence refers to the property of a numerical method where the
+    /// numerical solution approaches the exact solution as the step size tends to zero.
+    ///
+    /// Returns `true` if the method is convergent, otherwise `false`.
     if (isZeroStable() && isConsistent()) {
       return true;
     }
@@ -54,6 +88,13 @@ class MethodImplementation implements LinearMultiStepAnalysisMethod {
 
   @override
   bool isZeroStable() {
+    /// Checks whether the linear multistep method is zero-stable.
+    ///
+    /// Zero stability refers to the property of a numerical method where small
+    /// errors in the initial conditions do not lead to significant amplification
+    /// of errors in the computed solution.
+    ///
+    /// Returns `true` if the method is zero-stable, otherwise `false`.
     List<Complex> algebraicSolution = [];
     if (alpha.isNotEmpty) {
       Algebraic eq;
@@ -108,6 +149,14 @@ class MethodImplementation implements LinearMultiStepAnalysisMethod {
 
   @override
   (int, double) orderAndErrorConstant() {
+    /// Calculates the order of convergence and error constant of the method.
+    ///
+    /// The order of convergence represents the rate at which the numerical
+    /// solution converges to the exact solution as the step size decreases. The
+    /// error constant quantifies the magnitude of the error in the numerical
+    /// solution.
+    ///
+    /// Returns a tuple containing the order of convergence and the error constant.
     if (!isConsistent()) {
       return (404, 0.0); // Consistency check failed
     }
