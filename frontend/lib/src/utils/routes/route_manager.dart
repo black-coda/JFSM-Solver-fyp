@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/src/app/view/screens/dashboard.dart';
-import 'package:frontend/src/app/view/screens/dashboard_screen.dart';
 import '../../app/view/screens/splash_screen.dart';
 
 class RouteManager {

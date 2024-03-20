@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:frontend/src/app/view/screens/result_of_method_test.dart';
+
 import 'package:frontend/src/app/view/screens/step_number_screen.dart';
-import 'package:frontend/src/utils/devtool/devtool.dart';
+
 
 import 'analysis_value_collector.dart';
 

@@ -16,12 +16,14 @@ void main() {
   int N = 5;
 
   // Define the alpha and beta values
-  List<double> alpha = [0, -1, 1];
-  final beta = <double>[-0.5, 1.5, 0];
+  final List<double> alpha = [0, 0, -1, 1];
+  final List<double> beta = <double>[5 / 12, -16 / 12, 23 / 12, 0];
+  // final b = [1,2];
+  // List anew = List.filled(5, 0, growable: true);
 
   final solver = SolverImplementation();
   final t = solver.explicitLinearMultistepMethod(
-    stepNumber: 2,
+    stepNumber: 3,
     alpha: alpha,
     beta: beta,
     func: func,
@@ -32,4 +34,7 @@ void main() {
   );
 
   print(t);
+  // anew.replaceRange(0, 2, b);
+
+  // print(anew);
 }

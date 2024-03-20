@@ -5,5 +5,7 @@
         "Kutta",
         "multistep",
         "Runge"
-    ]
+    ],
+    "editor.fontFamily": "jetbrains mono, 'Courier New', monospace",
+    "workbench.colorTheme": "Tokyo Night Storm"
 }
