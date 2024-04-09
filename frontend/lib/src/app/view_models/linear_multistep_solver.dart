@@ -2,6 +2,8 @@ import 'package:frontend/src/module/linear_multistep_solver.dart';
 import 'package:frontend/src/utils/extension/approximation.dart';
 
 class SolverImplementation implements LinearMultistepSolver {
+
+  
   @override
   List<double> explicitLinearMultistepMethod({
     required int stepNumber,
@@ -32,12 +34,10 @@ class SolverImplementation implements LinearMultistepSolver {
           x0 += stepSize;
           y0 = y;
         }
-        break;
 
       case 2:
         List<double> yRKMethod =
             fourthOrderRungeKuttaMethod(func, y0, x0, stepSize, stepNumber);
-        print(yRKMethod);
 
         result[0] =
             yRKMethod[0].approximate(6); // Store the first value from RK method
@@ -75,103 +75,106 @@ class SolverImplementation implements LinearMultistepSolver {
           x1 += stepSize;
         }
 
-      case 3:
-        //* Get y1,y2 from RKmethod
-        List<double> yRKMethod =
-            fourthOrderRungeKuttaMethod(func, y0, x0, stepSize, stepNumber);
-        List<double> approximatedResultFromRK =
-            yRKMethod.map((e) => e.approximate(6)).toList();
-        print("from case 3: $approximatedResultFromRK");
-        //* add approximated to 6dp values from r-k method to result list => y1,y2
-        result.replaceRange(0,stepNumber-1,approximatedResultFromRK);
-
-
-
-        //* y1 and y2 values
-        double y1 = result[0];
-        double y2 = result[1];
-
-        //* x1 and x2
-        double x1 = x0 + stepSize;
-        double x2 = x1 + stepSize;
-
-        for (var i = 2; i < N; i++) {
-          //? Calculate f0
-          double evaluateApproximateFunction = func(x0.approximate(2), y0);
-
-          //? Calculate function values at the next step (f1)
-          double fValuesOfRKResultF1 =
-              func(x1.approximate(2), y1.approximate(6));
-          //? Calculate function values at the next step (f2)
-          double fValuesOfRKResultF2 =
-              func(x2.approximate(2), y2.approximate(6));
-
-          //? calculate the new y
-          double y = stepSize *
-                  (beta.elementAt(0) *
-                          evaluateApproximateFunction.approximate(6) +
-                      (beta.elementAt(1) * fValuesOfRKResultF1.approximate(6)) +
-                      (beta.elementAt(2)) *
-                          fValuesOfRKResultF2.approximate(6)) -
-              ((alpha.elementAt(0) * y0) +
-                  (alpha.elementAt(1) * y1) +
-                  (alpha.elementAt(2) * y2));
-          //? add the new y to the result list
-          result[i] = y.approximate(6);
-
-          //? updating x values for next approximation
-          x0 = x1.approximate(2);
-          x1 = x2.approximate(2);
-          x2 += stepSize;
-
-          //? updating x values for next approximation
-          y0 = y1.approximate(6);
-          y1 =y2.approximate(6);
-          y2 = y;
-        }
-
       default:
-        List<double> yRKMethod =
+        //* Initialize the result list with size N and filled with 0s
+        
+
+        //* add the initial value y (y0) to the result list
+        result[0] = y0;
+
+        //* Compute initial values using the fourth-order Runge-Kutta method
+        List<double> initialValuesFromRKMethod =
             fourthOrderRungeKuttaMethod(func, y0, x0, stepSize, stepNumber);
-        result[0] =
-            yRKMethod[0].approximate(6); // Store the first value from RK method
 
-        result[1] = yRKMethod[1].approximate(6);
 
-        double y1 =
-            result[0]; // Initialize y1 with the first value from RK method
-        double x1 = x0 + stepSize; // Initialize x1 for the next point
+        //* approximate the result from RK method to 6dp
+        List<double> approximatedYFromRK =
+            initialValuesFromRKMethod.map((e) => e.approximate(6)).toList();
 
-        // Iterate starting from the second point
-        for (int i = 2; i < N; i++) {
-          // Calculate the approximate function value at the current point
-          double evaluateApproximateFunction = func(x0.approximate(2), y0);
 
-          // Calculate function values at the next step
-          double fValuesOfRKResultF1 =
-              func(x1.approximate(2), y1.approximate(6));
+        //* add approximated to 6dp values from r-k method to result list in a right order
+        result.replaceRange(1, stepNumber - 1, approximatedYFromRK);
 
-          // Calculate the new y value using explicit linear multistep method
-          double y = stepSize *
-                  ((beta.elementAt(0) *
-                          evaluateApproximateFunction.approximate(6)) +
-                      (beta.elementAt(1) *
-                          fValuesOfRKResultF1.approximate(6))) -
-              ((alpha.elementAt(1) * y1) + alpha.elementAt(0) * y0);
 
-          // Store the calculated value in the result list
-          result[i] = y.approximate(6);
+        //* get the non-zero value of Y from the result list
+        List<double> y = result.sublist(0, stepNumber);
 
-          // Update x0, y0, and y1 for the next iteration
-          x0 = x1.approximate(2);
-          y0 = y1.approximate(6);
-          y1 = y;
 
-          // Update x1 for the next point
-          x1 += stepSize;
+        //* generates values of x based on the step number and initial value x0
+        List<double> x = generateXValues(x0, stepSize, stepNumber)
+            .map((e) => e.approximate(2))
+            .toList();
+
+
+        //* f values from f1 => f(stepNumber - 1)
+        List<double> fValues = [];
+
+
+        //* initial values of alpha and beta
+        double betaF = 0;
+        double alphaY = 0;
+
+        //* summation using the general lmm formulae
+        for (var i = stepNumber; i <= N; i++) {
+          /// * calculate the values of f0,f1 ... f(stepNumber -1), then add it to the [fValues]
+          for (var j = 0; j < stepNumber; j++) {
+            double xj = x[j];
+            double yj = y[j];
+
+            fValues.add(func(xj, yj));
+          }
+
+          //* Approximate fValues to 6dp
+          fValues = fValues.map((e) => e.approximate(6)).toList();
+          //! Using the formula
+
+          //* calculate summation beta * fi
+          for (var k = 0; k < stepNumber; k++) {
+            betaF += beta[k] * fValues[k];
+          }
+
+
+          //* calculate summation alpha*y
+          for (var l = 0; l < stepNumber; l++) {
+            alphaY += alpha[l] * y[l];
+          }
+
+
+          //? Calculate the new y => h[beta*f] - alpha*y
+          double nextValueOfY =
+              (stepSize * betaF.approximate(6)) - alphaY.approximate(6);
+
+
+          //? add the next value of y calculated to the list of y
+          y.add(nextValueOfY.approximate(6));
+
+
+          //? add the next value of y calculated to the result list
+          result[i] = nextValueOfY.approximate(6);
+
+
+          //? updating values
+
+          //* update values of x
+          for (var m = 0; m < x.length; m++) {
+            x[m] += stepSize;
+          }
+
+          //* approximate the values of x to 1dp
+          x = x.map((e) => e.approximate(1)).toList();
+
+
+          //* Update values of y by removing the first value in the list
+          y.removeAt(0);
+
+
+          //* reset the values of betaF and alpha Y to 0
+          betaF = 0;
+          alphaY = 0;
+
+          //* reset the fValues to an empty list
+          fValues = [];
         }
-
-      // Multi-step method using initial approximation from fourth-order Runge-Kutta
     }
     return result;
   }
@@ -211,5 +214,17 @@ class SolverImplementation implements LinearMultistepSolver {
     }
 
     return result;
+  }
+
+  List<double> generateXValues(double x0, double stepSize, int stepNumber,
+      {int decimalPlaces = 1}) {
+    String firstValueOfX = x0.toString();
+    List<String> xValues = [];
+    xValues.add(firstValueOfX);
+    for (int n = 1; n <= stepNumber - 1; n++) {
+      double x = x0 + n * stepSize;
+      xValues.add(x.toStringAsFixed(decimalPlaces));
+    }
+    return xValues.map((e) => double.parse(e)).toList();
   }
 }

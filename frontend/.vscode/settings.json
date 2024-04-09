@@ -4,8 +4,9 @@
         "Kerner",
         "Kutta",
         "multistep",
-        "Runge"
+        "Runge",
+        "sublist"
     ],
-    "editor.fontFamily": "jetbrains mono, 'Courier New', monospace",
-    "workbench.colorTheme": "Tokyo Night Storm"
+    "editor.fontFamily": "fira code, 'Courier New', monospace",
+    "workbench.colorTheme": "One Dark Pro"
 }

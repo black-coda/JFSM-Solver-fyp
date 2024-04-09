@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:frontend/playground/tester.dart';
 import 'package:frontend/src/app/view_models/linear_multistep_solver.dart';
 import 'package:frontend/src/utils/extension/approximation.dart';
 
@@ -21,8 +22,19 @@ void main() {
   // final b = [1,2];
   // List anew = List.filled(5, 0, growable: true);
 
-  final solver = SolverImplementation();
-  final t = solver.explicitLinearMultistepMethod(
+  final solverTester = SolverImplementation();
+  // final t = solver.explicitLinearMultistepMethod(
+  //   stepNumber: 3,
+  //   alpha: alpha,
+  //   beta: beta,
+  //   func: func,
+  //   y0: y0,
+  //   x0: x0,
+  //   stepSize: stepSize,
+  //   N: N,
+  // );
+
+  final ans = solverTester.explicitLinearMultistepMethod(
     stepNumber: 3,
     alpha: alpha,
     beta: beta,
@@ -33,8 +45,12 @@ void main() {
     N: N,
   );
 
-  print(t);
-  // anew.replaceRange(0, 2, b);
+  print(ans);
 
-  // print(anew);
+ 
+
+ 
+
+  
 }
+
