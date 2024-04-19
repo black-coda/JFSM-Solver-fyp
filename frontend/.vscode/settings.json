@@ -7,6 +7,6 @@
         "Runge",
         "sublist"
     ],
-    "editor.fontFamily": "fira code, 'Courier New', monospace",
-    "workbench.colorTheme": "One Dark Pro"
+    "editor.fontFamily": "\"consola s\",\"Liga sfmono  nerd font\",\"fira code\",\"operator mono lig\",\"jetbrains mono\",\"fira code\",\"dank mono\"",
+    "workbench.colorTheme": "Tokyo Night Storm"
 }

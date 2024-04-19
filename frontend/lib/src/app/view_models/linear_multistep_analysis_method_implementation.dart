@@ -16,7 +16,7 @@ import 'package:frontend/src/utils/extension/value_greater_than_or_equal_to_one.
 /// for solving ordinary differential equations (ODEs). This class provides
 /// functionality to check the consistency, stability, convergence, order of
 /// convergence, and error constant of linear multistep methods.
-class MethodImplementation implements LinearMultiStepAnalysisMethod {
+class AnalysisImplementation implements LinearMultiStepAnalysisMethod {
   /// The number of steps in the linear multistep method.
   final int kSteps;
 
@@ -26,20 +26,20 @@ class MethodImplementation implements LinearMultiStepAnalysisMethod {
   /// Coefficients of the terms involving beta values of a LMM.
   final List<double> beta;
 
-  /// Constructs a [MethodImplementation] instance with the given parameters
+  /// Constructs a [AnalysisImplementation] instance with the given parameters
   /// representing the coefficients of a linear multistep method.
   ///  - [kSteps]: The number of steps in the linear multistep method.
   /// - [alpha]: Coefficients of the terms involving alpha values of a LMM.
   /// - [beta]: Coefficients of the terms involving beta values of a LMM.
 
-  MethodImplementation({
+  AnalysisImplementation({
     required this.kSteps,
     required this.alpha,
     required this.beta,
   });
 
-  /// Constructs a [MethodImplementation] instance with initial state.
-  MethodImplementation.initialState()
+  /// Constructs a [AnalysisImplementation] instance with initial state.
+  AnalysisImplementation.initialState()
       : kSteps = 0,
         alpha = const [0, 0],
         beta = const [0, 0];
@@ -157,9 +157,11 @@ class MethodImplementation implements LinearMultiStepAnalysisMethod {
     /// solution.
     ///
     /// Returns a tuple containing the order of convergence and the error constant.
-    if (!isConsistent()) {
-      return (404, 0.0); // Consistency check failed
-    }
+    /// 
+    /// TODO: ask professor fatokun
+    // if (!isConsistent()) {
+    //   return (404, 0.0); // Consistency check failed
+    // }
 
     List<double> c0 = [];
     double sumOfC0 = 0;

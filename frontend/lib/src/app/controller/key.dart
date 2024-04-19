@@ -6,6 +6,6 @@ final analysisCollectorFormKeyProvider = Provider<GlobalKey<FormState>>((ref) {
 });
 
 
-final isAnalysisCollectorFormValidProvider = StateProvider<bool>((ref) {
+final isAnalysisCollectorFormValidProvider = StateProvider.autoDispose<bool>((ref) {
   return false;
 });

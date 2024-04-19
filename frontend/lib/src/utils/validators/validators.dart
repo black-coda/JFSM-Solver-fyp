@@ -12,6 +12,8 @@ class Validator{
       return 'Value must be a number';
     }
 
+    if (int.tryParse(val) == null) return "step must must be a number";
+
     return null;    
   }
 

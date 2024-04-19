@@ -47,5 +47,14 @@ abstract class LinearMultistepSolver {
   ///
   /// Returns a list of computed values representing the approximate solution
   /// at each step.
-  List<double> implicitLinearMultistepMethod();
+  List<double> implicitLinearMultistepMethod({
+    required int stepNumber,
+    required List<double> alpha,
+    required List<double> beta,
+    required double Function(double initialValueX, double initialValueY) func,
+    required double y0,
+    required double x0,
+    required double stepSize,
+    required int N,
+  });
 }
