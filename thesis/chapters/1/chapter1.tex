@@ -40,20 +40,20 @@ Furthermore, these software solutions may suffer from limitations such as:
     \item \textbf{User interface and documentation:} may not be as intuitive or user-friendly compared to specialized software designed specifically for LMM analysis and ODE solving.
 \end{itemize}
 
-The proposed solution aims to significantly enhance the ease and efficiency with which users can explore, analyze, and apply Linear Multistep Methods (LMMs) across a wide array of Ordinary Differential Equation (ODE) scenarios. This initiative is driven by the recognition that existing software solutions often lack comprehensive support for the complexity and diversity of real-world ODE problems, particularly when addressing stiff and non-stiff problems, as well as boundary value problems (BVPs) and initial value problems (IVPs).
-
-The development of a unified code aimed at enhancing the capabilities of researchers, educators, and students in utilizing Linear Multistep Methods (LMMs) for solving a wide range of Ordinary Differential Equation (ODE) scenarios is grounded in the critical role of computational tools in advancing computational mathematics education and research. This application seeks to provide a unified platform that facilitates the analysis and numerical solution of ODEs, thereby supporting the advancement of computational mathematics by offering a more efficient and effective means to tackle real-world problems.
-
 The development of such an application requires a deep understanding of the mathematical principles underlying LMMs, including the identification and management of stiffness in ODEs, the selection of appropriate numerical methods, and the implementation of advanced analysis tools for error control and stability analysis. Additionally, the application must be designed to support both boundary value problems (BVPs) and initial value problems (IVPs), necessitating the development of algorithms that can adapt to the specific characteristics of these problem types.
 
 By addressing these challenges, the proposed unified code aims to fill a critical gap in the field of computational mathematics, providing researchers and practitioners with a powerful tool for the analysis of LMM and solution of ODEs. This initiative is expected to contribute significantly to the advancement of computational mathematics education and research, enabling more effective problem-solving and decision-making in various disciplines.
+
+The proposed solution aims to significantly enhance the ease and efficiency with which users can explore, analyze, and apply Linear Multistep Methods (LMMs) across a wide array of Ordinary Differential Equation (ODE) scenarios. This initiative is driven by the recognition that existing software solutions often lack comprehensive support for the complexity and diversity of real-world ODE problems, particularly when addressing stiff and non-stiff problems, as well as boundary value problems (BVPs) and initial value problems (IVPs).
+
 \newpage
 \section{Aim and Objectives}
 \subsubsection{Aim:}
-The aim of the application is to develop a robust software tool for analyzing linear multistep methods used in solving stiff ordinary differential equations (ODEs). This tool will encompass functionalities for assessing numerical properties such as zero-stability, consistency, convergence, and error constants, providing valuable insights into the behavior and performance of these methods.
+The aim of the application is to develop a robust software tool for analyzing linear multistep methods used in solving stiff ordinary differential equations (ODEs) and also use the method to solve problems of ordinary differential equation (ODEs).
+This tool will encompass functionalities for assessing numerical properties such as zero-stability, consistency, convergence, and error constants, providing valuable insights into the behavior and performance of these methods.
 \subsubsection{Objectives:}
 \begin{enumerate}
-  \item \textbf{Algorithm Development and Software Implementation}: Develop algorithms to analyze numerical properties of linear multistep methods, implement them into a user-friendly software application with intuitive interfaces.
+  \item \textbf{Algorithm Development and Software Implementation}: Develop algorithms to analyze numerical properties of linear multistep methods,use the method to also solve stiff ODEs, implement them into a user-friendly software application with intuitive interfaces.
     
   \item \textbf{Validation and Error Analysis}: Validate algorithms by comparing results with analytical solutions, incorporate error analysis functionalities to compute error constants, ensuring accuracy and reliability.
   
@@ -62,7 +62,11 @@ The aim of the application is to develop a robust software tool for analyzing li
 \end{enumerate}
 
 \section{Scope of Study}
-The scope of this study encompasses a comprehensive exploration of linear multistep methods as applied to the solution of stiff ordinary differential equations (ODEs). It involves an in-depth analysis and implementation of various linear multistep techniques, including but not limited to Adams-Bashforth and Adams-Moulton methods. The focus is on investigating the numerical properties of these methods, such as stability, accuracy, and convergence, particularly in the context of stiff ODEs. Additionally, the study involves the development of a software tool tailored for the analysis and comparison of linear multistep methods. This entails designing intuitive user interfaces and incorporating features for parameter tuning, result visualization, and interpretation. The software's performance will be optimized to ensure efficient handling of large-scale stiff ODE problems, with scalability and reliability in numerical computations being paramount. The validation of the developed software will be conducted through rigorous testing against established benchmarks and analytical solutions to guarantee the accuracy and reliability of results. Furthermore, the study will include the application of the developed software to real-world case studies and practical examples, demonstrating its utility and effectiveness across various domains. Finally, the study will identify any limitations encountered and suggest future research directions and enhancements to the software tool to address these limitations and improve its applicability and functionality.
+The scope of this study encompasses a comprehensive exploration of linear multistep methods as applied to the solution of stiff ordinary differential equations (ODEs). It involves an in-depth analysis and implementation of various linear multistep techniques, including but not limited to Adams-Bashforth and Adams-Moulton methods. The focus is on investigating the numerical properties of these methods, such as stability, accuracy, and convergence, particularly in the context of stiff ODEs.
+
+Additionally, the study involves the development of a software tool tailored for the analysis of linear multistep methods. This entails designing intuitive user interfaces and incorporating features for parameter tuning, result visualization, and interpretation. The software's performance will be optimized to ensure efficient handling of large-scale stiff ODE problems, with scalability and reliability in numerical computations being paramount. The validation of the developed software will be conducted through rigorous testing against established benchmarks and analytical solutions to guarantee the accuracy and reliability of results. 
+
+Finally, the study will identify any limitations encountered and suggest future research directions and enhancements to the software tool to address these limitations and improve its applicability and functionality.
 
 \section{Significance of Study}
 The significance of this study lies in its contributions to both theoretical understanding and practical applications in the field of numerical analysis and computational mathematics, specifically focusing on linear multistep methods for solving stiff ordinary differential equations (ODEs). It enhances the theoretical knowledge by providing insights into the numerical properties of these methods, including stability, accuracy, and convergence behavior. Additionally, it offers valuable tools and techniques for practitioners in scientific and engineering domains to accurately and efficiently solve stiff differential equations encountered in their respective fields, thereby advancing computational techniques used in various research, design, and decision-making processes.
@@ -97,7 +101,11 @@ The significance of this study lies in its contributions to both theoretical und
 
   A disadvantage of multistep methods is that they are not self-starting.But on the other hand, they are faster than the single-step methods. In addition, Multistep methods can be more stable and efficient for certain types of ODEs, especially when dealing with stiff systems \cite{powerseriesJFatokun}.
 
-  \item \textbf{Linear Multistep Method (LMM):} A numerical method for approximating the solution of an ordinary differential equation (ODE) at discrete time points using a linear combination of past and present function values. LMMs typically involve using multiple previous function values to compute the next value, hence the term "multistep."
+  \item \textbf{Linear Multistep Method (LMM):} A numerical method for approximating the solution of an ordinary differential equation (ODE) at discrete time points using a linear combination of past and present function values. LMMs typically involve using multiple previous function values to compute the next value, hence the term "multistep".The general linear multistep method is given as
+  
+  \begin{equation}\label{eq:linear_multistep}
+    \sum_{j=0}^{k} \alpha_j y_{n+j} = h \sum_{j=0}^{k} \beta_j f(t_{n+j}, y_{n+j})
+  \end{equation}
     
     \item \textbf{Explicit Method:} A type of linear multistep method in which the value of the unknown function at the next time step is explicitly computed using only known values at previous time steps. The formula for the next value does not involve solving any equations or iterative procedures.
     
@@ -109,7 +117,11 @@ The significance of this study lies in its contributions to both theoretical und
     
     \item \textbf{Stability:} A property of linear multistep methods indicating the behavior of the numerical solution with respect to small perturbations or errors. A stable method produces a solution that does not grow exponentially with time and remains bounded, ensuring accuracy and reliability of the numerical solution.
     
-    \item \textbf{Convergence:} A property of linear multistep methods indicating the behavior of the numerical solution as the step size approaches zero. A convergent method produces a solution that approaches the true solution of the ordinary differential equation as the step size decreases, ensuring accuracy and consistency of the numerical solution.
+    \item \textbf{Order and Error constant} 
+    
+    \item \textbf{Convergence:} 
+    The necessary conditions for a linear multistep method of \eqref{eq:linear_multistep} is said to be convergent if and only if it is consistent and zero stable
+    A property of linear multistep methods indicating the behavior of the numerical solution as the step size approaches zero. A convergent method produces a solution that approaches the true solution of the ordinary differential equation as the step size decreases, ensuring accuracy and consistency of the numerical solution.
     
     \item \textbf{Order of Accuracy:} A measure of the accuracy of a linear multistep method, indicating the rate at which the numerical solution approaches the true solution as the step size decreases. Higher-order methods have higher order of accuracy, meaning they converge to the true solution faster as the step size decreases.
 \end{enumerate}

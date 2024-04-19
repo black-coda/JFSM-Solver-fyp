@@ -1,72 +1,47 @@
 \chapter{Methodology}
 
 \section{Introduction}
-
-This chapter outlines the detailed methodology employed to address the numerical challenges associated with stiff systems of ordinary differential equations (ODEs). Stiffness arises in systems characterized by vastly different timescales, rapid transitions, or abrupt changes in dynamics. The goal of this methodology is to implement effective numerical techniques, specifically collocation and multistep methods, to provide accurate and stable solutions for stiff ODEs.
-
-\section{Problem Formulation}
-
-The starting point involves a clear definition of the stiff boundary value problem (BVP). The problem is expressed as a set of ordinary differential equations subject to appropriate boundary conditions. In this study, we focus on two-point BVPs, and the differential equation, boundary conditions, and relevant parameters are clearly specified.
-
-\section{Choice of Methods}
-
-To tackle stiffness, a careful selection of numerical methods is crucial. We opt for a combined approach involving collocation and multistep methods. Collocation points are strategically chosen within the problem domain, and the differential equation is enforced at these points. For time integration, multistep methods, known for their stability and efficiency, are chosen.
-
-\section{Discretization and System Formulation}
-
-The problem domain is discretized into intervals, and collocation points are judiciously selected. The chosen collocation method is then employed to formulate a system of algebraic equations based on the discretized differential equation. Additionally, for multistep methods, initial conditions and recurrence relations are established.
-
-\section{Implementation}
-
-The solver is implemented in Python, leveraging its versatile libraries for efficient mathematical operations. Functions and classes representing the solver are developed, incorporating numerical algorithms such as Newton-Raphson iteration for solving algebraic systems.
-
-\section{Time Stepping}
-
-For multistep methods, the time-stepping process is implemented. The solution is updated at each time step using the recurrence relations derived earlier. This step ensures the accurate propagation of the solution through time.
-
-\section{Boundary Conditions}
-
-Incorporating boundary conditions into the solver is crucial for obtaining physically meaningful solutions. The solver is designed to satisfy both the differential equation and the specified boundary conditions.
-
-\section{Post-Processing}
-
-After obtaining the numerical solution, post-processing steps are implemented. This includes visualization and analysis of results, aiding in a deeper understanding of the system's behavior.
-
-\section{Validation and Optimization}
-
-To validate the implemented solver, comparisons are made with analytical solutions or benchmark problems. Optimization is performed to enhance the code's efficiency, with considerations for vectorization and parallelization.
-
-\section{Documentation and Testing}
-
-Comprehensive documentation is provided, detailing the algorithms and methodologies employed. Rigorous testing is conducted to ensure the accuracy and reliability of the solver under various scenarios.
-
-\section{Utilizing Libraries and Frameworks}
-
-Existing Python libraries, such as NumPy and SciPy, are leveraged for efficient mathematical operations. This ensures that the implementation benefits from optimized, well-established routines.
-
-\section{Iterative Refinement}
-
-The methodology undergoes iterative refinement based on feedback, experiments, and identified areas of improvement. This iterative process aims to enhance the solver's performance and robustness.
+The methodology section serves as the backbone of this project, providing a comprehensive understanding of the algorithms approach used to analyze linear multistep methods (LMMs) and solve ordinary differential equation (ODE). It outlines the systematic procedures, techniques, and tools utilized throughout the solver-project lifecycle, shedding light on the intricacies of our analysis and solution methodology.This section plays a pivotal role in elucidating how we approached the analysis of LMMs and their application in solving ODE questions. It provides clarity on the selection of LMMs, the formulation of numerical algorithms, the validation of results, and the integration of computational techniques into a cohesive framework.
 
 
-\begin{table}[htbp]
-   \centering
-   \caption{Comparison of Solvers}
-   \resizebox{\textwidth}{!}{%
-   \begin{tabular}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
-   \hline
-   \textbf{Solver} & \textbf{Method Used} & \textbf{UI Interface} & \textbf{Programming Language} & \textbf{Speed} & \textbf{Ease of Learning} \\ \hline
-   \textbf{Your Project} & Collocation \& Multistep & Custom UI (if applicable) & Python \& Flutter & TBD & Moderate \\ \hline
-   \textbf{GEAR} & Implicit Methods & Command Line & Fortran & High & Moderate \\ \hline
-   \textbf{EPISODE} & Explicit Methods & Graphical UI & C++ & Moderate & Moderate \\ \hline
-   \textbf{MATLAB} & Various (ode15s, ode23, etc.) & MATLAB GUI & MATLAB & High & Easy \\ \hline
-   \end{tabular}%
-   }
-   \label{tab:solver-comparison}
-\end{table}
-   
+\subsection*{Flutter as a Development tool}
+A notable aspect of this solver is the utilization of Flutter, Google's open-source UI software development kit, for building the desktop application. Flutter was chosen as the development framework due to its versatility and efficiency in creating cross-platform applications that run seamlessly on various operating systems, including Windows, macOS, and Linux.
 
-\section{Conclusion}
+The decision to adopt Flutter stems from its numerous advantages for desktop app development. Firstly, Flutter offers a single codebase that can be used to target multiple platforms, eliminating the need to maintain separate codebases for different operating systems. This not only streamlines the development process but also ensures consistency in the user experience across platforms and it also implies that the solver will run any of the following operating system ranging from the IOS for mobile users to Windows for desktop to users, but currently we will be sticking to only desktop apps preferably the Windows operating system.
 
-This chapter elucidates a systematic and comprehensive methodology for addressing stiff ODEs through a combination of collocation and multistep methods. The methodology is designed to be flexible and adaptable, allowing for the incorporation of additional numerical techniques and algorithms. The next chapter presents the results of applying this methodology to a variety of stiff BVPs and IVPs.
+Additionally, Flutter provides a rich set of widgets and tools for designing visually appealing and interactive user interfaces. The flexibility of Flutter's UI framework allows for the creation of custom UI components tailored to the specific requirements of our desktop application. This is particularly advantageous for visualizing numerical data and facilitating user interactions with the ODE solver.
 
+Furthermore, Flutter boasts excellent performance characteristics, thanks to its high-performance rendering engine, Dart language optimization, and ahead-of-time compilation. This ensures smooth and responsive user experiences, even when performing complex numerical computations within the application.
+
+By leveraging Flutter for desktop app development and also Dart(\textit{flutter is written in dart}), we aim to deliver a robust and user-friendly application that combines the power of LMM analysis with intuitive UI design. The following sections will delve deeper into the methodology employed, including the design considerations, integration of LMM algorithms, validation techniques, and deployment strategies.
+
+
+
+The development of the solver is divided into two modules, the first module which involves the development of the algorithms and UI for the analysis of the linear multistep method, and the second module which involves using the method to solve a particular problem. 
+
+% The formulation of numerical algorithms is a critical step in our methodology. We utilize the general k-step LMM, which involves a linear combination of previous points and derivative values to solve first-order ODEs. This approach allows us to leverage the efficiency of multistep methods, which refer to several previous points and derivative values, thereby gaining efficiency by keeping and using the information from previous steps rather than discarding it, which are also used in solving stiff problems.
+
+
+\subsection{Module 1: Analysis of Linear multistep method}
+The general $k-step$ linear multistep method takes the form 
+
+
+\begin{math}
+   y_{n+k} + \alpha_{k-1}y_{n+k-1}+ \dots + \alpha_0x_n = h(\beta_kf_{n+k}+ \beta_{k-1}f_{n+k-1}+ \dots + \beta_0f_n) 
+\end{math}
+
+which is equal to 
+\begin{equation}
+   \sum_{j=0}^{k} \alpha_j y_{n+j} = h \sum_{j=0}^{k} \beta_j f(x_{n+j}, y_{n+j})
+\end{equation} \cite{2022JFatokunEtAl}
+
+The properties such as \textbf{Consistency},\textbf{Zero Stability},\textbf{Convergence} are investigated, also the \textbf{Error constant} and \textbf{Order} is also calculated by the software.
+
+\subsubsection{Consistency}
+
+
+
+
+\[
+c_p = \sum \left( \frac{(jp)^!}{\alpha_j} - \frac{(p(j-p-1))!}{\beta_j} \right).
+\]
