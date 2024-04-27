@@ -9,22 +9,17 @@
 \contentsline {section}{\numberline {1.6}Definition of Terms}{9}{}%
 \contentsline {chapter}{\numberline {2}Literature Review}{13}{}%
 \contentsline {section}{\numberline {2.1}Introduction}{13}{}%
-\contentsline {section}{\numberline {2.2}Exploring Stiff Systems of Ordinary Differential Equations: Characteristics, Solutions, and Numerical Methods}{13}{}%
-\contentsline {section}{\numberline {2.3}Multistep Methods}{14}{}%
-\contentsline {section}{\numberline {2.4}Implicit Methods}{16}{}%
-\contentsline {section}{\numberline {2.5}Collocation Methods}{18}{}%
-\contentsline {chapter}{\numberline {3}Methodology}{20}{}%
-\contentsline {section}{\numberline {3.1}Introduction}{20}{}%
-\contentsline {section}{\numberline {3.2}Problem Formulation}{20}{}%
-\contentsline {section}{\numberline {3.3}Choice of Methods}{20}{}%
-\contentsline {section}{\numberline {3.4}Discretization and System Formulation}{21}{}%
-\contentsline {section}{\numberline {3.5}Implementation}{21}{}%
-\contentsline {section}{\numberline {3.6}Time Stepping}{21}{}%
-\contentsline {section}{\numberline {3.7}Boundary Conditions}{21}{}%
-\contentsline {section}{\numberline {3.8}Post-Processing}{22}{}%
-\contentsline {section}{\numberline {3.9}Validation and Optimization}{22}{}%
-\contentsline {section}{\numberline {3.10}Documentation and Testing}{22}{}%
-\contentsline {section}{\numberline {3.11}Utilizing Libraries and Frameworks}{22}{}%
-\contentsline {section}{\numberline {3.12}Iterative Refinement}{22}{}%
-\contentsline {section}{\numberline {3.13}Conclusion}{23}{}%
-\contentsline {chapter}{References}{24}{}%
+\contentsline {section}{\numberline {2.2}Exploring Stiff Systems of Ordinary Differential Equations: Characteristics, Solutions, and Numerical Methods}{14}{}%
+\contentsline {subsection}{\numberline {2.2.1}Characteristics}{14}{}%
+\contentsline {section}{\numberline {2.3}Multistep Methods}{17}{}%
+\contentsline {subsection}{\numberline {2.3.1}Explicit Multistep Method}{18}{}%
+\contentsline {subsection}{\numberline {2.3.2}Implicit Multistep Method}{20}{}%
+\contentsline {subsection}{\numberline {2.3.3}Analysis of Multistep Method}{22}{}%
+\contentsline {section}{\numberline {2.4}Collocation Methods}{26}{}%
+\contentsline {chapter}{\numberline {3}Methodology}{28}{}%
+\contentsline {section}{\numberline {3.1}Introduction}{28}{}%
+\contentsline {subsection}{\numberline {3.1.1}Module 1: Analysis of Linear multistep method}{29}{}%
+\contentsline {subsubsection}{Consistency Analysis}{30}{}%
+\contentsline {subsubsection}{Determine Order and Error Constant}{31}{}%
+\contentsline {subsubsection}{Zero-Stability Analysis}{32}{}%
+\contentsline {chapter}{References}{34}{}%

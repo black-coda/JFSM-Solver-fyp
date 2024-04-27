@@ -1,6 +1,62 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
+Alexanderian%
+}{%
+Alexanderian%
+}{%
+{\protect \APACyear {2022}}%
+}]{%
+Alexanderian2022}
+\APACinsertmetastar {%
+Alexanderian2022}%
+\begin{APACrefauthors}%
+Alexanderian, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A brief note on linear multistep methods} {A brief note
+  on linear multistep methods}.{\BBCQ}
+\newblock
+
+\newblock
+\APACrefnote{Last revised: April 27, 2022}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Alexandru%
+, Gurnari%
+, Ionescu%
+\BCBL {}\ \BBA {} Rǎdulescu%
+}{%
+Alexandru%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+alexander}
+\APACinsertmetastar {%
+alexander}%
+\begin{APACrefauthors}%
+Alexandru, A.%
+, Gurnari, L.%
+, Ionescu, C.%
+\BCBL {}\ \BBA {} Rǎdulescu, V.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Linear Multistep Methods} {Linear multistep
+  methods}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Mathematical Sciences}{185}{3}{282--290}.
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s10958-012-1179-3} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Burkardt%
 }{%
 Burkardt%
@@ -26,9 +82,9 @@ Burkardt, J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Butcher%
+J.~Butcher%
 }{%
-Butcher%
+J.~Butcher%
 }{%
 {\protect \APACyear {2009}}%
 }]{%
@@ -58,6 +114,57 @@ Butcher, J.%
 \newblock
 \begin{APACrefDOI} \doi{https://doi.org/10.1016/j.matcom.2007.02.006}
   \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+J\BPBI C.~Butcher%
+}{%
+J\BPBI C.~Butcher%
+}{%
+{\protect \APACyear {2003}}%
+}]{%
+butcher2003numerical}
+\APACinsertmetastar {%
+butcher2003numerical}%
+\begin{APACrefauthors}%
+Butcher, J\BPBI C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2003}.
+\newblock
+\APACrefbtitle {Numerical Methods for Ordinary Differential Equations}
+  {Numerical methods for ordinary differential equations}.
+\newblock
+\APACaddressPublisher{}{John Wiley}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Butler%
+}{%
+Butler%
+}{%
+{\protect \APACyear {2022}}%
+}]{%
+butler_numerical_2022}
+\APACinsertmetastar {%
+butler_numerical_2022}%
+\begin{APACrefauthors}%
+Butler, J\BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{}{}.
+\newblock
+\APACrefbtitle {Numerical {{Analysis Book}} - {{Chapter}} 05 - {{IVP Consistent
+  Convergence Stability}}.} {Numerical {{Analysis Book}} - {{Chapter}} 05 -
+  {{IVP Consistent Convergence Stability}}.}
+\newblock
+\APAChowpublished {Online}.
+\newblock
+\begin{APACrefURL}
+  \url{https://john-s-butler-dit.github.io/NumericalAnalysisBook/Chapter%2005%20-%20IVP%20Consistent%20Convergence%20Stability/503_Stability.html}
+  \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -93,6 +200,56 @@ Byrne, G\BPBI D.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1016/0098-1354(77)80018-5} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Curtiss%
+\ \BBA {} Hirschfelder%
+}{%
+Curtiss%
+\ \BBA {} Hirschfelder%
+}{%
+{\protect \APACyear {1952}}%
+}]{%
+curtisAndHirscfelder}
+\APACinsertmetastar {%
+curtisAndHirscfelder}%
+\begin{APACrefauthors}%
+Curtiss, C\BPBI F.%
+\BCBT {}\ \BBA {} Hirschfelder, J\BPBI O.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1952}{Jan}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Integration of stiff system} {Integration of stiff
+  system}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Proc. Nat. Acad. Sci}{}{}{}.
+\newblock
+\begin{APACrefURL} \url{https://null.com} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Dattani%
+}{%
+Dattani%
+}{%
+{\protect \APACyear {2008}}%
+}]{%
+dattani2008linear}
+\APACinsertmetastar {%
+dattani2008linear}%
+\begin{APACrefauthors}%
+Dattani, N\BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2008}{}{}.
+\newblock
+\APACrefbtitle {Linear Multistep Numerical Methods for Ordinary Differential
+  Equations.} {Linear multistep numerical methods for ordinary differential
+  equations.}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -176,6 +333,63 @@ Fatokun, J\BPBI O.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Hairer%
+, Nørsett%
+\BCBL {}\ \BBA {} Wanner%
+}{%
+Hairer%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1993}}%
+}]{%
+hairer1993solving}
+\APACinsertmetastar {%
+hairer1993solving}%
+\begin{APACrefauthors}%
+Hairer, E.%
+, Nørsett, S\BPBI P.%
+\BCBL {}\ \BBA {} Wanner, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1993}.
+\newblock
+\APACrefbtitle {Solving Ordinary Differential Equations I: Nonstiff Problems}
+  {Solving ordinary differential equations i: Nonstiff problems}\
+  (\PrintOrdinal{2nd}\ \BEd).
+\newblock
+\APACaddressPublisher{Berlin}{Springer Verlag}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+HELM~Green%
+, Harrison%
+\BCBL {}\ \BBA {} Ward%
+}{%
+HELM~Green%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2008}}%
+}]{%
+HELM2008NumericalIVP}
+\APACinsertmetastar {%
+HELM2008NumericalIVP}%
+\begin{APACrefauthors}%
+HELM~Green, D.%
+, Harrison, M.%
+\BCBL {}\ \BBA {} Ward, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2008}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Workbook 32: Numerical Initial Value Problems} {Workbook
+  32: Numerical initial value problems}.{\BBCQ}
+\newblock
+
+\newblock
+\APACrefnote{Accessed on April 16, 2024}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Jeon%
 , Bak%
 \BCBL {}\ \BBA {} Bu%
@@ -207,6 +421,64 @@ Jeon, Y.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.3390/math7121158} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+J.O.~Fatokun%
+}{%
+J.O.~Fatokun%
+}{%
+{\protect \APACyear {2022}}%
+}]{%
+2022JFatokunEtAl}
+\APACinsertmetastar {%
+2022JFatokunEtAl}%
+\begin{APACrefauthors}%
+J.O.~Fatokun, J\BPBI L., S.I.~Okoro.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A Class of Power Series Collocation Multistep Methods
+  with Legendre Interpolant for the Integration of Initial Value Problems} {A
+  class of power series collocation multistep methods with legendre interpolant
+  for the integration of initial value problems}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Anchor University Journal of Science and
+  Technology}{143}{}{1-156}.
+\newblock
+\APACrefnote{This document presents a new approach for the derivation of a
+  class of collocation linear multistep methods for the integration of some
+  initial value problems of ordinary differential equations.}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Keller%
+\ \BBA {} Du%
+}{%
+Keller%
+\ \BBA {} Du%
+}{%
+{\protect \APACyear {2020}}%
+}]{%
+keller2020discovery}
+\APACinsertmetastar {%
+keller2020discovery}%
+\begin{APACrefauthors}%
+Keller, R.%
+\BCBT {}\ \BBA {} Du, Q.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{Jan}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Discovery of Dynamics using Linear Multistep Methods}
+  {Discovery of dynamics using linear multistep methods}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{arXiv preprint arXiv:1912.12728v2}{}{}{}.
+\newblock
+\begin{APACrefURL} \url{https://arxiv.org/abs/1912.12728v2} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -353,6 +625,32 @@ Shampine, L\BPBI F.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+S.L%
+\ \BBA {} II%
+}{%
+S.L%
+\ \BBA {} II%
+}{%
+{\protect \APACyear {1989}}%
+}]{%
+ross}
+\APACinsertmetastar {%
+ross}%
+\begin{APACrefauthors}%
+S.L, R.%
+\BCBT {}\ \BBA {} II, R\BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1989}.
+\newblock
+\APACrefbtitle {Introduction to Ordinary differential equations} {Introduction
+  to ordinary differential equations}\ (\PrintOrdinal{3rd}\ \BEd).
+\newblock
+\APACaddressPublisher{}{John Wiley and sons,NY}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Stone%
 , Alferman%
 \BCBL {}\ \BBA {} Niemeyer%
@@ -379,6 +677,34 @@ Stone, C\BPBI P.%
   vectorization methods on gpus, mics, and cpus}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Computational Science and Engineering, LLC}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+S¨uli%
+\ \BBA {} Mayers%
+}{%
+S¨uli%
+\ \BBA {} Mayers%
+}{%
+{\protect \APACyear {2003}}%
+}]{%
+EMayers}
+\APACinsertmetastar {%
+EMayers}%
+\begin{APACrefauthors}%
+S¨uli, E.%
+\BCBT {}\ \BBA {} Mayers, D\BPBI F.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2003}{Jan}{}.
+\newblock
+{\BBOQ}\APACrefatitle {An Introduction to Numerical Analysis} {An introduction
+  to numerical analysis}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Cambridge University Press, first edition}{}{}{}.
+\newblock
+\begin{APACrefURL} \url{https://null.com} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -417,7 +743,7 @@ Thohura, S.%
 {Wikipedia contributors}%
 }{%
 {\protect \APACyear {2023}}%
-}]{%
+{\protect \APACexlab {{\protect \BCnt {1}}}}}]{%
 enwiki:1166346639}
 \APACinsertmetastar {%
 enwiki:1166346639}%
@@ -426,7 +752,7 @@ enwiki:1166346639}%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2023}{}{}.
+\APACrefYearMonthDay{2023{\protect \BCnt {1}}}{}{}.
 \newblock
 \APACrefbtitle {Collocation method --- {Wikipedia}{,} The Free Encyclopedia.}
   {Collocation method --- {Wikipedia}{,} the free encyclopedia.}
@@ -436,6 +762,62 @@ enwiki:1166346639}%
   \end{APACrefURL}
 \newblock
 \APACrefnote{[Online; accessed 14-January-2024]}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Wikipedia contributors}%
+}{%
+{Wikipedia contributors}%
+}{%
+{\protect \APACyear {2023}}%
+{\protect \APACexlab {{\protect \BCnt {2}}}}}]{%
+enwiki:1182900519}
+\APACinsertmetastar {%
+enwiki:1182900519}%
+\begin{APACrefauthors}%
+{Wikipedia contributors}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023{\protect \BCnt {2}}}{}{}.
+\newblock
+\APACrefbtitle {Linear multistep method --- {Wikipedia}{,} The Free
+  Encyclopedia.} {Linear multistep method --- {Wikipedia}{,} the free
+  encyclopedia.}
+\newblock
+\begin{APACrefURL}
+  \url{https://en.wikipedia.org/w/index.php?title=Linear_multistep_method&oldid=1182900519}
+  \end{APACrefURL}
+\newblock
+\APACrefnote{[Online; accessed 12-March-2024]}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Wikiversity%
+}{%
+Wikiversity%
+}{%
+{\protect \APACyear {2019}}%
+}]{%
+wiki:analysis}
+\APACinsertmetastar {%
+wiki:analysis}%
+\begin{APACrefauthors}%
+Wikiversity.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+\APACrefbtitle {Numerical Analysis/stability of Multistep methods ---
+  Wikiversity{,}.} {Numerical analysis/stability of multistep methods ---
+  wikiversity{,}.}
+\newblock
+\begin{APACrefURL}
+  \url{\url{https://en.wikiversity.org/w/index.php?title=Numerical_Analysis/stability_of_Multistep_methods&oldid=1982169}}
+  \end{APACrefURL}
+\newblock
+\APACrefnote{[Online; accessed 3-March-2019]}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

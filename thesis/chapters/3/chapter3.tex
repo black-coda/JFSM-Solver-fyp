@@ -7,7 +7,7 @@ The methodology section serves as the backbone of this project, providing a comp
 \subsection*{Flutter as a Development tool}
 A notable aspect of this solver is the utilization of Flutter, Google's open-source UI software development kit, for building the desktop application. Flutter was chosen as the development framework due to its versatility and efficiency in creating cross-platform applications that run seamlessly on various operating systems, including Windows, macOS, and Linux.
 
-The decision to adopt Flutter stems from its numerous advantages for desktop app development. Firstly, Flutter offers a single codebase that can be used to target multiple platforms, eliminating the need to maintain separate codebases for different operating systems. This not only streamlines the development process but also ensures consistency in the user experience across platforms and it also implies that the solver will run any of the following operating system ranging from the IOS for mobile users to Windows for desktop to users, but currently we will be sticking to only desktop apps preferably the Windows operating system.
+The decision to adopt Flutter stems from its numerous advantages for desktop app development. Firstly, Flutter offers a single codebase that can be used to target multiple platforms, eliminating the need to maintain separate codebase for different operating systems. This not only streamlines the development process but also ensures consistency in the user experience across platforms and it also implies that the solver will run any of the following operating system ranging from the IOS for mobile users to Windows for desktop to users, but currently we will be sticking to only desktop apps preferably the Windows operating system.
 
 Additionally, Flutter provides a rich set of widgets and tools for designing visually appealing and interactive user interfaces. The flexibility of Flutter's UI framework allows for the creation of custom UI components tailored to the specific requirements of our desktop application. This is particularly advantageous for visualizing numerical data and facilitating user interactions with the ODE solver.
 
@@ -35,13 +35,96 @@ which is equal to
    \sum_{j=0}^{k} \alpha_j y_{n+j} = h \sum_{j=0}^{k} \beta_j f(x_{n+j}, y_{n+j})
 \end{equation} \cite{2022JFatokunEtAl}
 
-The properties such as \textbf{Consistency},\textbf{Zero Stability},\textbf{Convergence} are investigated, also the \textbf{Error constant} and \textbf{Order} is also calculated by the software.
+The properties such as \textbf{Consistency} ,\textbf{Zero Stability} ,\textbf{Convergence} are investigated, also the \textbf{Error constant} and \textbf{Order} is also calculated by the software.
 
-\subsubsection{Consistency}
+\subsubsection{Consistency Analysis}
+
+Consistency is a crucial property of linear multistep methods (LMMs) used to solve ordinary differential equations (ODEs). A consistent LMM has a local truncation error (LTE) that tends to zero as the step size decreases. This property ensures that numerical approximations are close to the exact solutions.
+
+To determine if a given LMM is consistent, one approach is to evaluate the local truncation error (LTE) and verify that it approaches zero as the step size decreases. Alternatively, the consistency conditions can be used to check whether the leading order term of the LTE is zero. The following formulas allow you to assess the consistency of an LMM:
+
+\begin{equation}
+   c_0 = \sum_{i=0}^{k} \alpha_{i},
+\end{equation}
+
+where \(\alpha_{i}\) represents the coefficients for the terms involving the dependent variable \(y_{n+i}\).
+
+The second consistency condition is given by:
+
+\begin{equation}
+   c_1 = \sum_{i=0}^{k} (i \alpha_{i} - \beta_{i}),
+\end{equation}
+
+where \(\beta_{i}\) are the coefficients for the terms involving the function \(f(x_{n+i}, y_{n+i})\).
+
+An additional consistency condition for higher orders is defined by:
+
+\begin{equation}
+   c_p = \sum_{j=0}^{k} \left( \frac{(j^p)!}{p!} \alpha_j - \frac{(j^{p-1})}{(p-1)!} \beta_j \right),
+\end{equation}
+
+which applies for \(p > 2\). This will be explored in other analysis schemes.
+
+To confirm consistency, check if both \(c_0\) and \(c_1\) are zero. If these conditions are met, then the LMM is consistent. In this case, \(c_0\) can be derived from the sum of the alpha coefficients, and \(c_1\) from the alpha coefficients with indices multiplied by their values minus the beta coefficients.
+
+To ensure the accuracy of user inputs in the software, remember that a one-step linear method should have two alpha coefficients and two beta coefficients, leading to a total of four parameters. For a two-step method, the total number of coefficients should be six, indicating that the total number of alpha and beta coefficients required is \(2 + 2 \times k\), where \(k\) is the step number. This validation helps prevent runtime errors due to incorrect inputs.
+
+The following section outlines the algorithm used to check for consistency in more detail.
 
 
+\begin{algorithm}
+   \caption{Checking Consistency of a Linear Multistep Method}
+   \begin{algorithmic}[1] % Start numbering from 1
+       \STATE {Initialize the number of steps in the LMM: \(kSteps\)}
+       \STATE {Initialize the alpha coefficients: \(\alpha\)}
+       \STATE {Initialize the beta coefficients: \(\beta\)}
+       
+       \STATE {Ensure the total number of coefficients is \(2 \times kSteps + 2\). If not, throw an error.}
+   
+       \STATE {Calculate \(c_0 = \sum_{j=0}^{kSteps} \alpha_j\)}
+       \STATE {Calculate the sum of beta coefficients: \(\sum_{j=0}^{kSteps} \beta_j\)}
+   
+       \STATE {Calculate the sum of alpha coefficients multiplied by their indices:
+           \[ 
+               sumOfAlphaMultipliedByIndex = \sum_{j=0}^{kSteps} j \times \alpha_j
+           \]
+       }
+   
+       \STATE {Calculate \(c_1 = sumOfAlphaMultipliedByIndex - \sum_{j=0}^{kSteps} \beta_j\)}
+   
+       \STATE {Check if \(c_0\) and \(c_1\) are approximately zero. If both are zero, return `true` (consistent). Otherwise, return `false` (inconsistent).}
+   \end{algorithmic}
+   \end{algorithm}
 
 
-\[
-c_p = \sum \left( \frac{(jp)^!}{\alpha_j} - \frac{(p(j-p-1))!}{\beta_j} \right).
-\]
+By following this algorithm, you can determine whether a linear multistep method is consistent. If both $c0$ and $c1$ are approximately zero, then the local truncation error tends to zero, indicating that the method is consistent. If either of these values is not zero, then the method is not consistent.
+
+\subsubsection{Determine Order and Error Constant}
+
+The \textbf{order} of the a given LMM tells us how quickly the truncation error tends to zero as h $\to$ 0. The linear difference operator $\mathcal{L}$ of (3.1) is given as
+
+\begin{equation}
+   \mathcal{L}[z(x);h] := \sum_{k}^{j=0}[\alpha_jz(x+jh)-h\beta_jz'(x+jh)]
+\end{equation}, where $z(x) \in C^1[a,b]$ is an arbitrary function. From \cite{lambert1977}, if we choose $z(x)$ to be differentiated as we need and expand $z(x+jh)$ and $z'(x+jh)$ about x, we need then obtain 
+
+\begin{equation}
+   \mathcal{L}[z(x);h] := C_0z(x)+ C_1hz^{(1)}(x)+ \dots + C_qh^qz^{(q)}(x)+ \dots
+\end{equation}
+The Linear multistep method (3.1) and it associated difference operator defined by (3.5) is said to to be have an \textbf{order p} if in (3.6), \[C_0 = C_1 = \dots = C_p = 0 \], $C_{p+1} \neq 0$, and the error constant is the value of $C_{p+1}$ \cite{lambert1977}.
+
+With all this discussed by \cite{lambert1977}, the algorithm used in obtaining \textbf{error constant} and \textbf{order} is outlined below
+
+% TODO: Watch out
+% Algorithm for error constant and zero stable
+
+
+\subsubsection{Zero-Stability Analysis}
+The necessary and sufficient condition for a given LMM to be zero-stable as discussed in \cite{2022JFatokunEtAl} is for it to satisfy the root condition which is also known as the \textbf{Dahlquist root condition} \cite{lambert1977}. The proof for this is discussed in \cite{keller2020discovery}.
+
+if the zeros of the first characteristics polynomial are such that
+
+\[\rho(z) = \sum_{j=0}^{k}\alpha_jz^{j}\], are such that: \textit{i.} none is greater than 1 in \textbf{magnitude}, and \textit{ii.}any zero equal to 1 in magnitude is simple (that is, not repeated). When this properties are satisfied then we say that the LMM is \textbf{zero-stable}.
+
+The need for finding the roots of the first polynomial arises, and there exist many root finding method, techniques or algorithm. These root finding method all do have advantages and disadvantages over the other.Methods such as Bisection, Newton's Iteration, Secant methods which are all Algebraic method where consider in finding the roots of the first characteristics polynomial especially for polynomial of degree greater than $2$. This method proved to be ineffective since they only consider one of the many possible roots of the characteristics polynomial.
+
+The Durand-Kerner method was used in finding the roots of the first characteristics polynomial because of its efficiency and accuracy, it also calculates all the required roots of the equation.
