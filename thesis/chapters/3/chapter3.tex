@@ -114,8 +114,48 @@ The Linear multistep method (3.1) and it associated difference operator defined 
 
 With all this discussed by \cite{lambert1977}, the algorithm used in obtaining \textbf{error constant} and \textbf{order} is outlined below
 
-% TODO: Watch out
-% Algorithm for error constant and zero stable
+\begin{algorithm}
+   \caption{Order and Error Constant Calculation for Linear Multistep Method}
+   \label{alg:order_error_constant}
+   
+   \begin{algorithmic}
+   \REQUIRE \(kSteps\), \( \alpha[] \), \( \beta[] \) 
+   \ENSURE Order of convergence and error constant.
+   
+   \STATE \( c_0 \gets \text{empty list} \) 
+   \STATE \( \text{sumOfC0} \gets 0 \)
+   \STATE \( \text{errorConstant} \gets 0 \)
+   \STATE \( \text{cp} \gets 2 \) % Initial order
+   
+   \WHILE{True}
+       \FOR{\( i = 0 \) to \( kSteps \)}
+           \STATE \( \text{term} \gets \frac{(i^{cp}) \cdot \alpha[i]}{(cp).factorial()} - \frac{(i^{cp - 1}) \cdot \beta[i]}{(cp - 1).factorial()} \) 
+           \STATE \( \text{sumOfC0} \gets \text{sumOfC0} + \text{term} \)
+           
+           \IF{\( i = kSteps \)}
+               \STATE \( \text{approximatedR} \gets \text{sumOfC0.approximate(6)} \)
+               \STATE \( c_0 \gets c_0 + \text{approximatedR} \)
+           \ENDIF
+       \ENDFOR
+       
+       \IF{\( c_0 \) \text{is not empty}}
+           \STATE \( \text{errorConstant} \gets \text{errorConstant} + \text{sumOfC0} \)
+           \IF{\( \text{errorConstant} = 0 \)}
+               \STATE \( \text{cp} \gets \text{cp} + 1 \) 
+               \STATE \( \text{sumOfC0} \gets 0 \)
+               \STATE \text{Continue}
+           \ENDIF
+           \STATE \text{Break} % Exit the loop if errorConstant is non-zero
+       \ELSE
+           \STATE \text{Break}
+       \ENDIF
+       
+   \ENDWHILE
+   
+   \RETURN \( c_0.\text{length} \), \( \text{errorConstant} \)
+   
+   \end{algorithmic}
+   \end{algorithm}
 
 
 \subsubsection{Zero-Stability Analysis}
@@ -127,4 +167,228 @@ if the zeros of the first characteristics polynomial are such that
 
 The need for finding the roots of the first polynomial arises, and there exist many root finding method, techniques or algorithm. These root finding method all do have advantages and disadvantages over the other.Methods such as Bisection, Newton's Iteration, Secant methods which are all Algebraic method where consider in finding the roots of the first characteristics polynomial especially for polynomial of degree greater than $2$. This method proved to be ineffective since they only consider one of the many possible roots of the characteristics polynomial.
 
-The Durand-Kerner method was used in finding the roots of the first characteristics polynomial because of its efficiency and accuracy, it also calculates all the required roots of the equation.
+The Durand-Kerner method, also known as the Weierstrass method, is a root-finding algorithm used for solving polynomial equations numerically. It was initially discovered by Karl Weierstrass in 1891 and later rediscovered independently by Durand in 1960 and Kerner in 1966.The Durand-Kerner method operates by iterating through a set of initial guesses for the roots of the polynomial. For each iteration, the method adjusts these guesses based on the polynomial's values at those points, aiming to converge towards the actual roots. The convergence of the Durand-Kerner method is not guaranteed for all polynomials; there are cases where the method fails to converge to the roots, instead converging to periodic cycles or other non-root values, but despite its potential limitations, the Durand-Kerner method can be effective in practice, especially when the roots are well-separated and the initial guesses are reasonably close to the actual roots.
+
+The Durand-Kerner Method algorithms is given as follows:
+
+\begin{algorithm}
+   \caption{Durand-Kerner Algorithm}
+   \label{alg:durand_kerner}
+   
+   \begin{algorithmic}
+   \REQUIRE Polynomial \( f(x) = a_0 + a_1 x + \ldots + a_n x^n \), initial guesses \( x_1, \ldots, x_n \), tolerance \( \epsilon \), maximum iterations.
+   \ENSURE List of roots \( x_1^{(k+1)}, \ldots, x_n^{(k+1)} \).
+   
+   \STATE Initialize tolerance \( \epsilon \) and maximum iterations.
+   \STATE Initialize roots \( x_1, \ldots, x_n \).
+   
+   \FOR{each iteration \( k = 1 \) to maximum iterations}
+       \FOR{each root \( x_i \)}
+           \STATE Compute:
+           \[
+           x_i^{(k+1)} = x_i^{(k)} - \frac{f(x_i^{(k)})}{\prod_{j \neq i} (x_i^{(k)} - x_j^{(k)})}.
+           \]
+       \ENDFOR
+   
+       \STATE Compute changes \( \Delta x_i = |x_i^{(k+1)} - x_i^{(k)}| \).
+   
+       \IF{all \( \Delta x_i < \epsilon \)}
+           \STATE Converged.
+           \STATE \textbf{break}.
+       \ENDIF
+   
+   \ENDFOR
+   
+   \IF{converged}
+       \RETURN \( x_1^{(k+1)}, \ldots, x_n^{(k+1)} \)
+   \ELSE
+       \RETURN Error: Non-convergence
+   \ENDIF
+   
+   \end{algorithmic}
+\end{algorithm}
+
+\newpage
+The Durand-Kerner method is employed to find the roots of the first characteristic polynomial due to its efficiency and accuracy. This method is capable of calculating all the roots of the polynomial simultaneously. For 2-step the quadratic formula is used but for higher order polynomials, the Durand-Kerner method is employed. 
+
+After evaluating the roots of the first characteristic polynomial, the next step is to check if the roots satisfy the Dahlquist root condition. If all the roots have magnitudes less than 1 and any root with magnitude equal to 1 is simple (non-repeated), then the LMM is zero-stable. This analysis is crucial for determining the stability of the LMM and ensuring the accuracy of the numerical solutions.
+
+The following algorithm outlines the process of checking the zero-stability of a linear multistep method using both the Durand-Kerner method and the Dahlquist root condition:
+
+\begin{algorithm}
+   \caption{Algorithm for Zero Stability in Linear Multistep Methods}
+   \label{alg:zero_stability}
+   
+   \begin{algorithmic}[1] % Add line numbers
+   
+   \REQUIRE List of coefficients `alpha`, number of steps `kSteps`
+   \ENSURE Boolean `isZeroStable` indicating zero stability
+   
+   \STATE Initialize an empty list `algebraicSolution`
+   \STATE Reverse the list `alpha` to create `reversedAlpha`
+   \STATE Initialize a flag `stable = True`
+   
+   \COMMENT{Create the characteristic polynomial based on `kSteps`}
+   \IF{`kSteps == 1`}
+       \STATE Create a linear polynomial with `alpha[1]`, `alpha[0]`
+   \ELSIF{`kSteps == 2`}
+       \STATE Create a quadratic polynomial with `alpha[2]`, `alpha[1]`, `alpha[0]`
+   \ELSIF{`kSteps == 3`}
+       \STATE Create a cubic polynomial with `alpha[3]`, `alpha[2]`, `alpha[1]`, `alpha[0]`
+   \ELSE
+       \STATE Use Durand-Kerner method to create the characteristic polynomial from `reversedAlpha`
+   \ENDIF
+   
+   \COMMENT{Solve for roots and check stability}
+   \STATE Solve the characteristic polynomial to find roots, storing them in `algebraicSolution`
+   
+   \FOR{each `root` in `algebraicSolution`}
+       \IF{Modulus(`root`) > 1}
+           \STATE Set `stable` to `False`
+       \ELSIF{Modulus(`root`) == 1 and there is more than one such root}
+           \STATE Set `stable` to `False`
+       \ENDIF
+   \ENDFOR
+   
+   \COMMENT{Return result based on stability check}
+   \IF{`stable`}
+       \RETURN `True`
+   \ELSE
+       \RETURN `False`
+   \ENDIF
+   
+   \end{algorithmic}
+   \end{algorithm}
+
+\newpage
+   This pseudocode outlines the steps to check zero stability for a Linear Multistep Method (LMM). It includes initialization, creating the characteristic polynomial, solving for roots, and checking the modulus of the roots to determine stability. If any root's modulus exceeds one or if there's more than one root with modulus equal to one, the method is not zero-stable. The algorithm uses conditional checks and loops to examine the roots, ensuring a correct result.
+
+\subsubsection{Convergence Analysis}
+The condition for a LMM to be convergent has been discuused already, the scheme must be consistent and zero-stable. The convergence of a LMM is crucial for ensuring that the numerical solutions approach the exact solutions as the step size decreases. By combining consistency and zero-stability, we can determine if a given LMM is convergent.
+
+The zero-stability and consistency algorithms has been discussed already, the convergence algorithm is a combination of the two algorithms. The algorithm for checking the convergence of a linear multistep method is outlined below:
+
+\begin{algorithm}
+   \caption{Algorithm for Convergence in Linear Multistep Methods}
+   \label{alg:convergence}
+   
+   \begin{algorithmic}[1] % Add line numbers
+   
+   \REQUIRE List of coefficients `alpha`, List of coefficients `beta`, number of steps `kSteps`
+   \ENSURE Boolean `isConvergent` indicating convergence
+   
+   \STATE Initialize a flag `isConvergent = False`
+   
+   \COMMENT{Step 1: Check Zero Stability}
+   \STATE Reverse the list `alpha` to create `reversedAlpha`
+   \STATE Create the characteristic polynomial based on `kSteps`
+   \STATE Solve the characteristic polynomial to find roots
+   \STATE Set `isZeroStable = True` if all roots lie within or on the unit circle, otherwise `False`
+   
+   \COMMENT{Step 2: Check Consistency}
+   \STATE Initialize `c0` as the sum of `alpha`
+   \STATE Initialize `c1` as the sum of indices multiplied by `alpha` minus the sum of `beta`
+   \STATE If `c0 == 0` and `c1 == 0`, set `isConsistent = True`, otherwise `False`
+   
+   \COMMENT{Step 3: Determine Convergence}
+   \IF{`isZeroStable` and `isConsistent`}
+       \STATE Set `isConvergent = True`
+   \ENDIF
+   
+   \RETURN `isConvergent`
+   
+   \end{algorithmic}
+   \end{algorithm}
+
+
+
+   In this algorithm:
+
+\begin{itemize}
+  \item \textbf{Step 1: Zero Stability} 
+  The algorithm begins by checking for zero stability. A characteristic polynomial is created using the coefficients \texttt{alpha}. The roots of the polynomial are then evaluated to ensure they lie within or on the unit circle. This step is critical because zero stability implies that small perturbations in the initial conditions will not lead to significant errors in the numerical solution.
+
+  \item \textbf{Step 2: Consistency} 
+  The algorithm then checks for consistency by calculating the coefficients \texttt{c0} and \texttt{c1}. Consistency is achieved when both \texttt{c0} and \texttt{c1} are zero, indicating that the local truncation error tends to zero as the step size decreases. This step determines whether the LMM's approximation aligns with the continuous differential equation it aims to solve.
+
+  \item \textbf{Step 3: Convergence} 
+  Finally, the algorithm concludes by determining convergence. If both zero stability and consistency are met, the linear multistep method (LMM) is considered convergent. This is because convergence signifies that the numerical solution approaches the exact solution as the step size tends to zero. If these conditions are satisfied, the algorithm returns \texttt{True}. Otherwise, it returns \texttt{False}.
+
+\end{itemize}
+
+This algorithm encompasses the essential components required to determine convergence in linear multistep methods. It can be used as a guide for building an implementation in programming languages such as Dart or Python, providing a robust framework for evaluating convergence in LMMs.
+
+
+That concludes the analysis of the linear multistep method, the next section will discuss the application of the method in solving a particular problem.
+
+\subsection{Module 2: Application of Linear Multistep Method in Solving ODEs}
+
+The application of linear multistep methods (LMMs) in solving ordinary differential equations (ODEs) is critical for numerical analysis. These methods offer efficient and accurate solutions for a wide range of ODE problems, including initial value problems (IVPs) and boundary value problems (BVPs). This module outlines how to implement LMMs in a computational environment, with a focus on explicit algorithms.
+
+\subsection*{Formulation of the ODE Problem}
+The first step in applying linear multistep methods is to understand the nature of the ODE problem. This involves determining whether the problem is stiff or non-stiff and whether an implicit or explicit approach is most suitable. Explicit methods are generally used for non-stiff problems, offering simpler implementations, while implicit methods are preferred for stiff problems due to their stability.
+
+\subsubsection{Explicit Method Algorithm}
+Explicit linear multistep methods (LMMs) calculate new values in a sequence using known data, avoiding the need to solve complex systems of equations. These methods are particularly useful for non-stiff problems due to their simplicity and computational efficiency. Below is an outline of the explicit linear multistep algorithm used for solving ordinary differential equations (ODEs), derived from the provided code.
+
+When starter values are required, the fourth-order Runge-Kutta method is employed to generate these initial values. The algorithm for the fourth-order runge-kutta method is described below.
+
+Following the generation of starter values, the explicit linear multistep method proceeds to compute subsequent values based on the specified coefficients and step sizes. The algorithm iterates through the coefficients to calculate the next value, updating the variables accordingly. The process continues until the desired number of steps is reached, generating a numerical solution to the ODE.
+
+
+
+
+\begin{algorithm}
+   \caption{4-Stage Runge-Kutta Method for Starter Values}
+   \label{alg:runge_kutta}
+   \begin{algorithmic}[1]
+   \REQUIRE Function `func`, initial values `y0` and `x0`, `stepSize`, and number of steps `N`
+   \ENSURE A list `result` containing starter values calculated using the 4-stage Runge-Kutta method
+
+   \item Initialize an empty list `result` with `N` elements.
+   \item Set `x` to `x0` and `y` to `y0`.
+
+   \item \textbf{For each step} from `0` to `N - 1`:
+       \begin{itemize}
+           \item Calculate `k1` as `stepSize * func(x, y)`.
+           \item Calculate `k2` as `stepSize * func(x + stepSize * 0.5, y + k1 * 0.5)`.
+           \item Calculate `k3` as `stepSize * func(x + stepSize * 0.5, y + k2 * 0.5)`.
+           \item Calculate `k4` as `stepSize * func(x + stepSize, y + k3)`.
+           
+           \item Determine the next value of `y` using the average of `k1`, `k2`, `k3`, and `k4`, with weights: \(y + (k1 + 2 \times k2 + 2 \times k3 + k4) / 6\).
+           
+           \item Store the calculated value in the `result[i]`.
+           
+           \item Update `x` by adding `stepSize`.
+           \item Update `y` to the newly calculated value for the next iteration.
+       \end{itemize}
+   
+   \item Return the `result` list containing the computed starter values.
+   \end{algorithmic}
+\end{algorithm}
+
+\newpage
+
+
+   
+
+\begin{itemize}
+    \item \textbf{Initialize the Result List}: Begin by initializing a list of the desired size, filled with zeros. This list will store the computed results for the ODE solution.
+    
+    \item \textbf{Step-by-Step Computation}: Depending on the number of steps specified (`stepNumber`), perform the following calculations:
+        \begin{itemize}
+            \item For a single-step method (\(k = 1\)), compute the next value based on the coefficients (`alpha`, `beta`) and the step size. Update \(x_0\) and \(y_0\) after each step.
+            \item For a two-step method (\(k = 2\)), use a fourth-order Runge-Kutta method to generate initial values, then calculate subsequent results by iterating through the coefficients and step sizes, updating \(x_0\) and \(y_0\) accordingly.
+            \item For multi-step methods, generate the characteristic polynomial based on the coefficients, and compute results using appropriate summation and approximation techniques.
+        \end{itemize}
+    
+    \item \textbf{Error Handling and Special Cases}: Incorporate logic for handling various scenarios, such as implicit values, special cases, and error checks. This helps ensure stability and consistency during computation.
+    
+    \item \textbf{Return the Result}: Once all computations are complete, return the `result` list containing the numerical solution to the ODE.
+\end{itemize}
+
+This explicit linear multistep algorithm serves as a practical guide for implementing LMMs in a computational environment, providing a robust foundation for solving a variety of ODE problems. It emphasizes step-by-step computation, consistent updating of variables, and careful consideration of stability and consistency.
+
+ 
+
+
