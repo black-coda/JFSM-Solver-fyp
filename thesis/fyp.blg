@@ -19,45 +19,45 @@ Warning--entry type for "Faleichik2009ExplicitIO" isn't style-file defined
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
 Warning--No journal in Alexanderian2022
 Warning--No journal in HELM2008NumericalIVP
-You've used 31 entries,
+You've used 32 entries,
             6951 wiz_defined-function locations,
-            1477 strings with 17222 characters,
-and the built_in function-call counts, 59193 in all, are:
-= -- 7332
-> -- 446
-< -- 2906
-+ -- 2982
-- -- 67
-* -- 3805
-:= -- 10966
-add.period$ -- 128
-call.type$ -- 31
-change.case$ -- 544
+            1483 strings with 17428 characters,
+and the built_in function-call counts, 61238 in all, are:
+= -- 7580
+> -- 456
+< -- 3030
++ -- 3102
+- -- 69
+* -- 3945
+:= -- 11401
+add.period$ -- 132
+call.type$ -- 32
+change.case$ -- 563
 chr.to.int$ -- 0
-cite$ -- 64
-duplicate$ -- 1517
-empty$ -- 2352
-format.name$ -- 725
-if$ -- 11223
+cite$ -- 66
+duplicate$ -- 1556
+empty$ -- 2422
+format.name$ -- 739
+if$ -- 11584
 int.to.chr$ -- 0
-int.to.str$ -- 97
+int.to.str$ -- 100
 missing$ -- 0
-newline$ -- 800
-num.names$ -- 242
-pop$ -- 1205
+newline$ -- 822
+num.names$ -- 250
+pop$ -- 1227
 preamble$ -- 1
-purify$ -- 136
+purify$ -- 142
 quote$ -- 0
-skip$ -- 3591
+skip$ -- 3720
 stack$ -- 0
-substring$ -- 3242
-swap$ -- 825
-text.length$ -- 84
+substring$ -- 3369
+swap$ -- 849
+text.length$ -- 88
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 2640
+type$ -- 2720
 warning$ -- 2
-while$ -- 270
+while$ -- 277
 width$ -- 0
-write$ -- 969
+write$ -- 993
 (There were 3 warnings)

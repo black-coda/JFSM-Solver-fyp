@@ -253,6 +253,31 @@ Dattani, N\BPBI S.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Emmanuel%
+}{%
+Emmanuel%
+}{%
+{\protect \APACyear {2018}}%
+}]{%
+Fadugba2018}
+\APACinsertmetastar {%
+Fadugba2018}%
+\begin{APACrefauthors}%
+Emmanuel, F\BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{August}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Determination of the Order and the Error Constant of an
+  Implicit Linear Four-Step Method} {Determination of the order and the error
+  constant of an implicit linear four-step method}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Department of Mathematics, Ekiti State University, Ado
+  Ekiti, Nigeria}{1}{}{7}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Enright%
 , Hull%
 \BCBL {}\ \BBA {} Lindberg%
