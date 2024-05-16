@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/app/controller/key.dart';
-import 'package:frontend/src/app/view/screens/dashboard_screen.dart';
+import 'package:frontend/src/app/view/screens/stepper_screen.dart';
 import 'package:frontend/src/app/view/screens/result_of_method_test.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -23,7 +23,7 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
   }
 
   final _page = const <Widget>[
-    DashboardScreen(),
+    StepperScreen(),
     AnalysisResultScreen(),
   ];
 
@@ -76,7 +76,7 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
                               ),
                             );
                           }
-                          print("Page: ${_pageController.page}");
+
                           _pageController.nextPage(
                               duration: const Duration(milliseconds: 500),
                               curve: Curves.easeIn);
@@ -92,4 +92,3 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
     );
   }
 }
-

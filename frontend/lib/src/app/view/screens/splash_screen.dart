@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/src/app/view/screens/dashboard_screen.dart';
+import 'package:frontend/src/app/view/screens/stepper_screen.dart';
 import 'package:frontend/src/utils/routes/route_manager.dart';
 
 class SplashScreen extends StatefulWidget {

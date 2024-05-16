@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:frontend/src/app/view/screens/step_number_screen.dart';
-
+import 'package:frontend/src/app/view/screens/type_of_lmm_screen.dart';
 
 import 'analysis_value_collector.dart';
 
 // final GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
 
-class DashboardScreen extends ConsumerStatefulWidget {
-  const DashboardScreen({super.key});
+class StepperScreen extends ConsumerStatefulWidget {
+  const StepperScreen({super.key});
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _DashboardScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _StepperScreenState();
 }
 
-class _DashboardScreenState extends ConsumerState<DashboardScreen> {
+class _StepperScreenState extends ConsumerState<StepperScreen> {
   int currentStep = 0;
   int currentIndex = 0;
 
@@ -28,6 +27,10 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
       ),
     ),
     const Step(
+      title: Text("Step 3: Is it an Implicit Method"),
+      content: ImplicitOrExplicitScreen(),
+    ),
+    const Step(
       title: Text("Step 2: Analysis of Method Parameters"),
       content: AnalysisValueCollectorScreen(),
     ),
@@ -35,7 +38,6 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

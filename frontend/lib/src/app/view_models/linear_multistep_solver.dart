@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:frontend/src/module/linear_multistep_solver.dart';
 import 'package:frontend/src/utils/extension/approximation.dart';
 
@@ -165,7 +167,7 @@ class SolverImplementation implements LinearMultistepSolver {
   }
 
   @override
-  List<double> implicitLinearMultistepMethod({
+  List<double> implicitLinearMultistepMethodWithRKMethod({
     required int stepNumber,
     required List<double> alpha,
     required List<double> beta,
@@ -281,6 +283,7 @@ class SolverImplementation implements LinearMultistepSolver {
 
     // Perform RK method
     for (int i = 0; i < N - 1; i++) {
+      x = x.approximate(6);
       final k1 = func(x, y);
       final k2 = func(x + stepSize * 0.5, y + k1 * stepSize * 0.5);
       final k3 = func(x + stepSize * 0.5, y + k2 * stepSize * 0.5);
@@ -291,7 +294,7 @@ class SolverImplementation implements LinearMultistepSolver {
 
       result[i] = calculateNextValueOfY.approximate(6);
 
-      y = calculateNextValueOfY;
+      y = calculateNextValueOfY.approximate(6);
       x += stepSize;
     }
 
@@ -315,24 +318,122 @@ class SolverImplementation implements LinearMultistepSolver {
       [int implicit = 0]) {
     // Initialize variables
     double y = y0;
-    double x = x0;
+    double x = x0.approximate(1);
 
     List<double> result = List.filled(N - implicit, 0);
 
     // Perform RK method
     for (int i = 0; i < N - implicit; i++) {
-      final k1 = func(x, y);
-      final k2 = func(x + stepSize * 0.5, y + k1 * stepSize * 0.5);
-      final k3 = func(x + stepSize * 0.5, y + k2 * stepSize * 0.5);
-      final k4 = func(x + stepSize, y + k3 * stepSize);
+      x = x.approximate(6);
+      print("x := $x");
+      final double k1 = func(x, y);
+      final double k2 =
+          func(x + stepSize * 0.5, y + k1.approximate(6) * stepSize * 0.5);
+      final double k3 =
+          func(x + stepSize * 0.5, y + k2.approximate(6) * stepSize * 0.5);
+      final double k4 = func(x + stepSize, y + k3.approximate(6) * stepSize);
 
       final calculateNextValueOfY =
           y + (stepSize / 6) * (k1 + 2 * k2 + 2 * k3 + k4);
 
       result[i] = calculateNextValueOfY.approximate(6);
 
-      y = calculateNextValueOfY;
+      y = calculateNextValueOfY.approximate(6);
       x += stepSize;
+    }
+
+    return result;
+  }
+
+  @override
+  List<double> implicitLinearMultistepMethodWithPredictorCorrectorMethod({
+    required int stepNumber,
+    required List<double> correctorAlpha,
+    required List<double> correctorBeta,
+    required List<double> predictorAlpha,
+    required List<double> predictorBeta,
+    required double Function(double initialValueX, double initialValueY) func,
+    required double y0,
+    required double x0,
+    required double stepSize,
+    required int N,
+  }) {
+    List<double> result = List.filled(N, 0, growable: true);
+
+    /// [PECE] Algorithm will be implemented Prediction Evaluation Correction Evaluation
+    ///
+    /// Starter values from runge-kutta method
+    ///
+
+    List<double> starterY = explicitLinearMultistepMethod(
+      stepNumber: stepNumber,
+      alpha: predictorAlpha,
+      beta: predictorBeta,
+      func: func,
+      y0: y0,
+      x0: x0,
+      stepSize: stepSize,
+      N: stepNumber,
+    );
+
+
+    /// add the starter values from runge-kutta to the list of [result]
+
+    result.replaceRange(0, stepNumber - 1, starterY);
+
+    // get the y values
+
+    List<double> y = result.sublist(0, stepNumber + 1);
+    print("1 => $y, ${y.length}");
+
+    //x value
+    List<double> x =
+        implicitXValueGenerator(x0, stepSize, stepNumber - 1, decimalPlaces: 2);
+
+    print("2 => $x, ${x.length}");
+
+    List<double> fValues = [];
+
+    //* initial values of alpha and beta
+    double betaF = 0;
+    double alphaY = 0;
+
+    //* method summation
+
+    for (var i = stepNumber; i <= 4; i++) {
+      /// * calculate the values of f0,f1 ... f(stepNumber), then add it to the [fValues]
+      for (var j = 0; j <= stepNumber; j++) {
+        double xj = x[j];
+        print("${xj} cal x");
+        double yj = y[j];
+        print("${yj} cal y");
+        fValues.add(func(xj, yj));
+      }
+
+      print("3 => ${fValues.map((e) => e.approximate(6))}");
+
+
+      print("before $betaF");
+
+      for (var k = 0; k <= stepNumber; k++) {
+        betaF += correctorBeta[k] * fValues[k];
+      }
+
+      print("beta F: ${betaF.approximate(6)}");
+
+      
+      print("before $alphaY");
+      //* calculate summation alpha*y
+      for (var l = 0; l <= stepNumber-2; l++) {
+        alphaY += correctorAlpha[l] * y[l];
+      }
+
+      print("alpha y: ${alphaY.approximate(6)}");
+
+      //? Calculate the new y => h[beta*f] - alpha*y
+      double nextValueOfY = (stepSize * betaF) - alphaY;
+
+      print("next value of y => ${nextValueOfY.approximate(6)}");
     }
 
     return result;

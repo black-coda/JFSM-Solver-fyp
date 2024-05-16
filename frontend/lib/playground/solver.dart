@@ -8,22 +8,41 @@ void main() {
   // Define the function to be used
   func(double x, double y) {
     // Example function: dy/dx = x^2 + y^2
-    return 3 * math.pow(x, 2) * y;
+    // return math.pow(x, 2) * (1 + y);
+    return x + y;
   }
 
-  double y0 = 1;
+  double y0 = 0;
   double x0 = 0;
-  double stepSize = 0.1;
+  double stepSize = 0.2;
   int N = 5;
+  int stepNumber = 4;
 
   // Define the alpha and beta values
-  // final List<double> alpha = [0, 0, -1, 1];
-  // final List<double> beta = <double>[5 / 12, -16 / 12, 23 / 12, 0];
+  final List<double> predictorAlpha = [0, 0, 0, -1, 1];
+  final List<double> predictorBeta = <double>[
+    -9 / 24,
+    37 / 24,
+    -59 / 24,
+    55 / 24,
+    0,
+  ];
+
+  // Define the alpha and beta values
+  // final List<double> alphaCorrector = [0, 0, 0, -1, 1];
+  // final List<double> betaCorrector = <double>[
+  //   -9 / 24,
+  //   37 / 24,
+  //   -59 / 24,
+  //   55 / 24,
+  //   0,
+  // ];
+
   // final b = [1,2];
   // List anew = List.filled(5, 0, growable: true);
 
-  final List<double> alpha = [0, 0, 0, -1, 1];
-  final List<double> beta = [
+  final List<double> correctorAlpha = [0, 0, 0, -1, 1];
+  final List<double> correctorBeta = [
     -19 / 720,
     106 / 720,
     -264 / 720,
@@ -31,7 +50,7 @@ void main() {
     251 / 720,
   ];
 
-  final solverTester = Playground();
+  final solverTester = SolverImplementation();
   // final t = solver.explicitLinearMultistepMethod(
   //   stepNumber: 3,
   //   alpha: alpha,
@@ -44,7 +63,36 @@ void main() {
   // );
 
   // final ans = solverTester.explicitLinearMultistepMethod(
-  //   stepNumber: 3,
+  //   stepNumber: 4,
+  //   alpha: alpha,
+  //   beta: beta,
+  //   func: func,
+  //   y0: y0,
+  //   x0: x0,
+  //   stepSize: stepSize,
+  //   N: 4,
+  // );
+
+  // print(ans);
+
+  final answer =
+      solverTester.implicitLinearMultistepMethodWithPredictorCorrectorMethod(
+    stepNumber: stepNumber,
+    correctorAlpha: correctorAlpha,
+    correctorBeta: correctorBeta,
+    predictorAlpha: predictorAlpha,
+    predictorBeta: predictorBeta,
+    func: func,
+    y0: y0,
+    x0: x0,
+    stepSize: stepSize,
+    N: N,
+  );
+
+  // print(answer);
+
+  // final ans = solverTester.implicitLinearMultistepMethodWithRKMethod(
+  //   stepNumber: 4,
   //   alpha: alpha,
   //   beta: beta,
   //   func: func,
@@ -56,25 +104,12 @@ void main() {
 
   // print(ans);
 
-  final ans = solverTester.implicitLinearMultistepMethod(
-    stepNumber: 4,
-    alpha: alpha,
-    beta: beta,
-    func: func,
-    y0: y0,
-    x0: x0,
-    stepSize: stepSize,
-    N: N,
-  );
-
-  print(ans);
-
-  final rk =
-      solverTester.fourthOrderRungeKuttaMethod(func, y0, x0, stepSize, N);
+  // final rk =
+  // solverTester.fourthOrderRungeKuttaMethod(func, y0, x0, stepSize, N);
 
   // print(rk);
 
-  final th = solverTester.generateXValues(x0, stepSize, 4);
+  // final th = solverTester.generateXValues(x0, stepSize, 4);
   // print(th);
 
   // print("implicit RK: $implicitRK");

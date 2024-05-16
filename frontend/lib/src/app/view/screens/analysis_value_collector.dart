@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/app/controller/alpha_and_beta.controller.dart';
+import 'package:frontend/src/app/controller/is_imp_or_exp_controller.dart';
 import 'package:frontend/src/app/controller/key.dart';
 import 'package:frontend/src/app/controller/step_number_controller.dart';
-import 'package:frontend/src/app/view/screens/dashboard_screen.dart';
+import 'package:frontend/src/app/view/screens/stepper_screen.dart';
 import 'package:frontend/src/utils/devtool/devtool.dart';
 import 'package:frontend/src/utils/extension/format_string_to_number.dart';
 
@@ -20,7 +21,11 @@ class _AnalysisValueCollectorScreenState
   final List<TextEditingController> alphaController = [];
   final List<TextEditingController> betaController = [];
 
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final List<TextEditingController> predictorAlphaController = [];
+  final List<TextEditingController> predictorBetaController = [];
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _predictorFormKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -58,7 +63,7 @@ class _AnalysisValueCollectorScreenState
                 betaController.add(TextEditingController());
               }
               return Form(
-                key: formKey,
+                key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -68,10 +73,10 @@ class _AnalysisValueCollectorScreenState
                     InkWell(
                       onTap: () {
                         debugPrint(
-                            "is form valid -> ${formKey.currentState!.validate()}");
+                            "is form valid -> ${_formKey.currentState!.validate()}");
                         List<double> alphas = [];
                         List<double> betas = [];
-                        if (formKey.currentState!.validate()) {
+                        if (_formKey.currentState!.validate()) {
                           ref
                               .watch(
                                   isAnalysisCollectorFormValidProvider.notifier)
@@ -108,6 +113,91 @@ class _AnalysisValueCollectorScreenState
                       ),
                     )
                   ],
+                ),
+              );
+            },
+          ),
+        ),
+
+        // Explicit Predictor
+        SliverToBoxAdapter(
+          child: Consumer(
+            builder: (context, ref, child) {
+              ref.watch(stepNumberStateProvider);
+
+              final isImplicitOrExplicit =
+                  ref.watch(isImplicitOrExplicitProvider);
+
+              int itemCount = ref.watch(stepNumberStateProvider.notifier).state;
+              debugPrint("itemCount.log(): $itemCount");
+
+              while (predictorAlphaController.length < itemCount + 1) {
+                predictorAlphaController.add(TextEditingController());
+              }
+              while (predictorBetaController.length < itemCount + 1) {
+                predictorBetaController.add(TextEditingController());
+              }
+              return Visibility(
+                visible: isImplicitOrExplicit,
+                child: Form(
+                  key: _predictorFormKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 16),
+                      const Text("Explicit/Predictor Method ɑβ-values"),
+                      const SizedBox(height: 16),
+                      _formGrid(
+                          context, itemCount, "α", predictorAlphaController),
+                      const SizedBox(height: 8),
+                      _formGrid(
+                          context, itemCount, "β", predictorBetaController),
+                      InkWell(
+                        onTap: () {
+                          debugPrint(
+                              "is predictor form valid -> ${_formKey.currentState!.validate()}");
+                          List<double> alphas = [];
+                          List<double> betas = [];
+                          if (_formKey.currentState!.validate()) {
+                            ref
+                                .watch(isAnalysisCollectorFormValidProvider
+                                    .notifier)
+                                .state = true;
+                            for (TextEditingController textEditingController
+                                in predictorAlphaController) {
+                              String text = textEditingController.text
+                                  .calculateFromString();
+                              double? toDouble = double.tryParse(text);
+                              if (toDouble != null) {
+                                alphas.add(toDouble);
+                              }
+                            }
+
+                            for (TextEditingController textEditingController
+                                in predictorBetaController) {
+                              String text = textEditingController.text
+                                  .calculateFromString();
+                              double? toDouble = double.tryParse(text);
+                              if (toDouble != null) {
+                                betas.add(toDouble);
+                              }
+                            }
+                            ref.read(predictorAlphaProvider.notifier).state =
+                                alphas;
+                            ref.read(predictorBetaProvider.notifier).state =
+                                betas;
+                          }
+                        },
+                        child: Text(
+                          "Submit Predictor Coefficient",
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               );
             },
