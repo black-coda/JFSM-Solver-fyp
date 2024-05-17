@@ -80,5 +80,34 @@ Utilizing the software integrated into the project, we replicated the results, a
     \caption{Result of Quade's method analysis}
 \end{figure}
 
+\subsection{3-Step Backward Differentiation Formula}
 
+The 3-Step Backward Differentiation Formula is given as:
+
+\[y_{n+3} = \frac{18}{11} y_{n+2} - \frac{9}{11} y_{n+1} + \frac{2}{11} y_n + \frac{6}{11} h f_{n+3}\]
+
+
+from the above equation, we can see that the method is a 3-step method,
+
+
+where:
+\[
+\begin{aligned}&\alpha_0 &= -\frac{2}{11}, \alpha_1 = \frac{9}{11}, \alpha_2 = -\frac{18}{11}, \alpha_3 = 1 \\
+&\beta_0 &= 0, \beta_1 = 0, \beta_2 = 0, \beta_3 = \frac{6}{11}
+\end{aligned}
+\]
+
+in other to determine the order of the Quade's method, we use (3.4), we obtain the following values:
+
+
+% \begin{eqnarray}
+%     c_0 = \sum_{i=0}^{4}(\alpha_i) = \frac{8}{19} - \frac{8}{19} = 0 \\
+%     c_1 = \sum_{i=0}^{4}(i\alpha_i - \beta_i) = \frac{60}{19} - \frac{60}{19} = 0 \\
+%     c_2 = \sum_{i=0}^{4}(\frac{i^2}{2!} \alpha_i - i \beta_i) = \frac{120}{19} - \frac{120}{19} = 0 \\
+%     c_3 = \sum_{i=0}^{4}(\frac{i^3}{3!} \alpha_i - \frac{i^2}{2!} \beta_i) = \frac{168}{19} - \frac{168}{19} = 0 \\
+%     c_4 = \sum_{i=0}^{4}(\frac{i^4}{4!} \alpha_i - \frac{i^3}{3!} \beta_i) = \frac{176}{19} - \frac{176}{19} = 0 \\
+%     c_5 = \sum_{i=0}^{4}(\frac{i^5}{5!} \alpha_i - \frac{i^4}{4!} \beta_i) = \frac{146}{19} - \frac{146}{19} = 0 \\
+%     c_6 = \sum_{i=0}^{4}(\frac{i^6}{6!} \alpha_i - \frac{i^5}{5!} \beta_i) = \frac{100}{19} - \frac{100}{19} = 0 \\
+%     c_7 = \sum_{i=0}^{4}(\frac{i^7}{7!} \alpha_i - \frac{i^6}{6!} \beta_i) = 3.0682 - 3.0772 = -0.0090
+% \end{eqnarray}
 

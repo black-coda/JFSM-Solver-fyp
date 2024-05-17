@@ -388,9 +388,121 @@ Following the generation of starter values, the explicit linear multistep method
     \item \textbf{Return the Result}: Once all computations are complete, return the `result` list containing the numerical solution to the ODE.
 \end{itemize}
 
+\newpage
+
+\begin{algorithm}
+    \caption{Explicit Linear Multistep Method}
+    \begin{algorithmic}[1]
+    \REQUIRE $stepNumber$, $alpha$, $beta$, $func$, $y_0$, $x_0$, $stepSize$, $N$
+    \ENSURE $result$
+    \STATE Initialize $result$ as a list of size $N$ filled with 0s
+    \STATE $result[0] \gets y_0$
+    \IF{$stepNumber = 1$}
+        \FOR{$i = 0$ to $N-1$}
+            \STATE $y \gets y_0 + stepSize \cdot func(x_0, y_0)$
+            \STATE $result[i] \gets y$
+            \STATE $x_0 \gets x_0 + stepSize$
+            \STATE $y_0 \gets y$
+        \ENDFOR
+    \ELSIF{$stepNumber = 2$}
+        \STATE Use Runge-Kutta to compute initial values
+        \STATE $result[1] \gets y_{\text{RK}}$
+        \FOR{$i = 2$ to $N$}
+            \STATE $y \gets \text{compute using multistep formula}$
+            \STATE $result[i] \gets y$
+            \STATE Update $x_0$, $y_0$, $y_1$ for next iteration
+        \ENDFOR
+    \ELSE
+        \STATE Compute initial values using Runge-Kutta
+        \STATE Initialize $x$ and $y$ with initial values
+        \FOR{$i = stepNumber$ to $N$}
+            \STATE $y \gets \text{compute using multistep formula}$
+            \STATE $result[i] \gets y$
+            \STATE Update $x$ and $y$ for next iteration
+        \ENDFOR
+    \ENDIF
+    \RETURN $result$
+    \end{algorithmic}
+    \end{algorithm}
+
+    \subsubsection*{Summary of the Explicit Linear Multistep Method Process}
+
+    \begin{enumerate}
+        \item \textbf{Initialization}:
+        \begin{itemize}
+            \item Create a list \texttt{result} of size $N$ filled with 0s.
+            \item Set the initial condition: $\texttt{result}[0] = y_0$.
+        \end{itemize}
+        
+        \item \textbf{Single-Step Method (if \texttt{stepNumber} is 1)}:
+        \begin{itemize}
+            \item Loop from $i = 0$ to $N-1$:
+            \begin{itemize}
+                \item Calculate $y$ using the formula: $y = y_0 + h \cdot \text{func}(x_0, y_0)$.
+                \item Update $\texttt{result}[i]$ with the new $y$.
+                \item Increment $x_0$ by \texttt{stepSize}.
+                \item Update $y_0$ with the new $y$.
+            \end{itemize}
+        \end{itemize}
+        
+        \item \textbf{Two-Step Method (if \texttt{stepNumber} is 2)}:
+        \begin{itemize}
+            \item Use Runge-Kutta method to compute the initial value $y_{\text{RK}}$ and set $\texttt{result}[1]$.
+            \item Loop from $i = 2$ to $N$:
+            \begin{itemize}
+                \item Compute the new $y$ using the explicit linear multistep formula.
+                \item Update $\texttt{result}[i]$ with the new $y$.
+                \item Update $x_0$, $y_0$, and $y_1$ for the next iteration.
+            \end{itemize}
+        \end{itemize}
+        
+        \item \textbf{Multi-Step Method (if \texttt{stepNumber} > 2)}:
+        \begin{itemize}
+            \item Compute initial values using the Runge-Kutta method.
+            \item Initialize $x$ and $y$ with these initial values.
+            \item Loop from $i = \texttt{stepNumber}$ to $N$:
+            \begin{itemize}
+                \item Compute the new $y$ using the explicit linear multistep formula.
+                \item Update $\texttt{result}[i]$ with the new $y$.
+                \item Update $x$ and $y$ for the next iteration.
+            \end{itemize}
+        \end{itemize}
+        
+        \item \textbf{Return the \texttt{result} list}.
+    \end{enumerate}
+
 This explicit linear multistep algorithm serves as a practical guide for implementing LMMs in a computational environment, providing a robust foundation for solving a variety of ODE problems. It emphasizes step-by-step computation, consistent updating of variables, and careful consideration of stability and consistency.
 
- 
+ \newpage
 
 
 \subsubsection{Implicit method Algorithm}
+
+The PECE (Prediction-Evaluation-Correction-Evaluation) algorithm is a specific implementation of the predictor-corrector method used in numerical analysis to solve ordinary differential equations (ODEs). It enhances the accuracy of the solution by iterating through a cycle of prediction and correction steps. The following outlines how the PECE algorithm is applied in the provided code:
+
+\begin{itemize}
+    \item Prediction: The initial set of values (starter values) for $y$ are computed using an explicit linear multistep method (predictor method). This step generates an initial approximation for the next values of $y$. In the code, this is achieved by calling the \texttt{explicitLinearMultistepMethod} with the predictor coefficients (\texttt{predictorAlpha} and \texttt{predictorBeta}).
+    \item Evaluation: Using the predicted values, the function values $f(x_j, y_j)$ are calculated. These function values are used to compute the predictor sum ($\beta F$) and the corrector sum ($\alpha Y$). The code calculates these function values in a loop and stores them in the \texttt{fValues} list.
+    \item Correction: The corrector method refines the predicted values by applying the implicit linear multistep formula. This involves calculating a new $y$ using the corrector coefficients (\texttt{correctorAlpha} and \texttt{correctorBeta}) and the previously computed function values. The correction formula used in the code is:
+    \[
+    y_{\text{next}} = \text{stepSize} \cdot \beta F - \alpha Y
+    \]
+    \item Evaluation: After correction, the new $y$ value is evaluated again to ensure the accuracy and stability of the solution. This step may involve additional iterations of correction to improve the solution further. The corrected value of $y$ is then added to the \texttt{result} list, and the algorithm updates the values of $x$ and $y$ for the next iteration.
+\end{itemize}
+
+
+
+
+\textbf{Summary of the Code Implementation}
+
+The code implements the PECE algorithm as follows:
+
+\begin{itemize}
+    \item \textbf{Initialization}: It initializes the \texttt{result} list and computes starter values using the explicit linear multistep method.
+    \item \textbf{Prediction}: The explicit linear multistep method provides initial approximations for $y$.
+    \item \textbf{Evaluation}: Function values are computed for these predicted $y$ values.
+    \item \textbf{Correction}: The corrector method refines these predictions using the function values and corrector coefficients.
+    \item \textbf{Evaluation}: The corrected values are evaluated again to update the solution.
+\end{itemize}
+
+This cycle ensures that each step improves the accuracy of the numerical solution to the ODE, leveraging both predictor and corrector steps for enhanced precision and stability.

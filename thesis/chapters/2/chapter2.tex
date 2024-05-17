@@ -1,6 +1,6 @@
 \raggedbottom
 \chapter{Literature Review}
-% TODO: equation of ivp problem
+
 \section{Introduction}
 There are many processes in science, management and technology that involves the rate of change of one variable in relation to another modeled as differential equations."Most differential equations in science and technology are solved by numerical methods"\cite{ross} because analytic solution is not possible ot useful \cite{lambert1977}.They are many existing algorithm designed for ODE such as Runge-kutta and Euler's Methods, Taylor series method \cite{lambert1977}, Hybrid methods by Ademiluyi(1987), Collocation method by Awoyemi(1996,1999 and 2000).However this paper addresses the use of linear multistep method to provide solutions to this differential problems.
 
@@ -170,11 +170,14 @@ On the other hand, ILMMs allow for larger step sizes while maintaining stability
 One of the mostly widely used ILMMs is the Adams-Moulton method. The Adams-Moulton methods are a family of implicit linear multistep methods (ILMMs) commonly used for solving ordinary differential equations (ODEs). These methods are derived by considering the interpolation of the derivative function $f(x,y)$ over a given time interval.It is particularly advantageous for stiff systems, where explicit methods like the Adams-Bashforth method may require very small step sizes to maintain stability, leading to computationally expensive simulations. The Adams-Moulton method allows for larger step sizes while maintaining stability, making it more efficient for solving stiff ODEs.
 The Adams-Moulton method is widely used in various scientific and engineering applications where accurate and stable numerical solutions of ODEs are required. It provides a balance between accuracy and computational efficiency, making it a valuable tool for simulating dynamic systems governed by differential equations.
 
+The three-step Adams-Moulton method is given by:
 
-% TODO: Continue from here
+\[
+y_{n+3} = y_{n+2} + \frac{h}{24} \left( 9 f(x_{n+3}, y_{n+3}) + 19 f(x_{n+2}, y_{n+2}) - 5 f(x_{n+1}, y_{n+1}) + f(x_{n}, y_{n}) \right)
+\]
 
 
-This is the Adams-Moulton method of order 3, commonly denoted as AM(3). It is an implicit method because it requires solving for \( y_{n+1} \) implicitly in the equation. The method involves using the function values \( f(t_{n-2}, y_{n-2}) \), \( f(t_{n-1}, y_{n-1}) \), and \( f(t_n, y_n) \) to compute the value of \( y_{n+1} \), making it suitable for stiff ODEs where explicit methods may be unstable.
+This is the Adams-Moulton method of order 3, commonly denoted as AM(3). It is an implicit method because it requires solving for \( y_{n+1} \) implicitly in the equation. The method involves using the function values \( f(t_{n+3}, y_{n+3}) \), \( f(t_{n+}, y_{n+}) \), and \( f(t_n, y_n) \) to compute the value of \( y_{n+1} \), making it suitable for stiff ODEs where explicit methods may be unstable.
 
 
 % Backward Differentiation Formula
@@ -241,7 +244,7 @@ c_0 = \sum \alpha_j, \quad c_1 = \sum (j\alpha_j - \beta_j), \quad c_2 = \sum \l
 \]
 and so on. The general formula for $p \geq 2$ is
 \[
-c_p = \sum \left( \frac{(jp)^!}{\alpha_j} - \frac{(p(j-p-1))!}{\beta_j} \right).
+  c_p = \sum_{j=0}^{k} \left( \frac{(j^p)!}{p!} \alpha_j - \frac{(j^{p-1})}{(p-1)!} \beta_j \right),
 \]
 
 Recall that the truncation error is intended to be a measure of how well the differential equation and its approximation agree with each other\cite{HELM2008NumericalIVP}. In summary we can deduct that a linear multistep scheme is \textbf{consistent} if $c_0 = 0$ and $c_1 = 0$.

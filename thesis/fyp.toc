@@ -27,9 +27,10 @@
 \contentsline {section}{\numberline {3.4}Module 2: Application of Linear Multistep Method in Solving ODEs}{38}{}%
 \contentsline {subsection}{\numberline {3.4.1}Characterization of ODE Problems and Selection of Numerical Methods Algorithm}{39}{}%
 \contentsline {subsubsection}{Explicit Method Algorithm}{39}{}%
-\contentsline {subsubsection}{Implicit method Algorithm}{41}{}%
-\contentsline {chapter}{\numberline {4}Numerical Results}{42}{}%
-\contentsline {section}{\numberline {4.1}Illustrative Numerical Examples Demonstrating Solver Performance}{42}{}%
-\contentsline {subsection}{\numberline {4.1.1}Module 1: Analysis of Linear multistep}{42}{}%
-\contentsline {subsubsection}{The Quade's Method}{42}{}%
-\contentsline {chapter}{References}{46}{}%
+\contentsline {subsubsection}{Implicit method Algorithm}{44}{}%
+\contentsline {chapter}{\numberline {4}Numerical Results}{46}{}%
+\contentsline {section}{\numberline {4.1}Illustrative Numerical Examples Demonstrating Solver Performance}{46}{}%
+\contentsline {subsection}{\numberline {4.1.1}Module 1: Analysis of Linear multistep}{46}{}%
+\contentsline {subsubsection}{The Quade's Method}{46}{}%
+\contentsline {subsection}{\numberline {4.1.2}3-Step Backward Differentiation Formula}{49}{}%
+\contentsline {chapter}{References}{50}{}%

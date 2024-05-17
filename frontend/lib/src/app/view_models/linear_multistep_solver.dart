@@ -424,7 +424,7 @@ class SolverImplementation implements LinearMultistepSolver {
       
       print("before $alphaY");
       //* calculate summation alpha*y
-      for (var l = 0; l <= stepNumber-2; l++) {
+      for (var l = 0; l <= stepNumber-1; l++) {
         alphaY += correctorAlpha[l] * y[l];
       }
 

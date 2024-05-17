@@ -175,6 +175,8 @@ INPUT chapters\3\chapter3.tex
 INPUT C:\Users\monda\AppData\Local\Programs\MiKTeX\tex\latex\base\omscmr.fd
 INPUT C:\Users\monda\AppData\Local\Programs\MiKTeX\tex\latex\base\omscmr.fd
 INPUT C:\Users\monda\AppData\Local\Programs\MiKTeX\tex\latex\base\omscmr.fd
+INPUT C:\Users\monda\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt8.tfm
+INPUT C:\Users\monda\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt8.tfm
 INPUT .\chapters\4\chapter4.tex
 INPUT .\chapters\4\chapter4.tex
 INPUT chapters\4\chapter4.tex
@@ -197,8 +199,6 @@ INPUT .\chapters\4\image\2.png
 INPUT .\fyp.bbl
 INPUT .\fyp.bbl
 INPUT fyp.bbl
-INPUT C:\Users\monda\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt8.tfm
-INPUT C:\Users\monda\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt8.tfm
 INPUT fyp.aux
 INPUT C:\Users\monda\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk
 INPUT C:\Users\monda\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk
