@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/utils/devtool/devtool.dart';
+import 'package:math_expressions/math_expressions.dart';
 import 'package:math_keyboard/math_keyboard.dart';
 
 class SolverView extends ConsumerStatefulWidget {
@@ -17,6 +18,8 @@ class _SolverViewState extends ConsumerState<SolverView> {
   late TextEditingController stepSizeController;
   late TextEditingController NController;
 
+  late MathFieldEditingController _mathFieldEditingController;
+
   @override
   void initState() {
     super.initState();
@@ -25,6 +28,7 @@ class _SolverViewState extends ConsumerState<SolverView> {
     x0Controller = TextEditingController();
     stepSizeController = TextEditingController();
     NController = TextEditingController();
+    _mathFieldEditingController = MathFieldEditingController();
   }
 
   @override
@@ -34,6 +38,8 @@ class _SolverViewState extends ConsumerState<SolverView> {
     x0Controller.dispose();
     stepSizeController.dispose();
     NController.dispose();
+
+    _mathFieldEditingController.dispose();
     super.dispose();
   }
 
@@ -41,7 +47,7 @@ class _SolverViewState extends ConsumerState<SolverView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Solver View'),
+        title: const Text('S o l v e r  V i e w'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -60,10 +66,18 @@ class _SolverViewState extends ConsumerState<SolverView> {
                   labelText: "Enter f(x)",
                   border: OutlineInputBorder(),
                 ), // Decorate the input field using the familiar InputDecoration.
-                onChanged:
-                    (String value) {}, // Respond to changes in the input field.
-                onSubmitted: (String
-                    value) {}, // Respond to the user submitting their input.
+                onChanged: (String value) {
+                  // value.log();
+                  final mathExpression = TeXParser(value).parse();
+                  // mathExpression.toString().log();
+                  Parser p = Parser();
+                  Expression exp = p.parse(mathExpression.toString());
+                  // exp.evaluate(type, context);
+                }, // Respond to changes in the input field.
+                onSubmitted: (String value) {
+                  // final mathExpression = TeXParser(value).parse();
+                  // mathExpression.log();
+                }, // Respond to the user submitting their input.
                 autofocus:
                     true, // Enable or disable autofocus of the input field.
               ),
@@ -100,6 +114,21 @@ class _SolverViewState extends ConsumerState<SolverView> {
     );
   }
 
+
+  
+double Function(double, double) parseFunction(String input) {
+  Parser p = Parser();
+  Expression exp = p.parse(input);
+  ContextModel cm = ContextModel();
+
+  return (double x, double y) {
+    cm.bindVariable(Variable('x'), Number(x));
+    cm.bindVariable(Variable('y'), Number(y));
+    return exp.evaluate(EvaluationType.REAL, cm);
+  };
+}
+
+
   void _onSubmit() {
     final func = funcController.text;
     final y0 = double.tryParse(y0Controller.text) ?? 0.0;
@@ -107,8 +136,17 @@ class _SolverViewState extends ConsumerState<SolverView> {
     final stepSize = double.tryParse(stepSizeController.text) ?? 0.0;
     final N = int.tryParse(NController.text) ?? 0;
 
-    func.log();
+    final v = _mathFieldEditingController;
+    v.log();
+
+    // func.log();
 
     // Now you have all the collected values, you can proceed with the desired action
   }
 }
+
+
+
+
+
+

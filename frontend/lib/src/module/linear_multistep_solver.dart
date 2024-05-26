@@ -59,7 +59,8 @@ abstract class LinearMultistepSolver {
   });
 
   List<double> implicitLinearMultistepMethodWithPredictorCorrectorMethod({
-    required int stepNumber,
+    required int predictorStepNumber,
+    required int correctorStepNumber,
     required List<double> correctorAlpha,
     required List<double> correctorBeta,
     required List<double> predictorAlpha,

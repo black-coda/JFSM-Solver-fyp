@@ -1,5 +1,8 @@
 // ignore_for_file: avoid_print
 
+import 'dart:developer';
+
+import 'package:frontend/src/app/view_models/linear_multistep_analysis_method_implementation.dart';
 import 'package:frontend/src/module/linear_multistep_solver.dart';
 import 'package:frontend/src/utils/extension/approximation.dart';
 
@@ -347,7 +350,7 @@ class SolverImplementation implements LinearMultistepSolver {
 
   @override
   List<double> implicitLinearMultistepMethodWithPredictorCorrectorMethod({
-    required int stepNumber,
+    required int predictorStepNumber,
     required List<double> correctorAlpha,
     required List<double> correctorBeta,
     required List<double> predictorAlpha,
@@ -357,7 +360,29 @@ class SolverImplementation implements LinearMultistepSolver {
     required double x0,
     required double stepSize,
     required int N,
+    required int correctorStepNumber,
   }) {
+    final predictorOrder = AnalysisImplementation(
+            kSteps: predictorStepNumber,
+            alpha: predictorAlpha,
+            beta: predictorBeta)
+        .orderAndErrorConstant()
+        .$1;
+    log(predictorOrder.toString());
+
+    final correctorOrder = AnalysisImplementation(
+            kSteps: correctorStepNumber,
+            alpha: correctorAlpha,
+            beta: correctorBeta)
+        .orderAndErrorConstant()
+        .$1;
+
+    log(correctorOrder.toString());
+
+    if (predictorOrder != correctorOrder) {
+      throw const FormatException(
+          "The predictor-corrector scheme must have the same order");
+    }
     List<double> result = List.filled(N, 0, growable: true);
 
     /// [PECE] Algorithm will be implemented Prediction Evaluation Correction Evaluation
@@ -365,30 +390,31 @@ class SolverImplementation implements LinearMultistepSolver {
     /// Starter values from runge-kutta method
     ///
 
+    //! Predictor
     List<double> starterY = explicitLinearMultistepMethod(
-      stepNumber: stepNumber,
+      stepNumber: predictorStepNumber,
       alpha: predictorAlpha,
       beta: predictorBeta,
       func: func,
       y0: y0,
       x0: x0,
       stepSize: stepSize,
-      N: stepNumber,
+      N: predictorStepNumber,
     );
-
 
     /// add the starter values from runge-kutta to the list of [result]
 
-    result.replaceRange(0, stepNumber - 1, starterY);
+    result.replaceRange(0, predictorStepNumber - 1, starterY);
 
     // get the y values
 
-    List<double> y = result.sublist(0, stepNumber + 1);
+    List<double> y = result.sublist(0, predictorStepNumber + 1);
     print("1 => $y, ${y.length}");
 
     //x value
-    List<double> x =
-        implicitXValueGenerator(x0, stepSize, stepNumber - 1, decimalPlaces: 2);
+    List<double> x = implicitXValueGenerator(
+        x0, stepSize, predictorStepNumber - 1,
+        decimalPlaces: 2);
 
     print("2 => $x, ${x.length}");
 
@@ -400,32 +426,33 @@ class SolverImplementation implements LinearMultistepSolver {
 
     //* method summation
 
-    for (var i = stepNumber; i <= 4; i++) {
+    for (var i = predictorStepNumber; i <= 4; i++) {
       /// * calculate the values of f0,f1 ... f(stepNumber), then add it to the [fValues]
-      for (var j = 0; j <= stepNumber; j++) {
+      for (var j = 0; j <= predictorStepNumber; j++) {
         double xj = x[j];
-        print("${xj} cal x");
+        print("$xj cal x");
         double yj = y[j];
-        print("${yj} cal y");
+        print("$yj cal y");
         fValues.add(func(xj, yj));
       }
 
       print("3 => ${fValues.map((e) => e.approximate(6))}");
 
+      // remove first element in the list of f
+      // fValues.removeAt(0);
 
       print("before $betaF");
 
-      for (var k = 0; k <= stepNumber; k++) {
-        betaF += correctorBeta[k] * fValues[k];
+      for (var k = 0; k <= correctorStepNumber; k++) {
+        betaF += correctorBeta[k] * fValues[k + 1];
       }
 
       print("beta F: ${betaF.approximate(6)}");
 
-      
       print("before $alphaY");
       //* calculate summation alpha*y
-      for (var l = 0; l <= stepNumber-1; l++) {
-        alphaY += correctorAlpha[l] * y[l];
+      for (var l = 0; l <= correctorStepNumber - 1; l++) {
+        alphaY += correctorAlpha[l] * y[l + 1];
       }
 
       print("alpha y: ${alphaY.approximate(6)}");

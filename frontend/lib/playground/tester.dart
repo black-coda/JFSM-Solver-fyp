@@ -312,9 +312,20 @@ class Playground implements LinearMultistepSolver {
 
     return result;
   }
-  
+
   @override
-  List<double> implicitLinearMultistepMethodWithPredictorCorrectorMethod({required int stepNumber, required List<double> correctorAlpha, required List<double> correctorBeta, required List<double> predictorAlpha, required List<double> predictorBeta, required double Function(double initialValueX, double initialValueY) func, required double y0, required double x0, required double stepSize, required int N}) {
+  List<double> implicitLinearMultistepMethodWithPredictorCorrectorMethod(
+      {required int predictorStepNumber,
+      required List<double> correctorAlpha,
+      required int correctorStepNumber,
+      required List<double> correctorBeta,
+      required List<double> predictorAlpha,
+      required List<double> predictorBeta,
+      required double Function(double initialValueX, double initialValueY) func,
+      required double y0,
+      required double x0,
+      required double stepSize,
+      required int N}) {
     // TODO: implement implicitLinearMultistepMethodWithPredictorCorrectorMethod
     throw UnimplementedError();
   }

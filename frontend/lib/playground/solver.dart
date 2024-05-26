@@ -16,7 +16,8 @@ void main() {
   double x0 = 0;
   double stepSize = 0.2;
   int N = 5;
-  int stepNumber = 4;
+  int predictorStepNumber = 4;
+  int correctorStepNumber = 3;
 
   // Define the alpha and beta values
   final List<double> predictorAlpha = [0, 0, 0, -1, 1];
@@ -41,13 +42,17 @@ void main() {
   // final b = [1,2];
   // List anew = List.filled(5, 0, growable: true);
 
-  final List<double> correctorAlpha = [0, 0, 0, -1, 1];
+  final List<double> correctorAlpha = [
+    0,
+    0,
+    -1,
+    1,
+  ];
   final List<double> correctorBeta = [
-    -19 / 720,
-    106 / 720,
-    -264 / 720,
-    646 / 720,
-    251 / 720,
+    1 / 24,
+    -5 / 24,
+    19 / 24,
+    9 / 24,
   ];
 
   final solverTester = SolverImplementation();
@@ -77,7 +82,8 @@ void main() {
 
   final answer =
       solverTester.implicitLinearMultistepMethodWithPredictorCorrectorMethod(
-    stepNumber: stepNumber,
+    predictorStepNumber: predictorStepNumber,
+    correctorStepNumber: correctorStepNumber,
     correctorAlpha: correctorAlpha,
     correctorBeta: correctorBeta,
     predictorAlpha: predictorAlpha,

@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   equations: ^5.0.2
+  expressions: ^0.2.5+1
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.4.10
@@ -15,6 +16,7 @@ dependencies:
   material_design_icons_flutter: ^7.0.7296
   math_expressions: ^2.5.0
   math_keyboard: ^0.2.1
+  syncfusion_flutter_charts: ^25.2.4
 
 dev_dependencies:
   flutter_lints: ^2.0.0

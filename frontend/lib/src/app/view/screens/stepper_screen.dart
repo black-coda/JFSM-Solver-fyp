@@ -27,10 +27,6 @@ class _StepperScreenState extends ConsumerState<StepperScreen> {
       ),
     ),
     const Step(
-      title: Text("Step 3: Is it an Implicit Method"),
-      content: ImplicitOrExplicitScreen(),
-    ),
-    const Step(
       title: Text("Step 2: Analysis of Method Parameters"),
       content: AnalysisValueCollectorScreen(),
     ),
@@ -51,7 +47,7 @@ class _StepperScreenState extends ConsumerState<StepperScreen> {
                     currentStep = step;
                   });
                 },
-                connectorColor: MaterialStateColor.resolveWith(
+                connectorColor: WidgetStateColor.resolveWith(
                   (states) => Theme.of(context).primaryColor,
                 ),
                 controlsBuilder: (context, details) {

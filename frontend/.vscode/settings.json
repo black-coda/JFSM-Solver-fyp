@@ -7,6 +7,6 @@
         "Runge",
         "sublist"
     ],
-    "editor.fontFamily": "\"consola s\",\"Liga sfmono nerd font\",\"fira code\",\"operator mono lig\",\"jetbrains mono\",\"fira code\",\"dank mono\"",
-    "workbench.colorTheme": "Default Dark Modern"
+    "editor.fontFamily": "\"consolas\",\"Liga sfmono nerd font\",\"fira code\",\"operator mono lig\",\"jetbrains mono\",\"fira code\",\"dank mono\"",
+    "workbench.colorTheme": "One Dark Pro"
 }
