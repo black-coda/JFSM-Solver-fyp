@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
       theme: _theming(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteManager.generateRoute,
-      initialRoute: RouteManager.splashScreen,
+      initialRoute: RouteManager.solverView,
     );
   }
 

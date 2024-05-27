@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:frontend/src/utils/devtool/devtool.dart';
+import 'package:frontend/src/app/controller/alpha_and_beta.controller.dart';
+import 'package:frontend/src/app/controller/is_imp_or_exp_controller.dart';
+import 'package:frontend/src/app/controller/method_implementation_controller.dart';
+import 'package:frontend/src/utils/extension/format_string_to_number.dart';
 import 'package:math_expressions/math_expressions.dart';
 import 'package:math_keyboard/math_keyboard.dart';
 
@@ -12,36 +17,40 @@ class SolverView extends ConsumerStatefulWidget {
 }
 
 class _SolverViewState extends ConsumerState<SolverView> {
-  late TextEditingController funcController;
   late TextEditingController y0Controller;
   late TextEditingController x0Controller;
   late TextEditingController stepSizeController;
-  late TextEditingController NController;
+  late TextEditingController stepNumberController;
+  late TextEditingController nController;
 
-  late MathFieldEditingController _mathFieldEditingController;
+  late MathFieldEditingController functionController;
 
   @override
   void initState() {
     super.initState();
-    funcController = TextEditingController();
+
     y0Controller = TextEditingController();
     x0Controller = TextEditingController();
     stepSizeController = TextEditingController();
-    NController = TextEditingController();
-    _mathFieldEditingController = MathFieldEditingController();
+    stepNumberController = TextEditingController();
+    nController = TextEditingController();
+    functionController = MathFieldEditingController();
   }
 
   @override
   void dispose() {
-    funcController.dispose();
     y0Controller.dispose();
     x0Controller.dispose();
     stepSizeController.dispose();
-    NController.dispose();
+    stepNumberController.dispose();
 
-    _mathFieldEditingController.dispose();
+    functionController.dispose();
     super.dispose();
   }
+
+  double Function(double, double)? parsedFunction;
+  String result = "";
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,62 +60,62 @@ class _SolverViewState extends ConsumerState<SolverView> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MathField(
-                keyboardType: MathKeyboardType
-                    .expression, // Specify the keyboard type (expression or number only).
-                variables: const [
-                  'x',
-                  'y',
-                ], // Specify the variables the user can use (only in expression mode).
-                decoration: const InputDecoration(
-                  labelText: "Enter f(x)",
-                  border: OutlineInputBorder(),
-                ), // Decorate the input field using the familiar InputDecoration.
-                onChanged: (String value) {
-                  // value.log();
-                  final mathExpression = TeXParser(value).parse();
-                  // mathExpression.toString().log();
-                  Parser p = Parser();
-                  Expression exp = p.parse(mathExpression.toString());
-                  // exp.evaluate(type, context);
-                }, // Respond to changes in the input field.
-                onSubmitted: (String value) {
-                  // final mathExpression = TeXParser(value).parse();
-                  // mathExpression.log();
-                }, // Respond to the user submitting their input.
-                autofocus:
-                    true, // Enable or disable autofocus of the input field.
-              ),
-              const SizedBox(height: 16),
-              _buildTextField("Function", funcController),
-              const SizedBox(height: 16),
-              _buildTextField("Initial Value of y (y0)", y0Controller),
-              const SizedBox(height: 16),
-              _buildTextField("Initial Value of x (x0)", x0Controller),
-              const SizedBox(height: 16),
-              _buildTextField("Step Size", stepSizeController),
-              const SizedBox(height: 16),
-              _buildTextField("Number of Steps (N)", NController),
-              const SizedBox(height: 16),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: _onSubmit,
-                child: const Text('Submit'),
-              ),
-            ],
+          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32),
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 16),
+                MathField(
+                  controller: functionController,
+                  decoration: const InputDecoration(
+                    labelText: 'Enter function f(x, y)',
+                    border: OutlineInputBorder(),
+                  ),
+                  variables: const ['x', 'y'],
+                  autofocus: true,
+                ),
+                const SizedBox(height: 16),
+                _buildTextField("Initial Value of y (y0)", y0Controller),
+                const SizedBox(height: 16),
+                _buildTextField("Initial Value of x (x0)", x0Controller),
+                const SizedBox(height: 16),
+                _buildTextField("Step Size", stepSizeController),
+                const SizedBox(height: 16),
+                _buildTextField("Number of Steps (N)", stepNumberController),
+                const SizedBox(height: 16),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: _onSubmit,
+                  child: const Text('Submit'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
+  //! form validators
+  String? _formFieldValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter some text';
+    }
+
+    try {
+      double.parse(value.calculateFromString());
+    } catch (e) {
+      return "Please enter a valid number";
+    }
+    return null;
+  }
+
   Widget _buildTextField(String label, TextEditingController controller) {
-    return TextField(
+    return TextFormField(
       controller: controller,
+      validator: _formFieldValidator,
       decoration: InputDecoration(
         labelText: label,
         border: const OutlineInputBorder(),
@@ -114,39 +123,78 @@ class _SolverViewState extends ConsumerState<SolverView> {
     );
   }
 
+  //! Parse function from mathField to expression
+  double Function(double, double)? parseFunction(Expression exp) {
+    // Create a parser
+    // Parser p = Parser();
 
-  
-double Function(double, double) parseFunction(String input) {
-  Parser p = Parser();
-  Expression exp = p.parse(input);
-  ContextModel cm = ContextModel();
+    // // Parse the input function
+    // Expression exp = p.parse(input);
 
-  return (double x, double y) {
-    cm.bindVariable(Variable('x'), Number(x));
-    cm.bindVariable(Variable('y'), Number(y));
-    return exp.evaluate(EvaluationType.REAL, cm);
-  };
-}
+    // Define the variables x and y
+    Variable x = Variable('x');
+    Variable y = Variable('y');
 
+    return (double xValue, double yValue) {
+      // Bind the variables x and y to their values
+      ContextModel cm = ContextModel();
+      cm.bindVariable(x, Number(xValue));
+      cm.bindVariable(y, Number(yValue));
+
+      // Evaluate the expression
+      double result = exp.evaluate(EvaluationType.REAL, cm);
+      return result;
+    };
+  }
 
   void _onSubmit() {
-    final func = funcController.text;
-    final y0 = double.tryParse(y0Controller.text) ?? 0.0;
-    final x0 = double.tryParse(x0Controller.text) ?? 0.0;
-    final stepSize = double.tryParse(stepSizeController.text) ?? 0.0;
-    final N = int.tryParse(NController.text) ?? 0;
+    if (formKey.currentState!.validate()) {
+      try {
+        String inputFunction = functionController.currentEditingValue();
+        log(inputFunction.runtimeType.toString());
+        final mathExpression = TeXParser(inputFunction).parse();
+        log(mathExpression.toString());
 
-    final v = _mathFieldEditingController;
-    v.log();
+        //! the parsed function
+        parsedFunction = parseFunction(mathExpression);
 
-    // func.log();
+        final answer = parsedFunction!(5, 6);
+        log(answer.toString(), name: 'answer');
 
-    // Now you have all the collected values, you can proceed with the desired action
+        setState(() {
+          result = "Function parsed successfully.";
+        });
+
+        //! main calculation
+        final y0 = double.tryParse(y0Controller.text) ?? 0.0;
+        final x0 = double.tryParse(x0Controller.text) ?? 0.0;
+        final stepSize = double.tryParse(stepSizeController.text) ?? 0.0;
+        final stepNumber = int.tryParse(stepNumberController.text) ?? 0;
+        final n = int.tryParse(nController.text) ?? 0;
+
+        final isPredictorCorrector = ref.read(isImplicitOrExplicitProvider);
+        final alpha = ref.read(alphaProvider);
+        final beta = ref.read(betaProvider);
+
+        if (!isPredictorCorrector) {
+          ref.read(solverProvider).explicitLinearMultistepMethod(
+              stepNumber: stepNumber,
+              alpha: alpha,
+              beta: beta,
+              func: parsedFunction!,
+              y0: y0,
+              x0: x0,
+              stepSize: stepSize,
+              N: n);
+        } else {
+          log("You haven't done this part");
+        }
+      } catch (e) {
+        setState(() {
+          result = "Error parsing function: $e";
+        });
+        log(e.toString());
+      }
+    }
   }
 }
-
-
-
-
-
-

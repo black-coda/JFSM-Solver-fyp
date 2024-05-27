@@ -56,7 +56,7 @@ class _FunctionInputWidgetState extends State<FunctionInputWidget> {
                 log(mathExpression.toString());
                 parsedFunction = parseFunction(mathExpression);
 
-                final answer = parsedFunction!(0, (math.pi / 6));
+                final answer = parsedFunction!(5, 6);
                 log(answer.toString(), name: 'answer');
 
                 setState(() {
