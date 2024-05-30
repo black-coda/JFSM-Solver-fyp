@@ -16,13 +16,16 @@
 \usepackage{algorithm}
 \usepackage{algorithmic}
 
-
 \geometry{top=2.5cm, bottom=2.5cm, left=3.5cm, right=2.5cm}
 \setlength{\parskip}{1em}
 \onehalfspacing
 
 % Chapter formatting
-\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\centering} % Center the chapter title
+  {\chaptertitlename\ \thechapter}      % Chapter number
+  {20pt}                                % Spacing between number and title
+  {\Huge}                               % Title font size
 
 % Header and Footer
 \pagestyle{fancy}
@@ -31,8 +34,7 @@
 \fancyhead[RE,LO]{\leftmark}
 \renewcommand{\headrulewidth}{0.4pt}
 
-
-%Define code listing style
+% Define code listing style
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -40,9 +42,6 @@
 % \renewcommand\thesection{\arabic{section}}
 % \renewcommand\thechapter{\arabic{chapter}}
 \renewcommand\thesection{\arabic{chapter}.\arabic{section}}
-
-
-
 
 \begin{document}
 \begin{titlepage}
@@ -59,9 +58,11 @@
    \vfill
    supervised by\par
    \textsc{Prof J.O Fatokun}
+  
    
-   \textsc{Department of Mathematics and Statistics} \\
-   \textsc{In partial fulfillment of the requirement for the award of the Bachelor of Science}
+   \text{Department Of Mathematics And Statistics} \\
+   \text{In Partial Fulfillment Of The Requirement For The Award Of The Bachelor Of Science}
+   
 
    \vfill
 
@@ -79,21 +80,17 @@
     IVP : & Initial Value Problem \\
     BDF: &Backward Differentiation Formula \\
     LMM: &Linear Multistep Method \\
-    UI: &User Interface 
+    UI: &User Interface \\
+    ILMM:& Implicit Linear Multistep Method \\
+    ELMM: & Explicit Linear Multistep Method
     % Add more abbreviations as needed
 \end{tabular}
 
 \input{chapters/1/chapter1.tex}
-
 \input{chapters/2/chapter2.tex}
-
 \input{chapters/3/chapter3.tex}
 \input{chapters/4/chapter4.tex}
 \input{chapters/5/chapter5.tex}
-
-
-
-
 
 \bibliographystyle{apacite}
 \bibliography{bib/Proposal} 

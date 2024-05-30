@@ -47,13 +47,13 @@ In this paper, we will be focusing on linear multistep methods to tackle this st
 Consider the initial value problem
 
 \[
-y'(t) = -15y(t), \quad t \geq 0, \quad y(0) = 1. \tag{1}
+y'(x) = -15y(x), \quad x \geq 0, \quad y(0) = 1. \tag{1}
 \]
 
 The exact solution (shown in cyan) is
 
 \[
-y(t) = e^{-15t}, \quad y(t) \rightarrow 0 \text{ as } t \rightarrow \infty. \tag{2}
+y(x) = e^{-15x}, \quad y(x) \rightarrow 0 \text{ as } x \rightarrow \infty. \tag{2}
 \]
 
 We seek a numerical solution that exhibits the same behavior.
@@ -63,10 +63,11 @@ The figure (right) illustrates the numerical issues for various numerical integr
     \item Euler's method with a step size of $h = \frac{1}{4}$ oscillates wildly and quickly exits the range of the graph (shown in red).
     \item Euler's method with half the step size, $h = \frac{1}{8}$, produces a solution within the graph boundaries but oscillates about zero (shown in green).
     \item The trapezoidal method (that is, the two-stage Adams–Moulton method) is given by
-    \[
-    y_{n+1} = y_{n} + \frac{1}{2}h \left( f(t_{n},y_{n}) + f(t_{n+1},y_{n+1}) \right),
-    \]
-    where $y' = f(t,y)$. Applying this method instead of Euler's method gives a much better result (blue). The numerical results decrease monotonically to zero, just as the exact solution does.
+    \begin{equation}
+      y_{n+1} = y_{n} + \frac{1}{2}h \left( f_{n} + f_{n+1} \right),
+    \end{equation}
+
+    where $y' = f(x,y)$. Applying this method instead of Euler's method gives a much better result (blue). The numerical results decrease monotonically to zero, just as the exact solution does.
 \end{itemize}
 
 Here is the image of stiff equation numerical solvers:
@@ -79,7 +80,7 @@ Here is the image of stiff equation numerical solvers:
 \end{figure}
 
 
-\newpage
+
 
 \section{Multistep Methods}
 Multistep methods are a category of numerical methods used to solve ordinary differential equations (ODEs), including stiff systems. They are called "multistep" because they use information from multiple previous steps to compute the next step. This makes them particularly effective for problems with stiff behavior, where the slope of the solution changes rapidly \cite{math7121158}.
@@ -111,9 +112,10 @@ Linear multistep methods are generally defined by their coefficients \(\alpha_j\
 
 The solution at the next time step, \(y_{n+1}\), can be obtained by rearranging the terms in the above formula:
 
-\[
-y_{n+1} = \frac{1}{\alpha_0} \left(h \sum_{j=0}^{k} \beta_j f(t_{n+j}, y_{n+j}) - \sum_{j=1}^{k} \alpha_j y_{n+j}\right)
-\]
+
+\begin{equation}
+  y_{n+1} = \frac{1}{\alpha_0} \left(h \sum_{j=0}^{k} \beta_j f_{n+j} - \sum_{j=1}^{k} \alpha_j y_{n+j}\right)
+\end{equation}
 
 
 Linear multistep method can be classified into \textbf{Implicit} and \textbf{Explicit} LMM.
@@ -123,8 +125,10 @@ Linear multistep method can be classified into \textbf{Implicit} and \textbf{Exp
 Explicit linear multistep methods are a class of numerical methods used for solving ordinary differential equations (ODEs). These methods are designed to improve computational efficiency by utilizing information from previous steps in the solution process, rather than discarding it as in single-step methods like Euler's method \cite{enwiki:1182900519}.
 
 The general form of an ELMM is give as:
-\[y_{n+1} = \sum_{j=0}^{k} \alpha_j y_{n+j} + h \sum_{j=0}^{k-1} \beta_j f_{n+j}
-\]
+
+\begin{equation}
+  y_{n+1} = \sum_{j=0}^{k} \alpha_j y_{n+j} + h \sum_{j=0}^{k-1} \beta_j f_{n+j}
+\end{equation}
 
 Notice the $\beta_k = 0$, Hence a LMM in which $\beta_k = 0$ is called an Explicit LMM.
 
@@ -134,15 +138,16 @@ The Adams-Bashforth methods are a popular example of explicit linear multistep m
 
 The general form of the Adams-Bashforth method of order $s$ is:
 
-\[
-y_{n+1} = y_n + h \sum_{j=0}^{s-1} b_j f_{n-j}
-\]
+\begin{equation}
+  y_{n+1} = y_n + h \sum_{j=0}^{s-1} b_j f_{n-j}
+\end{equation}
+
 
 where:
 
 - $y_n$ is the known solution value at time step $t_n$,
 - $h$ is the step size,
-- $f_{n-j} = f(t_{n-j}, y_{n-j})$ are the derivative values at previous time steps, and
+- $f_{n-j} = f(x_{n-j}, y_{n-j})$ are the derivative values at previous time steps, and
 - $b_j$ are the method-specific coefficients.
 
 The coefficients $b_j$ for the Adams-Bashforth methods are chosen such that the methods have order $s$. This means that the methods are accurate up to and including terms of order $h^s$ in the local truncation error.
@@ -150,13 +155,13 @@ The coefficients $b_j$ for the Adams-Bashforth methods are chosen such that the 
 The coefficients $b_j$ for the Adams-Bashforth methods are determined by the requirement that the method be consistent with the underlying differential equation and that it has the desired order of accuracy. Specifically, the coefficients are chosen such that the method reproduces the Taylor series expansion of the exact solution up to order $s$.
 
 The Adams-Bashforth methods with $k=1,2,3,4,5$ respectively are given by \cite{butcher2003numerical} and \cite{hairer1993solving}:
-\begin{align*}
+\begin{align}
   y_{n+1} & = y_n + h \cdot f_n \\
   y_{n+2} & = y_{n+1} + h \left(\frac{3}{2}f_{n+1} - \frac{1}{2}f_{n}\right) \\
   y_{n+3} & = y_{n+2} + h \left(\frac{23}{12}f_{n+2} - \frac{4}{3}f_{n+1} + \frac{5}{12}f_{n}\right) \\
   y_{n+4} & = y_{n+3} + h \left(\frac{55}{24}f_{n+3} - \frac{59}{24}f_{n+2} + \frac{37}{24}f_{n+1} - \frac{9}{24}f_{n}\right) \\
   y_{n+5} & = y_{n+4} + h \left(\frac{1901}{720}f_{n+4} - \frac{2774}{720}f_{n+3} + \frac{2616}{720}f_{n+2} - \frac{1274}{720}f_{n+1} + \frac{251}{720}f_{n}\right)
-\end{align*}
+\end{align}
 
 
 \subsection{Implicit Multistep Method}
@@ -172,31 +177,24 @@ The Adams-Moulton method is widely used in various scientific and engineering ap
 
 The three-step Adams-Moulton method is given by:
 
-\[
-y_{n+3} = y_{n+2} + \frac{h}{24} \left( 9 f(x_{n+3}, y_{n+3}) + 19 f(x_{n+2}, y_{n+2}) - 5 f(x_{n+1}, y_{n+1}) + f(x_{n}, y_{n}) \right)
-\]
+
+\begin{equation}
+  y_{n+3} = y_{n+2} + \frac{h}{24} \left( 9 f_{n+3} + 19 f_{n+2} - 5 f_{n+1} + f_{n} \right)
+\end{equation}
 
 
-This is the Adams-Moulton method of order 3, commonly denoted as AM(3). It is an implicit method because it requires solving for \( y_{n+1} \) implicitly in the equation. The method involves using the function values \( f(t_{n+3}, y_{n+3}) \), \( f(t_{n+}, y_{n+}) \), and \( f(t_n, y_n) \) to compute the value of \( y_{n+1} \), making it suitable for stiff ODEs where explicit methods may be unstable.
+This is the Adams-Moulton method of order 3, commonly denoted as AM(3). It is an implicit method because it requires solving for \( y_{n+1} \) implicitly in the equation. The method involves using the function values \( f_{n+3} \), \( f_{n+} \), and \( f_n \) to compute the value of \( y_{n+1} \), making it suitable for stiff ODEs where explicit methods may be unstable.
 
 
 % Backward Differentiation Formula
 Another implicit methods for stiff ODEs is the Backward Differentiation Formula (BDF).Backward Differentiation Formulas (BDFs) are a family of implicit numerical methods commonly used to solve stiff systems of ordinary differential equations (ODEs).BDFs use information from the future (at the next time level) to update the solution at the current time level. The backward nature of the method enables stability for stiff problems \cite{numericalrecipes}.
 
 The general form of a BDF of order \(k\) is given by:
-\[
-\alpha_0 y_n + \alpha_1 y_{n-1} + \alpha_2 y_{n-2} + \ldots + \alpha_k y_{n-k} = h \cdot f(t_n, y_n)
-\]
 
-For example, the BDF of order 1 (Backward Euler method) is:
-\[
-y_n = y_{n-1} + h \cdot f(t_n, y_n)
-\]
+\begin{equation}
+  \alpha_0 y_n + \alpha_1 y_{n-1} + \alpha_2 y_{n-2} + \ldots + \alpha_k y_{n-k} = h \cdot f_n
+\end{equation}
 
-And the BDF of order 2 is:
-\[
-\frac{3}{2} y_n - 2y_{n-1} + \frac{1}{2} y_{n-2} = h \cdot f(t_n, y_n)
-\]
 
 It works by approximating the solution at the next step using a polynomial of degree less than or equal to the method order. This makes BDF suitable for stiff ODEs, as it avoids the loss of accuracy associated with steep slopes in the solution.BDFs are widely implemented in numerical software packages for solving stiff ODEs. Popular implementations include ode23s and ode45s \cite{shampine1997matlab},the Livermore Solver for Ordinary Differential Equations (LSODA),the Differential Algebraic System Solver (DASSL),GEAR, DIFSUB, and EPISODE \cite{Yatim2013} which is a collection of FORTRAN subroutines designed to facilitate the automated resolution of problems, minimizing the level of effort needed when encountering potential challenges in the problem-solving process \cite{thohura2013numerical}.
 
@@ -232,31 +230,38 @@ The general $k-step$ linear multistep method is given as
   \item Any zero equal to 1 in magnitude is simple (i.e., not repeated).
 \end{enumerate}
 
+\subsubsection*{Convergence} 
+Convergence refers to the property of a numerical method to produce a solution that approaches the exact solution as the step size approaches zero. A method is said to be convergent if the error between the numerical solution and the exact solution decreases as the step size is reduced. The rate of convergence is often expressed in terms of the order of the method, which indicates how quickly the error decreases with each step \cite{2022JFatokunEtAl}.
+
+
+If the Linear multistep method satisfies the zero stable scheme and consistency scheme then it is said to be \textbf{convergent} \cite{2022JFatokunEtAl}.
+
 \subsubsection*{Consistency and Order}
 A scheme that is zero-stable will produce approximations that do not grow in size in a way that is not present in the exact, analytic solution. Zero stability is a required property, but it is not enough on its own. There remains the issue of whether the approximations are close to the exact values. The truncation error of the general linear multistep method is a measure of how well the differential equation and the numerical method agree with each other. It is defined by
-\[
-\tau_j = \frac{1}{\beta} \left( c_0 h y(jh) + c_1 y'(jh) + c_2 h y''(jh) + c_3 h^2 y'''(jh) + \ldots \right) = \beta h \sum_{p=0}^{\infty} c_p h^p y^{(p)}(jh)
-\]
+
+
+\begin{equation}
+  \tau_j = \frac{1}{\beta} \left( c_0 h y(jh) + c_1 y'(jh) + c_2 h y''(jh) + c_3 h^2 y'''(jh) + \ldots \right) = \beta h \sum_{p=0}^{\infty} c_p h^p y^{(p)}(jh)
+\end{equation}
 where $\beta = \sum \beta_j$ is a normalizing factor \cite{2022JFatokunEtAl}.
 It is the first few terms in this expression that will matter most in what follows, and it helps us that there are formulae for the coefficients which appear:
-\[
-c_0 = \sum \alpha_j, \quad c_1 = \sum (j\alpha_j - \beta_j), \quad c_2 = \sum \left( j^2 \alpha_j - j \beta_j \right), \quad c_3 = \sum \left( \frac{j^3}{3!} \alpha_j - \frac{j^2}{2!} \beta_j \right)
-\]
+
+
+\begin{equation}
+  c_0 = \sum \alpha_j, \quad c_1 = \sum (j\alpha_j - \beta_j), \quad c_2 = \sum \left( j^2 \alpha_j - j \beta_j \right), \quad c_3 = \sum \left( \frac{j^3}{3!} \alpha_j - \frac{j^2}{2!} \beta_j \right)
+\end{equation}
 and so on. The general formula for $p \geq 2$ is
-\[
+
+\begin{equation}
   c_p = \sum_{j=0}^{k} \left( \frac{(j^p)!}{p!} \alpha_j - \frac{(j^{p-1})}{(p-1)!} \beta_j \right),
-\]
+\end{equation}
 
 Recall that the truncation error is intended to be a measure of how well the differential equation and its approximation agree with each other\cite{HELM2008NumericalIVP}. In summary we can deduct that a linear multistep scheme is \textbf{consistent} if $c_0 = 0$ and $c_1 = 0$.
 
 
 Assuming that the method is consistent, the order of the scheme tells us how quickly the truncation error tends to zero as $h \rightarrow 0$. For example, if $c_0 = 0$, $c_1 = 0$, $c_2 = 0$, and $c_3 \neq 0$, then the first nonzero term in $\tau_j$ will be the one involving $h^2$, and the linear multistep method is called second-order. This means that if $h$ is small, then $\tau_j$ is dominated by the $h^2$ term (because the $h^3$ and subsequent terms will be tiny in comparison), and halving $h$ will cause $\tau_j$ to decrease by a factor of approximately $\frac{1}{4}$. The decrease is only approximately known because the $h^3$ and other terms will have a small effect.In conclusion a linear multistep method is said to be of \textbf{order} $p$ if $c_0 = c_1 = c_2 = \ldots = c_p = 0$ and $c_{p+1} \neq 0$ \cite{HELM2008NumericalIVP}.
 
-\subsubsection*{Convergence} 
-Convergence refers to the property of a numerical method to produce a solution that approaches the exact solution as the step size approaches zero. A method is said to be convergent if the error between the numerical solution and the exact solution decreases as the step size is reduced. The rate of convergence is often expressed in terms of the order of the method, which indicates how quickly the error decreases with each step \cite{2022JFatokunEtAl}.
 
-
-If the Linear multistep method satisfies the zero stable scheme and consistency scheme then it is said to be \textbf{convergent} \cite{2022JFatokunEtAl}.
 
 
 \subsection*{Numerical Solvers for Solving Stiff Systems}
@@ -273,12 +278,12 @@ The Runge-Kutta-Fehlberg (RKF45) method is another widely used implicit method f
 
 \[
 \begin{aligned}
-  k_1 & = h \cdot f(t_n, y_n), \\
-  k_2 & = h \cdot f\left(t_n + \frac{1}{4}h, y_n + \frac{1}{4}k_1\right), \\
-  k_3 & = h \cdot f\left(t_n + \frac{3}{8}h, y_n + \frac{3}{32}k_1 + \frac{9}{32}k_2\right), \\
-  k_4 & = h \cdot f\left(t_n + \frac{12}{13}h, y_n + \frac{1932}{2197}k_1 - \frac{7200}{2197}k_2 + \frac{7296}{2197}k_3\right), \\
-  k_5 & = h \cdot f\left(t_n + h, y_n + \frac{439}{216}k_1 - 8k_2 + \frac{3680}{513}k_3 - \frac{845}{4104}k_4\right), \\
-  k_6 & = h \cdot f\left(t_n + \frac{1}{2}h, y_n - \frac{8}{27}k_1 + 2k_2 - \frac{3544}{2565}k_3 + \frac{1859}{4104}k_4 - \frac{11}{40}k_5\right).
+  k_1 & = h \cdot f(x_n, y_n), \\
+  k_2 & = h \cdot f\left(x_n + \frac{1}{4}h, y_n + \frac{1}{4}k_1\right), \\
+  k_3 & = h \cdot f\left(x_n + \frac{3}{8}h, y_n + \frac{3}{32}k_1 + \frac{9}{32}k_2\right), \\
+  k_4 & = h \cdot f\left(x_n + \frac{12}{13}h, y_n + \frac{1932}{2197}k_1 - \frac{7200}{2197}k_2 + \frac{7296}{2197}k_3\right), \\
+  k_5 & = h \cdot f\left(x_n + h, y_n + \frac{439}{216}k_1 - 8k_2 + \frac{3680}{513}k_3 - \frac{845}{4104}k_4\right), \\
+  k_6 & = h \cdot f\left(x_n + \frac{1}{2}h, y_n - \frac{8}{27}k_1 + 2k_2 - \frac{3544}{2565}k_3 + \frac{1859}{4104}k_4 - \frac{11}{40}k_5\right).
 \end{aligned}
 \]
 
@@ -302,35 +307,35 @@ In the realm of stiff systems, collocation methods exhibit notable advantages, o
 Let's consider a simple second-order ordinary differential equation (ODE) as an example:
 
 \[
-y''(t) = f(t, y, y')
+y''(x) = f(x, y, y')
 \]
 
-with boundary conditions \(y(a) = \alpha\) and \(y(b) = \beta\). The objective is to find the function \(y(t)\) that satisfies the differential equation and boundary conditions.
+with boundary conditions \(y(a) = \alpha\) and \(y(b) = \beta\). The objective is to find the function \(y(x)\) that satisfies the differential equation and boundary conditions.
 
-The collocation method involves selecting a set of collocation points \(\{t_1, t_2, \ldots, t_n\}\) within the domain \([a, b]\). At these collocation points, the differential equation is enforced. This results in a system of algebraic equations that can be solved to obtain the values of \(y(t_i)\) at the collocation points.
+The collocation method involves selecting a set of collocation points \(\{x_1, x_2, \ldots, x_n\}\) within the domain \([a, b]\). At these collocation points, the differential equation is enforced. This results in a system of algebraic equations that can be solved to obtain the values of \(y(x_i)\) at the collocation points.
 
-Let \(y_i = y(t_i)\) and \(y_i' = y'(t_i)\). Applying the collocation method to the differential equation, we have:
+Let \(y_i = y(x_i)\) and \(y_i' = y'(x_i)\). Applying the collocation method to the differential equation, we have:
 
 \[
-y_i'' = f(t_i, y_i, y_i')
+y_i'' = f(x_i, y_i, y_i')
 \]
 
-This equation is enforced at each collocation point \(t_i\), resulting in a set of algebraic equations:
+This equation is enforced at each collocation point \(x_i\), resulting in a set of algebraic equations:
 
 \[
-y_1'' = f(t_1, y_1, y_1')
+y_1'' = f(x_1, y_1, y_1')
 \]
 \[
-y_2'' = f(t_2, y_2, y_2')
+y_2'' = f(x_2, y_2, y_2')
 \]
 \[
 \vdots
 \]
 \[
-y_n'' = f(t_n, y_n, y_n')
+y_n'' = f(x_n, y_n, y_n')
 \]
 
-Together with the boundary conditions, these equations form a system that can be solved for the unknowns \(y_i\) and \(y_i'\). The accuracy and stability of the collocation method depend on the choice of collocation points and the method used to solve the resulting system of equations.
+ The accuracy and stability of the collocation method depend on the choice of collocation points and the method used to solve the resulting system of equations.
 
 
 

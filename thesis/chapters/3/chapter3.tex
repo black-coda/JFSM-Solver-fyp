@@ -26,9 +26,9 @@ The development of the solver is divided into two modules, the first module whic
 The general $k-step$ linear multistep method takes the form 
 
 
-\begin{math}
+\begin{equation}
    y_{n+k} + \alpha_{k-1}y_{n+k-1}+ \dots + \alpha_0x_n = h(\beta_kf_{n+k}+ \beta_{k-1}f_{n+k-1}+ \dots + \beta_0f_n) 
-\end{math}
+\end{equation}
 
 which is equal to 
 \begin{equation}
@@ -99,71 +99,17 @@ The following section outlines the algorithm used to check for consistency in mo
 
 By following this algorithm, you can determine whether a linear multistep method is consistent. If both $c0$ and $c1$ are approximately zero, then the local truncation error tends to zero, indicating that the method is consistent. If either of these values is not zero, then the method is not consistent.
 
-\subsection{Determine Order and Error Constant Algorithm}
-
-The \textbf{order} of the a given LMM tells us how quickly the truncation error tends to zero as h $\to$ 0. The linear difference operator $\mathcal{L}$ of (3.1) is given as
-
-\begin{equation}
-   \mathcal{L}[z(x);h] := \sum_{k}^{j=0}[\alpha_jz(x+jh)-h\beta_jz'(x+jh)]
-\end{equation}, where $z(x) \in C^1[a,b]$ is an arbitrary function. From \cite{lambert1977}, if we choose $z(x)$ to be differentiated as we need and expand $z(x+jh)$ and $z'(x+jh)$ about x, we need then obtain 
-
-\begin{equation}
-   \mathcal{L}[z(x);h] := C_0z(x)+ C_1hz^{(1)}(x)+ \dots + C_qh^qz^{(q)}(x)+ \dots
-\end{equation}
-The Linear multistep method (3.1) and it associated difference operator defined by (3.5) is said to to be have an \textbf{order p} if in (3.6), \[C_0 = C_1 = \dots = C_p = 0 \], $C_{p+1} \neq 0$, and the error constant is the value of $C_{p+1}$ \cite{lambert1977}.
-
-With all this discussed by \cite{lambert1977}, the algorithm used in obtaining \textbf{error constant} and \textbf{order} is outlined below
-
-\begin{algorithm}
-   \caption{Order and Error Constant Calculation for Linear Multistep Method}
-   \label{alg:order_error_constant}
-   
-   \begin{algorithmic}
-   \REQUIRE \(kSteps\), \( \alpha[] \), \( \beta[] \) 
-   \ENSURE Order of convergence and error constant.
-   
-   \STATE \( c_0 \gets \text{empty list} \) 
-   \STATE \( \text{sumOfC0} \gets 0 \)
-   \STATE \( \text{errorConstant} \gets 0 \)
-   \STATE \( \text{cp} \gets 2 \) % Initial order
-   
-   \WHILE{True}
-       \FOR{\( i = 0 \) to \( kSteps \)}
-           \STATE \( \text{term} \gets \frac{(i^{cp}) \cdot \alpha[i]}{(cp).factorial()} - \frac{(i^{cp - 1}) \cdot \beta[i]}{(cp - 1).factorial()} \) 
-           \STATE \( \text{sumOfC0} \gets \text{sumOfC0} + \text{term} \)
-           
-           \IF{\( i = kSteps \)}
-               \STATE \( \text{approximatedR} \gets \text{sumOfC0.approximate(6)} \)
-               \STATE \( c_0 \gets c_0 + \text{approximatedR} \)
-           \ENDIF
-       \ENDFOR
-       
-       \IF{\( c_0 \) \text{is not empty}}
-           \STATE \( \text{errorConstant} \gets \text{errorConstant} + \text{sumOfC0} \)
-           \IF{\( \text{errorConstant} = 0 \)}
-               \STATE \( \text{cp} \gets \text{cp} + 1 \) 
-               \STATE \( \text{sumOfC0} \gets 0 \)
-               \STATE \text{Continue}
-           \ENDIF
-           \STATE \text{Break} % Exit the loop if errorConstant is non-zero
-       \ELSE
-           \STATE \text{Break}
-       \ENDIF
-       
-   \ENDWHILE
-   
-   \RETURN \( c_0.\text{length} \), \( \text{errorConstant} \)
-   
-   \end{algorithmic}
-   \end{algorithm}
-
 
 \subsection{Zero-Stability Analysis Algorithm}
 The necessary and sufficient condition for a given LMM to be zero-stable as discussed in \cite{2022JFatokunEtAl} is for it to satisfy the root condition which is also known as the \textbf{Dahlquist root condition} \cite{lambert1977}. The proof for this is discussed in \cite{keller2020discovery}.
 
 if the zeros of the first characteristics polynomial are such that
 
-\[\rho(z) = \sum_{j=0}^{k}\alpha_jz^{j}\], are such that: \textit{i.} none is greater than 1 in \textbf{magnitude}, and \textit{ii.}any zero equal to 1 in magnitude is simple (that is, not repeated). When this properties are satisfied then we say that the LMM is \textbf{zero-stable}.
+
+\begin{equation}
+    \rho(z) = \sum_{j=0}^{k}\alpha_jz^{j}
+\end{equation}
+, are such that: \textit{i.} none is greater than 1 in \textbf{magnitude}, and \textit{ii.}any zero equal to 1 in magnitude is simple (that is, not repeated). When this properties are satisfied then we say that the LMM is \textbf{zero-stable}.
 
 The need for finding the roots of the first polynomial arises, and there exist many root finding method, techniques or algorithm. These root finding method all do have advantages and disadvantages over the other.Methods such as Bisection, Newton's Iteration, Secant methods which are all Algebraic method where consider in finding the roots of the first characteristics polynomial especially for polynomial of degree greater than $2$. This method proved to be ineffective since they only consider one of the many possible roots of the characteristics polynomial.
 
@@ -263,7 +209,7 @@ The following algorithm outlines the process of checking the zero-stability of a
 \newpage
    This pseudocode outlines the steps to check zero stability for a Linear Multistep Method (LMM). It includes initialization, creating the characteristic polynomial, solving for roots, and checking the modulus of the roots to determine stability. If any root's modulus exceeds one or if there's more than one root with modulus equal to one, the method is not zero-stable. The algorithm uses conditional checks and loops to examine the roots, ensuring a correct result.
 
-\subsubsection{Convergence Analysis Algorithm}
+\subsection{Convergence Analysis Algorithm}
 The condition for a LMM to be convergent has been discuused already, the scheme must be consistent and zero-stable. The convergence of a LMM is crucial for ensuring that the numerical solutions approach the exact solutions as the step size decreases. By combining consistency and zero-stability, we can determine if a given LMM is convergent.
 
 The zero-stability and consistency algorithms has been discussed already, the convergence algorithm is a combination of the two algorithms. The algorithm for checking the convergence of a linear multistep method is outlined below:
@@ -320,6 +266,69 @@ This algorithm encompasses the essential components required to determine conver
 
 
 That concludes the analysis of the linear multistep method, the next section will discuss the application of the method in solving a particular problem.
+
+
+
+\subsection{Determine Order and Error Constant Algorithm}
+
+The \textbf{order} of the a given LMM tells us how quickly the truncation error tends to zero as h $\to$ 0. The linear difference operator $\mathcal{L}$ of (3.1) is given as
+
+\begin{equation}
+   \mathcal{L}[z(x);h] := \sum_{k}^{j=0}[\alpha_jz(x+jh)-h\beta_jz'(x+jh)]
+\end{equation}, where $z(x) \in C^1[a,b]$ is an arbitrary function. From \cite{lambert1977}, if we choose $z(x)$ to be differentiated as we need and expand $z(x+jh)$ and $z'(x+jh)$ about x, we need then obtain 
+
+\begin{equation}
+   \mathcal{L}[z(x);h] := C_0z(x)+ C_1hz^{(1)}(x)+ \dots + C_qh^qz^{(q)}(x)+ \dots
+\end{equation}
+The Linear multistep method (3.1) and it associated difference operator defined by (3.5) is said to to be have an \textbf{order p} if in (3.6), \[C_0 = C_1 = \dots = C_p = 0 \], $C_{p+1} \neq 0$, and the error constant is the value of $C_{p+1}$ \cite{lambert1977}.
+
+With all this discussed by \cite{lambert1977}, the algorithm used in obtaining \textbf{error constant} and \textbf{order} is outlined below
+
+\begin{algorithm}
+   \caption{Order and Error Constant Calculation for Linear Multistep Method}
+   \label{alg:order_error_constant}
+   
+   \begin{algorithmic}
+   \REQUIRE \(kSteps\), \( \alpha[] \), \( \beta[] \) 
+   \ENSURE Order of convergence and error constant.
+   
+   \STATE \( c_0 \gets \text{empty list} \) 
+   \STATE \( \text{sumOfC0} \gets 0 \)
+   \STATE \( \text{errorConstant} \gets 0 \)
+   \STATE \( \text{cp} \gets 2 \) % Initial order
+   
+   \WHILE{True}
+       \FOR{\( i = 0 \) to \( kSteps \)}
+           \STATE \( \text{term} \gets \frac{(i^{cp}) \cdot \alpha[i]}{(cp).factorial()} - \frac{(i^{cp - 1}) \cdot \beta[i]}{(cp - 1).factorial()} \) 
+           \STATE \( \text{sumOfC0} \gets \text{sumOfC0} + \text{term} \)
+           
+           \IF{\( i = kSteps \)}
+               \STATE \( \text{approximatedR} \gets \text{sumOfC0.approximate(6)} \)
+               \STATE \( c_0 \gets c_0 + \text{approximatedR} \)
+           \ENDIF
+       \ENDFOR
+       
+       \IF{\( c_0 \) \text{is not empty}}
+           \STATE \( \text{errorConstant} \gets \text{errorConstant} + \text{sumOfC0} \)
+           \IF{\( \text{errorConstant} = 0 \)}
+               \STATE \( \text{cp} \gets \text{cp} + 1 \) 
+               \STATE \( \text{sumOfC0} \gets 0 \)
+               \STATE \text{Continue}
+           \ENDIF
+           \STATE \text{Break} % Exit the loop if errorConstant is non-zero
+       \ELSE
+           \STATE \text{Break}
+       \ENDIF
+       
+   \ENDWHILE
+   
+   \RETURN \( c_0.\text{length} \), \( \text{errorConstant} \)
+   
+   \end{algorithmic}
+   \end{algorithm}
+
+
+
 
 \section{Module 2: Application of Linear Multistep Method in Solving ODEs}
 

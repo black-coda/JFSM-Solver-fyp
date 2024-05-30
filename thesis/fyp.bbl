@@ -57,6 +57,29 @@ Alexandru, A.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Atkinson%
+}{%
+Atkinson%
+}{%
+{\protect \APACyear {1989}}%
+}]{%
+atkinson1989introduction}
+\APACinsertmetastar {%
+atkinson1989introduction}%
+\begin{APACrefauthors}%
+Atkinson, K\BPBI E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1989}.
+\newblock
+\APACrefbtitle {An Introduction to Numerical Analysis} {An introduction to
+  numerical analysis}\ (\PrintOrdinal{2nd}\ \BEd).
+\newblock
+\APACaddressPublisher{New York, NY, USA}{John Wiley \& Sons}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Burkardt%
 }{%
 Burkardt%

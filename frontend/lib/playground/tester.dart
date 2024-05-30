@@ -1,5 +1,8 @@
 // ignore_for_file: avoid_print
 
+import 'dart:developer';
+
+import 'package:frontend/src/app/view_models/linear_multistep_analysis_method_implementation.dart';
 import 'package:frontend/src/module/linear_multistep_solver.dart';
 import 'package:frontend/src/utils/extension/approximation.dart';
 
@@ -245,6 +248,7 @@ class Playground implements LinearMultistepSolver {
           fourthOrderRungeKuttaMethod(func, nextValueOfY, x[i], stepSize, 1)
               .first
               .approximate(6);
+              
       y.add(yFromPredictor);
 
       print("🪲:::  $y");
@@ -313,20 +317,133 @@ class Playground implements LinearMultistepSolver {
     return result;
   }
 
-  @override
-  List<double> implicitLinearMultistepMethodWithPredictorCorrectorMethod(
-      {required int predictorStepNumber,
-      required List<double> correctorAlpha,
-      required int correctorStepNumber,
-      required List<double> correctorBeta,
-      required List<double> predictorAlpha,
-      required List<double> predictorBeta,
-      required double Function(double initialValueX, double initialValueY) func,
-      required double y0,
-      required double x0,
-      required double stepSize,
-      required int N}) {
-    // TODO: implement implicitLinearMultistepMethodWithPredictorCorrectorMethod
-    throw UnimplementedError();
+
+  List<double> implicitXValueGenerator(double x0, double stepSize, int N,
+      {int decimalPlaces = 1, int implicit = 0}) {
+    String firstValueOfX = x0.toString();
+    List<String> xValues = [];
+    xValues.add(firstValueOfX);
+    for (int n = 1; n <= N + 1; n++) {
+      double x = x0 + n * stepSize;
+      xValues.add(x.toStringAsFixed(decimalPlaces));
+    }
+    return xValues.map((e) => double.parse(e)).toList();
   }
+
+
+
+  @override
+  List<double> implicitLinearMultistepMethodWithPredictorCorrectorMethod({
+    required int predictorStepNumber,
+    required List<double> correctorAlpha,
+    required List<double> correctorBeta,
+    required List<double> predictorAlpha,
+    required List<double> predictorBeta,
+    required double Function(double initialValueX, double initialValueY) func,
+    required double y0,
+    required double x0,
+    required double stepSize,
+    required int N,
+    required int correctorStepNumber,
+  }) {
+    final predictorOrder = AnalysisImplementation(
+            kSteps: predictorStepNumber,
+            alpha: predictorAlpha,
+            beta: predictorBeta)
+        .orderAndErrorConstant()
+        .$1;
+    log(predictorOrder.toString());
+
+    final correctorOrder = AnalysisImplementation(
+            kSteps: correctorStepNumber,
+            alpha: correctorAlpha,
+            beta: correctorBeta)
+        .orderAndErrorConstant()
+        .$1;
+
+    log(correctorOrder.toString());
+
+    if (predictorOrder != correctorOrder) {
+      throw const FormatException(
+          "The predictor-corrector scheme must have the same order");
+    }
+    List<double> result = List.filled(N, 0, growable: true);
+
+    /// [PECE] Algorithm will be implemented Prediction Evaluation Correction Evaluation
+    ///
+    /// Starter values from runge-kutta method
+    ///
+
+    //! Predictor
+    List<double> starterY = explicitLinearMultistepMethod(
+      stepNumber: predictorStepNumber,
+      alpha: predictorAlpha,
+      beta: predictorBeta,
+      func: func,
+      y0: y0,
+      x0: x0,
+      stepSize: stepSize,
+      N: predictorStepNumber,
+    );
+
+    /// add the starter values from runge-kutta to the list of [result]
+    result.replaceRange(0, predictorStepNumber - 1, starterY);
+
+    // get the y values
+    List<double> y = result.sublist(0, predictorStepNumber + 1);
+
+    // x value
+    List<double> x = implicitXValueGenerator(
+        x0, stepSize, predictorStepNumber - 1,
+        decimalPlaces: 2);
+
+    List<double> fValues = [];
+
+    //* initial values of alpha and beta
+    double betaF = 0;
+    double alphaY = 0;
+
+    //* method summation
+
+    for (var i = predictorStepNumber; i < N; i++) {
+      /// Prediction
+      for (var j = 0; j < predictorStepNumber; j++) {
+        fValues.add(func(x[j], y[j]));
+      }
+
+      for (var k = 0; k < predictorStepNumber; k++) {
+        betaF += predictorBeta[k] * fValues[k];
+      }
+
+      for (var l = 0; l < predictorStepNumber - 1; l++) {
+        alphaY += predictorAlpha[l] * y[l];
+      }
+
+      double predictedY = y.last + stepSize * (betaF - alphaY);
+
+      /// Evaluation at predicted y
+      double fPredicted = func(x.last + stepSize, predictedY);
+
+      /// Correction
+      double correctedY =
+          y.last + stepSize * (correctorBeta.last * fPredicted - alphaY);
+
+      /// Store the corrected y
+      result[i] = correctedY;
+
+      // Update y and x values
+      y.add(correctedY);
+      y.removeAt(0);
+      x.add(x.last + stepSize);
+      x.removeAt(0);
+
+      // Reset values for the next iteration
+      fValues.clear();
+      betaF = 0;
+      alphaY = 0;
+    }
+
+    return result;
+  }
+
 }

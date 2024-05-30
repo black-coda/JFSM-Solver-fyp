@@ -1,9 +1,11 @@
 // ignore_for_file: avoid_print
 
 import 'dart:developer';
+// import 'dart:math';
 
 import 'package:frontend/src/app/view_models/linear_multistep_analysis_method_implementation.dart';
 import 'package:frontend/src/module/linear_multistep_solver.dart';
+import 'package:frontend/src/utils/devtool/devtool.dart';
 import 'package:frontend/src/utils/extension/approximation.dart';
 
 class SolverImplementation implements LinearMultistepSolver {
@@ -426,7 +428,7 @@ class SolverImplementation implements LinearMultistepSolver {
 
     //* method summation
 
-    for (var i = predictorStepNumber; i <= 4; i++) {
+    for (var i = predictorStepNumber; i <= N; i++) {
       /// * calculate the values of f0,f1 ... f(stepNumber), then add it to the [fValues]
       for (var j = 0; j <= predictorStepNumber; j++) {
         double xj = x[j];
@@ -459,10 +461,114 @@ class SolverImplementation implements LinearMultistepSolver {
 
       //? Calculate the new y => h[beta*f] - alpha*y
       double nextValueOfY = (stepSize * betaF) - alphaY;
+      nextValueOfY = nextValueOfY.approximate(6);
 
       print("next value of y => ${nextValueOfY.approximate(6)}");
+
+      result[i] = nextValueOfY;
+
+      log(y.toString());
+      // remove the first element
+      y.removeAt(0);
+
+      log(y.toString());
+      
+      y.removeLast();
+      y.add(nextValueOfY);
+
+      //? updating values
+
+      //* Predict next y
+
+      //* reset the values of betaF and alpha Y to 0
+      betaF = 0;
+      alphaY = 0;
+
+      //* reset the fValues to an empty list
+      fValues = [];
+
+      //* update values of x
+      for (var m = 0; m < x.length; m++) {
+        x[m] += stepSize;
+      }
+      x = x.map((e) => e.approximate(2)).toList();
+
+      log("carry me ${x.toString()}");
+      log(y.toString());
+      double yNewPredicted = explicitYPredictor(
+          alpha: predictorAlpha,
+          beta: predictorBeta,
+          func: func,
+          y: y,
+          xStarter: x,
+          stepSize: stepSize,
+          stepNumber: predictorStepNumber,
+          N: 1);
+      log("yNewpredicted: $yNewPredicted");
+      y.add(yNewPredicted);
+      x.add(x.last + stepSize);
+      x.log();
     }
 
-      return result;
+    return result;
+  }
+
+  // predictor for next value of y
+
+  double explicitYPredictor(
+      {required List<double> alpha,
+      required List<double> beta,
+      required double Function(double initialValueX, double initialValueY) func,
+      required List<double> y,
+      required List<double> xStarter,
+      required double stepSize,
+      required int stepNumber,
+      int N = 1}) {
+    List<double> fValues = [];
+    double nextValueOfY = 0;
+
+    //* initial values of alpha and beta
+    double betaF = 0;
+    double alphaY = 0;
+
+    List<double> x = xStarter;
+    x.removeLast();
+
+    //* summation using the general lmm formulae
+    for (var i = 0; i <= 0; i++) {
+      /// * calculate the values of f0,f1 ... f(stepNumber -1), then add it to the [fValues]
+      for (var j = 0; j < stepNumber; j++) {
+        double xj = x[j];
+        double yj = y[j];
+
+        fValues.add(func(xj, yj).approximate(6));
+      }
+
+      //* Approximate fValues to 6dp
+      fValues = fValues.map((e) => e.approximate(6)).toList();
+      //! Using the formula
+
+      //* calculate summation beta * fi
+      for (var k = 0; k < stepNumber; k++) {
+        betaF += beta[k] * fValues[k];
+      }
+
+      //* calculate summation alpha*y
+      for (var l = 0; l < stepNumber; l++) {
+        alphaY += alpha[l] * y[l];
+      }
+
+      //? Calculate the new y => h[beta*f] - alpha*y
+      nextValueOfY = (stepSize * betaF.approximate(6)) - alphaY.approximate(6);
+    }
+
+    // //* reset the values of betaF and alpha Y to 0
+    // betaF = 0;
+    // alphaY = 0;
+
+    // //* reset the fValues to an empty list
+    // fValues = [];
+
+    return nextValueOfY;
   }
 }

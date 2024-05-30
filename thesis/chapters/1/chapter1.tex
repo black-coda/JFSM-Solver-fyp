@@ -3,6 +3,7 @@
 
 \chapter{Introduction}
 
+
 % \addcontentsline{toc}{chapter}{Introduction}
 
 \section{Background of Study}
@@ -46,7 +47,7 @@ By addressing these challenges, the proposed unified code aims to fill a critica
 
 The proposed solution aims to significantly enhance the ease and efficiency with which users can explore, analyze, and apply Linear Multistep Methods (LMMs) across a wide array of Ordinary Differential Equation (ODE) scenarios. This initiative is driven by the recognition that existing software solutions often lack comprehensive support for the complexity and diversity of real-world ODE problems, particularly when addressing stiff and non-stiff problems, as well as boundary value problems (BVPs) and initial value problems (IVPs).
 
-\newpage
+
 \section{Aim and Objectives}
 \subsubsection{Aim:}
 The aim of the application is to develop a robust software tool for analyzing linear multistep methods used in solving stiff ordinary differential equations (ODEs) and also use the method to solve problems of ordinary differential equation (ODEs).
@@ -75,7 +76,22 @@ The significance of this study lies in its contributions to both theoretical und
 
 \section{Definition of Terms}
 \begin{enumerate}
-  \item \textbf{Ordinary differential equation:}
+  \item \textbf{Ordinary differential equation:} Let $y$ be a function of a single variable $x$,. An ordinary differential equation is an equation of the form:
+
+
+  \begin{equation}
+    F(x, y, y', y'', ..., y^{(n)}) = 0 
+  \end{equation}
+  
+  Where:
+  \begin{itemize}
+      \item $F$ is a given function of the independent variable $x$, the dependent variable $y$, and its $n$ derivatives with respect to $x$.
+      \item $y'$ represents the first derivative of $y$ with respect to $x$, $y''$ represents the second derivative, and so on until $y^{(n)}$, which represents the $n$th derivative of $y$ with respect to $x$.
+      \item The equation is typically defined over some interval in the domain of $x$ where the function $y$ is being considered.
+  \end{itemize}
+  
+  Solving an ODE means finding a function $y(x)$ that satisfies the given differential equation over the specified domain. The solution to an ODE may be explicit or implicit, and in many cases, there may be multiple solutions or a family of solutions.
+  
   \item \textbf{Numerical method:} A numerical method is a difference equation involving a number of consecutive approximations $y_{n+j}, j = 0,1,2 \dots k$ from which it be possible to compute sequentially the sequence ${y_{n}|n = 0,1,2, \dots N}$. The integer $k$ is called a step-number; if$k=1,$ the method is called a one-step method, while if $k>1$, the method is called a \textit{one-step method}
   
   \item \textbf{Step Length (Mesh-Size)}: A point within the solution domain where the solution is approximated or calculated. The \textbf{step length} (\(h\)) is the size of the interval between consecutive points in the independent variable (e.g., time or space) at which the solution of a differential equation is calculated. It plays a crucial role in determining the granularity of the numerical approximation and impacts the accuracy and efficiency of the solution. A smaller step length typically leads to a more accurate but computationally expensive solution, while a larger step length may sacrifice accuracy for computational efficiency. The choice of an appropriate step length is a critical consideration in the numerical solution of differential equations.
@@ -95,9 +111,16 @@ The significance of this study lies in its contributions to both theoretical und
   
   \item \textbf{Multistep and Singlestep methods:} A single-step method is a numerical method for solving ordinary differential equations that calculates the approximate solution only using the information from the current step.Examples of this are the Taylor algorithm of order K and Runge-Kutta Methods.A multistep method is a numerical method for solving ordinary differential equations that calculates the approximate solution using the information from the current step and one or more previous steps.A crucial characteristic of multistep methods is the necessity to compute prior values of \(y_n\) (where \(n\) takes on values \(1, 2, 3, \ldots, N\)) for \(f_n\) (where \(n\) takes on values \(1, 2, 3, \ldots, N\)) through alternative methods, such as Runge-Kutta methods. This is essential for obtaining accurate values when starting the utilization of multistep methods. Alternatively, if the exact solution is known, \(y_n\) can be directly calculated \cite{powerseriesJFatokun}.For example:
   \begin{eqnarray}
-   y_{n+1} = y_n + h \cdot f(t_n, y_n) \\
-   y_{n+2} = y_{n+1} + \frac{h}{2} \left[ 3f(t_{n+1}, y_{n+1}) - f(t_n, y_n) \right]
+   y_{n+1} = y_n + h \cdot f_n \\
+   y_{n+2} = y_{n+1} + \frac{h}{2} \left[ 3f_{n+1} - f_n \right]
   \end{eqnarray}
+
+  where 
+  
+  \begin{equation}
+    f_{n+i} = f(x_{n+i},x_{n+i}), \text{for } i = 0,1,2,\dots 
+  \end{equation}
+  
 
   A disadvantage of multistep methods is that they are not self-starting.But on the other hand, they are faster than the single-step methods. In addition, Multistep methods can be more stable and efficient for certain types of ODEs, especially when dealing with stiff systems \cite{powerseriesJFatokun}.
 
@@ -117,7 +140,31 @@ The significance of this study lies in its contributions to both theoretical und
     
     \item \textbf{Stability:} A property of linear multistep methods indicating the behavior of the numerical solution with respect to small perturbations or errors. A stable method produces a solution that does not grow exponentially with time and remains bounded, ensuring accuracy and reliability of the numerical solution.
     
-    \item \textbf{Order and Error constant} 
+    \item \textbf{Order and Error constant}
+    
+    In numerical analysis, particularly in the context of solving ordinary differential equations (ODEs), the concepts of \textbf{order} and \textbf{error constant} are fundamental in assessing the accuracy and efficiency of numerical methods.
+
+
+The \textit{order} of a numerical method refers to the rate at which the error decreases as the step size \( h \) decreases. More formally, if a numerical method approximates the solution to an ODE with a local truncation error that is proportional to \( h^{p+1} \), where \( h \) is the step size and \( p \) is a positive integer, then the method is said to be of \textit{order \( p \)}.
+
+Mathematically, for a method with step size \( h \), if the local truncation error \( \tau(h) \) satisfies
+
+\begin{equation}
+  \tau(h) = C \cdot h^{p+1} + \mathcal{O}(h^{p+2})
+\end{equation}
+
+where \( C \) is a constant, the method is of order \( p \) \cite{BUTCHER20091834}.
+
+The order indicates how quickly the global error decreases as the step size decreases. Higher-order methods are generally more accurate but may require more computational effort per step.
+
+\subitem{Error Constant}
+
+The \textit{error constant} is the coefficient \( C \) in the leading term of the local truncation error expression.
+
+The error constant \( C \) provides a measure of the accuracy of the method for a given step size. While the order \( p \) determines the rate at which the error decreases as \( h \) decreases, the error constant \( C \) affects the absolute magnitude of the error for a given \( h \) \cite{atkinson1989introduction}.
+
+A smaller error constant means the method is more accurate for the same step size, even if two methods have the same order.
+
     
     \item \textbf{Convergence:} 
     The necessary conditions for a linear multistep method of \eqref{eq:linear_multistep} is said to be convergent if and only if it is consistent and zero stable

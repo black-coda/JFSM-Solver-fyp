@@ -1,8 +1,9 @@
 import 'dart:math' as math;
 
+// import 'package:frontend/playground/tester.dart';
 import 'package:frontend/playground/tester.dart';
 import 'package:frontend/src/app/view_models/linear_multistep_solver.dart';
-import 'package:frontend/src/utils/extension/approximation.dart';
+// import 'package:frontend/src/utils/extension/approximation.dart';
 
 void main() {
   // Define the function to be used
@@ -10,12 +11,13 @@ void main() {
     // Example function: dy/dx = x^2 + y^2
     // return math.pow(x, 2) * (1 + y);
     return x + y;
+    // return 3 * math.pow(x, 2) * y;
   }
 
   double y0 = 0;
   double x0 = 0;
   double stepSize = 0.2;
-  int N = 5;
+  int N = 10;
   int predictorStepNumber = 4;
   int correctorStepNumber = 3;
 
@@ -56,6 +58,7 @@ void main() {
   ];
 
   final solverTester = SolverImplementation();
+  // final p = Playground();
   // final t = solver.explicitLinearMultistepMethod(
   //   stepNumber: 3,
   //   alpha: alpha,
@@ -95,16 +98,29 @@ void main() {
     N: N,
   );
 
-  // print(answer);
+  print(answer);
 
-  // final ans = solverTester.implicitLinearMultistepMethodWithRKMethod(
-  //   stepNumber: 4,
+  // final alpha = <double>[
+  //   0,
+  //   0,
+  //   -1,
+  //   1,
+  // ];
+  // final beta = <double>[
+  //   5 / 12,
+  //   -16 / 12,
+  //   23 / 12,
+  //   0,
+  // ];
+
+  // final ans = p.implicitLinearMultistepMethodWithRKMethod(
+  //   stepNumber: 3,
   //   alpha: alpha,
-  //   beta: beta,
+  //   beta: correctorBeta,
   //   func: func,
-  //   y0: y0,
-  //   x0: x0,
-  //   stepSize: stepSize,
+  //   y0: 1,
+  //   x0: 0,
+  //   stepSize: 0.1,
   //   N: N,
   // );
 
