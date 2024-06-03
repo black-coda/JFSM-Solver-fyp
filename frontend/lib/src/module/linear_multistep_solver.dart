@@ -47,5 +47,28 @@ abstract class LinearMultistepSolver {
   ///
   /// Returns a list of computed values representing the approximate solution
   /// at each step.
-  List<double> implicitLinearMultistepMethod();
+  List<double> implicitLinearMultistepMethodWithRKMethod({
+    required int stepNumber,
+    required List<double> alpha,
+    required List<double> beta,
+    required double Function(double initialValueX, double initialValueY) func,
+    required double y0,
+    required double x0,
+    required double stepSize,
+    required int N,
+  });
+
+  List<double> implicitLinearMultistepMethodWithPredictorCorrectorMethod({
+    required int predictorStepNumber,
+    required int correctorStepNumber,
+    required List<double> correctorAlpha,
+    required List<double> correctorBeta,
+    required List<double> predictorAlpha,
+    required List<double> predictorBeta,
+    required double Function(double initialValueX, double initialValueY) func,
+    required double y0,
+    required double x0,
+    required double stepSize,
+    required int N,
+  });
 }

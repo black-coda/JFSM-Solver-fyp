@@ -15,52 +15,49 @@ Reallocating 'wiz_functions' (item size: 4) to 9000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: bib/Proposal.bib
 Warning--entry type for "Faleichik2009ExplicitIO" isn't style-file defined
---line 285 of file bib/Proposal.bib
-Warning--entry type for "cappellaro:bound-problems" isn't style-file defined
 --line 303 of file bib/Proposal.bib
-Warning--entry type for "cappellaro:unbound-problems" isn't style-file defined
---line 321 of file bib/Proposal.bib
-Warning--I didn't find a database entry for "powerseriesJFatokun"
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
-You've used 17 entries,
+Warning--No journal in Alexanderian2022
+Warning--No journal in HELM2008NumericalIVP
+You've used 33 entries,
             6951 wiz_defined-function locations,
-            1391 strings with 14783 characters,
-and the built_in function-call counts, 34902 in all, are:
-= -- 4417
-> -- 269
-< -- 1725
-+ -- 1796
-- -- 41
-* -- 2230
-:= -- 6423
-add.period$ -- 72
-call.type$ -- 17
-change.case$ -- 312
+            1487 strings with 17502 characters,
+and the built_in function-call counts, 62700 in all, are:
+= -- 7765
+> -- 466
+< -- 3086
++ -- 3156
+- -- 71
+* -- 4029
+:= -- 11641
+add.period$ -- 136
+call.type$ -- 33
+change.case$ -- 580
 chr.to.int$ -- 0
-cite$ -- 34
-duplicate$ -- 861
-empty$ -- 1302
-format.name$ -- 432
-if$ -- 6591
+cite$ -- 68
+duplicate$ -- 1600
+empty$ -- 2496
+format.name$ -- 753
+if$ -- 11886
 int.to.chr$ -- 0
-int.to.str$ -- 55
+int.to.str$ -- 103
 missing$ -- 0
-newline$ -- 449
-num.names$ -- 138
-pop$ -- 579
+newline$ -- 844
+num.names$ -- 258
+pop$ -- 1266
 preamble$ -- 1
-purify$ -- 74
+purify$ -- 146
 quote$ -- 0
-skip$ -- 2280
+skip$ -- 3816
 stack$ -- 0
-substring$ -- 1943
-swap$ -- 465
-text.length$ -- 49
+substring$ -- 3431
+swap$ -- 877
+text.length$ -- 90
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 1640
-warning$ -- 0
-while$ -- 157
+type$ -- 2800
+warning$ -- 2
+while$ -- 282
 width$ -- 0
-write$ -- 549
-(There were 4 warnings)
+write$ -- 1017
+(There were 3 warnings)

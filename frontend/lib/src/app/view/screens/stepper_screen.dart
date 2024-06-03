@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:frontend/src/app/view/screens/result_of_method_test.dart';
+
 import 'package:frontend/src/app/view/screens/step_number_screen.dart';
-import 'package:frontend/src/utils/devtool/devtool.dart';
+import 'package:frontend/src/app/view/screens/type_of_lmm_screen.dart';
 
 import 'analysis_value_collector.dart';
 
 // final GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
 
-class DashboardScreen extends ConsumerStatefulWidget {
-  const DashboardScreen({super.key});
+class StepperScreen extends ConsumerStatefulWidget {
+  const StepperScreen({super.key});
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _DashboardScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _StepperScreenState();
 }
 
-class _DashboardScreenState extends ConsumerState<DashboardScreen> {
+class _StepperScreenState extends ConsumerState<StepperScreen> {
   int currentStep = 0;
   int currentIndex = 0;
 
@@ -35,7 +34,6 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -49,7 +47,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                     currentStep = step;
                   });
                 },
-                connectorColor: MaterialStateColor.resolveWith(
+                connectorColor: WidgetStateColor.resolveWith(
                   (states) => Theme.of(context).primaryColor,
                 ),
                 controlsBuilder: (context, details) {
