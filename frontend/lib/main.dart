@@ -12,14 +12,13 @@ void main() async {
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: _theming(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteManager.generateRoute,
-      initialRoute: RouteManager.solverView,
+      initialRoute: RouteManager.splashScreen,
     );
   }
 

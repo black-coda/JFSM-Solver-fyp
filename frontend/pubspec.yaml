@@ -9,6 +9,7 @@ environment:
 dependencies:
   equations: ^5.0.2
   expressions: ^0.2.5+1
+  fl_chart: ^0.68.0
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.4.10

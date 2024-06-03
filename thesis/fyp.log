@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.5.1)  30 MAY 2024 04:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.5.1)  1 JUN 2024 05:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -464,24 +464,24 @@ File: chapters/4/image/2.png Graphic file (type png)
 <use chapters/4/image/2.png>
 Package pdftex.def Info: chapters/4/image/2.png  used on input line 79.
 (pdftex.def)             Requested size: 426.79135pt x 237.77524pt.
- [49 <./chapters/4/image/1.png>] [50 <./chapters/4/image/2.png>]
-Overfull \hbox (25.81929pt too wide) in paragraph at lines 117--118
+ [49 <./chapters/4/image/1.png>]
+Overfull \hbox (25.81929pt too wide) in paragraph at lines 119--120
 []\OT1/cmr/m/n/12 Using the JF-Solver to anal-y-sis the 3-step Back-ward Dif-fer-en-ti-a-tion For-mula(BDF(3)),
  []
 
-<chapters/4/image/5.png, id=186, 948.54375pt x 535.2497pt>
+<chapters/4/image/5.png, id=182, 948.54375pt x 535.2497pt>
 File: chapters/4/image/5.png Graphic file (type png)
 <use chapters/4/image/5.png>
-Package pdftex.def Info: chapters/4/image/5.png  used on input line 122.
+Package pdftex.def Info: chapters/4/image/5.png  used on input line 124.
 (pdftex.def)             Requested size: 426.79135pt x 240.82747pt.
-<chapters/4/image/6.png, id=187, 951.555pt x 531.48563pt>
+<chapters/4/image/6.png, id=183, 951.555pt x 531.48563pt>
 File: chapters/4/image/6.png Graphic file (type png)
 <use chapters/4/image/6.png>
-Package pdftex.def Info: chapters/4/image/6.png  used on input line 128.
+Package pdftex.def Info: chapters/4/image/6.png  used on input line 130.
 (pdftex.def)             Requested size: 426.79135pt x 238.37967pt.
-) (chapters/5/chapter5.tex [51 <./chapters/4/image/5.png>] [52 <./chapters/4/image/6.png>]
+) (chapters/5/chapter5.tex [50 <./chapters/4/image/2.png>] [51 <./chapters/4/image/5.png> <./chapters/4/image/6.png>]
 Chapter 5.
-) (fyp.bbl [53
+) (fyp.bbl [52
 
 ]
 Underfull \hbox (badness 1546) in paragraph at lines 118--141
@@ -508,9 +508,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 176--192
 \OT1/cmtt/m/n/12 Chapter % 2005 % 20 [] - % 20IVP % 20Consistent % 20Convergence % 20Stability /
  []
 
-[54
+[53
 
-] [55]
+] [54]
 Underfull \hbox (badness 1448) in paragraph at lines 854--870
 []\OT1/cmr/m/n/12 Wikiversity.  (2019).  \OT1/cmr/m/it/12 Nu-mer-i-cal anal-y-sis/sta-bil-ity of mul-ti-step meth-ods ---
  []
@@ -525,7 +525,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 854--870
 \OT1/cmtt/m/n/12 w / index [] .php [] ?title = Numerical [] []Analysis / stability [] []of [] []Multistep []
  []
 
-) [56] (fyp.aux)
+) [55] (fyp.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-01>
@@ -540,9 +540,9 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  79i,12n,93p,1143b,579s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\monda\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on fyp.pdf (56 pages, 554457 bytes).
+Output written on fyp.pdf (55 pages, 553835 bytes).
 PDF statistics:
- 282 PDF objects out of 1000 (max. 8388607)
+ 279 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

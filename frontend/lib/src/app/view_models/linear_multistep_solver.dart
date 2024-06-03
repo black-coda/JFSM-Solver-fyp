@@ -168,6 +168,10 @@ class SolverImplementation implements LinearMultistepSolver {
           fValues = [];
         }
     }
+
+   
+
+    log(result.toString());
     return result;
   }
 

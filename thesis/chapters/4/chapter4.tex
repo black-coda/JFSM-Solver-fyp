@@ -80,6 +80,8 @@ In this context, some of the roots are complex. Zero-stability necessitates that
     \caption{Result of Quade's method analysis}
 \end{figure}
 
+\newpage
+
 \subsection{3-Step Backward Differentiation Formula}
 
 The 3-Step Backward Differentiation Formula is given as:
@@ -97,22 +99,22 @@ where:
 \end{aligned}
 \]
 
-in other to determine the order of the Quade's method, we use (3.4), we obtain the following values:
+in other to determine the order of the 3-Step BDF's method, we use (3.4), we obtain the following values:
 
 
-% \begin{eqnarray}
-%     c_0 = \sum_{i=0}^{4}(\alpha_i) = \frac{8}{19} - \frac{8}{19} = 0 \\
-%     c_1 = \sum_{i=0}^{4}(i\alpha_i - \beta_i) = \frac{60}{19} - \frac{60}{19} = 0 \\
-%     c_2 = \sum_{i=0}^{4}(\frac{i^2}{2!} \alpha_i - i \beta_i) = \frac{120}{19} - \frac{120}{19} = 0 \\
-%     c_3 = \sum_{i=0}^{4}(\frac{i^3}{3!} \alpha_i - \frac{i^2}{2!} \beta_i) = \frac{168}{19} - \frac{168}{19} = 0 \\
-%     c_4 = \sum_{i=0}^{4}(\frac{i^4}{4!} \alpha_i - \frac{i^3}{3!} \beta_i) = \frac{176}{19} - \frac{176}{19} = 0 \\
-%     c_5 = \sum_{i=0}^{4}(\frac{i^5}{5!} \alpha_i - \frac{i^4}{4!} \beta_i) = \frac{146}{19} - \frac{146}{19} = 0 \\
-%     c_6 = \sum_{i=0}^{4}(\frac{i^6}{6!} \alpha_i - \frac{i^5}{5!} \beta_i) = \frac{100}{19} - \frac{100}{19} = 0 \\
-%     c_7 = \sum_{i=0}^{4}(\frac{i^7}{7!} \alpha_i - \frac{i^6}{6!} \beta_i) = 3.0682 - 3.0772 = -0.0090
-% \end{eqnarray}
+% % \begin{eqnarray}
+% %     c_0 = \sum_{i=0}^{4}(\alpha_i) = \frac{8}{19} - \frac{8}{19} = 0 \\
+% %     c_1 = \sum_{i=0}^{4}(i\alpha_i - \beta_i) = \frac{60}{19} - \frac{60}{19} = 0 \\
+% %     c_2 = \sum_{i=0}^{4}(\frac{i^2}{2!} \alpha_i - i \beta_i) = \frac{120}{19} - \frac{120}{19} = 0 \\
+% %     c_3 = \sum_{i=0}^{4}(\frac{i^3}{3!} \alpha_i - \frac{i^2}{2!} \beta_i) = \frac{168}{19} - \frac{168}{19} = 0 \\
+% %     c_4 = \sum_{i=0}^{4}(\frac{i^4}{4!} \alpha_i - \frac{i^3}{3!} \beta_i) = \frac{176}{19} - \frac{176}{19} = 0 \\
+% %     c_5 = \sum_{i=0}^{4}(\frac{i^5}{5!} \alpha_i - \frac{i^4}{4!} \beta_i) = \frac{146}{19} - \frac{146}{19} = 0 \\
+% %     c_6 = \sum_{i=0}^{4}(\frac{i^6}{6!} \alpha_i - \frac{i^5}{5!} \beta_i) = \frac{100}{19} - \frac{100}{19} = 0 \\
+% %     c_7 = \sum_{i=0}^{4}(\frac{i^7}{7!} \alpha_i - \frac{i^6}{6!} \beta_i) = 3.0682 - 3.0772 = -0.0090
+% % \end{eqnarray}
 
 
-\newpage
+% % \newpage
 
 Using the JF-Solver to analysis the 3-step Backward Differentiation Formula(BDF(3)), we have the following result as shown below:
 
@@ -120,13 +122,13 @@ Using the JF-Solver to analysis the 3-step Backward Differentiation Formula(BDF(
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=1\textwidth]{chapters/4/image/5.png}
-    \caption{$\alpha$ $\beta$ - value collector}
+    \caption{$\alpha$ $\beta$ - value collector for 3-step BDF method}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=1\textwidth]{chapters/4/image/6.png}
-    \caption{Result of Quade's method analysis}
+    \caption{Result of the 3-step BDF method analysis}
 \end{figure}
 
 

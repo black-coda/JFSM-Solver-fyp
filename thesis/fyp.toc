@@ -32,7 +32,7 @@
 \contentsline {section}{\numberline {4.1}Illustrative Numerical Examples Demonstrating Solver Performance}{47}{}%
 \contentsline {subsection}{\numberline {4.1.1}Module 1: Analysis of Linear multistep}{47}{}%
 \contentsline {subsubsection}{The Quade's Method}{47}{}%
-\contentsline {subsection}{\numberline {4.1.2}3-Step Backward Differentiation Formula}{49}{}%
-\contentsline {chapter}{\numberline {5}Summary and Conclusion}{53}{}%
-\contentsline {section}{\numberline {5.1}Summary}{53}{}%
-\contentsline {chapter}{References}{54}{}%
+\contentsline {subsection}{\numberline {4.1.2}3-Step Backward Differentiation Formula}{50}{}%
+\contentsline {chapter}{\numberline {5}Summary and Conclusion}{52}{}%
+\contentsline {section}{\numberline {5.1}Summary}{52}{}%
+\contentsline {chapter}{References}{53}{}%
