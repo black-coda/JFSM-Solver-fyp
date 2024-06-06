@@ -25,14 +25,14 @@
 \contentsline {subsection}{\numberline {3.3.3}Convergence Analysis Algorithm}{37}{}%
 \contentsline {subsection}{\numberline {3.3.4}Determine Order and Error Constant Algorithm}{38}{}%
 \contentsline {section}{\numberline {3.4}Module 2: Application of Linear Multistep Method in Solving ODEs}{40}{}%
-\contentsline {subsection}{\numberline {3.4.1}Characterization of ODE Problems and Selection of Numerical Methods Algorithm}{40}{}%
-\contentsline {subsubsection}{Explicit Method Algorithm}{40}{}%
-\contentsline {subsubsection}{Implicit method Algorithm}{45}{}%
+\contentsline {subsection}{\numberline {3.4.1}Explicit Method Algorithm}{40}{}%
+\contentsline {subsection}{\numberline {3.4.2}Implicit method Algorithm}{45}{}%
 \contentsline {chapter}{\numberline {4}Numerical Results}{47}{}%
-\contentsline {section}{\numberline {4.1}Illustrative Numerical Examples Demonstrating Solver Performance}{47}{}%
-\contentsline {subsection}{\numberline {4.1.1}Module 1: Analysis of Linear multistep}{47}{}%
-\contentsline {subsubsection}{The Quade's Method}{47}{}%
+\contentsline {section}{\numberline {4.1}Module 1: Analysis of Linear multistep}{47}{}%
+\contentsline {subsection}{\numberline {4.1.1}The Quade's Method}{47}{}%
 \contentsline {subsection}{\numberline {4.1.2}3-Step Backward Differentiation Formula}{50}{}%
-\contentsline {chapter}{\numberline {5}Summary and Conclusion}{52}{}%
-\contentsline {section}{\numberline {5.1}Summary}{52}{}%
-\contentsline {chapter}{References}{53}{}%
+\contentsline {section}{\numberline {4.2}Module 2: Solving Differential Equations}{54}{}%
+\contentsline {subsection}{\numberline {4.2.1}Explicit Method: Adams-Bashforth Method 3-Step Method}{54}{}%
+\contentsline {chapter}{\numberline {5}Summary and Conclusion}{56}{}%
+\contentsline {section}{\numberline {5.1}Summary}{56}{}%
+\contentsline {chapter}{References}{57}{}%

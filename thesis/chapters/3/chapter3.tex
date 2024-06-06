@@ -334,11 +334,11 @@ With all this discussed by \cite{lambert1977}, the algorithm used in obtaining \
 
 The application of linear multistep methods (LMMs) in solving ordinary differential equations (ODEs) is critical for numerical analysis. These methods offer efficient and accurate solutions for a wide range of ODE problems, including initial value problems (IVPs) and boundary value problems (BVPs). This module outlines how to implement LMMs in a computational environment, with a focus on explicit algorithms.
 
-\subsection{Characterization of ODE Problems and Selection of Numerical Methods Algorithm}
+\subsection*{Characterization of ODE Problems and Selection of Numerical Methods Algorithm}
 In the process of employing linear multistep methods, it is crucial to ascertain the characteristics of the Ordinary Differential Equation (ODE) problem at hand. This entails discerning whether the problem exhibits stiffness or non-stiffness and determining the most appropriate approach, be it implicit or explicit. Explicit methods typically find utility in non-stiff scenarios, offering straightforward implementations, whereas implicit techniques are favored for stiff problems owing to their inherent stability.
 
 
-\subsubsection{Explicit Method Algorithm}
+\subsection{Explicit Method Algorithm}
 Explicit linear multistep methods (LMMs) calculate new values in a sequence using known data, avoiding the need to solve complex systems of equations. These methods are particularly useful for non-stiff problems due to their simplicity and computational efficiency. Below is an outline of the explicit linear multistep algorithm used for solving ordinary differential equations (ODEs), derived from the provided code.
 
 When starter values are required, the fourth-order Runge-Kutta method is employed to generate these initial values. The algorithm for the fourth-order runge-kutta method is described below.
@@ -485,7 +485,7 @@ This explicit linear multistep algorithm serves as a practical guide for impleme
  \newpage
 
 
-\subsubsection{Implicit method Algorithm}
+\subsection{Implicit method Algorithm}
 
 The PECE (Prediction-Evaluation-Correction-Evaluation) algorithm is a specific implementation of the predictor-corrector method used in numerical analysis to solve ordinary differential equations (ODEs). It enhances the accuracy of the solution by iterating through a cycle of prediction and correction steps. The following outlines how the PECE algorithm is applied in the provided code:
 
