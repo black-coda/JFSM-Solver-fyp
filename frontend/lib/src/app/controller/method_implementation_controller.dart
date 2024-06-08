@@ -21,7 +21,15 @@ final analysisProvider = Provider<AnalysisImplementation>(
   },
 );
 
-
+final correctorAnalysisProvider = Provider<AnalysisImplementation>((ref) {
+  final kSteps = ref.watch(correctorStepNumberStateProvider);
+  kSteps.log();
+  final alpha = ref.watch(correctorAlphaProvider);
+  alpha.log();
+  final beta = ref.watch(correctorBetaProvider);
+  beta.log();
+  return AnalysisImplementation(kSteps: kSteps, alpha: alpha, beta: beta);
+});
 
 final solverProvider = Provider<SolverImplementation>((ref) {
   return SolverImplementation();

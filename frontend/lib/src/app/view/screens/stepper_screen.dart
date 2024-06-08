@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/src/app/controller/step_number_controller.dart';
 
 import 'package:frontend/src/app/view/screens/step_number_screen.dart';
 import 'package:frontend/src/app/view/screens/type_of_lmm_screen.dart';
@@ -18,19 +19,30 @@ class _StepperScreenState extends ConsumerState<StepperScreen> {
   int currentStep = 0;
   int currentIndex = 0;
 
-  List<Step> steps = [
-    const Step(
-      title: Text("Step 1: Step Number of Method"),
-      content: Padding(
-        padding: EdgeInsets.symmetric(vertical: 8.0),
-        child: StepNumberScreen(),
-      ),
-    ),
-    const Step(
-      title: Text("Step 2: Analysis of Method Parameters"),
-      content: AnalysisValueCollectorScreen(),
-    ),
-  ];
+  final TextEditingController stepNumberController = TextEditingController();
+
+  @override
+  void dispose() {
+    stepNumberController.dispose();
+    super.dispose();
+  }
+
+  // List<Step> steps = [
+  //   Step(
+  //     title: const Text("Step 1: Step Number of Method"),
+  //     content: Padding(
+  //       padding: const EdgeInsets.symmetric(vertical: 8.0),
+  //       child: StepNumberScreen(
+  //         stepProvider: stepNumberStateProvider,
+  //         controller: stepNumberController,
+  //       ),
+  //     ),
+  //   ),
+  //   const Step(
+  //     title: Text("Step 2: Analysis of Method Parameters"),
+  //     content: AnalysisValueCollectorScreen(),
+  //   ),
+  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +52,22 @@ class _StepperScreenState extends ConsumerState<StepperScreen> {
           Expanded(
             child: Form(
               child: Stepper(
-                steps: steps,
+                steps: [
+                  Step(
+                    title: const Text("Step 1: Step Number of Method"),
+                    content: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: StepNumberScreen(
+                        stepProvider: stepNumberStateProvider,
+                        controller: stepNumberController,
+                      ),
+                    ),
+                  ),
+                  const Step(
+                    title: Text("Step 2: Analysis of Method Parameters"),
+                    content: AnalysisValueCollectorScreen(),
+                  ),
+                ],
                 currentStep: currentStep,
                 onStepTapped: (step) {
                   setState(() {
@@ -65,7 +92,7 @@ class _StepperScreenState extends ConsumerState<StepperScreen> {
                             },
                             child: const Text("Back"),
                           ),
-                        if (currentStep != steps.length - 1)
+                        if (currentStep != 2 - 1)
                           TextButton(
                             onPressed: () {
                               setState(() {

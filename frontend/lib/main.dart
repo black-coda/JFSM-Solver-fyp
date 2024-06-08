@@ -24,9 +24,11 @@ class MainApp extends StatelessWidget {
 
   ThemeData _theming() {
     return ThemeData(
-      fontFamily: "Anta",
+      fontFamily: "Noto",
+      brightness: Brightness.dark,
       colorScheme: ColorScheme.fromSeed(
         seedColor: const Color(0xff0fa968),
+        brightness: Brightness.dark,
       ),
     );
   }

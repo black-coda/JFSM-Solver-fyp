@@ -14,12 +14,12 @@ final betaProvider = StateProvider<List<double>>((ref) {
 
 //! provider for predictor in the case of PECE
 
-final predictorAlphaProvider = StateProvider<List<double>>((ref) {
+final correctorAlphaProvider = StateProvider<List<double>>((ref) {
   final List<double> a = [0];
   return a;
 });
 
-final predictorBetaProvider = StateProvider<List<double>>((ref) {
+final correctorBetaProvider = StateProvider<List<double>>((ref) {
   final List<double> b = [0];
   return b;
 });

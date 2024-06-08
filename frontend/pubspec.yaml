@@ -36,3 +36,6 @@ flutter:
     - family: Anta
       fonts:
         - asset: assets/fonts/Anta-Regular.ttf
+    - family: Noto
+      fonts:
+        - asset: assets/fonts/math.ttf

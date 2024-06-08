@@ -34,7 +34,8 @@ class _ImplicitOrExplicitScreenState
 
   @override
   Widget build(BuildContext context) {
-    final isImplicitOrExplicit = ref.watch(isImplicitOrExplicitProvider);
+    final isImplicitOrExplicit =
+        ref.watch(isImplicitPredictorCorrectorMethodProvider);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -44,7 +45,9 @@ class _ImplicitOrExplicitScreenState
           Switch(
             value: isImplicitOrExplicit,
             onChanged: (value) {
-              ref.watch(isImplicitOrExplicitProvider.notifier).state = value;
+              ref
+                  .watch(isImplicitPredictorCorrectorMethodProvider.notifier)
+                  .state = value;
             },
           ),
           Text("$isImplicitOrExplicit"),
