@@ -177,7 +177,9 @@ Additionally, the JF-Solver software, which was developed as part of this resear
 \section{Module 2: Solving Differential Equations}
 
 \subsection{Explicit Method: Adams-Bashforth Method 3-Step Method}
-Consider the problem $f(x,y) = 3x^2y$, with the initial condition $y(0) = 1$, the step-size also given as $h = 0.1$.
+Consider the problem \begin{equation}
+    f(x,y) = 3x^2y
+\end{equation}, with the initial condition $y(0) = 1$, the step-size also given as $h = 0.1$.
 
 The Adams-Bashforth 3-step method is given as:
 \begin{equation}
@@ -217,14 +219,30 @@ The exact solution to the problem is given as:
 
 The table illustrates the numerical values obtained at each step $n$. The Adams-Bashforth 3-step method and the JF-Solver results are compared against the exact solution $y = e^{x^3}$.
 
+The images below shows that output of the JF-Solver:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/solver_3.png}
+    \caption{The JF-Solver view}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/solver_2.png}
+    \caption{output result of the JF-Solver for $(4.30)$ }
+\end{figure}
+
+
+\newpage
 From the comparison, it is evident that both the Adams-Bashforth 3-step method and the JF-Solver produce results that closely approximate the exact solution. The JF-Solver results are rounded to six decimal places, showing a high degree of accuracy.
 
 This comparison demonstrates the effectiveness, accuracy, and reliability of the JF-Solver in approximating the solution of explicit differential equations using the Linear Multistep Method (LMM) given. The application works by accepting the coefficients of the LMM and then solves the differential equation using these coefficients.
 
+\section{Implicit Method(Predictor-Corrector Algorithm): Adams-Moulton Method 4-Step Method (Stiff problem)}
 
 
-
-
+\section{Implicit Method(Linearization Algorithm): Adams-Moulton Method 4-Step Method (Stiff problem)}
 
 
 

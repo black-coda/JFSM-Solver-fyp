@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.5.1)  6 JUN 2024 11:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.5.1)  7 JUN 2024 13:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -369,7 +369,12 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 1.
  (C:\Users\monda\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [2])
+) [2]
+Overfull \hbox (28.58733pt too wide) in paragraph at lines 36--36
+ [][] []\OT1/cmr/m/n/12 Implicit Method(Predictor-Corrector Al-go-rithm): Adams-Moulton Method 
+ []
+
+)
 \tf@toc=\write3
 \openout3 = `fyp.toc'.
 
@@ -485,11 +490,38 @@ File: chapters/4/image/6.png Graphic file (type png)
 <use chapters/4/image/6.png>
 Package pdftex.def Info: chapters/4/image/6.png  used on input line 167.
 (pdftex.def)             Requested size: 426.79135pt x 238.37967pt.
- [52] [53 <./chapters/4/image/5.png> <./chapters/4/image/6.png>] [54]) (chapters/5/chapter5.tex [55]
-Chapter 5.
-) (fyp.bbl [56
+ [52] [53 <./chapters/4/image/5.png> <./chapters/4/image/6.png>]
+<chapters/4/image/solver_3.png, id=199, 1927.2pt x 1084.05pt>
+File: chapters/4/image/solver_3.png Graphic file (type png)
+<use chapters/4/image/solver_3.png>
+Package pdftex.def Info: chapters/4/image/solver_3.png  used on input line 226.
+(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
+ [54]
+<chapters/4/image/solver_2.png, id=203, 1927.2pt x 1084.05pt>
+File: chapters/4/image/solver_2.png Graphic file (type png)
+<use chapters/4/image/solver_2.png>
+Package pdftex.def Info: chapters/4/image/solver_2.png  used on input line 232.
+(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
+ [55 <./chapters/4/image/solver_3.png>]
+Overfull \hbox (36.43843pt too wide) in paragraph at lines 242--242
+|[]\OT1/cmr/bx/n/17.28 Implicit Method(Predictor-Corrector Al-go-rithm):
+ []
 
-]
+
+Overfull \hbox (2.83644pt too wide) in paragraph at lines 242--242
+\OT1/cmr/bx/n/17.28 Adams-Moulton Method 4-Step Method (Stiff
+ []
+
+
+Overfull \hbox (51.38641pt too wide) in paragraph at lines 245--245
+|[]\OT1/cmr/bx/n/17.28 Implicit Method(Linearization Al-go-rithm): Adams-
+ []
+
+) (chapters/5/chapter5.tex [56 <./chapters/4/image/solver_2.png>]
+Chapter 5.
+[57
+
+] [58] [59]) (fyp.bbl [60]
 Underfull \hbox (badness 1546) in paragraph at lines 118--141
 \OT1/cmr/m/n/12 tions.  \OT1/cmr/m/it/12 Math-e-mat-ics and Com-put-ers in Sim-u-la-tion\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 79\OT1/cmr/m/n/12 (6), 1834-1845.
  []
@@ -514,9 +546,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 176--192
 \OT1/cmtt/m/n/12 Chapter % 2005 % 20 [] - % 20IVP % 20Consistent % 20Convergence % 20Stability /
  []
 
-[57
+[61
 
-] [58]
+] [62]
 Underfull \hbox (badness 1448) in paragraph at lines 854--870
 []\OT1/cmr/m/n/12 Wikiversity.  (2019).  \OT1/cmr/m/it/12 Nu-mer-i-cal anal-y-sis/sta-bil-ity of mul-ti-step meth-ods ---
  []
@@ -531,24 +563,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 854--870
 \OT1/cmtt/m/n/12 w / index [] .php [] ?title = Numerical [] []Analysis / stability [] []of [] []Multistep []
  []
 
-) [59] (fyp.aux)
+) [63] (fyp.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-01>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 6932 strings out of 474592
- 108946 string characters out of 5745800
+ 6946 strings out of 474592
+ 109448 string characters out of 5745800
  1952533 words of memory out of 5000000
- 28986 multiletter control sequences out of 15000+600000
+ 29000 multiletter control sequences out of 15000+600000
  567949 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  79i,12n,93p,1143b,579s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\monda\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on fyp.pdf (59 pages, 564499 bytes).
+Output written on fyp.pdf (63 pages, 662037 bytes).
 PDF statistics:
- 291 PDF objects out of 1000 (max. 8388607)
+ 308 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
