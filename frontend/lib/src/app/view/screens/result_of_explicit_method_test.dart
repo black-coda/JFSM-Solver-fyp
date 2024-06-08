@@ -1,37 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/src/app/controller/is_imp_or_exp_controller.dart';
 import 'package:frontend/src/app/controller/method_implementation_controller.dart';
 
-class AnalysisResultScreen extends ConsumerWidget {
-  const AnalysisResultScreen({Key? key}) : super(key: key);
+class ExplicitAnalysisResultScreen extends ConsumerWidget {
+  const ExplicitAnalysisResultScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final methodProviderValues = ref.watch(analysisProvider);
+
     final isConsistent = methodProviderValues.isConsistent();
+
     final errorConstant = methodProviderValues.orderAndErrorConstant();
+
     final isZeroStable = methodProviderValues.isZeroStable();
+
     final isConvergent = methodProviderValues.isConvergent();
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Analysis Method Result'),
+        title: Text('Analysis Method Result',
+            style: Theme.of(context)
+                .textTheme
+                .displaySmall
+                ?.copyWith(color: Theme.of(context).colorScheme.onSurface)),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 40),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildPropertyRow(
-                context, 'Is consistent', isConsistent.toString()),
-            _buildPropertyRow(context, 'Order', errorConstant.$1.toString()),
-            _buildPropertyRow(
-                context, 'Error Constant', errorConstant.$2.toString()),
-            _buildPropertyRow(
-                context, 'Is Zero Stable', isZeroStable.toString()),
-            _buildPropertyRow(
-                context, 'Is Convergent', isConvergent.toString()),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 40),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Divider(),
+              _buildPropertyRow(
+                  context, 'Is consistent', isConsistent.toString()),
+              _buildPropertyRow(context, 'Order', errorConstant.$1.toString()),
+              _buildPropertyRow(
+                  context, 'Error Constant', errorConstant.$2.toString()),
+              _buildPropertyRow(
+                  context, 'Is Zero Stable', isZeroStable.toString()),
+              _buildPropertyRow(
+                  context, 'Is Convergent', isConvergent.toString()),
+            ],
+          ),
         ),
       ),
     );

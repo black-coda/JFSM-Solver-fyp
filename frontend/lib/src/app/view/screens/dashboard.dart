@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/src/app/controller/is_imp_or_exp_controller.dart';
 import 'package:frontend/src/app/controller/key.dart';
+import 'package:frontend/src/app/view/screens/solver/implicit_solver_view.dart';
 import 'package:frontend/src/app/view/screens/stepper_screen.dart';
-import 'package:frontend/src/app/view/screens/result_of_method_test.dart';
+import 'package:frontend/src/app/view/screens/result_of_explicit_method_test.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import 'solver/solver_parameter_screen_collector.dart';
+import 'result_of_implcit_PE_method_test.dart';
+import 'solver/explicit_and_implicit_linearization_solver_view.dart';
 
 class DashboardView extends ConsumerStatefulWidget {
   const DashboardView({super.key});
@@ -22,17 +25,22 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
     ref.read(isAnalysisCollectorFormValidProvider.notifier).state = false;
   }
 
-  final _page = const <Widget>[
-    StepperScreen(),
-    AnalysisResultScreen(),
+  final _page = <Widget>[
+    const StepperScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    final isPEmethod = ref.watch(isImplicitPredictorCorrectorMethodProvider);
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        children: _page,
+        children: [
+          const StepperScreen(),
+          isPEmethod
+              ? const ImplicitPEAnalysisResultScreen()
+              : const ExplicitAnalysisResultScreen(),
+        ],
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -59,7 +67,7 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
                 bool isFormValid = ref
                     .watch(isAnalysisCollectorFormValidProvider.notifier)
                     .state;
-                return (isFormValid == false)
+                return isFormValid == false
                     ? IconButton.outlined(
                         onPressed: () {},
                         icon: Icon(
@@ -69,12 +77,22 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
                       )
                     : IconButton.outlined(
                         onPressed: () {
-                          if (_pageController.page == _page.length - 1) {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const SolverView(),
-                              ),
-                            );
+                          if (_pageController.page == 2 - 1) {
+                            final isPredictorCorrector = ref.watch(
+                                isImplicitPredictorCorrectorMethodProvider);
+                            isPredictorCorrector
+                                ? Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const PredictorCorrectorSolverView(),
+                                    ),
+                                  )
+                                : Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ExplicitAndImplicitLinearizationSolverView(),
+                                    ),
+                                  );
                           }
 
                           _pageController.nextPage(

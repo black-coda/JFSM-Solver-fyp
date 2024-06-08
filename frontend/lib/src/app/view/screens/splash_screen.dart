@@ -40,24 +40,34 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
             const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () async {
-                Navigator.of(context).pushNamed(RouteManager.dashboardView);
-              },
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(MediaQuery.sizeOf(context).width * 0.2,
-                    MediaQuery.sizeOf(context).height * 0.05),
-                elevation: 8,
-              ),
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.forward_rounded),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text("Continue")
-                ],
+            SizedBox(
+              height: 52,
+              width: MediaQuery.sizeOf(context).width * 0.4,
+              child: ElevatedButton(
+                onPressed: () async {
+                  Navigator.of(context).pushNamed(RouteManager.dashboardView);
+                },
+                style: ElevatedButton.styleFrom(
+                  // fixedSize: Size(MediaQuery.sizeOf(context).width * 0.2,
+                  //     MediaQuery.sizeOf(context).height * 0.05),
+                  elevation: 8,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8))),
+                  foregroundColor:
+                      Theme.of(context).colorScheme.onPrimaryContainer,
+                  backgroundColor:
+                      Theme.of(context).colorScheme.primaryContainer,
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.forward_rounded),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text("Continue")
+                  ],
+                ),
               ),
             )
           ],

@@ -13,14 +13,18 @@ import 'package:math_expressions/math_expressions.dart';
 import 'package:math_keyboard/math_keyboard.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-class SolverView extends ConsumerStatefulWidget {
-  const SolverView({Key? key}) : super(key: key);
+class ExplicitAndImplicitLinearizationSolverView
+    extends ConsumerStatefulWidget {
+  const ExplicitAndImplicitLinearizationSolverView({Key? key})
+      : super(key: key);
 
   @override
-  ConsumerState<SolverView> createState() => _SolverViewState();
+  ConsumerState<ExplicitAndImplicitLinearizationSolverView> createState() =>
+      _SolverViewState();
 }
 
-class _SolverViewState extends ConsumerState<SolverView> {
+class _SolverViewState
+    extends ConsumerState<ExplicitAndImplicitLinearizationSolverView> {
   late TextEditingController y0Controller;
   late TextEditingController x0Controller;
   late TextEditingController stepSizeController;
@@ -132,9 +136,24 @@ class _SolverViewState extends ConsumerState<SolverView> {
                             _buildTextField("Number of Steps (N)", nController),
                             const SizedBox(height: 16),
                             const SizedBox(height: 16),
-                            ElevatedButton(
-                              onPressed: _onSubmit,
-                              child: const Text('Submit'),
+                            //! Submit button
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: _onSubmit,
+                                  child: const Text('Submit'),
+                                ),
+
+                                //! Reset button
+                                ElevatedButton(
+                                  onPressed: () async {
+                                    xValues = [];
+                                    result = [];
+                                  },
+                                  child: const Text("Reset"),
+                                ),
+                              ],
                             ),
                             const SizedBox(height: 24),
                             const Divider(),
@@ -368,227 +387,37 @@ class _SolverViewState extends ConsumerState<SolverView> {
         final stepSize = double.tryParse(stepSizeController.text) ?? 0.0;
         final n = int.tryParse(nController.text) ?? 0;
 
-        final isPredictorCorrector = ref.read(isImplicitOrExplicitProvider);
         final alpha = ref.read(alphaProvider);
         final beta = ref.read(betaProvider);
 
         final stepNumber = ref.read(stepNumberStateProvider);
 
-        if (!isPredictorCorrector) {
-          result = ref.watch(solverProvider).explicitLinearMultistepMethod(
-                stepNumber: stepNumber,
-                alpha: alpha,
-                beta: beta,
-                func: parsedFunction!,
-                y0: y0,
-                x0: x0,
-                stepSize: stepSize,
-                N: n,
-              );
+        result = ref.watch(solverProvider).explicitLinearMultistepMethod(
+              stepNumber: stepNumber,
+              alpha: alpha,
+              beta: beta,
+              func: parsedFunction!,
+              y0: y0,
+              x0: x0,
+              stepSize: stepSize,
+              N: n,
+            );
 
-          xValues = ref
-              .read(solverProvider)
-              .implicitXValueGenerator(x0, stepSize, n - 1);
+        xValues = ref
+            .read(solverProvider)
+            .implicitXValueGenerator(x0, stepSize, n - 1);
 
-          // Validate xValues and result
-          // if (xValues.any((x) => x.isNaN || x.isInfinite) ||
-          //     result.any((y) => y.isNaN || y.isInfinite)) {
-          //   throw UnsupportedError("Calculation resulted in NaN or Infinity");
-          // }
-          dev.log(xValues.toString());
-          ref.refresh(solverProvider);
-          // setState(() {});
-        } else {
-          dev.log("You haven't done this part");
-        }
+        // Validate xValues and result
+        // if (xValues.any((x) => x.isNaN || x.isInfinite) ||
+        //     result.any((y) => y.isNaN || y.isInfinite)) {
+        //   throw UnsupportedError("Calculation resulted in NaN or Infinity");
+        // }
+        dev.log(xValues.toString());
+        ref.invalidate(solverProvider);
+        // setState(() {});
       } catch (e) {
         dev.log(e.toString());
       }
     }
   }
 }
-
-class NewWidget extends StatelessWidget {
-  const NewWidget({
-    super.key,
-    required this.result,
-    required this.xValues,
-  });
-
-  final List<double> result;
-  final List<double> xValues;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Text('Graph'),
-        Expanded(
-          child: LineChart(
-            LineChartData(
-              borderData: FlBorderData(show: false),
-              lineBarsData: [
-                LineChartBarData(
-                  spots: List.generate(result.length,
-                      (index) => FlSpot(xValues[index], result[index])),
-                  isCurved: true,
-                  barWidth: 2,
-                  color: Colors.blue,
-                  dotData: const FlDotData(show: false),
-                ),
-              ],
-              titlesData: const FlTitlesData(
-                leftTitles: AxisTitles(
-                  sideTitles: SideTitles(showTitles: true),
-                ),
-                bottomTitles: AxisTitles(
-                  sideTitles: SideTitles(showTitles: true),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-
-
-// class EshaWork extends ConsumerWidget {
-
-//   const EshaWork({super.key});
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     return  Column(
-//         children: [
-//           Padding(
-//             padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24),
-//             child: Row(
-//               children: [
-//                 Expanded(
-//                   // flex: 1,
-//                   child: Form(
-//                     key: formKey,
-//                     child: Padding(
-//                       padding: const EdgeInsets.only(right: 12.0),
-//                       child: Column(
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         children: [
-//                           const SizedBox(height: 16),
-//                           MathField(
-//                             controller: functionController,
-//                             decoration: const InputDecoration(
-//                               labelText: 'Enter function f(x, y)',
-//                               border: OutlineInputBorder(),
-//                             ),
-//                             variables: const ['x', 'y'],
-//                             autofocus: true,
-//                           ),
-//                           const SizedBox(height: 16),
-//                           _buildTextField(
-//                               "Initial Value of y (y0)", y0Controller),
-//                           const SizedBox(height: 16),
-//                           _buildTextField(
-//                               "Initial Value of x (x0)", x0Controller),
-//                           const SizedBox(height: 16),
-//                           _buildTextField("Step Size", stepSizeController),
-//                           const SizedBox(height: 16),
-//                           _buildTextField("Number of Steps (N)", nController),
-//                           const SizedBox(height: 16),
-//                           const SizedBox(height: 16),
-//                           ElevatedButton(
-//                             onPressed: _onSubmit,
-//                             child: const Text('Submit'),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-
-//                 // graphing view
-//               ],
-//             ),
-//           ),
-//           const SizedBox(height: 20),
-//           Expanded(
-//             child: result.isNotEmpty
-//                 ? Expanded(
-//                     child: Padding(
-//                       padding: const EdgeInsets.only(bottom: 24.0),
-//                       child: Row(
-//                         children: [
-//                           // Expanded(
-//                           //   child: Column(
-//                           //     children: [
-//                           //       const Text('Results'),
-//                           //       Expanded(
-//                           //         child: ListView.builder(
-//                           //           itemCount: result.length,
-//                           //           itemBuilder: (context, index) {
-//                           //             return ListTile(
-//                           //               title: Text(
-//                           //                   'x = ${xValues[index].toStringAsFixed(2)}, y = ${result[index].toStringAsFixed(6)}'),
-//                           //             );
-//                           //           },
-//                           //         ),
-//                           //       ),
-//                           //     ],
-//                           //   ),
-//                           // ),
-//                           // const VerticalDivider(),
-//                           Expanded(
-//                             child: Column(
-//                               children: [
-//                                 const Text('Graph'),
-//                                 Expanded(
-//                                   child: LineChart(
-//                                     LineChartData(
-//                                       borderData: FlBorderData(show: false),
-//                                       lineBarsData: [
-//                                         LineChartBarData(
-//                                           spots: List.generate(
-//                                               result.length,
-//                                               (index) => FlSpot(xValues[index],
-//                                                   result[index])),
-//                                           isCurved: true,
-//                                           barWidth: 2,
-//                                           color: Colors.blue,
-//                                           dotData: const FlDotData(show: false),
-//                                         ),
-//                                       ],
-//                                       titlesData: const FlTitlesData(
-//                                         leftTitles: AxisTitles(
-//                                           sideTitles:
-//                                               SideTitles(showTitles: true),
-//                                         ),
-//                                         bottomTitles: AxisTitles(
-//                                           sideTitles:
-//                                               SideTitles(showTitles: true),
-//                                         ),
-//                                       ),
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ],
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   )
-//                 : const Center(
-//                     child: Text('No data to display'),
-//                   ),
-//           )
-//         ],
-//       );
-   
-//   }
-// }
-
-
-

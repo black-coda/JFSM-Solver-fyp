@@ -6,26 +6,29 @@ import 'package:frontend/src/utils/devtool/devtool.dart';
 import 'package:frontend/src/utils/validators/validators.dart';
 
 class StepNumberScreen extends ConsumerStatefulWidget {
-  const StepNumberScreen({super.key});
+  StepNumberScreen({super.key, required this.stepProvider, required this.controller});
+
+  final StateProvider<int> stepProvider;
+ TextEditingController controller;
+
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _StepNumberScreenState();
 }
 
 class _StepNumberScreenState extends ConsumerState<StepNumberScreen> {
-  late TextEditingController _controller;
   late FocusNode _focusNode;
 
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController();
+    // widget.controller = TextEditingController();
     _focusNode = FocusNode();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    // widget.controller.dispose();
     _focusNode.dispose();
     super.dispose();
   }
@@ -37,7 +40,7 @@ class _StepNumberScreenState extends ConsumerState<StepNumberScreen> {
       child: NumericalInputField(
         textInputType: TextInputType.number,
         prefIcon: Icons.vpn_key_rounded,
-        controller: _controller,
+        controller: widget.controller,
         textInputAction: TextInputAction.done,
         focusNode: _focusNode,
         labelText: const Text("K-step"),
@@ -46,11 +49,10 @@ class _StepNumberScreenState extends ConsumerState<StepNumberScreen> {
           if (value.isEmpty) {
             value = 0.toString();
           }
-          
-          ref.watch(stepNumberStateProvider.notifier).state =
-              int.parse(value);
 
-          ref.read(stepNumberStateProvider.notifier).state.log();
+          ref.watch(widget.stepProvider.notifier).state = int.parse(value);
+
+          ref.read(widget.stepProvider.notifier).state.log();
         },
       ),
     );
