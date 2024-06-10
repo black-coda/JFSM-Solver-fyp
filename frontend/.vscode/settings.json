@@ -6,6 +6,7 @@
         "Kutta",
         "Linearization",
         "multistep",
+        "PECE",
         "Runge",
         "sublist"
     ],

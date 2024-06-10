@@ -239,10 +239,63 @@ From the comparison, it is evident that both the Adams-Bashforth 3-step method a
 
 This comparison demonstrates the effectiveness, accuracy, and reliability of the JF-Solver in approximating the solution of explicit differential equations using the Linear Multistep Method (LMM) given. The application works by accepting the coefficients of the LMM and then solves the differential equation using these coefficients.
 
+\section{Implicit Method(Predictor-Corrector Algorithm): Adams-Moulton Method 4-Step Method (Non-Stiff problem)}
+
+Consider the problem \begin{equation}
+    f(x,y) = x + y
+\end{equation}, with the initial condition $y(0) = 0$, the step-size also given as $h = 0.2$.
+
+We use two LMM methods that are of the same order, the predictor method which is an explicit method, and the corrector method which is an Implicit method, for this example, the predictor method is the 4-step Adam Bashforth given as
+
+\begin{equation}
+    y_{n+4}  = y_{n+3} + h \left(\frac{55}{24}f_{n+3} - \frac{59}{24}f_{n+2} + \frac{37}{24}f_{n+1} - \frac{9}{24}f_{n}\right)
+\end{equation}
+
+The corrector method is the 3-step Adam-Moulton method, which is given as:
+
+\begin{equation}
+    y_{n+3}  = y_{n+2} + h \left(\frac{9}{24}f_{n+3} + \frac{19}{24}f_{n+2} - \frac{5}{24}f_{n+1} + \frac{1}{24}f_{n}\right)
+\end{equation}
+
+both method are of the same order, that is order 4, this is determined by the JF-Solver, and this is discussed in  (Advanced Engineering Mathematics, Erwin Kreyszig,Table 21.9, Pg 914)
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/solver_4.png}
+    \caption{Predicted and Corrected Values of $(4.33)$ }
+\end{figure}
+
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/solver_5.png}
+    \caption{entering $\alpha$ and $\beta$ values into the JF-Solver }
+\end{figure}
+
+\newpage
+we use the JF-Solver to get the solution $(4.33)$ and also analysis the Predictor-Corrector method  used,we get the following result:
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/solver_6.png}
+    \caption{Analysis result of $(4.33)$ }
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/solver_7.png}
+    \caption{solution of $(4.33)$ by JF-Solver}
+\end{figure}
+
+
+\newpage
+
 \section{Implicit Method(Predictor-Corrector Algorithm): Adams-Moulton Method 4-Step Method (Stiff problem)}
 
-
-\section{Implicit Method(Linearization Algorithm): Adams-Moulton Method 4-Step Method (Stiff problem)}
+\section{Implicit Method(Linearization Algorithm): Adams-Moulton Method 4-Step Method}
 
 
 
