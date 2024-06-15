@@ -154,6 +154,7 @@ class _PredictorCorrectorSolverViewState
                             ),
                             const SizedBox(height: 24),
                             const Divider(),
+                            //* The result screen of the app
                             result.isNotEmpty
                                 ? SizedBox(
                                     child: ListView.builder(
@@ -232,6 +233,7 @@ class _PredictorCorrectorSolverViewState
                     ),
                     child: Column(
                       children: [
+                        //* The Graph
                         Text(
                           "Grapher View",
                           style: Theme.of(context).textTheme.headlineMedium,
@@ -393,8 +395,6 @@ class _PredictorCorrectorSolverViewState
         final beta = ref.read(betaProvider);
         final correctorAlpha = ref.read(correctorAlphaProvider);
         final correctorBeta = ref.read(correctorBetaProvider);
-        
-        
 
         result = ref
             .watch(solverProvider)

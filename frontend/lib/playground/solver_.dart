@@ -7,13 +7,13 @@ void main() {
   func(double x, double y) {
     // Example function: dy/dx = x^2 + y^2
     // return math.pow(x, 2) * (1 + y);
-    return x + y;
-    // return 3 * math.pow(x, 2) * y;
+    // return x + y;
+    return 3 * math.pow(x, 2) * y;
   }
 
-  double y0 = 0;
+  double y0 = 1;
   double x0 = 0;
-  double stepSize = 0.2;
+  double stepSize = 0.1;
   int N = 10;
   int predictorStepNumber = 4;
   int correctorStepNumber = 3;

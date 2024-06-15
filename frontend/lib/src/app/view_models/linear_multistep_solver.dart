@@ -169,14 +169,12 @@ class SolverImplementation implements LinearMultistepSolver {
         }
     }
 
-   
-
     log(result.toString());
     return result;
   }
 
   @override
-  List<double> implicitLinearMultistepMethodWithRKMethod({
+  List<double> implicitLinearizationMethod({
     required int stepNumber,
     required List<double> alpha,
     required List<double> beta,
@@ -185,43 +183,45 @@ class SolverImplementation implements LinearMultistepSolver {
     required double x0,
     required double stepSize,
     required int N,
+    required int a,
+    required int b,
   }) {
     List<double> result = List.filled(N, 0, growable: true);
+    //* add initial value to result i.e y0
     result[0] = y0;
 
     List<double> valuesFromRKMethod =
-        fourthOrderRungeKuttaMethod(func, y0, x0, stepSize, N - 1);
+        fourthOrderRungeKuttaExplicitMethod(func, y0, x0, stepSize, stepNumber);
 
+    //* approximate the result from RK method to 6dp
     List<double> approximatedYFromRK =
         valuesFromRKMethod.map((e) => e.approximate(6)).toList();
 
-    // double futureY = approximatedYFromRK.last;
+    //* add approximated to 6dp values from r-k method to result list in a right order
+    result.replaceRange(1, stepNumber - 1, approximatedYFromRK);
 
-    // print("future Y: ")
+//* get the non-zero value of Y from the result list
+    List<double> y = result.sublist(0, stepNumber);
+    log(y.toString(), name: "y1");
 
-    // approximatedYFromRK.removeLast();
+    //* generates values of x based on the step number and initial value x0
+    List<double> x = implicitXValueGenerator(x0, stepSize, stepNumber - 1)
+        .map((e) => e.approximate(2))
+        .toList();
 
-    result.replaceRange(1, stepNumber, approximatedYFromRK);
+    log(x.toString(), name: "x1");
 
-    //* y value
-
-    List<double> y = result.sublist(0, stepNumber + 1);
-
-    //* x value
-    List<double> x =
-        implicitXValueGenerator(x0, stepSize, stepNumber, decimalPlaces: 2);
-
+    //* f values from f1 => f(stepNumber - 1)
     List<double> fValues = [];
 
     //* initial values of alpha and beta
     double betaF = 0;
     double alphaY = 0;
 
-    ///* [Summation]
-
-    for (var i = stepNumber; i <= N; i++) {
-      /// * calculate the values of f0,f1 ... f(stepNumber), then add it to the [fValues]
-      for (var j = 0; j <= stepNumber; j++) {
+    //* summation using the general lmm formulae
+    for (var i = stepNumber; i <= 3; i++) {
+      /// * calculate the values of f0,f1 ... f(stepNumber -1), then add it to the [fValues]
+      for (var j = 0; j < stepNumber; j++) {
         double xj = x[j];
         double yj = y[j];
 
@@ -230,51 +230,58 @@ class SolverImplementation implements LinearMultistepSolver {
 
       //* Approximate fValues to 6dp
       fValues = fValues.map((e) => e.approximate(6)).toList();
+      log(fValues.toString(), name: "fValues");
+      //! Using the formula
 
       //* calculate summation beta * fi
-      for (var k = 0; k <= stepNumber; k++) {
+      for (var k = 0; k < stepNumber - 1; k++) {
         betaF += beta[k] * fValues[k];
       }
 
-      //* calculate summation alpha*y
-      for (var l = 0; l <= stepNumber - 1; l++) {
+      // //* calculate summation alpha*y
+      for (var l = 0; l < stepNumber - 1; l++) {
         alphaY += alpha[l] * y[l];
       }
 
-      //? Calculate the new y => h[beta*f] - alpha*y
-      double nextValueOfY =
-          (stepSize * betaF.approximate(6)) - alphaY.approximate(6);
+      final denominator = alpha.last - stepSize * beta.last * a * x[i];
+      log(denominator.toString(), name: "denominator");
+      final numerator = stepSize * beta.last * b + (stepSize * betaF) - alphaY;
+      log(numerator.toString(), name: "numerator");
+      final nextValueOfY = numerator / denominator;
+      log(nextValueOfY.toString(), name: "next value of y");
 
-      //? add the next value of y calculated to the list of y
-      y.add(nextValueOfY.approximate(6));
+      // //? Calculate the new y => h[beta*f] - alpha*y
+      // double nextValueOfY =
+      //     (stepSize * betaF.approximate(6)) - alphaY.approximate(6);
 
-      y.removeAt(4);
-      y.removeAt(0);
+      // //? add the next value of y calculated to the list of y
+      // y.add(nextValueOfY.approximate(6));
 
-      double yFromPredictor =
-          fourthOrderRungeKuttaMethod(func, nextValueOfY, x[i], stepSize, 1)
-              .first
-              .approximate(6);
-      y.add(yFromPredictor);
+      // //? add the next value of y calculated to the result list
+      // result[i] = nextValueOfY.approximate(6);
 
-      //? add the corrector value to the result list
-      result[i] = nextValueOfY.approximate(6);
+      // //? updating values
 
-      //? updating values
-      //* reset the values of betaF and alpha Y to 0
-      betaF = 0;
-      alphaY = 0;
+      // //* update values of x
+      // for (var m = 0; m < x.length; m++) {
+      //   x[m] += stepSize;
+      // }
 
-      //* reset the fValues to an empty list
-      fValues = [];
+      // //* approximate the values of x to 1dp
+      // x = x.map((e) => e.approximate(1)).toList();
 
-      //* update values of x
-      for (var m = 0; m < x.length; m++) {
-        x[m] += stepSize;
-      }
-      x = x.map((e) => e.approximate(2)).toList();
+      // //* Update values of y by removing the first value in the list
+      // y.removeAt(0);
+
+      // //* reset the values of betaF and alpha Y to 0
+      // betaF = 0;
+      // alphaY = 0;
+
+      // //* reset the fValues to an empty list
+      // fValues = [];
     }
 
+    log(result.toString(), name: "result");
     return result;
   }
 
@@ -476,7 +483,7 @@ class SolverImplementation implements LinearMultistepSolver {
       y.removeAt(0);
 
       log(y.toString());
-      
+
       y.removeLast();
       y.add(nextValueOfY);
 
@@ -513,7 +520,7 @@ class SolverImplementation implements LinearMultistepSolver {
       x.add(x.last + stepSize);
       x.log();
     }
-
+    result.removeLast();
     return result;
   }
 

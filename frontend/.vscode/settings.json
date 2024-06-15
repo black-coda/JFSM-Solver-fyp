@@ -6,11 +6,13 @@
         "Kutta",
         "Linearization",
         "multistep",
+        "Noto",
         "PECE",
         "Runge",
-        "sublist"
+        "sublist",
+        "syncfusion"
     ],
     "editor.fontFamily": "\"consolas\",\"Liga sfmono nerd font\",\"fira code\",\"operator mono lig\",\"jetbrains mono\",\"fira code\",\"dank mono\"",
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "Monospace Dark",
     "editor.fontSize": 16
 }

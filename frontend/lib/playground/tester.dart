@@ -144,7 +144,7 @@ class Playground implements LinearMultistepSolver {
   }
 
   @override
-  List<double> implicitLinearMultistepMethodWithRKMethod({
+  List<double> implicitLinearizationMethod({
     required int stepNumber,
     required List<double> alpha,
     required List<double> beta,
@@ -153,6 +153,8 @@ class Playground implements LinearMultistepSolver {
     required double x0,
     required double stepSize,
     required int N,
+    required int a,
+    required int b,
   }) {
     List<double> result = List.filled(N, 0, growable: true);
     print("1 ==> $result");
@@ -248,7 +250,7 @@ class Playground implements LinearMultistepSolver {
           fourthOrderRungeKuttaMethod(func, nextValueOfY, x[i], stepSize, 1)
               .first
               .approximate(6);
-              
+
       y.add(yFromPredictor);
 
       print("🪲:::  $y");
@@ -317,7 +319,6 @@ class Playground implements LinearMultistepSolver {
     return result;
   }
 
-
   List<double> implicitXValueGenerator(double x0, double stepSize, int N,
       {int decimalPlaces = 1, int implicit = 0}) {
     String firstValueOfX = x0.toString();
@@ -329,8 +330,6 @@ class Playground implements LinearMultistepSolver {
     }
     return xValues.map((e) => double.parse(e)).toList();
   }
-
-
 
   @override
   List<double> implicitLinearMultistepMethodWithPredictorCorrectorMethod({
@@ -445,5 +444,4 @@ class Playground implements LinearMultistepSolver {
 
     return result;
   }
-
 }
