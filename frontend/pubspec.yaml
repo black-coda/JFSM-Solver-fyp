@@ -23,6 +23,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+  msix: ^3.16.7
 
 dependency_overrides:
   intl: 0.19.0
@@ -39,3 +40,11 @@ flutter:
     - family: Noto
       fonts:
         - asset: assets/fonts/math.ttf
+
+msix_config:
+  display_name: JF
+  publisher_display_name: JF Solver
+  identity_name: com.example.frontend
+  msix_version: 1.0.0.0
+  logo_path: C:\Users\monda\OneDrive\Desktop\fyp\frontend\assets\logo\logo.png
+  capabilities: internetClient, location

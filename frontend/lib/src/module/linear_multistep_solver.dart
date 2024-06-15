@@ -47,7 +47,7 @@ abstract class LinearMultistepSolver {
   ///
   /// Returns a list of computed values representing the approximate solution
   /// at each step.
-  List<double> implicitLinearMultistepMethodWithRKMethod({
+  List<double> implicitLinearizationMethod({
     required int stepNumber,
     required List<double> alpha,
     required List<double> beta,
@@ -55,6 +55,8 @@ abstract class LinearMultistepSolver {
     required double y0,
     required double x0,
     required double stepSize,
+    required int a,
+    required int b,
     required int N,
   });
 

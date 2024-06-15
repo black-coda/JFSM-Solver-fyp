@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.5.1)  7 JUN 2024 13:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.5.1)  10 JUN 2024 09:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -9,8 +9,8 @@ LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-01>
 (C:\Users\monda\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
 Document Class: report 2023/05/17 v1.4n Standard LaTeX document class
-(C:\Users\monda\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
-File: size12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+(C:\Users\monda\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count186
 \c@chapter=\count187
@@ -271,7 +271,12 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \c@ALC@depth=\count296
 \ALC@tlm=\skip103
 \algorithmicindent=\skip104
-) (fyp.aux)
+)
+
+LaTeX Warning: Unused global option(s):
+    [13pt].
+
+(fyp.aux)
 \openout1 = `fyp.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
@@ -308,12 +313,12 @@ LaTeX Font Info:    ... okay on input line 46.
 * \topmargin=-38.1381pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=12.0pt
+* \topskip=10.0pt
 * \footskip=30.0pt
-* \marginparwidth=85.0pt
-* \marginparsep=10.0pt
+* \marginparwidth=111.0pt
+* \marginparsep=11.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -354,12 +359,7 @@ File: aul_logo.png Graphic file (type png)
 <use aul_logo.png>
 Package pdftex.def Info: aul_logo.png  used on input line 50.
 (pdftex.def)             Requested size: 128.0387pt x 61.03549pt.
-
-Overfull \hbox (22.45958pt too wide) in paragraph at lines 64--65
- [][] 
- []
-
-[1
+ [1
 
 {C:/Users/monda/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./aul_logo.png>] (fyp.toc
 LaTeX Font Info:    Trying to load font information for U+msa on input line 1.
@@ -369,24 +369,11 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 1.
  (C:\Users\monda\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [2]
-Overfull \hbox (28.58733pt too wide) in paragraph at lines 36--36
- [][] []\OT1/cmr/m/n/12 Implicit Method(Predictor-Corrector Al-go-rithm): Adams-Moulton Method 
- []
-
-)
+) [2])
 \tf@toc=\write3
 \openout3 = `fyp.toc'.
 
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[3] (chapters/1/chapter1.tex [4
+ [3] (chapters/1/chapter1.tex [4
 
 ]
 Chapter 1.
@@ -395,192 +382,180 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5
 
-] [6] [7] [8] [9] [10] [11] [12] [13]) (chapters/2/chapter2.tex [14]
-Chapter 2.
-[15
+]
+Underfull \vbox (badness 2600) has occurred while \output is active []
 
-] [16] [17]
-<chapters/2/StiffEquationNumericalSolvers.svg.png, id=70, 752.8125pt x 292.09125pt>
+ [6] [7] [8] [9] [10] [11]) (chapters/2/chapter2.tex [12]
+Chapter 2.
+[13
+
+] [14]
+<chapters/2/StiffEquationNumericalSolvers.svg.png, id=64, 752.8125pt x 292.09125pt>
 File: chapters/2/StiffEquationNumericalSolvers.svg.png Graphic file (type png)
 <use chapters/2/StiffEquationNumericalSolvers.svg.png>
 Package pdftex.def Info: chapters/2/StiffEquationNumericalSolvers.svg.png  used on input line 77.
 (pdftex.def)             Requested size: 341.43437pt x 132.4783pt.
- [18 <./chapters/2/StiffEquationNumericalSolvers.svg.png>] [19] [20] [21] [22] [23]
-Overfull \hbox (26.43704pt too wide) detected at line 209
-[]\OML/cmm/m/it/12 []y[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 []y[] \OT1/cmr/m/n/12 + [] + \OML/cmm/m/it/12 []y[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 []y[] \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 h []
+ [15 <./chapters/2/StiffEquationNumericalSolvers.svg.png>] [16] [17] [18]
+Overfull \hbox (10.95949pt too wide) in paragraph at lines 190--191
+[]\OT1/cmr/m/n/10 Another im-plicit meth-ods for stiff ODEs is the Back-ward Dif-fer-en-ti-a-tion For-mula (BDF).Backward
  []
 
-[24] [25]
-Overfull \hbox (7.81958pt too wide) detected at line 252
-[]\OML/cmm/m/it/12 c[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 [];  c[] \OT1/cmr/m/n/12 = [](\OML/cmm/m/it/12 j[] \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 ^^L[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ;  c[] \OT1/cmr/m/n/12 = [] [] \OML/cmm/m/it/12 ;  c[] \OT1/cmr/m/n/12 = [] []
+[19] [20] [21] [22] [23]) (chapters/3/chapter3.tex [24]
+Chapter 3.
+[25
+
+]
+Overfull \hbox (6.20941pt too wide) in paragraph at lines 14--15
+[]\OT1/cmr/m/n/10 Furthermore, Flut-ter boasts ex-cel-lent per-for-mance char-ac-ter-is-tics, thanks to its high-performance
  []
 
 [26] [27] [28]
-Overfull \hbox (10.28632pt too wide) in paragraph at lines 315--316
-[]\OT1/cmr/m/n/12 The col-lo-ca-tion method in-volves se-lect-ing a set of col-lo-ca-tion points $\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 x[]; x[]; [] ; x[]\OMS/cmsy/m/n/12 g$
- []
-
-) (chapters/3/chapter3.tex [29]
-Chapter 3.
-[30
-
-]
-Overfull \hbox (11.67242pt too wide) in paragraph at lines 25--25
-|[]\OT1/cmr/bx/n/17.28 Module 1: Anal-y-sis of Lin-ear mul-ti-step method| 
- []
-
-[31] [32]
-Overfull \hbox (1.32643pt too wide) in paragraph at lines 100--101
-[]\OT1/cmr/m/n/12 By fol-low-ing this al-go-rithm, you can de-ter-mine whether a lin-ear mul-ti-step method
- []
-
-[33] [34]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 177.
  (C:\Users\monda\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 177.
- [35] [36] [37] [38] [39] [40] [41] [42]
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+ [29] [30] [31] [32] [33] [34] [35]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 446.
- [43]
-Overfull \hbox (14.1742pt too wide) in paragraph at lines 459--460
-[]\OT1/cmr/m/n/12 Use Runge-Kutta method to com-pute the ini-tial value $\OML/cmm/m/it/12 y[]$ \OT1/cmr/m/n/12 and set $[][1]$. 
+ [36] [37]
+Overfull \hbox (1.29341pt too wide) in paragraph at lines 493--494
+\OT1/cmr/m/n/10 next val-ues of $\OML/cmm/m/it/10 y$\OT1/cmr/m/n/10 . In the code, this is achieved by call-ing the \OT1/cmtt/m/n/10 explicitLinearMultistepMethod
  []
 
-[44] [45]) (chapters/4/chapter4.tex [46]
+) (chapters/4/chapter4.tex [38]
 Chapter 4.
+[39
 
-Overfull \hbox (31.8425pt too wide) in paragraph at lines 2--2
-|\OT1/cmr/bx/n/17.28 Illustrative Nu-mer-i-cal Ex-am-ples Demon-strat-ing Solver
- []
-
-[47
-
-]
-Overfull \hbox (18.13376pt too wide) in paragraph at lines 42--43
-[]\OT1/cmr/m/n/12 From the afore-men-tioned re-sults, it is ev-i-dent that all co-ef-fi-cients $\OML/cmm/m/it/12 c[]; c[]; c[]; c[]; c[]; c[]; c[]$
- []
-
-[48]
-<chapters/4/image/1.png, id=175, 971.88094pt x 569.12625pt>
+] [40]
+<chapters/4/image/1.png, id=153, 971.88094pt x 569.12625pt>
 File: chapters/4/image/1.png Graphic file (type png)
 <use chapters/4/image/1.png>
 Package pdftex.def Info: chapters/4/image/1.png  used on input line 73.
 (pdftex.def)             Requested size: 426.79135pt x 249.92133pt.
-<chapters/4/image/2.png, id=176, 955.31906pt x 532.23843pt>
+<chapters/4/image/2.png, id=154, 955.31906pt x 532.23843pt>
 File: chapters/4/image/2.png Graphic file (type png)
 <use chapters/4/image/2.png>
 Package pdftex.def Info: chapters/4/image/2.png  used on input line 79.
 (pdftex.def)             Requested size: 426.79135pt x 237.77524pt.
- [49 <./chapters/4/image/1.png>]
-Overfull \hbox (81.64247pt too wide) detected at line 118
+ [41 <./chapters/4/image/1.png>]
+Overfull \hbox (14.754pt too wide) detected at line 118
 []
  []
 
-[50 <./chapters/4/image/2.png>] [51]
-<chapters/4/image/5.png, id=189, 948.54375pt x 535.2497pt>
+[42 <./chapters/4/image/2.png>] [43]
+<chapters/4/image/5.png, id=167, 948.54375pt x 535.2497pt>
 File: chapters/4/image/5.png Graphic file (type png)
 <use chapters/4/image/5.png>
 Package pdftex.def Info: chapters/4/image/5.png  used on input line 161.
 (pdftex.def)             Requested size: 426.79135pt x 240.82747pt.
-<chapters/4/image/6.png, id=190, 951.555pt x 531.48563pt>
+<chapters/4/image/6.png, id=168, 951.555pt x 531.48563pt>
 File: chapters/4/image/6.png Graphic file (type png)
 <use chapters/4/image/6.png>
 Package pdftex.def Info: chapters/4/image/6.png  used on input line 167.
 (pdftex.def)             Requested size: 426.79135pt x 238.37967pt.
- [52] [53 <./chapters/4/image/5.png> <./chapters/4/image/6.png>]
-<chapters/4/image/solver_3.png, id=199, 1927.2pt x 1084.05pt>
+ [44 <./chapters/4/image/5.png>]
+<chapters/4/image/solver_3.png, id=173, 1927.2pt x 1084.05pt>
 File: chapters/4/image/solver_3.png Graphic file (type png)
 <use chapters/4/image/solver_3.png>
 Package pdftex.def Info: chapters/4/image/solver_3.png  used on input line 226.
 (pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
- [54]
-<chapters/4/image/solver_2.png, id=203, 1927.2pt x 1084.05pt>
+<chapters/4/image/solver_2.png, id=174, 1927.2pt x 1084.05pt>
 File: chapters/4/image/solver_2.png Graphic file (type png)
 <use chapters/4/image/solver_2.png>
 Package pdftex.def Info: chapters/4/image/solver_2.png  used on input line 232.
 (pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
- [55 <./chapters/4/image/solver_3.png>]
-Overfull \hbox (36.43843pt too wide) in paragraph at lines 242--242
-|[]\OT1/cmr/bx/n/17.28 Implicit Method(Predictor-Corrector Al-go-rithm):
+ [45 <./chapters/4/image/6.png>] [46 <./chapters/4/image/solver_3.png> <./chapters/4/image/solver_2.png>]
+Overfull \hbox (19.93152pt too wide) in paragraph at lines 242--242
+|[]\OT1/cmr/bx/n/14.4 Implicit Method(Predictor-Corrector Al-go-rithm): Adams-
+ []
+
+<chapters/4/image/solver_4.png, id=184, 743.02594pt x 377.15906pt>
+File: chapters/4/image/solver_4.png Graphic file (type png)
+<use chapters/4/image/solver_4.png>
+Package pdftex.def Info: chapters/4/image/solver_4.png  used on input line 264.
+(pdftex.def)             Requested size: 426.79135pt x 216.64034pt.
+<chapters/4/image/solver_5.png, id=185, 1927.2pt x 1084.05pt>
+File: chapters/4/image/solver_5.png Graphic file (type png)
+<use chapters/4/image/solver_5.png>
+Package pdftex.def Info: chapters/4/image/solver_5.png  used on input line 272.
+(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
+[47] [48 <./chapters/4/image/solver_4.png> <./chapters/4/image/solver_5.png>]
+<chapters/4/image/solver_6.png, id=194, 1927.2pt x 1084.05pt>
+File: chapters/4/image/solver_6.png Graphic file (type png)
+<use chapters/4/image/solver_6.png>
+Package pdftex.def Info: chapters/4/image/solver_6.png  used on input line 282.
+(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
+<chapters/4/image/solver_7.png, id=195, 950.04938pt x 535.2497pt>
+File: chapters/4/image/solver_7.png Graphic file (type png)
+<use chapters/4/image/solver_7.png>
+Package pdftex.def Info: chapters/4/image/solver_7.png  used on input line 289.
+(pdftex.def)             Requested size: 426.79135pt x 240.45177pt.
+ [49 <./chapters/4/image/solver_6.png>]
+Overfull \hbox (19.93152pt too wide) in paragraph at lines 296--296
+|[]\OT1/cmr/bx/n/14.4 Implicit Method(Predictor-Corrector Al-go-rithm): Adams-
  []
 
 
-Overfull \hbox (2.83644pt too wide) in paragraph at lines 242--242
-\OT1/cmr/bx/n/17.28 Adams-Moulton Method 4-Step Method (Stiff
+Overfull \hbox (32.05641pt too wide) in paragraph at lines 298--298
+|[]\OT1/cmr/bx/n/14.4 Implicit Method(Linearization Al-go-rithm): Adams-Moulton
  []
 
-
-Overfull \hbox (51.38641pt too wide) in paragraph at lines 245--245
-|[]\OT1/cmr/bx/n/17.28 Implicit Method(Linearization Al-go-rithm): Adams-
- []
-
-) (chapters/5/chapter5.tex [56 <./chapters/4/image/solver_2.png>]
+) (chapters/5/chapter5.tex [50 <./chapters/4/image/solver_7.png>]
 Chapter 5.
-[57
+[51
 
-] [58] [59]) (fyp.bbl [60]
-Underfull \hbox (badness 1546) in paragraph at lines 118--141
-\OT1/cmr/m/n/12 tions.  \OT1/cmr/m/it/12 Math-e-mat-ics and Com-put-ers in Sim-u-la-tion\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 79\OT1/cmr/m/n/12 (6), 1834-1845.
+] [52]
+Overfull \hbox (4.86946pt too wide) in paragraph at lines 44--45
+[]\OT1/cmr/bx/n/10 Expanding Nu-mer-i-cal Meth-ods\OT1/cmr/m/n/10 : In-cor-po-rate ad-di-tional nu-mer-i-cal meth-ods be-yond LMMs
  []
 
-
-Underfull \hbox (badness 7064) in paragraph at lines 176--192
-[]\OT1/cmr/m/n/12 Butler, J. S.  (2022).  \OT1/cmr/m/it/12 Nu-mer-i-cal Anal-y-sis Book - Chap-ter 05 -
- []
-
-
-Underfull \hbox (badness 6380) in paragraph at lines 176--192
-\OT1/cmr/m/it/12 IVP Con-sis-tent Con-ver-gence Sta-bil-ity.  \OT1/cmr/m/n/12 On-line.  Re-trieved from
+) (fyp.bbl [53]
+Underfull \hbox (badness 1661) in paragraph at lines 176--192
+\OT1/cmr/m/it/10 gence Sta-bil-ity.  \OT1/cmr/m/n/10 On-line.  Re-trieved from $\OT1/cmtt/m/n/10 https :// john [] -s [] -butler [] -dit [] .github [] .io /
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 176--192
-\OT1/cmtt/m/n/12 https :// john [] -s [] -butler [] -dit [] .github [] .io / NumericalAnalysisBook /
+\OT1/cmtt/m/n/10 NumericalAnalysisBook / Chapter % 2005 % 20 [] - % 20IVP % 20Consistent % 20Convergence %
+ []
+
+[54
+
+]
+Underfull \hbox (badness 1960) in paragraph at lines 799--814
+[]\OT1/cmr/m/n/10 Wikipedia con-trib-u-tors.  (2023a).  \OT1/cmr/m/it/10 Col-lo-ca-tion method --- Wikipedia, the free en-cy-clo-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 176--192
-\OT1/cmtt/m/n/12 Chapter % 2005 % 20 [] - % 20IVP % 20Consistent % 20Convergence % 20Stability /
- []
-
-[61
-
-] [62]
-Underfull \hbox (badness 1448) in paragraph at lines 854--870
-[]\OT1/cmr/m/n/12 Wikiversity.  (2019).  \OT1/cmr/m/it/12 Nu-mer-i-cal anal-y-sis/sta-bil-ity of mul-ti-step meth-ods ---
+Underfull \hbox (badness 1400) in paragraph at lines 799--814
+\OT1/cmr/m/it/10 pe-dia.  \OT1/cmr/m/n/10 Re-trieved from $\OT1/cmtt/m/n/10 https :// en [] .wikipedia [] .org / w / index [] .php [] ?title = Collocation []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 854--870
-\OT1/cmr/m/it/12 wikiver-sity,.  \OT1/cmr/m/n/12 Re-trieved from $\OT1/cmtt/m/n/12 \url{https :// en [] .wikiversity [] .org /
+Underfull \hbox (badness 4531) in paragraph at lines 854--870
+[]\OT1/cmr/m/n/10 Wikiversity.  (2019).  \OT1/cmr/m/it/10 Nu-mer-i-cal anal-y-sis/sta-bil-ity of mul-ti-step meth-ods --- wikiver-
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 854--870
-\OT1/cmtt/m/n/12 w / index [] .php [] ?title = Numerical [] []Analysis / stability [] []of [] []Multistep []
- []
-
-) [63] (fyp.aux)
+[55]) [56] (fyp.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-01>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 6946 strings out of 474592
- 109448 string characters out of 5745800
- 1952533 words of memory out of 5000000
- 29000 multiletter control sequences out of 15000+600000
- 567949 words of font info for 72 fonts, out of 8000000 for 9000
+ 6966 strings out of 474592
+ 110351 string characters out of 5745800
+ 1956533 words of memory out of 5000000
+ 29023 multiletter control sequences out of 15000+600000
+ 565903 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  79i,12n,93p,1143b,579s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\monda\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on fyp.pdf (63 pages, 662037 bytes).
+ <C:\Users\monda\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on fyp.pdf (56 pages, 950122 bytes).
 PDF statistics:
- 308 PDF objects out of 1000 (max. 8388607)
+ 309 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

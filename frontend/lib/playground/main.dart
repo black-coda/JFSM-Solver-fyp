@@ -2,24 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:expressions/expressions.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('ODE Solver'),
+          title: const Text('ODE Solver'),
         ),
-        body: FunctionInput(),
+        body: const FunctionInput(),
       ),
     );
   }
 }
 
 class FunctionInput extends StatefulWidget {
+  const FunctionInput({super.key});
+
   @override
   _FunctionInputState createState() => _FunctionInputState();
 }
@@ -39,7 +43,7 @@ class _FunctionInputState extends State<FunctionInput> {
             key: _formKey,
             child: TextFormField(
               controller: _controller,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Enter function (e.g., x*sin(x))',
               ),
               validator: (value) {
@@ -55,7 +59,7 @@ class _FunctionInputState extends State<FunctionInput> {
               },
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
@@ -65,7 +69,7 @@ class _FunctionInputState extends State<FunctionInput> {
                 // Now you can use `func` as needed in your ODE solver
               }
             },
-            child: Text('Evaluate Function'),
+            child: const Text('Evaluate Function'),
           ),
         ],
       ),
@@ -73,7 +77,7 @@ class _FunctionInputState extends State<FunctionInput> {
   }
 
   double evaluateExpression(Expression expression, double x, double y) {
-    final evaluator = const ExpressionEvaluator();
+    const evaluator = ExpressionEvaluator();
     final variables = {'x': x, 'y': y};
     return evaluator.eval(expression, variables) as double;
   }
