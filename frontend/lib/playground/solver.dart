@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 
 import 'package:frontend/src/app/view_models/linear_multistep_solver.dart';
 

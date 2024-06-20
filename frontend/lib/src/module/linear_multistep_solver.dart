@@ -35,7 +35,7 @@ abstract class LinearMultistepSolver {
     required double y0,
     required double x0,
     required double stepSize,
-    required int N,
+    required int xN,
   });
 
   /// Computes the solution using an implicit linear multistep method.
@@ -67,6 +67,19 @@ abstract class LinearMultistepSolver {
     required List<double> correctorBeta,
     required List<double> predictorAlpha,
     required List<double> predictorBeta,
+    required double Function(double initialValueX, double initialValueY) func,
+    required double y0,
+    required double x0,
+    required double stepSize,
+    required int xN,
+  });
+
+
+
+  List<double> explicitLinearMultistepForImplicitMethod({
+    required int stepNumber,
+    required List<double> alpha,
+    required List<double> beta,
     required double Function(double initialValueX, double initialValueY) func,
     required double y0,
     required double x0,

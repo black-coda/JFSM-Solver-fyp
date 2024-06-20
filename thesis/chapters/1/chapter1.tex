@@ -127,7 +127,7 @@ The significance of this study lies in its contributions to both theoretical und
   \item \textbf{Linear Multistep Method (LMM):} A numerical method for approximating the solution of an ordinary differential equation (ODE) at discrete time points using a linear combination of past and present function values. LMMs typically involve using multiple previous function values to compute the next value, hence the term "multistep".The general linear multistep method is given as
   
   \begin{equation}\label{eq:linear_multistep}
-    \sum_{j=0}^{k} \alpha_j y_{n+j} = h \sum_{j=0}^{k} \beta_j f(t_{n+j}, y_{n+j})
+    \sum_{j=0}^{k} \alpha_j y_{n+j} = h \sum_{j=0}^{k} \beta_j f_{n+j}
   \end{equation}
     
     \item \textbf{Explicit Method:} A type of linear multistep method in which the value of the unknown function at the next time step is explicitly computed using only known values at previous time steps. The formula for the next value does not involve solving any equations or iterative procedures.
