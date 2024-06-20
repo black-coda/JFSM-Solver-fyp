@@ -1,11 +1,15 @@
 {
     "cSpell.words": [
         "Durand",
+        "fatokun",
         "Grapher",
+        "ispe",
         "Kerner",
+        "Keypress",
         "Kutta",
         "Linearization",
         "multistep",
+        "Newpredicted",
         "Noto",
         "PECE",
         "Runge",
@@ -13,6 +17,6 @@
         "syncfusion"
     ],
     "editor.fontFamily": "\"consolas\",\"Liga sfmono nerd font\",\"fira code\",\"operator mono lig\",\"jetbrains mono\",\"fira code\",\"dank mono\"",
-    "workbench.colorTheme": "Monospace Dark",
+    "workbench.colorTheme": "One Dark Pro Mix",
     "editor.fontSize": 16
 }

@@ -3,12 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/app/controller/is_imp_or_exp_controller.dart';
 import 'package:frontend/src/app/controller/key.dart';
 import 'package:frontend/src/app/view/screens/solver/implicit_solver_view.dart';
-import 'package:frontend/src/app/view/screens/stepper_screen.dart';
-import 'package:frontend/src/app/view/screens/result_of_explicit_method_test.dart';
+import 'package:frontend/src/app/view/screens/analysis/stepper_screen.dart';
+import 'package:frontend/src/app/view/screens/analysis/result_of_explicit_method_test.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'result_of_implcit_PE_method_test.dart';
-import 'solver/explicit_and_implicit_linearization_solver_view.dart';
+import '../solver/explicit_and_implicit_linearization_solver_view.dart';
 
 class DashboardView extends ConsumerStatefulWidget {
   const DashboardView({super.key});
@@ -22,7 +22,6 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
   @override
   void initState() {
     super.initState();
-    ref.read(isAnalysisCollectorFormValidProvider.notifier).state = false;
   }
 
   final _page = <Widget>[
@@ -49,6 +48,9 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
           children: [
             IconButton.outlined(
               onPressed: () {
+                if (_pageController.page == 0) {
+                  Navigator.of(context).pop();
+                }
                 _pageController.previousPage(
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.easeIn);

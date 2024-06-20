@@ -1,10 +1,7 @@
 // ignore_for_file: avoid_print
 
-import 'dart:math';
 
 import 'package:equations/equations.dart';
-import 'package:frontend/src/utils/extension/approximation.dart';
-import 'package:frontend/src/utils/extension/factorial.dart';
 import 'package:frontend/src/utils/extension/unique_element_checker.dart';
 import 'package:frontend/src/utils/extension/value_greater_than_or_equal_to_one.dart';
 
@@ -73,13 +70,6 @@ void main() {
   //   e: -1,
   // );
 
-  final e = Quartic(
-    a: const Complex.fromReal(1),
-    b: Complex.fromRealFraction(Fraction(-1, 1)),
-    c: const Complex.fromReal(0),
-    d: const Complex.fromReal(0),
-    e: const Complex.fromReal(0),
-  );
 
   final eq = DurandKerner.realEquation(coefficients: [1, -1, 0, 0, 0]);
   print(eq);
@@ -90,10 +80,8 @@ void main() {
   for (var element in solutions) {
     print(element.abs());
   }
-  final solutionGreaterThanOne =
-      solutions.where((element) => element.abs() > 1).toList();
-  final solutionLesserThanOne =
-      solutions.where((element) => element.abs() < 1).toList();
+  solutions.where((element) => element.abs() > 1).toList();
+  solutions.where((element) => element.abs() < 1).toList();
   // print(">1: ${solutionGreaterThanOne.length}");
   // print("<1: ${solutionLesserThanOne.length}");
   print(solutions.containsMoreThanOneOne());

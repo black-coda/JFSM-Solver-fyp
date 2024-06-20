@@ -9,7 +9,7 @@ class MsgDialog {
   }) async {
     return await showDialog(
       context: context,
-      builder: (context) => AlertDialog.adaptive(),
+      builder: (context) => const AlertDialog.adaptive(),
     );
   }
 }

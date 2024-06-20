@@ -1,16 +1,16 @@
 # Fdb version 4
-["bibtex fyp"] 1718007996 "fyp.aux" "fyp.bbl" "fyp" 1718008021 0
+["bibtex fyp"] 1718745050 "fyp.aux" "fyp.bbl" "fyp" 1718767206 0
   "./bib/Proposal.bib" 1716951719 15221 1eaa01f5d09949b6084d19de6276afb0 ""
   "C:/Users/monda/AppData/Local/Programs/MiKTeX/bibtex/bst/apacite/apacite.bst" 1374952728 146156 9d7b79dbf9d91133318126032cff8c27 ""
-  "fyp.aux" 1718008016 18942 d83387aaa0626f61dd6483be7c289535 "pdflatex"
+  "fyp.aux" 1718767204 18775 6cd417fa91cafe2f0cb919911888f320 "pdflatex"
   (generated)
   "fyp.bbl"
   "fyp.blg"
   (rewritten before read)
-["pdflatex"] 1718007999 "c:/Users/monda/OneDrive/Desktop/fyp/thesis/fyp.tex" "fyp.pdf" "fyp" 1718008021 0
+["pdflatex"] 1718767201 "c:/Users/monda/OneDrive/Desktop/fyp/thesis/fyp.tex" "fyp.pdf" "fyp" 1718767206 0
   "C:/Users/monda/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1717149186 83461 914bf55f40d58281bc7055928b6bef89 ""
   "C:/Users/monda/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1702853700 11548 0fa82d592ba5b863c3fea14efb5ae396 ""
-  "C:/Users/monda/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1714546411 24212833 69e15f49ce67930d42a58731288a838b ""
+  "C:/Users/monda/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1718588341 24212834 56ed3baecc1407c5d950abe99301bd1b ""
   "C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1000.tfm" 993062508 1436 c7f957a372ef2fbe93c0982f96625e12 ""
   "C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
   "C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1233951854 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -99,12 +99,12 @@
   "C:/Users/monda/AppData/Local/Programs/MiKTeX/tex/latex/tocloft/tocloft.sty" 1578908763 37263 3e78d14f0f4b1a30560fea5e04de805d ""
   "C:/Users/monda/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "aul_logo.png" 1667997723 45877 76cf746adec6fd1e56b216cf47c0c853 ""
-  "c:/Users/monda/OneDrive/Desktop/fyp/thesis/fyp.tex" 1717943599 2869 bc402850e2e240c4d2ddf764c97b75c7 ""
-  "chapters/1/chapter1.tex" 1717036409 23250 c0471845fc14f306adde3ff32d98729a ""
+  "c:/Users/monda/OneDrive/Desktop/fyp/thesis/fyp.tex" 1718745144 5364 1f694e88ff30a280c1b2b028509e0991 ""
+  "chapters/1/chapter1.tex" 1718763976 23238 abff6700e9f5d5cdd04220879555492b ""
   "chapters/2/StiffEquationNumericalSolvers.svg.png" 1713226082 19037 2b351bdf1f8c17356803e32fe5f82364 ""
   "chapters/2/chapter2.tex" 1717038028 30810 825531df6399fc882c023fe7342b0fe0 ""
-  "chapters/3/chapter3.tex" 1717648749 32726 9248e2cf923ac626b7a82ca40990c616 ""
-  "chapters/4/chapter4.tex" 1718007980 14688 481bda90c371d4f56886c67cb2dcd7e6 ""
+  "chapters/3/chapter3.tex" 1718766820 32714 a87cdcb929c620b2fb5dae28f7be0063 ""
+  "chapters/4/chapter4.tex" 1718767199 14552 8747116ed4ed46dee8963292e970d247 ""
   "chapters/4/image/1.png" 1715111367 88677 1b1e8b2da9bbb3e41e5c2e8d5ca3cc66 ""
   "chapters/4/image/2.png" 1715111400 23639 2f5a2f4d885952968c0672d177a83b9c ""
   "chapters/4/image/5.png" 1715982804 86215 789f24ffff9f619b26bbe2550bf8c6db ""
@@ -116,13 +116,17 @@
   "chapters/4/image/solver_6.png" 1717946783 73075 1bb4056356591eff9561199cdcd036c3 ""
   "chapters/4/image/solver_7.png" 1717942773 60968 014bfd09ecad65363c05a9ea86b36436 ""
   "chapters/5/chapter5.tex" 1717763132 5376 dba601690d51e0e890dd362f600ca9b9 ""
-  "fyp.aux" 1718008016 18942 d83387aaa0626f61dd6483be7c289535 "pdflatex"
-  "fyp.bbl" 1718007998 24026 cddde04ea0d2dc924fb4f9fcaffcbdf5 "bibtex fyp"
-  "fyp.tex" 1717943599 2869 bc402850e2e240c4d2ddf764c97b75c7 ""
-  "fyp.toc" 1718008016 3878 b0cdb5671b2210c5b1fa27b4ef1d5040 "pdflatex"
+  "fyp.aux" 1718767204 18775 6cd417fa91cafe2f0cb919911888f320 "pdflatex"
+  "fyp.bbl" 1718745051 24026 cddde04ea0d2dc924fb4f9fcaffcbdf5 "bibtex fyp"
+  "fyp.lof" 1718767204 1313 47673974c58879bc3534dfba4abf4230 "pdflatex"
+  "fyp.lot" 1718767204 245 d763171a745b49cfc77b4a78d24d4c76 "pdflatex"
+  "fyp.tex" 1718745144 5364 1f694e88ff30a280c1b2b028509e0991 ""
+  "fyp.toc" 1718767204 3752 783578b36d69c245df491f3b6cc21c53 "pdflatex"
   (generated)
   "fyp.aux"
+  "fyp.lof"
   "fyp.log"
+  "fyp.lot"
   "fyp.pdf"
   "fyp.toc"
   (rewritten before read)

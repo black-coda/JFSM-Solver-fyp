@@ -1,11 +1,11 @@
 extension StringCalculationExtension on String {
   String calculateFromString() {
     // Split the string into parts based on '/', '-' symbols
-    final parts = this.split(RegExp(r'[\/]'));
+    final parts = split(RegExp(r'[\/]'));
 
     // If there are no '/' symbols, check for '-' symbols to handle negative numbers
     if (parts.length <= 1) {
-      final negativeParts = this.split('-');
+      final negativeParts = split('-');
       if (negativeParts.length <= 1) return this;
 
       // If there's only one '-' symbol at the beginning, it indicates a negative number

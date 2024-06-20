@@ -1,4 +1,4 @@
-\documentclass[13pt, a4paper, twoside]{report}
+\documentclass[a4paper, twoside]{report}
 \usepackage{geometry}
 \usepackage{setspace}
 \usepackage{graphicx}
@@ -60,7 +60,7 @@
    \textsc{Prof J.O Fatokun}
   
    
-   \text{Department Of Mathematics And Statistics} \\
+   \text{Department Of Mathematics} \\
    \text{In Partial Fulfillment Of The Requirement For The Award Of The Bachelor Of Science}
    
 
@@ -70,8 +70,51 @@
    {\large \today\par}
 \end{titlepage}
 
+
+%Acknowledgements
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  \LARGE\textbf{Acknowledgments}
+  
+  \vspace{1cm}
+  \large
+  I would like to express my deepest gratitude to God, the source of all wisdom and strength, for guiding me throughout this academic journey.
+
+  \vspace{0.5cm}
+  My heartfelt thanks go to my mother, whose unwavering support, encouragement, and sacrifices have been the driving force behind my success.
+
+  \vspace{0.5cm}
+  I am immensely grateful to my supervisor, Prof J.O Fatokun, for their invaluable guidance, mentorship, and expertise. Their insights and encouragement significantly contributed to the completion of this project.
+
+  \vspace{0.5cm}
+  Special thanks to Dr. Akewe, Dr. Okoro, Dr. Evans, and Dr. Akinnukawe for their support, constructive feedback, and contributions to my academic and personal development.
+
+  \vspace{2cm}
+  \textit{Your support has been instrumental, and I am deeply appreciative.}
+\end{titlepage}
+
+% Abstract
+\begin{abstract}
+
+
+
+
+This research focuses on the development and evaluation of a  numerical solver designed to solve differential equations efficiently. The solver's performance is assessed through detailed numerical examples, specifically focusing on linear multistep methods. We analyze Quade's Method and the 3-Step Backward Differentiation Formula (BDF), verifying their orders and stability characteristics. Quade's Method is shown to be a sixth-order method with an error constant of \(-0.0090\), while the 3-Step BDF is determined to be a third-order method with an error constant of \(-0.1364\). The proposed solver, referred to as the JF-Solver, is demonstrated to accurately replicate these theoretical results and perform stability and convergence analyses effectively.
+
+The JF-Solver is further validated by comparing it to the Adams-Bashforth and Adams-Moulton methods in solving differential equations. For non-stiff problems, the solver is tested using the Adams-Bashforth 3-step method, and for stiff problems, it is tested using the Adams-Moulton 4-step method. The results show that the JF-Solver not only provides accurate approximations but also offers superior computation speed and efficiency. This comprehensive analysis highlights the JF-Solver's potential as a valuable tool for numerical analysis in solving both non-stiff and stiff differential equations.
+  \end{abstract}
+
 % Table of Contents
 \tableofcontents
+
+
+\newpage
+% List of Figures (optional)
+\listoffigures
+
+% List of Tables (optional)
+\listoftables
 
 \chapter*{List of Abbreviations}
 \begin{tabular}{ll}

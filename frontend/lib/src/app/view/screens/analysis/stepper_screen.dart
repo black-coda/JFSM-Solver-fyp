@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/app/controller/step_number_controller.dart';
 
-import 'package:frontend/src/app/view/screens/step_number_screen.dart';
-import 'package:frontend/src/app/view/screens/type_of_lmm_screen.dart';
+import 'package:frontend/src/app/view/screens/analysis/step_number_screen.dart';
 
 import 'analysis_value_collector.dart';
 
@@ -135,7 +134,7 @@ class FactScreen extends StatelessWidget {
           ),
           SizedBox(height: 12),
           Text(
-            "Welcome to the Analysis Value Collector screen! This form is a crucial step in the process of solving a linear multistep method. Below are the steps to effectively fill in the form:",
+            "Welcome to the Analysis Value Collector screen! This form is a crucial step in the process of analyzing a k-step linear multistep method for convergence, order, and error constant. Below are the steps to effectively fill in the form:",
           ),
           SizedBox(height: 12),
           Text(

@@ -1,11 +1,8 @@
 import 'dart:developer' as dev;
-import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/app/controller/alpha_and_beta.controller.dart';
-import 'package:frontend/src/app/controller/is_imp_or_exp_controller.dart';
 import 'package:frontend/src/app/controller/method_implementation_controller.dart';
 import 'package:frontend/src/app/controller/step_number_controller.dart';
 import 'package:frontend/src/utils/extension/format_string_to_number.dart';
@@ -58,37 +55,7 @@ class _PredictorCorrectorSolverViewState
   Widget build(BuildContext context) {
     ref.watch(solverProvider);
 
-    Widget bottomTitleWidgets(double value, TitleMeta meta, double chartWidth) {
-      if (value % 2 == 0) {
-        return Container();
-      }
-      final style = TextStyle(
-        color: Theme.of(context).colorScheme.primary,
-        fontWeight: FontWeight.bold,
-        fontSize: min(18, 18 * chartWidth / 300),
-      );
-      return SideTitleWidget(
-        axisSide: meta.axisSide,
-        space: 1,
-        child: Text(meta.formattedValue, style: style),
-      );
-    }
 
-    Widget leftTitleWidgets(double value, TitleMeta meta, double chartWidth) {
-      if (value % 2 == 0) {
-        return const SizedBox();
-      }
-      final style = TextStyle(
-        color: Theme.of(context).colorScheme.primary,
-        fontWeight: FontWeight.bold,
-        fontSize: min(18, 18 * chartWidth / 300),
-      );
-      return SideTitleWidget(
-        axisSide: meta.axisSide,
-        space: 16,
-        child: Text(meta.formattedValue, style: style),
-      );
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -384,7 +351,7 @@ class _PredictorCorrectorSolverViewState
         final y0 = double.tryParse(y0Controller.text) ?? 0.0;
         final x0 = double.tryParse(x0Controller.text) ?? 0.0;
         final stepSize = double.tryParse(stepSizeController.text) ?? 0.0;
-        final n = int.tryParse(nController.text) ?? 0;
+        final xN = int.tryParse(nController.text) ?? 0;
 
         //! step number
         final predictorStepNumber = ref.read(stepNumberStateProvider);
@@ -408,13 +375,15 @@ class _PredictorCorrectorSolverViewState
               y0: y0,
               x0: x0,
               stepSize: stepSize,
-              N: n,
+              xN: xN,
               correctorStepNumber: correctorStepNumber,
             );
 
+                int N = ((xN - x0) / stepSize).ceil();
+
         xValues = ref
             .read(solverProvider)
-            .implicitXValueGenerator(x0, stepSize, n - 1);
+            .implicitXValueGenerator(x0, stepSize, N - 1);
 
         // Validate xValues and result
         // if (xValues.any((x) => x.isNaN || x.isInfinite) ||
@@ -422,7 +391,7 @@ class _PredictorCorrectorSolverViewState
         //   throw UnsupportedError("Calculation resulted in NaN or Infinity");
         // }
         dev.log(xValues.toString());
-        ref.refresh(solverProvider);
+        ref.invalidate(solverProvider);
         // setState(() {});
       } catch (e) {
         dev.log(e.toString());

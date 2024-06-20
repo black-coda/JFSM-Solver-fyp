@@ -3,12 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/app/controller/alpha_and_beta.controller.dart';
 import 'package:frontend/src/app/controller/is_imp_or_exp_controller.dart';
 import 'package:frontend/src/app/controller/key.dart';
-import 'package:frontend/src/app/controller/method_implementation_controller.dart';
 import 'package:frontend/src/app/controller/step_number_controller.dart';
-import 'package:frontend/src/app/view/screens/step_number_screen.dart';
-import 'package:frontend/src/app/view/screens/stepper_screen.dart';
-import 'package:frontend/src/utils/devtool/devtool.dart';
+import 'package:frontend/src/app/view/screens/analysis/step_number_screen.dart';
 import 'package:frontend/src/utils/extension/format_string_to_number.dart';
+
 
 class AnalysisValueCollectorScreen extends StatefulWidget {
   const AnalysisValueCollectorScreen({super.key});
@@ -103,7 +101,7 @@ class _AnalysisValueCollectorScreenState
                           value: ref
                               .read(isImplicitPredictorCorrectorMethodProvider),
                           onChanged: (value) {
-                            //! invalidate the prvious provider values
+                            //! invalidate the previous provider values
                             ref.invalidate(correctorAlphaProvider);
                             ref.read(alphaProvider.notifier).state = [0];
                             ref.read(betaProvider.notifier).state = [0];

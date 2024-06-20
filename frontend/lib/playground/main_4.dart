@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 import 'package:math_keyboard/math_keyboard.dart';
-import 'tex2math.dart' as tm; // Assuming TeXParser is in tex_parser.dart
+// Assuming TeXParser is in tex_parser.dart
 
 void main() {
   runApp(const MyApp());
