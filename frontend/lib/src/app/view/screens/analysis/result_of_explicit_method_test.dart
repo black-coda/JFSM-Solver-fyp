@@ -23,64 +23,38 @@ class ExplicitAnalysisResultScreen extends ConsumerWidget {
 
     final isConvergent = methodProviderValues.isConvergent();
 
-    return Shortcuts(
-      shortcuts: <LogicalKeySet, Intent>{
-        LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyP):
-            const PrintIntent(),
-      },
-      child: Actions(
-        actions: <Type, Action<Intent>>{
-          PrintIntent: PrintAction(null ),
-        },
-        dispatcher: LoggingActionDispatcher(),
-        child: Builder(builder: (context) {
-          return Scaffold(
-            appBar: AppBar(
-              actions: [
-                Actions(
-                  actions: <Type, Action<Intent>>{
-                    PrintIntent: PrintAction(null),
-                  },
-                  child: Builder(builder: (context) {
-                    return IconButton(
-                      onPressed: Actions.handler<PrintIntent>(
-                          context, const PrintIntent()),
-                      icon: const Icon(Icons.print),
-                    );
-                  }),
-                ),
-                const SizedBox(width: 40),
+    return Builder(builder: (context) {
+      return Scaffold(
+        appBar: AppBar(
+          
+          title: Text('Analysis Method Result',
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface)),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 24, horizontal: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Divider(),
+                _buildPropertyRow(
+                    context, 'Is consistent', isConsistent.toString()),
+                _buildPropertyRow(
+                    context, 'Order', errorConstant.$1.toString()),
+                _buildPropertyRow(
+                    context, 'Error Constant', errorConstant.$2.toString()),
+                _buildPropertyRow(
+                    context, 'Is Zero Stable', isZeroStable.toString()),
+                _buildPropertyRow(
+                    context, 'Is Convergent', isConvergent.toString()),
               ],
-              title: Text('Analysis Method Result',
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface)),
             ),
-            body: SingleChildScrollView(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 24, horizontal: 40),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Divider(),
-                    _buildPropertyRow(
-                        context, 'Is consistent', isConsistent.toString()),
-                    _buildPropertyRow(
-                        context, 'Order', errorConstant.$1.toString()),
-                    _buildPropertyRow(
-                        context, 'Error Constant', errorConstant.$2.toString()),
-                    _buildPropertyRow(
-                        context, 'Is Zero Stable', isZeroStable.toString()),
-                    _buildPropertyRow(
-                        context, 'Is Convergent', isConvergent.toString()),
-                  ],
-                ),
-              ),
-            ),
-          );
-        }),
-      ),
-    );
+          ),
+        ),
+      );
+    });
   }
 
   Widget _buildPropertyRow(

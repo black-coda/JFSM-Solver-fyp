@@ -1,6 +1,6 @@
 import 'dart:developer' as dev;
 import 'dart:developer';
-import 'dart:typed_data';
+import 'dart:io';
 import 'dart:ui';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -14,24 +14,23 @@ import 'package:frontend/src/utils/constant/constant.dart';
 import 'package:frontend/src/utils/extension/approximation.dart';
 import 'package:frontend/src/utils/extension/format_string_to_number.dart';
 import 'package:frontend/src/utils/shortcut_manager/shortcut_managers.dart';
+
 import 'package:math_expressions/math_expressions.dart';
 import 'package:math_keyboard/math_keyboard.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-
-class ExplicitAndImplicitLinearizationSolverV extends ConsumerStatefulWidget {
-  const ExplicitAndImplicitLinearizationSolverV({Key? key}) : super(key: key);
+class PredictorCorrectorSolverView extends ConsumerStatefulWidget {
+  const PredictorCorrectorSolverView({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ExplicitAndImplicitLinearizationSolverV> createState() =>
-      _SolverViewState();
+  ConsumerState<PredictorCorrectorSolverView> createState() =>
+      _PredictorCorrectorSolverViewState();
 }
 
-class _SolverViewState
-    extends ConsumerState<ExplicitAndImplicitLinearizationSolverV> {
+class _PredictorCorrectorSolverViewState
+    extends ConsumerState<PredictorCorrectorSolverView> {
   late TextEditingController y0Controller;
   late TextEditingController x0Controller;
   late TextEditingController stepSizeController;
@@ -45,7 +44,6 @@ class _SolverViewState
   @override
   void initState() {
     super.initState();
-
     y0Controller = TextEditingController();
     x0Controller = TextEditingController();
     stepSizeController = TextEditingController();
@@ -90,26 +88,6 @@ class _SolverViewState
           return Scaffold(
             appBar: AppBar(
               title: const Text('Solver View'),
-              actions: [
-                Actions(
-                  actions: <Type, Action<Intent>>{
-                    PrintIntent: PrintAction(onPrint: _printDocument),
-                  },
-                  child: Builder(builder: (context) {
-                    return IconButton(
-                      onPressed: Actions.handler<PrintIntent>(
-                          context, const PrintIntent()),
-                      icon: const Icon(Icons.print),
-                    );
-                  }),
-                ),
-                const SizedBox(width: 16),
-                IconButton(
-                  onPressed: _saveAsPdf,
-                  icon: const Icon(Icons.save_alt),
-                ),
-                const SizedBox(width: 40),
-              ],
             ),
             body: Padding(
               padding:
@@ -149,18 +127,9 @@ class _SolverViewState
                                   _buildTextField(
                                       "Step Size", stepSizeController),
                                   const SizedBox(height: 16),
-                                  _buildTextField("xn", nController),
+                                  _buildTextField(
+                                      "Number of Steps (N)", nController),
                                   const SizedBox(height: 16),
-                                  MathField(
-                                    controller: exactFunctionController,
-                                    decoration: const InputDecoration(
-                                      labelText:
-                                          'Enter the exact function f(x)',
-                                      border: OutlineInputBorder(),
-                                    ),
-                                    variables: const ['x'],
-                                    autofocus: true,
-                                  ),
                                   const SizedBox(height: 16),
                                   //! Submit button
                                   Row(
@@ -177,7 +146,6 @@ class _SolverViewState
                                         onPressed: () async {
                                           xValues = [];
                                           result = [];
-                                          yExactValues = [];
                                         },
                                         child: const Text("Reset"),
                                       ),
@@ -185,83 +153,66 @@ class _SolverViewState
                                   ),
                                   const SizedBox(height: 24),
                                   const Divider(),
+                                  //* The result screen of the app
                                   result.isNotEmpty
-                                      ? RepaintBoundary(
-                                          key: _tableKey,
-                                          child: SizedBox(
-                                            child: ListView.builder(
-                                              shrinkWrap: true,
-                                              itemCount: result.length,
-                                              itemBuilder: (context, index) {
-                                                if (index == 0) {
-                                                  // Header Row
-                                                  return const ListTile(
-                                                    title: Row(
-                                                      children: [
-                                                        Expanded(
-                                                          child: Text(
-                                                            'x-values',
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
+                                      ? SizedBox(
+                                          child: ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: result.length,
+                                            itemBuilder: (context, index) {
+                                              if (index == 0) {
+                                                // Header Row
+                                                return const ListTile(
+                                                  title: Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          'x-values',
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
                                                           ),
                                                         ),
-                                                        Expanded(
-                                                          child: Text(
-                                                            'y-approximate',
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          'y-values',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
                                                         ),
-                                                        Expanded(
-                                                          child: Text(
-                                                            'y-exact',
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              } else {
+                                                // Data Rows
+                                                return ListTile(
+                                                  title: Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          xValues[index - 1]
+                                                              .toString(), // Adjust index for data rows
                                                         ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                } else {
-                                                  // Data Rows
-                                                  return ListTile(
-                                                    title: Row(
-                                                      children: [
-                                                        Expanded(
-                                                          child: Text(
-                                                            xValues[index - 1]
-                                                                .toString(), // Adjust index for data rows
-                                                          ),
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          result[index - 1]
+                                                              .toString(), // Adjust index for data rows
                                                         ),
-                                                        Expanded(
-                                                          child: Text(
-                                                            result[index - 1]
-                                                                .toString(), // Adjust index for data rows
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Text(
-                                                            yExactValues[
-                                                                    index - 1]
-                                                                .toString(), // Adjust index for data rows
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                }
-                                              },
-                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              }
+                                            },
                                           ),
                                         )
                                       : const Center(
-                                          child: Text('No data to display')),
+                                          child: Text('No data to display'),
+                                        ),
                                 ],
                               ),
                             ),
@@ -278,26 +229,22 @@ class _SolverViewState
                     child: LayoutBuilder(
                       builder:
                           (BuildContext context, BoxConstraints constraints) {
-                        return RepaintBoundary(
-                          key: _graphKey,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black),
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Graphing View",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium,
-                                ),
-                                const SizedBox(height: 16),
-                                buildLegend(),
-                                const SizedBox(height: 16),
-                                Expanded(
-                                  child: LineChart(
-                                    LineChartData(
+                        return Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black),
+                          ),
+                          child: Column(
+                            children: [
+                              //* The Graph
+                              Text(
+                                "Grapher View",
+                                style:
+                                    Theme.of(context).textTheme.headlineMedium,
+                              ),
+                              const SizedBox(height: 16),
+                              Expanded(
+                                child: LineChart(
+                                  LineChartData(
                                       lineTouchData: LineTouchData(
                                         touchTooltipData: LineTouchTooltipData(
                                           maxContentWidth: 100,
@@ -326,27 +273,14 @@ class _SolverViewState
                                       lineBarsData: [
                                         LineChartBarData(
                                           spots: List.generate(
-                                            result.length,
-                                            (index) => FlSpot(
-                                                xValues[index], result[index]),
-                                          ),
+                                              result.length,
+                                              (index) => FlSpot(xValues[index],
+                                                  result[index])),
                                           isCurved: true,
                                           barWidth: 2,
                                           color: Theme.of(context)
                                               .colorScheme
                                               .primary,
-                                          dotData: const FlDotData(show: true),
-                                        ),
-                                        LineChartBarData(
-                                          spots: List.generate(
-                                            yExactValues.length,
-                                            (index) => FlSpot(xValues[index],
-                                                yExactValues[index]),
-                                          ),
-                                          isCurved: true,
-                                          barWidth: 2,
-                                          color: Colors
-                                              .red, // Color for exact solution
                                           dotData: const FlDotData(show: true),
                                         ),
                                       ],
@@ -387,17 +321,15 @@ class _SolverViewState
                                             strokeWidth: 1,
                                           );
                                         },
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
+                                      )),
+                                ),
+                              )
+                            ],
                           ),
                         );
                       },
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
@@ -421,7 +353,7 @@ class _SolverViewState
     return null;
   }
 
-  //! text field builder
+//! text field builder
   Widget _buildTextField(String label, TextEditingController controller) {
     return TextFormField(
       controller: controller,
@@ -470,29 +402,35 @@ class _SolverViewState
 
         parsedFunction = parseFunction(mathExpression);
 
-        String exactFunction = exactFunctionController.currentEditingValue();
-        final exactExpression = TeXParser(exactFunction).parse();
-        parsedExactFunction = parseExactFunction(exactExpression);
-
         final y0 = double.tryParse(y0Controller.text) ?? 0.0;
         final x0 = double.tryParse(x0Controller.text) ?? 0.0;
         final stepSize = double.tryParse(stepSizeController.text) ?? 0.0;
         final xN = int.tryParse(nController.text) ?? 0;
 
+        //! step number
+        final predictorStepNumber = ref.read(stepNumberStateProvider);
+        final correctorStepNumber = ref.read(correctorStepNumberStateProvider);
+
+        //! alpha and beta
         final alpha = ref.read(alphaProvider);
         final beta = ref.read(betaProvider);
+        final correctorAlpha = ref.read(correctorAlphaProvider);
+        final correctorBeta = ref.read(correctorBetaProvider);
 
-        final stepNumber = ref.read(stepNumberStateProvider);
-
-        result = ref.watch(solverProvider).explicitLinearMultistepMethod(
-              stepNumber: stepNumber,
-              alpha: alpha,
-              beta: beta,
+        result = ref
+            .watch(solverProvider)
+            .implicitLinearMultistepMethodWithPredictorCorrectorMethod(
+              predictorStepNumber: predictorStepNumber,
+              correctorAlpha: correctorAlpha,
+              correctorBeta: correctorBeta,
+              predictorAlpha: alpha,
+              predictorBeta: beta,
               func: parsedFunction!,
               y0: y0,
               x0: x0,
               stepSize: stepSize,
               xN: xN,
+              correctorStepNumber: correctorStepNumber,
             );
 
         int N = ((xN - x0) / stepSize).ceil();
@@ -610,20 +548,5 @@ class _SolverViewState
         SnackBar(content: Text('Saved PDF to ${file.path}')),
       );
     }
-  }
-}
-
-class PrintIntent extends Intent {
-  const PrintIntent();
-}
-
-class PrintAction extends Action<PrintIntent> {
-  final VoidCallback onPrint;
-
-  PrintAction({required this.onPrint});
-
-  @override
-  void invoke(covariant PrintIntent intent) {
-    onPrint();
   }
 }

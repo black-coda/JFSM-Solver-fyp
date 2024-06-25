@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/src/utils/constant/constant.dart';
 import 'package:frontend/src/utils/routes/route_manager.dart';
 
 void main() async {
@@ -27,11 +28,8 @@ class MainApp extends StatelessWidget {
   ThemeData _theming() {
     return ThemeData(
       fontFamily: "Noto",
-      brightness: Brightness.dark,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.red,
-        brightness: Brightness.dark,
-      ),
+      brightness: Brightness.light,
+      colorScheme: Constant.flexSchemeLight,
       // platform: TargetPlatform.windows,
     );
   }

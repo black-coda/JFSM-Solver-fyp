@@ -10,6 +10,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/app/controller/alpha_and_beta.controller.dart';
 import 'package:frontend/src/app/controller/method_implementation_controller.dart';
 import 'package:frontend/src/app/controller/step_number_controller.dart';
+import 'package:frontend/src/utils/constant/constant.dart';
+import 'package:frontend/src/utils/extension/approximation.dart';
 import 'package:frontend/src/utils/extension/format_string_to_number.dart';
 import 'package:frontend/src/utils/shortcut_manager/shortcut_managers.dart';
 import 'package:math_expressions/math_expressions.dart';
@@ -20,18 +22,18 @@ import 'package:printing/printing.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
-import 'n_ex_imp_line_solver.dart';
-
-class ExplicitAndImplicitLinearizationSolverVie extends ConsumerStatefulWidget {
-  const ExplicitAndImplicitLinearizationSolverVie({Key? key}) : super(key: key);
+class ExplicitAndImplicitLinearizationSolverScreen
+    extends ConsumerStatefulWidget {
+  const ExplicitAndImplicitLinearizationSolverScreen({Key? key})
+      : super(key: key);
 
   @override
-  ConsumerState<ExplicitAndImplicitLinearizationSolverVie> createState() =>
+  ConsumerState<ExplicitAndImplicitLinearizationSolverScreen> createState() =>
       _SolverViewState();
 }
 
 class _SolverViewState
-    extends ConsumerState<ExplicitAndImplicitLinearizationSolverVie> {
+    extends ConsumerState<ExplicitAndImplicitLinearizationSolverScreen> {
   late TextEditingController y0Controller;
   late TextEditingController x0Controller;
   late TextEditingController stepSizeController;
@@ -61,13 +63,16 @@ class _SolverViewState
     stepSizeController.dispose();
     nController.dispose();
     functionController.dispose();
+    exactFunctionController.dispose();
     super.dispose();
   }
 
   double Function(double, double)? parsedFunction;
+  double Function(double)? parsedExactFunction;
   final formKey = GlobalKey<FormState>();
   List<double> result = [];
   List<double> xValues = [];
+  List<double> yExactValues = [];
 
   @override
   Widget build(BuildContext context) {
@@ -104,15 +109,6 @@ class _SolverViewState
                 IconButton(
                   onPressed: _saveAsPdf,
                   icon: const Icon(Icons.save_alt),
-                ),
-                const SizedBox(width: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            const ExplicitAndImplicitLinearizationSolverV()));
-                  },
-                  child: const Text('HEre'),
                 ),
                 const SizedBox(width: 40),
               ],
@@ -161,10 +157,10 @@ class _SolverViewState
                                     controller: exactFunctionController,
                                     decoration: const InputDecoration(
                                       labelText:
-                                          'Enter the exact function f(x, y)',
+                                          'Enter the exact function f(x)',
                                       border: OutlineInputBorder(),
                                     ),
-                                    variables: const ['x', 'y'],
+                                    variables: const ['x'],
                                     autofocus: true,
                                   ),
                                   const SizedBox(height: 16),
@@ -183,6 +179,7 @@ class _SolverViewState
                                         onPressed: () async {
                                           xValues = [];
                                           result = [];
+                                          yExactValues = [];
                                         },
                                         child: const Text("Reset"),
                                       ),
@@ -221,6 +218,15 @@ class _SolverViewState
                                                                         .bold),
                                                           ),
                                                         ),
+                                                        Expanded(
+                                                          child: Text(
+                                                            'y-exact',
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ),
                                                       ],
                                                     ),
                                                   );
@@ -238,6 +244,13 @@ class _SolverViewState
                                                         Expanded(
                                                           child: Text(
                                                             result[index - 1]
+                                                                .toString(), // Adjust index for data rows
+                                                          ),
+                                                        ),
+                                                        Expanded(
+                                                          child: Text(
+                                                            yExactValues[
+                                                                    index - 1]
                                                                 .toString(), // Adjust index for data rows
                                                           ),
                                                         ),
@@ -282,6 +295,8 @@ class _SolverViewState
                                       .headlineMedium,
                                 ),
                                 const SizedBox(height: 16),
+                                buildLegend(),
+                                const SizedBox(height: 16),
                                 Expanded(
                                   child: LineChart(
                                     LineChartData(
@@ -322,6 +337,18 @@ class _SolverViewState
                                           color: Theme.of(context)
                                               .colorScheme
                                               .primary,
+                                          dotData: const FlDotData(show: true),
+                                        ),
+                                        LineChartBarData(
+                                          spots: List.generate(
+                                            yExactValues.length,
+                                            (index) => FlSpot(xValues[index],
+                                                yExactValues[index]),
+                                          ),
+                                          isCurved: true,
+                                          barWidth: 2,
+                                          color: Colors
+                                              .red, // Color for exact solution
                                           dotData: const FlDotData(show: true),
                                         ),
                                       ],
@@ -423,6 +450,18 @@ class _SolverViewState
     };
   }
 
+  double Function(double)? parseExactFunction(Expression exp) {
+    Variable x = Variable('x');
+
+    return (double xValue) {
+      ContextModel cm = ContextModel();
+      cm.bindVariable(x, Number(xValue));
+
+      double result = exp.evaluate(EvaluationType.REAL, cm);
+      return result;
+    };
+  }
+
   void _onSubmit() {
     if (formKey.currentState!.validate()) {
       try {
@@ -432,6 +471,10 @@ class _SolverViewState
         dev.log(mathExpression.toString());
 
         parsedFunction = parseFunction(mathExpression);
+
+        String exactFunction = exactFunctionController.currentEditingValue();
+        final exactExpression = TeXParser(exactFunction).parse();
+        parsedExactFunction = parseExactFunction(exactExpression);
 
         final y0 = double.tryParse(y0Controller.text) ?? 0.0;
         final x0 = double.tryParse(x0Controller.text) ?? 0.0;
@@ -460,12 +503,49 @@ class _SolverViewState
             .read(solverProvider)
             .implicitXValueGenerator(x0, stepSize, N - 1);
 
+        yExactValues = xValues
+            .map((x) =>
+                parsedExactFunction!(x).approximate(Constant.approximatedValue))
+            .toList();
+
         dev.log(xValues.toString());
+        dev.log(yExactValues.toString());
         ref.invalidate(solverProvider);
       } catch (e) {
         dev.log(e.toString());
       }
     }
+  }
+
+  Widget buildLegend() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 10,
+              height: 10,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            const SizedBox(width: 5),
+            const Text('Numerical Solution'),
+          ],
+        ),
+        const SizedBox(width: 20),
+        Row(
+          children: [
+            Container(
+              width: 10,
+              height: 10,
+              color: Colors.red,
+            ),
+            const SizedBox(width: 5),
+            const Text('Exact Solution'),
+          ],
+        ),
+      ],
+    );
   }
 
   Future<Uint8List?> _capturePng(GlobalKey key) async {
@@ -533,6 +613,8 @@ class _SolverViewState
       );
     }
   }
+
+
 }
 
 class PrintIntent extends Intent {

@@ -72,7 +72,7 @@ class _SolverViewState
       child: Actions(
         dispatcher: LoggingActionDispatcher(),
         actions: <Type, Action<Intent>>{
-          PrintIntent: PrintAction(null),
+          PrintIntent: PrintAction(onPrint: () {}),
         },
         child: Builder(builder: (context) {
           return Scaffold(
@@ -81,7 +81,7 @@ class _SolverViewState
               actions: [
                 Actions(
                   actions: <Type, Action<Intent>>{
-                    PrintIntent: PrintAction(null),
+                    PrintIntent: PrintAction(onPrint: () {}),
                   },
                   child: Builder(builder: (context) {
                     return IconButton(
