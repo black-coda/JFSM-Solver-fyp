@@ -1,3 +1,6 @@
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +17,7 @@ class ExplicitAnalysisResultScreen extends ConsumerWidget {
     final isConsistent = methodProviderValues.isConsistent();
 
     final errorConstant = methodProviderValues.orderAndErrorConstant();
+    
 
     final isZeroStable = methodProviderValues.isZeroStable();
 
@@ -26,7 +30,7 @@ class ExplicitAnalysisResultScreen extends ConsumerWidget {
       },
       child: Actions(
         actions: <Type, Action<Intent>>{
-          PrintIntent: PrintAction(),
+          PrintIntent: PrintAction(null ),
         },
         dispatcher: LoggingActionDispatcher(),
         child: Builder(builder: (context) {
@@ -35,7 +39,7 @@ class ExplicitAnalysisResultScreen extends ConsumerWidget {
               actions: [
                 Actions(
                   actions: <Type, Action<Intent>>{
-                    PrintIntent: PrintAction(),
+                    PrintIntent: PrintAction(null),
                   },
                   child: Builder(builder: (context) {
                     return IconButton(

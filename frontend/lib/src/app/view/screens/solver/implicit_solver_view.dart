@@ -55,8 +55,6 @@ class _PredictorCorrectorSolverViewState
   Widget build(BuildContext context) {
     ref.watch(solverProvider);
 
-
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Solver View'),
@@ -137,8 +135,9 @@ class _PredictorCorrectorSolverViewState
                                                   child: Text(
                                                     'x-values',
                                                     style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
                                                   ),
                                                 ),
                                                 Expanded(
@@ -379,7 +378,7 @@ class _PredictorCorrectorSolverViewState
               correctorStepNumber: correctorStepNumber,
             );
 
-                int N = ((xN - x0) / stepSize).ceil();
+        int N = ((xN - x0) / stepSize).ceil();
 
         xValues = ref
             .read(solverProvider)
@@ -392,7 +391,6 @@ class _PredictorCorrectorSolverViewState
         // }
         dev.log(xValues.toString());
         ref.invalidate(solverProvider);
-        // setState(() {});
       } catch (e) {
         dev.log(e.toString());
       }

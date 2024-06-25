@@ -5,7 +5,9 @@ import 'package:frontend/src/utils/routes/route_manager.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    const ProviderScope(child: MainApp()),
+    const ProviderScope(
+      child: MainApp(),
+    ),
   );
 }
 
@@ -27,9 +29,10 @@ class MainApp extends StatelessWidget {
       fontFamily: "Noto",
       brightness: Brightness.dark,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color(0xff0fa968),
+        seedColor: Colors.red,
         brightness: Brightness.dark,
       ),
+      // platform: TargetPlatform.windows,
     );
   }
 }

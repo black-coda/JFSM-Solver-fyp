@@ -1,7 +1,10 @@
 import 'dart:developer' as dev;
-import 'dart:math';
+import 'dart:developer';
+import 'dart:typed_data';
+import 'dart:ui';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/app/controller/alpha_and_beta.controller.dart';
@@ -11,24 +14,33 @@ import 'package:frontend/src/utils/extension/format_string_to_number.dart';
 import 'package:frontend/src/utils/shortcut_manager/shortcut_managers.dart';
 import 'package:math_expressions/math_expressions.dart';
 import 'package:math_keyboard/math_keyboard.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 
-class ExplicitAndImplicitLinearizationSolverView
-    extends ConsumerStatefulWidget {
-  const ExplicitAndImplicitLinearizationSolverView({Key? key})
-      : super(key: key);
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+
+import 'n_ex_imp_line_solver.dart';
+
+class ExplicitAndImplicitLinearizationSolverVie extends ConsumerStatefulWidget {
+  const ExplicitAndImplicitLinearizationSolverVie({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ExplicitAndImplicitLinearizationSolverView> createState() =>
+  ConsumerState<ExplicitAndImplicitLinearizationSolverVie> createState() =>
       _SolverViewState();
 }
 
 class _SolverViewState
-    extends ConsumerState<ExplicitAndImplicitLinearizationSolverView> {
+    extends ConsumerState<ExplicitAndImplicitLinearizationSolverVie> {
   late TextEditingController y0Controller;
   late TextEditingController x0Controller;
   late TextEditingController stepSizeController;
   late TextEditingController nController;
   late MathFieldEditingController functionController;
+  late MathFieldEditingController exactFunctionController;
+
+  final GlobalKey _graphKey = GlobalKey();
+  final GlobalKey _tableKey = GlobalKey();
 
   @override
   void initState() {
@@ -39,6 +51,7 @@ class _SolverViewState
     stepSizeController = TextEditingController();
     nController = TextEditingController();
     functionController = MathFieldEditingController();
+    exactFunctionController = MathFieldEditingController();
   }
 
   @override
@@ -53,10 +66,6 @@ class _SolverViewState
 
   double Function(double, double)? parsedFunction;
   final formKey = GlobalKey<FormState>();
-
-  final GlobalKey _graphKey = GlobalKey();
-  final GlobalKey _tableKey = GlobalKey();
-
   List<double> result = [];
   List<double> xValues = [];
 
@@ -72,7 +81,7 @@ class _SolverViewState
       child: Actions(
         dispatcher: LoggingActionDispatcher(),
         actions: <Type, Action<Intent>>{
-          PrintIntent: PrintAction(null),
+          PrintIntent: PrintAction(onPrint: _printDocument),
         },
         child: Builder(builder: (context) {
           return Scaffold(
@@ -81,7 +90,7 @@ class _SolverViewState
               actions: [
                 Actions(
                   actions: <Type, Action<Intent>>{
-                    PrintIntent: PrintAction(null),
+                    PrintIntent: PrintAction(onPrint: _printDocument),
                   },
                   child: Builder(builder: (context) {
                     return IconButton(
@@ -90,6 +99,20 @@ class _SolverViewState
                       icon: const Icon(Icons.print),
                     );
                   }),
+                ),
+                const SizedBox(width: 16),
+                IconButton(
+                  onPressed: _saveAsPdf,
+                  icon: const Icon(Icons.save_alt),
+                ),
+                const SizedBox(width: 16),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            const ExplicitAndImplicitLinearizationSolverV()));
+                  },
+                  child: const Text('HEre'),
                 ),
                 const SizedBox(width: 40),
               ],
@@ -134,6 +157,16 @@ class _SolverViewState
                                   const SizedBox(height: 16),
                                   _buildTextField("xn", nController),
                                   const SizedBox(height: 16),
+                                  MathField(
+                                    controller: exactFunctionController,
+                                    decoration: const InputDecoration(
+                                      labelText:
+                                          'Enter the exact function f(x, y)',
+                                      border: OutlineInputBorder(),
+                                    ),
+                                    variables: const ['x', 'y'],
+                                    autofocus: true,
+                                  ),
                                   const SizedBox(height: 16),
                                   //! Submit button
                                   Row(
@@ -181,7 +214,7 @@ class _SolverViewState
                                                         ),
                                                         Expanded(
                                                           child: Text(
-                                                            'y-values',
+                                                            'y-approximate',
                                                             style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
@@ -217,8 +250,7 @@ class _SolverViewState
                                           ),
                                         )
                                       : const Center(
-                                          child: Text('No data to display'),
-                                        ),
+                                          child: Text('No data to display')),
                                 ],
                               ),
                             ),
@@ -244,7 +276,7 @@ class _SolverViewState
                             child: Column(
                               children: [
                                 Text(
-                                  "Graphing view",
+                                  "Graphing View",
                                   style: Theme.of(context)
                                       .textTheme
                                       .headlineMedium,
@@ -253,88 +285,85 @@ class _SolverViewState
                                 Expanded(
                                   child: LineChart(
                                     LineChartData(
-                                        lineTouchData: LineTouchData(
-                                          touchTooltipData:
-                                              LineTouchTooltipData(
-                                            maxContentWidth: 100,
-                                            getTooltipColor: (touchedSpot) =>
-                                                Colors.black,
-                                            getTooltipItems: (touchedSpots) {
-                                              return touchedSpots.map(
-                                                  (LineBarSpot touchedSpot) {
-                                                final textStyle = TextStyle(
-                                                  color: touchedSpot
-                                                          .bar
-                                                          .gradient
-                                                          ?.colors[0] ??
-                                                      touchedSpot.bar.color,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14,
-                                                );
-                                                return LineTooltipItem(
-                                                  '${touchedSpot.x}, ${touchedSpot.y.toStringAsFixed(2)}',
-                                                  textStyle,
-                                                );
-                                              }).toList();
-                                            },
-                                          ),
-                                          handleBuiltInTouches: true,
-                                          getTouchLineStart: (data, index) => 0,
+                                      lineTouchData: LineTouchData(
+                                        touchTooltipData: LineTouchTooltipData(
+                                          maxContentWidth: 100,
+                                          getTooltipColor: (touchedSpot) =>
+                                              Colors.black,
+                                          getTooltipItems: (touchedSpots) {
+                                            return touchedSpots
+                                                .map((LineBarSpot touchedSpot) {
+                                              final textStyle = TextStyle(
+                                                color: touchedSpot.bar.gradient
+                                                        ?.colors[0] ??
+                                                    touchedSpot.bar.color,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14,
+                                              );
+                                              return LineTooltipItem(
+                                                '${touchedSpot.x}, ${touchedSpot.y.toStringAsFixed(2)}',
+                                                textStyle,
+                                              );
+                                            }).toList();
+                                          },
                                         ),
-                                        lineBarsData: [
-                                          LineChartBarData(
-                                            spots: List.generate(
-                                                result.length,
-                                                (index) => FlSpot(
-                                                    xValues[index],
-                                                    result[index])),
-                                            isCurved: true,
-                                            barWidth: 2,
+                                        handleBuiltInTouches: true,
+                                        getTouchLineStart: (data, index) => 0,
+                                      ),
+                                      lineBarsData: [
+                                        LineChartBarData(
+                                          spots: List.generate(
+                                            result.length,
+                                            (index) => FlSpot(
+                                                xValues[index], result[index]),
+                                          ),
+                                          isCurved: true,
+                                          barWidth: 2,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                          dotData: const FlDotData(show: true),
+                                        ),
+                                      ],
+                                      borderData: FlBorderData(
+                                        show: true,
+                                        border: Border.all(
+                                            color: const Color(0xff37434d)),
+                                      ),
+                                      titlesData: const FlTitlesData(
+                                        show: true,
+                                        rightTitles: AxisTitles(
+                                          sideTitles:
+                                              SideTitles(showTitles: false),
+                                        ),
+                                        topTitles: AxisTitles(
+                                          sideTitles:
+                                              SideTitles(showTitles: false),
+                                        ),
+                                      ),
+                                      gridData: FlGridData(
+                                        show: true,
+                                        drawVerticalLine: true,
+                                        horizontalInterval: 1,
+                                        verticalInterval: 1,
+                                        getDrawingHorizontalLine: (value) {
+                                          return FlLine(
                                             color: Theme.of(context)
                                                 .colorScheme
-                                                .primary,
-                                            dotData:
-                                                const FlDotData(show: true),
-                                          ),
-                                        ],
-                                        borderData: FlBorderData(
-                                          show: true,
-                                          border: Border.all(
-                                              color: const Color(0xff37434d)),
-                                        ),
-                                        titlesData: const FlTitlesData(
-                                          show: true,
-                                          rightTitles: AxisTitles(
-                                            sideTitles:
-                                                SideTitles(showTitles: false),
-                                          ),
-                                          topTitles: AxisTitles(
-                                            sideTitles:
-                                                SideTitles(showTitles: false),
-                                          ),
-                                        ),
-                                        gridData: FlGridData(
-                                          show: true,
-                                          drawVerticalLine: true,
-                                          horizontalInterval: 1,
-                                          verticalInterval: 1,
-                                          getDrawingHorizontalLine: (value) {
-                                            return FlLine(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .tertiary,
-                                              strokeWidth: 1,
-                                            );
-                                          },
-                                          getDrawingVerticalLine: (value) {
-                                            return FlLine(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .tertiary,
-                                              strokeWidth: 1,
-                                            );
-                                          },
-                                        )),
+                                                .tertiary,
+                                            strokeWidth: 1,
+                                          );
+                                        },
+                                        getDrawingVerticalLine: (value) {
+                                          return FlLine(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .tertiary,
+                                            strokeWidth: 1,
+                                          );
+                                        },
+                                      ),
+                                    ),
                                   ),
                                 )
                               ],
@@ -343,7 +372,7 @@ class _SolverViewState
                         );
                       },
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -367,7 +396,7 @@ class _SolverViewState
     return null;
   }
 
-//! text field builder
+  //! text field builder
   Widget _buildTextField(String label, TextEditingController controller) {
     return TextFormField(
       controller: controller,
@@ -431,17 +460,92 @@ class _SolverViewState
             .read(solverProvider)
             .implicitXValueGenerator(x0, stepSize, N - 1);
 
-        // Validate xValues and result
-        // if (xValues.any((x) => x.isNaN || x.isInfinite) ||
-        //     result.any((y) => y.isNaN || y.isInfinite)) {
-        //   throw UnsupportedError("Calculation resulted in NaN or Infinity");
-        // }
         dev.log(xValues.toString());
         ref.invalidate(solverProvider);
-        // setState(() {});
       } catch (e) {
         dev.log(e.toString());
       }
     }
+  }
+
+  Future<Uint8List?> _capturePng(GlobalKey key) async {
+    try {
+      RenderRepaintBoundary boundary =
+          key.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      var image = await boundary.toImage();
+      ByteData? byteData = await image.toByteData(format: ImageByteFormat.png);
+      return byteData?.buffer.asUint8List();
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
+
+  Future<pw.Document> _createPdf(
+      Uint8List graphImage, Uint8List tableImage) async {
+    final pdf = pw.Document();
+    final graph = pw.MemoryImage(graphImage);
+    final table = pw.MemoryImage(tableImage);
+
+    pdf.addPage(
+      pw.Page(
+        build: (pw.Context context) {
+          return pw.Column(
+            children: [
+              pw.Image(graph),
+              pw.SizedBox(height: 20),
+              pw.Image(table),
+            ],
+          );
+        },
+      ),
+    );
+
+    return pdf;
+  }
+
+  void _printDocument() async {
+    final graphImage = await _capturePng(_graphKey);
+    final tableImage = await _capturePng(_tableKey);
+
+    if (graphImage != null && tableImage != null) {
+      final pdfDocument = await _createPdf(graphImage, tableImage);
+
+      await Printing.layoutPdf(onLayout: (format) async => pdfDocument.save());
+    }
+  }
+
+  //! Save as PDF
+  Future<void> _saveAsPdf() async {
+    final graphImage = await _capturePng(_graphKey);
+    final tableImage = await _capturePng(_tableKey);
+
+    if (graphImage != null && tableImage != null) {
+      final pdfDocument = await _createPdf(graphImage, tableImage);
+
+      final output = await getTemporaryDirectory();
+      log(output.path);
+      final file = File("${output.path}/output.pdf");
+      await file.writeAsBytes(await pdfDocument.save());
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Saved PDF to ${file.path}')),
+      );
+    }
+  }
+}
+
+class PrintIntent extends Intent {
+  const PrintIntent();
+}
+
+class PrintAction extends Action<PrintIntent> {
+  final VoidCallback onPrint;
+
+  PrintAction({required this.onPrint});
+
+  @override
+  void invoke(covariant PrintIntent intent) {
+    onPrint();
   }
 }

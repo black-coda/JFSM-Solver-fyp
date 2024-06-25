@@ -10,9 +10,13 @@ class PrintIntent extends Intent {
 }
 
 class PrintAction extends Action<PrintIntent> {
+   final Function ? onPrint;
+
+  PrintAction(this.onPrint);
   @override
   void invoke(covariant PrintIntent intent) {
     log('PrintAction invoked');
+    onPrint!();
     // TODO: Print action
     
   }

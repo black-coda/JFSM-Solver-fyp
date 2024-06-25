@@ -187,6 +187,7 @@ class AnalysisImplementation implements LinearMultiStepAnalysisMethod {
           sumOfC0 = 0;
           continue;
         }
+        print("Error Constant: $errorConstant");
         break;
       } else {
         break;
