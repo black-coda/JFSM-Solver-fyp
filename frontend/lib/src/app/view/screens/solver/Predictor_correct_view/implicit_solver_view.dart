@@ -1,44 +1,55 @@
 import 'dart:developer' as dev;
-import 'dart:math';
+import 'dart:developer';
+import 'dart:io';
+import 'dart:ui';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/app/controller/alpha_and_beta.controller.dart';
 import 'package:frontend/src/app/controller/method_implementation_controller.dart';
 import 'package:frontend/src/app/controller/step_number_controller.dart';
+import 'package:frontend/src/utils/constant/constant.dart';
+import 'package:frontend/src/utils/extension/approximation.dart';
 import 'package:frontend/src/utils/extension/format_string_to_number.dart';
 import 'package:frontend/src/utils/shortcut_manager/shortcut_managers.dart';
+
 import 'package:math_expressions/math_expressions.dart';
 import 'package:math_keyboard/math_keyboard.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 
-class ExplicitAndImplicitLinearizationSolverView
-    extends ConsumerStatefulWidget {
-  const ExplicitAndImplicitLinearizationSolverView({Key? key})
-      : super(key: key);
+class PredictorCorrectorSolverView extends ConsumerStatefulWidget {
+  const PredictorCorrectorSolverView({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ExplicitAndImplicitLinearizationSolverView> createState() =>
-      _SolverViewState();
+  ConsumerState<PredictorCorrectorSolverView> createState() =>
+      _PredictorCorrectorSolverViewState();
 }
 
-class _SolverViewState
-    extends ConsumerState<ExplicitAndImplicitLinearizationSolverView> {
+class _PredictorCorrectorSolverViewState
+    extends ConsumerState<PredictorCorrectorSolverView> {
   late TextEditingController y0Controller;
   late TextEditingController x0Controller;
   late TextEditingController stepSizeController;
   late TextEditingController nController;
   late MathFieldEditingController functionController;
+  late MathFieldEditingController exactFunctionController;
+
+  final GlobalKey _graphKey = GlobalKey();
+  final GlobalKey _tableKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
-
     y0Controller = TextEditingController();
     x0Controller = TextEditingController();
     stepSizeController = TextEditingController();
     nController = TextEditingController();
     functionController = MathFieldEditingController();
+    exactFunctionController = MathFieldEditingController();
   }
 
   @override
@@ -48,13 +59,16 @@ class _SolverViewState
     stepSizeController.dispose();
     nController.dispose();
     functionController.dispose();
+    exactFunctionController.dispose();
     super.dispose();
   }
 
   double Function(double, double)? parsedFunction;
+  double Function(double)? parsedExactFunction;
   final formKey = GlobalKey<FormState>();
   List<double> result = [];
   List<double> xValues = [];
+  List<double> yExactValues = [];
 
   @override
   Widget build(BuildContext context) {
@@ -68,27 +82,12 @@ class _SolverViewState
       child: Actions(
         dispatcher: LoggingActionDispatcher(),
         actions: <Type, Action<Intent>>{
-          PrintIntent: PrintAction(),
+          PrintIntent: PrintAction(onPrint: _printDocument),
         },
         child: Builder(builder: (context) {
           return Scaffold(
             appBar: AppBar(
               title: const Text('Solver View'),
-              actions: [
-                Actions(
-                  actions: <Type, Action<Intent>>{
-                    PrintIntent: PrintAction(),
-                  },
-                  child: Builder(builder: (context) {
-                    return IconButton(
-                      onPressed: Actions.handler<PrintIntent>(
-                          context, const PrintIntent()),
-                      icon: const Icon(Icons.print),
-                    );
-                  }),
-                ),
-                const SizedBox(width: 40),
-              ],
             ),
             body: Padding(
               padding:
@@ -128,7 +127,8 @@ class _SolverViewState
                                   _buildTextField(
                                       "Step Size", stepSizeController),
                                   const SizedBox(height: 16),
-                                  _buildTextField("xn", nController),
+                                  _buildTextField(
+                                      "Number of Steps (N)", nController),
                                   const SizedBox(height: 16),
                                   const SizedBox(height: 16),
                                   //! Submit button
@@ -153,6 +153,7 @@ class _SolverViewState
                                   ),
                                   const SizedBox(height: 24),
                                   const Divider(),
+                                  //* The result screen of the app
                                   result.isNotEmpty
                                       ? SizedBox(
                                           child: ListView.builder(
@@ -168,9 +169,9 @@ class _SolverViewState
                                                         child: Text(
                                                           'x-values',
                                                           style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
                                                         ),
                                                       ),
                                                       Expanded(
@@ -234,6 +235,7 @@ class _SolverViewState
                           ),
                           child: Column(
                             children: [
+                              //* The Graph
                               Text(
                                 "Grapher View",
                                 style:
@@ -378,6 +380,18 @@ class _SolverViewState
     };
   }
 
+  double Function(double)? parseExactFunction(Expression exp) {
+    Variable x = Variable('x');
+
+    return (double xValue) {
+      ContextModel cm = ContextModel();
+      cm.bindVariable(x, Number(xValue));
+
+      double result = exp.evaluate(EvaluationType.REAL, cm);
+      return result;
+    };
+  }
+
   void _onSubmit() {
     if (formKey.currentState!.validate()) {
       try {
@@ -393,20 +407,30 @@ class _SolverViewState
         final stepSize = double.tryParse(stepSizeController.text) ?? 0.0;
         final xN = int.tryParse(nController.text) ?? 0;
 
+        //! step number
+        final predictorStepNumber = ref.read(stepNumberStateProvider);
+        final correctorStepNumber = ref.read(correctorStepNumberStateProvider);
+
+        //! alpha and beta
         final alpha = ref.read(alphaProvider);
         final beta = ref.read(betaProvider);
+        final correctorAlpha = ref.read(correctorAlphaProvider);
+        final correctorBeta = ref.read(correctorBetaProvider);
 
-        final stepNumber = ref.read(stepNumberStateProvider);
-
-        result = ref.watch(solverProvider).explicitLinearMultistepMethod(
-              stepNumber: stepNumber,
-              alpha: alpha,
-              beta: beta,
+        result = ref
+            .watch(solverProvider)
+            .implicitLinearMultistepMethodWithPredictorCorrectorMethod(
+              predictorStepNumber: predictorStepNumber,
+              correctorAlpha: correctorAlpha,
+              correctorBeta: correctorBeta,
+              predictorAlpha: alpha,
+              predictorBeta: beta,
               func: parsedFunction!,
               y0: y0,
               x0: x0,
               stepSize: stepSize,
               xN: xN,
+              correctorStepNumber: correctorStepNumber,
             );
 
         int N = ((xN - x0) / stepSize).ceil();
@@ -415,17 +439,114 @@ class _SolverViewState
             .read(solverProvider)
             .implicitXValueGenerator(x0, stepSize, N - 1);
 
-        // Validate xValues and result
-        // if (xValues.any((x) => x.isNaN || x.isInfinite) ||
-        //     result.any((y) => y.isNaN || y.isInfinite)) {
-        //   throw UnsupportedError("Calculation resulted in NaN or Infinity");
-        // }
+        yExactValues = xValues
+            .map((x) =>
+                parsedExactFunction!(x).approximate(Constant.approximatedValue))
+            .toList();
+
         dev.log(xValues.toString());
+        dev.log(yExactValues.toString());
         ref.invalidate(solverProvider);
-        // setState(() {});
       } catch (e) {
         dev.log(e.toString());
       }
+    }
+  }
+
+  Widget buildLegend() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 10,
+              height: 10,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            const SizedBox(width: 5),
+            const Text('Numerical Solution'),
+          ],
+        ),
+        const SizedBox(width: 20),
+        Row(
+          children: [
+            Container(
+              width: 10,
+              height: 10,
+              color: Colors.red,
+            ),
+            const SizedBox(width: 5),
+            const Text('Exact Solution'),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Future<Uint8List?> _capturePng(GlobalKey key) async {
+    try {
+      RenderRepaintBoundary boundary =
+          key.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      var image = await boundary.toImage();
+      ByteData? byteData = await image.toByteData(format: ImageByteFormat.png);
+      return byteData?.buffer.asUint8List();
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
+
+  Future<pw.Document> _createPdf(
+      Uint8List graphImage, Uint8List tableImage) async {
+    final pdf = pw.Document();
+    final graph = pw.MemoryImage(graphImage);
+    final table = pw.MemoryImage(tableImage);
+
+    pdf.addPage(
+      pw.Page(
+        build: (pw.Context context) {
+          return pw.Column(
+            children: [
+              pw.Image(graph),
+              pw.SizedBox(height: 20),
+              pw.Image(table),
+            ],
+          );
+        },
+      ),
+    );
+
+    return pdf;
+  }
+
+  void _printDocument() async {
+    final graphImage = await _capturePng(_graphKey);
+    final tableImage = await _capturePng(_tableKey);
+
+    if (graphImage != null && tableImage != null) {
+      final pdfDocument = await _createPdf(graphImage, tableImage);
+
+      await Printing.layoutPdf(onLayout: (format) async => pdfDocument.save());
+    }
+  }
+
+  //! Save as PDF
+  Future<void> _saveAsPdf() async {
+    final graphImage = await _capturePng(_graphKey);
+    final tableImage = await _capturePng(_tableKey);
+
+    if (graphImage != null && tableImage != null) {
+      final pdfDocument = await _createPdf(graphImage, tableImage);
+
+      final output = await getTemporaryDirectory();
+      log(output.path);
+      final file = File("${output.path}/output.pdf");
+      await file.writeAsBytes(await pdfDocument.save());
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Saved PDF to ${file.path}')),
+      );
     }
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/src/app/view/screens/analysis/dashboard.dart';
-import 'package:frontend/src/app/view/screens/solver/explicit_and_implicit_linearization_solver_view.dart';
+import 'package:frontend/src/app/view/screens/solver/explicit_and_linearization/explicit_and_implicit_linearization_solver_view.dart';
 import '../../app/view/screens/analysis/splash_screen.dart';
 
 class RouteManager {

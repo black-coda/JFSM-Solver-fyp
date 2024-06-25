@@ -15,6 +15,7 @@
 \usepackage{listings}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+\usepackage{tabularx}
 
 \geometry{top=2.5cm, bottom=2.5cm, left=3.5cm, right=2.5cm}
 \setlength{\parskip}{1em}
@@ -96,13 +97,7 @@
 
 % Abstract
 \begin{abstract}
-
-
-
-
-This research focuses on the development and evaluation of a  numerical solver designed to solve differential equations efficiently. The solver's performance is assessed through detailed numerical examples, specifically focusing on linear multistep methods. We analyze Quade's Method and the 3-Step Backward Differentiation Formula (BDF), verifying their orders and stability characteristics. Quade's Method is shown to be a sixth-order method with an error constant of \(-0.0090\), while the 3-Step BDF is determined to be a third-order method with an error constant of \(-0.1364\). The proposed solver, referred to as the JF-Solver, is demonstrated to accurately replicate these theoretical results and perform stability and convergence analyses effectively.
-
-The JF-Solver is further validated by comparing it to the Adams-Bashforth and Adams-Moulton methods in solving differential equations. For non-stiff problems, the solver is tested using the Adams-Bashforth 3-step method, and for stiff problems, it is tested using the Adams-Moulton 4-step method. The results show that the JF-Solver not only provides accurate approximations but also offers superior computation speed and efficiency. This comprehensive analysis highlights the JF-Solver's potential as a valuable tool for numerical analysis in solving both non-stiff and stiff differential equations.
+  In this research, we present a Solver developed using Flutter aimed at solving stiff systems of ordinary differential equations (ODEs) through a unified implementation of collocation multistep methods. The application not only provides solutions to differential equations but also offers comprehensive analysis of Linear Multistep Methods (LMM). It calculates error constants, checks for zero stability, and assesses convergence. Numerical examples illustrate the accuracy and functionality of the solver, showcasing its performance across various scenarios. Detailed analyses of methods such as Quade’s method, Adams-Bashforth, Adams-Moulton, and Backward Differentiation Formula confirm the theoretical results with computational outputs. The results demonstrate the solver's effectiveness and robustness, establishing it as a valuable tool for numerical analysis in practical applications. solving both non-stiff and stiff differential equations.
   \end{abstract}
 
 % Table of Contents

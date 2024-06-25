@@ -17,6 +17,7 @@ dependencies:
   material_design_icons_flutter: ^7.0.7296
   math_expressions: ^2.5.0
   math_keyboard: ^0.2.1
+  path_provider: ^2.1.3
   pdf: ^3.10.8
   petitparser: any
   printing: ^5.12.0

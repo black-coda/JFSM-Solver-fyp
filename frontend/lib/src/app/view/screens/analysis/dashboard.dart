@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/src/app/controller/is_imp_or_exp_controller.dart';
 import 'package:frontend/src/app/controller/key.dart';
-import 'package:frontend/src/app/view/screens/solver/implicit_solver_view.dart';
+import 'package:frontend/src/app/view/screens/solver/Predictor_correct_view/implicit_solver_view.dart';
 import 'package:frontend/src/app/view/screens/analysis/stepper_screen.dart';
 import 'package:frontend/src/app/view/screens/analysis/result_of_explicit_method_test.dart';
+import 'package:frontend/src/app/view/screens/solver/explicit_and_linearization/new_explicit_and_implicit_linearization_solver_view.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
-import 'result_of_implcit_PE_method_test.dart';
-import '../solver/explicit_and_implicit_linearization_solver_view.dart';
+import 'result_of_implicit_predictor_corrector_method_test.dart';
 
 class DashboardView extends ConsumerStatefulWidget {
   const DashboardView({super.key});
@@ -23,10 +22,6 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
   void initState() {
     super.initState();
   }
-
-  final _page = <Widget>[
-    const StepperScreen(),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +74,7 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
                       )
                     : IconButton.outlined(
                         onPressed: () {
-                          if (_pageController.page == 2 - 1) {
+                          if (_pageController.page == 1) {
                             final isPredictorCorrector = ref.watch(
                                 isImplicitPredictorCorrectorMethodProvider);
                             isPredictorCorrector
@@ -92,7 +87,7 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
                                 : Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          const ExplicitAndImplicitLinearizationSolverView(),
+                                          const ExplicitAndImplicitLinearizationSolverScreen(),
                                     ),
                                   );
                           }

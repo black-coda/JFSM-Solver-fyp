@@ -81,6 +81,93 @@ In this context, some of the roots are complex. Zero-stability necessitates that
 
 \newpage
 
+\subsection{Adams Family}
+\begin{table}[h!]
+    \centering
+    \begin{tabularx}{\textwidth}{|c|c|c|X|}
+    \hline
+    \textbf{Method} & \textbf{Steps} & \textbf{Error Constant} & \textbf{$\beta$ Coefficients} \\
+    \hline
+    Adams-Bashforth & 2 & $\frac{5}{12}$ & $\beta_1 = \frac{3}{2}, \beta_0 = -\frac{1}{2}$ \\
+    \hline
+    Adams-Bashforth & 4 & $\frac{251}{720}$ & $\beta_3 = \frac{55}{24}, \beta_2 = -\frac{59}{24}, \beta_1 = \frac{37}{24}, \beta_0 = -\frac{9}{24}$ \\
+    \hline
+    Adams-Bashforth & 6 & $\frac{19087}{60480}$ & $\beta_5 = \frac{4277}{1440}, \beta_4 = -\frac{7923}{1440}, \beta_3 = \frac{9982}{1440}, \beta_2 = -\frac{7298}{1440}, \beta_1 = \frac{2877}{1440}, \beta_0 = -\frac{475}{1440}$ \\
+    \hline
+    Adams-Moulton & 3 & $\frac{1}{24}$ & $\beta_0 = \frac{5}{12}, \beta_1 = \frac{2}{3}, \beta_2 = -\frac{1}{12}$ \\
+    \hline
+    Adams-Moulton & 7 & $\frac{36799}{120960}$ & $\beta_0 = \frac{198721}{60480}, \beta_1 = \frac{18637}{2520}, \beta_2 = -\frac{235183}{20160}, \beta_3 = \frac{10754}{945}, \beta_4 = -\frac{135713}{20160}, \beta_5 = \frac{5603}{2520}, \beta_6 = -\frac{19087}{60480}$ \\
+    \hline
+    \end{tabularx}
+    \caption{Adams-Bashforth and Adams-Moulton Methods with Error Constants and $\beta$ Coefficients}
+    \label{table:adams_methods}
+    \end{table}
+The table (4.1) shows the Error constant for The Adams-Bashforth 2,4, and 6 Step, and also that of the Adams-Moulton 3 and 7 step.
+
+Using the JF-Solver we obtain the same result
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/ab(2)a.png}
+    \caption{$\alpha$ $\beta$ - value collector for AB(2) method}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/ab(2)b.png}
+    \caption{Results of the AB(2) method analysis}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/ab(4)b.png}
+    \caption{Results of the AB(4) method analysis}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/ab(6)a.png}
+    \caption{$\alpha$ $\beta$ - value collector for AB(2) method}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/ab(6).png}
+    \caption{Results of the AB(2) method analysis}
+\end{figure}
+
+
+For the Implicit case, that is the Adam Moulton:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/am(3)a.png}
+    \caption{$\alpha$ $\beta$ - value collector for AM(3) method}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/am(3)b.png}
+    \caption{Results of the AM(3) method analysis}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/am(7)a.png}
+    \caption{$\alpha$ $\beta$ - value collector for AM(7) method}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/am(7)b.png}
+    \caption{Results of the AM(7) method analysis}
+\end{figure}
+
+
+
+\newpage
+
+
 \subsection{3-Step Backward Differentiation Formula}
 
 The 3-Step Backward Differentiation Formula is given as:
@@ -166,6 +253,8 @@ Using the JF-Solver to analyze the 3-step Backward Differentiation Formula (BDF(
     \includegraphics[width=1\textwidth]{chapters/4/image/6.png}
     \caption{Results of the 3-step BDF method analysis}
 \end{figure}
+
+
 
 Additionally, the JF-Solver software, which was developed as part of this research, has been used to analyze the BDF(3) method. The software successfully replicated the theoretical results, providing the same error constant and stability characteristics. Moreover, the JF-Solver demonstrated superior performance in terms of computation speed and efficiency, making it a valuable tool for numerical analysis of differential equations.
 
@@ -272,7 +361,7 @@ both method are of the same order, that is order 4, this is determined by the JF
     \caption{entering $\alpha$ and $\beta$ values into the JF-Solver }
 \end{figure}
 
-\newpage
+
 we use the JF-Solver to get the solution $(4.33)$ and also analysis the Predictor-Corrector method  used,we get the following result:
 
 
@@ -292,8 +381,36 @@ we use the JF-Solver to get the solution $(4.33)$ and also analysis the Predicto
 
 \newpage
 
-\section{Implicit Method(Predictor-Corrector Algorithm): Adams-Moulton Method 4-Step Method (Stiff problem)}
+\section{Implicit Method: 3-Step Backward Differentiation Formula Method (Stiff problem)}
 
 
+The Dahlquist Test Equation is given as:
+\begin{equation}
+    y'(x) = Ky(x)
+\end{equation}
+Where $K$ is a constant, this equation becomes a stiff problem when $K$ is negative. The JF-Solver is used to solve this equation using the 3-step Backward Differentiation Formula Method, which has been proven to be effective for solving stiff problems.
 
+The solver is used to analyze the scheme and to solve the stiff problem:
+
+\begin{equation}
+y'(x) = -16y(x)
+\end{equation}
+
+The solution to the problem is shown below:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/stiifa.png}
+    \caption{Analysis result of $(4.37)$ }
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/4/image/stiffb.png}
+    \caption{solution of $(4.37)$ by JF-Solver}
+\end{figure}
+
+\newpage
+In conclusion, the numerical examples provided in this chapter effectively demonstrate the accuracy and robustness of the proposed solver across various methods and scenarios. The detailed analysis of Quade's method, Adams family methods, and the 3-step Backward Differentiation Formula showcases the solver's capability in handling both explicit and implicit differential equations. The results, corroborated by theoretical analysis and the use of the JF-Solver software, affirm the solver's reliability and efficiency in practical applications. This comprehensive evaluation highlights the solver's suitability for a wide range of differential equation problems, validating its potential as a valuable tool in numerical analysis.
 
