@@ -36,6 +36,15 @@ JF-Solver represents a significant advancement in desktop applications for solvi
 
 Future enhancements may include expanding the range of numerical methods available, integrating additional visualization tools, and refining the user interface based on user feedback. JF-Solver sets a strong foundation for ongoing development and application in the field of numerical ODE solving.
 
+
+\section{Limitations of the Study}
+\begin{itemize}
+  \item \textbf{Stability Issues with Stiff Equations}: The provided algorithm might not be optimized for all scenarios. For instance, it might not handle stiff equations (where certain methods might fail due to stability issues) or boundary value problems efficiently.
+  \item \textbf{Predictor-Corrector Algorithm}: The predictor and corrector must have the same order, which can limit the flexibility of the solver in some cases.
+\end{itemize}
+
+
+
 \section{Recommendations}
 
 Based on the findings and developments in this study, the following recommendations are proposed for future work:
@@ -44,7 +53,8 @@ Based on the findings and developments in this study, the following recommendati
   \item \textbf{Expanding Numerical Methods}: Incorporate additional numerical methods beyond LMMs to broaden the range of solvable ODE problems.
   \item \textbf{Enhanced Visualization Tools}: Develop more advanced visualization tools, such as 3D plotting and dynamic animations, to provide deeper insights into the behavior of solutions.
   \item \textbf{User Interface Improvements}: Continuously refine the user interface based on user feedback to enhance usability and functionality.
-  \item \textbf{Performance Optimization}: Further optimize the performance of the application to handle even larger and more complex ODE problems efficiently.
+  
+  \item \textbf{Performance Optimization}: Further optimize the performance of the application to handle even larger and more complex ODE problems efficiently.The implementation of variable step size control and adaptive methods can improve the efficiency of the solver.
   \item \textbf{Integration with Other Tools}: Explore the integration of JF-Solver with other mathematical and engineering software to create a more comprehensive toolkit for researchers and practitioners.
   \item \textbf{Educational Resources}: Develop educational resources and tutorials to help users, especially those new to numerical analysis, to effectively use JF-Solver.
 \end{itemize}
