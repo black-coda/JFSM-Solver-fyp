@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.6.17)  25 JUN 2024 15:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2024.6.17)  12 JUL 2024 17:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -463,114 +463,109 @@ File: chapters/4/image/2.png Graphic file (type png)
 Package pdftex.def Info: chapters/4/image/2.png  used on input line 78.
 (pdftex.def)             Requested size: 426.79135pt x 237.77524pt.
  [40 <./chapters/4/image/1.png>]
-<chapters/4/image/ab(2)a.png, id=162, 1927.2pt x 1084.05pt>
+<chapters/4/image/ab(2)a.png, id=162, 948.54375pt x 531.48563pt>
 File: chapters/4/image/ab(2)a.png Graphic file (type png)
 <use chapters/4/image/ab(2)a.png>
 Package pdftex.def Info: chapters/4/image/ab(2)a.png  used on input line 111.
-(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
-<chapters/4/image/ab(2)b.png, id=163, 1927.2pt x 1084.05pt>
+(pdftex.def)             Requested size: 426.79135pt x 239.13388pt.
+<chapters/4/image/ab(2)b.png, id=163, 948.54375pt x 533.74406pt>
 File: chapters/4/image/ab(2)b.png Graphic file (type png)
 <use chapters/4/image/ab(2)b.png>
 Package pdftex.def Info: chapters/4/image/ab(2)b.png  used on input line 117.
-(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
-<chapters/4/image/ab(4)b.png, id=164, 1927.2pt x 1084.05pt>
+(pdftex.def)             Requested size: 426.79135pt x 240.15002pt.
+<chapters/4/image/ab(4)b.png, id=164, 949.29657pt x 527.72156pt>
 File: chapters/4/image/ab(4)b.png Graphic file (type png)
 <use chapters/4/image/ab(4)b.png>
 Package pdftex.def Info: chapters/4/image/ab(4)b.png  used on input line 123.
-(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
-<chapters/4/image/ab(6)a.png, id=165, 1927.2pt x 1084.05pt>
-File: chapters/4/image/ab(6)a.png Graphic file (type png)
-<use chapters/4/image/ab(6)a.png>
-Package pdftex.def Info: chapters/4/image/ab(6)a.png  used on input line 129.
-(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
-<chapters/4/image/ab(6).png, id=166, 940.26282pt x 532.23843pt>
+(pdftex.def)             Requested size: 426.79135pt x 237.2551pt.
+<chapters/4/image/ab(6).png, id=165, 952.30782pt x 529.98pt>
 File: chapters/4/image/ab(6).png Graphic file (type png)
 <use chapters/4/image/ab(6).png>
-Package pdftex.def Info: chapters/4/image/ab(6).png  used on input line 135.
-(pdftex.def)             Requested size: 426.79135pt x 241.58412pt.
-<chapters/4/image/am(3)a.png, id=167, 1927.2pt x 1084.05pt>
+Package pdftex.def Info: chapters/4/image/ab(6).png  used on input line 129.
+(pdftex.def)             Requested size: 426.79135pt x 237.51836pt.
+<chapters/4/image/am(3)a.png, id=166, 947.03813pt x 524.71031pt>
 File: chapters/4/image/am(3)a.png Graphic file (type png)
 <use chapters/4/image/am(3)a.png>
-Package pdftex.def Info: chapters/4/image/am(3)a.png  used on input line 144.
-(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
-<chapters/4/image/am(3)b.png, id=168, 944.02687pt x 529.22719pt>
+Package pdftex.def Info: chapters/4/image/am(3)a.png  used on input line 138.
+(pdftex.def)             Requested size: 426.79135pt x 236.46173pt.
+<chapters/4/image/am(3)b.png, id=167, 951.555pt x 539.01375pt>
 File: chapters/4/image/am(3)b.png Graphic file (type png)
 <use chapters/4/image/am(3)b.png>
-Package pdftex.def Info: chapters/4/image/am(3)b.png  used on input line 150.
-(pdftex.def)             Requested size: 426.79135pt x 239.26442pt.
-<chapters/4/image/am(7)a.png, id=169, 953.81343pt x 534.49687pt>
+Package pdftex.def Info: chapters/4/image/am(3)b.png  used on input line 144.
+(pdftex.def)             Requested size: 426.79135pt x 241.75615pt.
+<chapters/4/image/am(7)a.png, id=168, 1927.2pt x 1084.05pt>
 File: chapters/4/image/am(7)a.png Graphic file (type png)
 <use chapters/4/image/am(7)a.png>
-Package pdftex.def Info: chapters/4/image/am(7)a.png  used on input line 156.
-(pdftex.def)             Requested size: 426.79135pt x 239.16751pt.
-<chapters/4/image/am(7)b.png, id=170, 1927.2pt x 1084.05pt>
+Package pdftex.def Info: chapters/4/image/am(7)a.png  used on input line 150.
+(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
+<chapters/4/image/am(7)b.png, id=169, 955.31906pt x 539.01375pt>
 File: chapters/4/image/am(7)b.png Graphic file (type png)
 <use chapters/4/image/am(7)b.png>
-Package pdftex.def Info: chapters/4/image/am(7)b.png  used on input line 162.
-(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
- [41 <./chapters/4/image/2.png>] [42 <./chapters/4/image/ab(2)a.png> <./chapters/4/image/ab(2)b.png>] [43 <./chapters/4/image/ab(4)b.png> <./chapters/4/image/ab(6)a.png>] [44 <./chapters/4/image/ab(6).png> <./chapters/4/image/am(3)a.png>] [45 <./chapters/4/image/am(3)b.png> <./chapters/4/image/am(7)a.png>]
-Overfull \hbox (14.754pt too wide) detected at line 204
+Package pdftex.def Info: chapters/4/image/am(7)b.png  used on input line 156.
+(pdftex.def)             Requested size: 426.79135pt x 240.80208pt.
+ [41 <./chapters/4/image/2.png>] [42 <./chapters/4/image/ab(2)a.png> <./chapters/4/image/ab(2)b.png>] [43 <./chapters/4/image/ab(4)b.png> <./chapters/4/image/ab(6).png>] [44 <./chapters/4/image/am(3)a.png> <./chapters/4/image/am(3)b.png>] [45 <./chapters/4/image/am(7)a.png> <./chapters/4/image/am(7)b.png>]
+Overfull \hbox (14.754pt too wide) detected at line 198
 []
  []
 
-[46 <./chapters/4/image/am(7)b.png>] [47]
-<chapters/4/image/5.png, id=204, 948.54375pt x 535.2497pt>
+[46]
+<chapters/4/image/5.png, id=198, 948.54375pt x 535.2497pt>
 File: chapters/4/image/5.png Graphic file (type png)
 <use chapters/4/image/5.png>
-Package pdftex.def Info: chapters/4/image/5.png  used on input line 247.
+Package pdftex.def Info: chapters/4/image/5.png  used on input line 241.
 (pdftex.def)             Requested size: 426.79135pt x 240.82747pt.
-<chapters/4/image/6.png, id=205, 951.555pt x 531.48563pt>
+<chapters/4/image/6.png, id=199, 951.555pt x 531.48563pt>
 File: chapters/4/image/6.png Graphic file (type png)
 <use chapters/4/image/6.png>
-Package pdftex.def Info: chapters/4/image/6.png  used on input line 253.
+Package pdftex.def Info: chapters/4/image/6.png  used on input line 247.
 (pdftex.def)             Requested size: 426.79135pt x 238.37967pt.
- [48 <./chapters/4/image/5.png>]
-<chapters/4/image/solver_3.png, id=210, 1927.2pt x 1084.05pt>
+ [47] [48 <./chapters/4/image/5.png> <./chapters/4/image/6.png>]
+<chapters/4/image/solver_3.png, id=209, 956.82469pt x 537.50812pt>
 File: chapters/4/image/solver_3.png Graphic file (type png)
 <use chapters/4/image/solver_3.png>
-Package pdftex.def Info: chapters/4/image/solver_3.png  used on input line 314.
-(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
-<chapters/4/image/solver_2.png, id=211, 1927.2pt x 1084.05pt>
+Package pdftex.def Info: chapters/4/image/solver_3.png  used on input line 308.
+(pdftex.def)             Requested size: 426.79135pt x 239.75217pt.
+<chapters/4/image/solver_2.png, id=210, 1927.2pt x 1084.05pt>
 File: chapters/4/image/solver_2.png Graphic file (type png)
 <use chapters/4/image/solver_2.png>
-Package pdftex.def Info: chapters/4/image/solver_2.png  used on input line 320.
+Package pdftex.def Info: chapters/4/image/solver_2.png  used on input line 314.
 (pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
- [49 <./chapters/4/image/6.png>] [50 <./chapters/4/image/solver_3.png> <./chapters/4/image/solver_2.png>]
-Overfull \hbox (19.93152pt too wide) in paragraph at lines 330--330
+ [49] [50 <./chapters/4/image/solver_3.png> <./chapters/4/image/solver_2.png>]
+Overfull \hbox (19.93152pt too wide) in paragraph at lines 324--324
 |[]\OT1/cmr/bx/n/14.4 Implicit Method(Predictor-Corrector Al-go-rithm): Adams-
  []
 
-<chapters/4/image/solver_4.png, id=221, 743.02594pt x 377.15906pt>
+<chapters/4/image/solver_4.png, id=219, 743.02594pt x 377.15906pt>
 File: chapters/4/image/solver_4.png Graphic file (type png)
 <use chapters/4/image/solver_4.png>
-Package pdftex.def Info: chapters/4/image/solver_4.png  used on input line 352.
+Package pdftex.def Info: chapters/4/image/solver_4.png  used on input line 346.
 (pdftex.def)             Requested size: 426.79135pt x 216.64034pt.
-<chapters/4/image/solver_5.png, id=222, 1927.2pt x 1084.05pt>
+<chapters/4/image/solver_5.png, id=220, 1927.2pt x 1084.05pt>
 File: chapters/4/image/solver_5.png Graphic file (type png)
 <use chapters/4/image/solver_5.png>
-Package pdftex.def Info: chapters/4/image/solver_5.png  used on input line 360.
+Package pdftex.def Info: chapters/4/image/solver_5.png  used on input line 354.
 (pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
-<chapters/4/image/solver_6.png, id=223, 1927.2pt x 1084.05pt>
+<chapters/4/image/solver_6.png, id=221, 959.83594pt x 536.75531pt>
 File: chapters/4/image/solver_6.png Graphic file (type png)
 <use chapters/4/image/solver_6.png>
-Package pdftex.def Info: chapters/4/image/solver_6.png  used on input line 370.
-(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
-<chapters/4/image/solver_7.png, id=224, 950.04938pt x 535.2497pt>
+Package pdftex.def Info: chapters/4/image/solver_6.png  used on input line 364.
+(pdftex.def)             Requested size: 426.79135pt x 238.67107pt.
+<chapters/4/image/solver_7.png, id=222, 953.81343pt x 537.50812pt>
 File: chapters/4/image/solver_7.png Graphic file (type png)
 <use chapters/4/image/solver_7.png>
-Package pdftex.def Info: chapters/4/image/solver_7.png  used on input line 377.
-(pdftex.def)             Requested size: 426.79135pt x 240.45177pt.
+Package pdftex.def Info: chapters/4/image/solver_7.png  used on input line 371.
+(pdftex.def)             Requested size: 426.79135pt x 240.51494pt.
 [51] [52 <./chapters/4/image/solver_4.png> <./chapters/4/image/solver_5.png>] [53 <./chapters/4/image/solver_6.png> <./chapters/4/image/solver_7.png>]
-<chapters/4/image/stiifa.png, id=239, 1927.2pt x 1084.05pt>
+<chapters/4/image/stiifa.png, id=237, 953.06062pt x 537.50812pt>
 File: chapters/4/image/stiifa.png Graphic file (type png)
 <use chapters/4/image/stiifa.png>
-Package pdftex.def Info: chapters/4/image/stiifa.png  used on input line 403.
-(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
-<chapters/4/image/stiffb.png, id=240, 1927.2pt x 1084.05pt>
+Package pdftex.def Info: chapters/4/image/stiifa.png  used on input line 397.
+(pdftex.def)             Requested size: 426.79135pt x 240.70357pt.
+<chapters/4/image/stiffb.png, id=238, 950.80219pt x 532.23843pt>
 File: chapters/4/image/stiffb.png Graphic file (type png)
 <use chapters/4/image/stiffb.png>
-Package pdftex.def Info: chapters/4/image/stiffb.png  used on input line 410.
-(pdftex.def)             Requested size: 426.79135pt x 240.06316pt.
+Package pdftex.def Info: chapters/4/image/stiffb.png  used on input line 404.
+(pdftex.def)             Requested size: 426.79135pt x 238.91222pt.
  [54 <./chapters/4/image/stiifa.png>]) (chapters/5/chapter5.tex [55 <./chapters/4/image/stiffb.png>]
 Chapter 5.
 [56
@@ -614,17 +609,17 @@ L3 programming layer <2023-11-01>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7190 strings out of 474592
- 115367 string characters out of 5745799
- 1956533 words of memory out of 5000000
- 29235 multiletter control sequences out of 15000+600000
+ 7183 strings out of 474592
+ 115130 string characters out of 5745799
+ 1954533 words of memory out of 5000000
+ 29228 multiletter control sequences out of 15000+600000
  566856 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  79i,12n,93p,1143b,579s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\monda\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/monda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on fyp.pdf (63 pages, 1529369 bytes).
+Output written on fyp.pdf (63 pages, 1400115 bytes).
 PDF statistics:
- 353 PDF objects out of 1000 (max. 8388607)
+ 351 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 116 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 111 words of extra memory for PDF output out of 10000 (max. 10000000)
 

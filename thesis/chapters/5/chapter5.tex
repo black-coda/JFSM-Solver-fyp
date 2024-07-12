@@ -39,7 +39,7 @@ Future enhancements may include expanding the range of numerical methods availab
 
 \section{Limitations of the Study}
 \begin{itemize}
-  \item \textbf{Stability Issues with Stiff Equations}: The provided algorithm might not be optimized for all scenarios. For instance, it might not handle stiff equations (where certain methods might fail due to stability issues) or boundary value problems efficiently.
+  \item \textbf{Stability Issues with Stiff Equations}: The JF-Solver's performance in solving stiff equations relies heavily on the stability properties of the Linear Multistep Methods (LMM) that are analyzed and used. In particular, the A-stability and L-stability of the LMMs are crucial for effectively managing stiff problems. If the chosen LMM does not possess these stability characteristics, the app may struggle to handle stiff equations properly, which could result in inaccuracies or failures in the solutions.
   \item \textbf{Predictor-Corrector Algorithm}: The predictor and corrector must have the same order, which can limit the flexibility of the solver in some cases.
 \end{itemize}
 
@@ -57,6 +57,7 @@ Based on the findings and developments in this study, the following recommendati
   \item \textbf{Performance Optimization}: Further optimize the performance of the application to handle even larger and more complex ODE problems efficiently.The implementation of variable step size control and adaptive methods can improve the efficiency of the solver.
   \item \textbf{Integration with Other Tools}: Explore the integration of JF-Solver with other mathematical and engineering software to create a more comprehensive toolkit for researchers and practitioners.
   \item \textbf{Educational Resources}: Develop educational resources and tutorials to help users, especially those new to numerical analysis, to effectively use JF-Solver.
+  \item \textbf{Implementing a Step-Size Control System}: To enhance the app's capability in handling stiff equations, it is recommended to integrate an adaptive step-size control system. This system would dynamically adjust the time step based on the stiffness of the problem, ensuring stability and accuracy. By implementing step-size control, the app can better manage the challenges posed by stiff equations, improving overall performance and reliability.
 \end{itemize}
 
 By addressing these recommendations, future versions of JF-Solver can become even more powerful and versatile tools for the numerical analysis and solution of ODEs.

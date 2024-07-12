@@ -24,9 +24,9 @@
 % Chapter formatting
 \titleformat{\chapter}[display]
   {\normalfont\huge\bfseries\centering} % Center the chapter title
-  {\chaptertitlename\ \thechapter}      % Chapter number
+  {\MakeUppercase{\chaptertitlename\ \thechapter}}      % Chapter number in uppercase
   {20pt}                                % Spacing between number and title
-  {\Huge}                               % Title font size
+  {\Huge\MakeUppercase}                               % Title font size and uppercase
 
 % Header and Footer
 \pagestyle{fancy}
@@ -86,7 +86,7 @@
   My heartfelt thanks go to my mother, whose unwavering support, encouragement, and sacrifices have been the driving force behind my success.
 
   \vspace{0.5cm}
-  I am immensely grateful to my supervisor, Prof J.O Fatokun, for their invaluable guidance, mentorship, and expertise. Their insights and encouragement significantly contributed to the completion of this project.
+  I am immensely grateful to my supervisor, Prof J.O Fatokun, for his invaluable guidance, mentorship, and expertise. His insights and encouragement significantly contributed to the completion of this project.
 
   \vspace{0.5cm}
   Special thanks to Dr. Akewe, Dr. Okoro, Dr. Evans, and Dr. Akinnukawe for their support, constructive feedback, and contributions to my academic and personal development.
@@ -135,3 +135,5 @@
 % Include your bibliography file (e.g., references.bib)
 
 \end{document}
+
+

@@ -23,7 +23,7 @@
 \contentsline {subsection}{\numberline {3.3.1}Consistency Analysis Algorithm}{26}{}%
 \contentsline {subsection}{\numberline {3.3.2}Zero-Stability Analysis Algorithm}{28}{}%
 \contentsline {subsection}{\numberline {3.3.3}Convergence Analysis Algorithm}{31}{}%
-\contentsline {subsection}{\numberline {3.3.4}Determine Order and Error Constant Algorithm}{32}{}%
+\contentsline {subsection}{\numberline {3.3.4}Determination of Order and Error Constant Algorithm}{32}{}%
 \contentsline {section}{\numberline {3.4}Module 2: Application of Linear Multistep Method in Solving ODEs}{32}{}%
 \contentsline {subsection}{\numberline {3.4.1}Explicit Method Algorithm}{34}{}%
 \contentsline {subsection}{\numberline {3.4.2}Implicit method Algorithm}{36}{}%
