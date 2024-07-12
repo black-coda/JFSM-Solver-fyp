@@ -1,0 +1,193 @@
+\documentclass[12pt, twoside]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage[a4paper, width=150mm, top=25mm, bindingoffset=6mm]{geometry}
+\usepackage{sectsty}
+\usepackage{fontspec}
+\chapterfont{\centering}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage[belowskip=0pt,aboveskip=0pt]{caption} % Adjusts space around captions
+\usepackage{float} % For precise figure placement
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{geometry}
+
+
+
+\begin{document}
+	
+	\title{
+		\begin{center}
+			{\includegraphics[scale=0.4]{anchorlogo.png}}
+		\end{center}
+		\vspace{0.5cm}
+		{\large \input{topic/topic}}\\
+		\vspace{0.1cm}
+		{\large By}\\
+		\vspace{0.1cm}
+		{\large Asuquo Samuel Archibong}\\	
+		\vspace{0.1cm}
+		{\large AUL/SCI/20/00607}\\
+		\vspace{0.1cm}
+		{\large Supervised by:}\\	
+		\vspace{0.1cm}
+		{\large Dr O.Taiwo \& Mrs Adeola Preye}\\
+		\vspace{0.1cm}
+		{\large A Project submitted to the Department Of Computing}\\
+		\vspace{0.1cm}
+		{\large Faculty of Science}\\
+		\vspace{0.1cm}
+		{\large Anchor University, Lagos}\\
+		\vspace{0.1cm}
+		{\large In Partial Fulfillment of the requirements for the Award of}\\
+		\vspace{0.1cm}
+		{\large A Bachelor of Science (B.Sc.) Degree in Computer Science}
+	}
+	
+	\maketitle
+	
+	% Start roman numbering
+	\pagenumbering{roman}
+	\pagestyle{empty}
+	
+	\chapter*{DECLARATION}
+	I hereby declare that this Project was written by me and is a correct record of my research work. It has not been presented in any previous application for any degree of this or any other University. All citations and sources of information are acknowledged using references.	\\
+	\begin{flushleft}
+		\vspace{1cm}
+		{Signature: \rule{5cm}{0.4pt}}\\
+		\vspace{0.5cm}
+		{Name: Asuquo Samuel Archibong}\\
+		\vspace{0.5cm}
+		{Date: \rule{5cm}{0.4pt}}\\
+		\vspace{0.5cm}
+	\end{flushleft}
+	
+	\chapter*{CERTIFICATION}
+	I hereby certify that this project work entitled “ \input{topic/topic}”, was carried out by Asuquo Samuel Archibong with the matriculation number AUL/SCI/20/00607, under the supervision of Dr O.Taiwo \& Mrs Adeola Preye.
+	
+	\begin{tabbing}
+		\hspace{10cm} \= \hspace{5cm} \kill
+		\\
+		\\\\\\\\\\\\\\\\\\\_ \> \\\\\\\\\\\\\\\\\\\_ \\
+		Dr. Olutosin Taiwo \> Date \\
+		Supervisor \\
+		\\
+		\\\\\\\\\\\\\\\\\\\_ \> \\\\\\\\\\\\\\\\\\\_ \\
+		Mrs. Adeola Preye \> Date \\
+		Supervisor \\
+		\\\\\\\\\\\\\\\\\\\_ \> \\\\\\\\\\\\\\\\\\\_ \\
+		Dr. Aleburu Deborah \> Date \\
+		Head of Department \\
+		\\
+		\\\\\\\\\\\\\\\\\\\_ \> \\\\\\\\\\\\\\\\\\\_ \\
+		Prof. (Mrs) Olafunke Oladipupo \> Date \\
+		External Supervisor \\
+	\end{tabbing}
+	
+	\chapter*{ABSTRACT}
+	\textit{This study aims to develop a web-integrated system for early breast cancer detection using convolutional neural networks (CNNs) and ensemble methods. Breast cancer is the most common cancer among women worldwide, and early detection is crucial for improved patient outcomes. }
+	\textit{The proposed system integrates patient-centric components, including a patients web application, educational video content, and an immersive 3D breast visualization tool embedded from the human bio digital website. This patient-centered approach is designed to enhance user engagement, knowledge retention, and empowerment in the healthcare journey.}
+	\textit{The radiologist web application utilizes an ensemble of RepVGG\_A0 and GhostNet\_100 CNN models to analyze mammogram images for breast cancer detection. The study demonstrates that the ensemble model achieves high accuracy exceeding 95\% in identifying breast cancer, outperforming individual CNN models.}
+	\textit{Key innovations of the system include the integration of advanced deep learning techniques with a web-based interface, the incorporation of patient education and engagement features, and the exploration of ensemble methods with lightweight models to enhance the performance of breast cancer detection. The findings suggest that the combination of patient-centric approaches and state-of-the-art AI models can significantly contribute to early breast cancer detection and improved patient outcomes, especially in resource-constrained environments.}
+	
+	\textbf{Keywords}
+	\textit{: Breast Cancer, Early Detection, Machine Learning, Deep Learning, Convolutional Neural Networks, Data Integration, Patient-Centered Approach}
+	
+	\chapter*{ABBREVIATION}
+	\begin{itemize}
+		\item \textbf{ANNs} - Artificial Neural Networks 
+		\item \textbf{SVM} - Support Vector Machines 
+		\item \textbf{CNN} - Convolutional Neural Networks 
+		\item \textbf{ADT} - Alternating Decision Tree 
+		\item \textbf{CART} - Classification and Regression Trees 
+		\item \textbf{WHO} - World Health Organization 
+		\item \textbf{MRI} - Magnetic Resonance Imaging 
+		\item \textbf{CT} - Computed Tomography 
+		\item \textbf{PET} - Positron Emission Tomography 
+		\item \textbf{FNAC} - Fine Needle Aspiration Cytology 
+		\item \textbf{ER} - Estrogen Receptor 
+		\item \textbf{PR} - Progesterone Receptor 
+		\item \textbf{HER2} - Human Epidermal Growth Factor Receptor 2 
+		\item \textbf{TNBC} - Triple-Negative Breast Cancer 
+		\item \textbf{BC} - Breast Cancer 
+		\item \textbf{IDC} - Invasive Ductal Carcinoma 
+		\item \textbf{ILC} - Invasive Lobular Carcinoma 
+		\item \textbf{CIS} - Carcinoma in Situ 
+		\item \textbf{DCIS} - Ductal Carcinoma in Situ 
+		\item \textbf{LCIS} - Lobular Carcinoma in Situ 
+		\item \textbf{AI} - Artificial Intelligence 
+		\item \textbf{NLP} - Natural Language Processing 
+		\item \textbf{ML} - Machine Learning 
+		\item \textbf{RNN} - Recurrent Neural Networks 
+		\item \textbf{LR} - Logistic Regression 
+		\item \textbf{kNN} - k-Nearest Neighbors 
+		\item \textbf{NB} - Naive Bayes 
+		\item \textbf{RF} - Random Forest 
+		\item \textbf{ROC} - Receiver Operating Characteristic 
+		\item \textbf{AUC} - Area Under the Curve 
+		\item \textbf{GB} - Gradient Boosting 
+		\item \textbf{DNN} - Deep Neural Networks 
+		\item \textbf{PCA} - Principal Component Analysis 
+		\item \textbf{t-SNE} - t-Distributed Stochastic Neighbor Embedding 
+		\item \textbf{LDA} - Linear Discriminant Analysis 
+		\item \textbf{TSVM} - Twin Support Vector Machine 
+		\item \textbf{BoW} - Bag of Words 
+		\item \textbf{TF-IDF} - Term Frequency-Inverse Document Frequency 
+		\item \textbf{GBM} - Gradient Boosting Machines 
+		\item \textbf{ADA} - Adaptive Boosting 
+	\end{itemize}
+	
+	\chapter*{DEDICATION}
+	This is for the countless brave souls who have fought the good fight against breast cancer, whose tenacity, strength, and positive outlook amid severe adversity serve as an inspiration to all around. To the survivors: Your journey is proof positive that hope, coupled with determination, can see one through even the darkest days. To those in the struggle: It spurs us on ever the more to work hard on early detection and treatment. To the bereaved families, we share in your sorrow and are driven by the memory of those who are no longer with us.
+	
+	I also wish to dedicate this work to my beloved parents, Dr. and Mrs. Asuquo. Your endless support, encouragement, and love have been the bedrock of my journey. Your faith in me has been my guiding light, and I am forever grateful for the sacrifices you have made so that I can be a success. This achievement is as much yours as it is mine.
+	
+	I am grateful to my highly esteemed supervisors, Dr. O. Taiwo and Mrs. Adeola Preye. Your directions, counsels, and insightful comments are just beyond price. This work has indeed been greatly influenced by your dedication to my development as a researcher, commitment to excellence, and hard work. Therefore, I am deeply thankful for the valuable time you have put into me.
+	
+	\chapter*{ACKNOWLEDGMENT}
+	I express my heartfelt gratitude to the Almighty, who has been my source of strength throughout this course, particularly during the research work.
+	I would like to also appreciate my parents Dr. \& Mrs. Asuquo, for their relentlessness and support.  
+	I would also like to express my sincere gratitude and appreciation to Dr. Taiwo, and Miss Uche, Mrs. Adeola Preye , for their valuable contributions and insightful suggestions.
+	I am also thankful to all the Head Of my Department, my level adviser and all lecturers in the Department of Mathematical Sciences for their dedication, time, and guidance during my study.
+	To my course mate, Adebambo Timilehin and all others, I can’t neglect your impact and constant support during the course of my study.
+	
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	
+	% End roman numbering and switch to arabic numbering
+	\clearpage
+	
+	
+\pagenumbering{arabic}
+	
+	\begin{spacing}{1.5}
+		\chapter{INTRODUCTION}
+		\input{chapters/chapter01}
+		
+		\chapter{LITERATURE REVIEW}
+		\input{chapters/chapter02}
+		
+		\chapter{METHODOLOGY}
+		\input{chapters/chapter03}
+		
+		\chapter{RESULT \& DISCUSSION}
+		\input{chapters/chapter04}
+		
+		\chapter{SUMMARY, CONCLUSION AND RECOMMENDATION}
+		\input{chapters/chapter05}
+		
+		\input{chapters/Ref}
+	\end{spacing}
+	
+\end{document}

@@ -1,4 +1,5 @@
-\documentclass[a4paper, twoside]{report}
+\documentclass[a4paper, twoside]{report} % Use extsizes package for 15pt
+% Setting the base font size 
 \usepackage{geometry}
 \usepackage{setspace}
 \usepackage{graphicx}
@@ -16,17 +17,32 @@
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{tabularx}
+\usepackage{textcase} % For \MakeTextUppercase
+\usepackage{fontsize}
 
-\geometry{top=2.5cm, bottom=2.5cm, left=3.5cm, right=2.5cm}
+
+\geometry{a4paper, width=150mm, top=27.5mm, bindingoffset=6mm}
 \setlength{\parskip}{1em}
 \onehalfspacing
+
+% Set the base font size to 13pt
+
 
 % Chapter formatting
 \titleformat{\chapter}[display]
   {\normalfont\huge\bfseries\centering} % Center the chapter title
-  {\MakeUppercase{\chaptertitlename\ \thechapter}}      % Chapter number in uppercase
+  {\MakeUppercase{\chaptertitlename\ \ifcase\value{chapter}\or ONE\or TWO\or THREE\or FOUR\or FIVE\or SIX\or SEVEN\or EIGHT\or NINE\or TEN\or ELEVEN\or TWELVE\or THIRTEEN\or FOURTEEN\or FIFTEEN\or SIXTEEN\or SEVENTEEN\or EIGHTEEN\or NINETEEN\or TWENTY\fi}} % Chapter number in uppercase words
   {20pt}                                % Spacing between number and title
-  {\Huge\MakeUppercase}                               % Title font size and uppercase
+  {\Huge\MakeUppercase}                 % Title font size and uppercase
+                             % Title font size without uppercase
+
+% Chapter formatting
+% \titleformat{\chapter}[display]
+%   {\normalfont\huge\bfseries\centering} % Center the chapter title
+%   {\MakeUppercase{\chaptertitlename\ \Numberstring{chapter}}}      % Chapter number in uppercase
+%   {20pt}                                % Spacing between number and title
+%   {\Huge\MakeUppercase}                               % Title font size and uppercase
+
 
 % Header and Footer
 \pagestyle{fancy}
@@ -43,25 +59,28 @@
 % \renewcommand\thesection{\arabic{section}}
 % \renewcommand\thechapter{\arabic{chapter}}
 \renewcommand\thesection{\arabic{chapter}.\arabic{section}}
+% Redefine contentsname
+\renewcommand{\contentsname}{Table of Contents}
 
 \begin{document}
+\fontsize{13}{15}\selectfont
 \begin{titlepage}
    \centering
    \vspace*{1cm}
-   \includegraphics[width=0.3\textwidth]{aul_logo.png}\par
+   \includegraphics[width=0.4\textwidth]{aul_logo.png}\par
    \vspace{1.5cm}
    {\scshape\LARGE Anchor University Lagos \par}
    \vspace{1cm}
    \vspace{1.5cm}
    {\huge\bfseries Unified Code for Collocation Multistep Methods in Solving Stiff Systems of Ordinary Differential Equations\par}
    \vspace{2cm}
-   {\Large\itshape OKWHAROBO, Solomon Monday\par}
+   {\Large OKWHAROBO, Solomon Monday\par}
    \vfill
    supervised by\par
    \textsc{Prof J.O Fatokun}
   
    
-   \text{Department Of Mathematics} \\
+   \text{ Department Of Mathematics} \\
    \text{In Partial Fulfillment Of The Requirement For The Award Of The Bachelor Of Science}
    
 
@@ -135,5 +154,3 @@
 % Include your bibliography file (e.g., references.bib)
 
 \end{document}
-
-
