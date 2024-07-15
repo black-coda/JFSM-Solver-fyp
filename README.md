@@ -1,4 +1,4 @@
-# Flutter Desktop App for LMM Analysis and ODE Solving
+# JF-SM Solver Flutter Desktop App for LMM Analysis and ODE Solving
 
 ![License](https://img.shields.io/github/license/black-coda/fyp)
 ![Release](https://img.shields.io/github/v/release/black-coda/fyp)
