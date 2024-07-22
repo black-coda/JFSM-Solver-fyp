@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex fyp"] 1720811561 "fyp.aux" "fyp.bbl" "fyp" 1720813862 0
+["bibtex fyp"] 1721077330 "fyp.aux" "fyp.bbl" "fyp" 1721077372 0
   "./bib/Proposal.bib" 1716951719 15221 1eaa01f5d09949b6084d19de6276afb0 ""
   "C:/Users/monda/AppData/Local/Programs/MiKTeX/bibtex/bst/apacite/apacite.bst" 1374952728 146156 9d7b79dbf9d91133318126032cff8c27 ""
-  "fyp.aux" 1720813861 20722 6a4241195f1408f9f8cd42c455d56aec "pdflatex"
+  "fyp.aux" 1721077371 20740 2bb8ed08bd53337662b5c14620f27e04 "pdflatex"
   (generated)
   "fyp.bbl"
   "fyp.blg"
   (rewritten before read)
-["pdflatex"] 1720813855 "c:/Users/monda/OneDrive/Desktop/fyp/thesis/fyp.tex" "fyp.pdf" "fyp" 1720813862 0
+["pdflatex"] 1721077363 "c:/Users/monda/OneDrive/Desktop/fyp/thesis/fyp.tex" "fyp.pdf" "fyp" 1721077372 0
   "C:/Users/monda/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1720807335 83659 ee886fea19f5ef0d07f73fdc4a4a3617 ""
   "C:/Users/monda/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1702853700 11548 0fa82d592ba5b863c3fea14efb5ae396 ""
   "C:/Users/monda/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1702551746 14064 7c722e033a6a9fb8d2a653e7d1c8fde4 ""
@@ -127,12 +127,12 @@
   "C:/Users/monda/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/monda/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "aul_logo.png" 1667997723 45877 76cf746adec6fd1e56b216cf47c0c853 ""
-  "c:/Users/monda/OneDrive/Desktop/fyp/thesis/fyp.tex" 1720813854 5952 51c70d145b9cefda28159cdf280c7af5 ""
+  "c:/Users/monda/OneDrive/Desktop/fyp/thesis/fyp.tex" 1721077361 7699 2f1bb44f093a8d033516e09140fc6d07 ""
   "chapters/1/chapter1.tex" 1720809025 23147 7f2c4658748963db16c94ec1cde79467 ""
   "chapters/2/StiffEquationNumericalSolvers.svg.png" 1713226082 19037 2b351bdf1f8c17356803e32fe5f82364 ""
   "chapters/2/chapter2.tex" 1719322145 30624 aaae8829559c72b80b019f7e6941ecc0 ""
   "chapters/3/chapter3.tex" 1720799694 32710 57371fed5cc8643b915ac153366efa31 ""
-  "chapters/4/chapter4.tex" 1720809882 19184 039b3860cfba370306b7535b0a7b11c6 ""
+  "chapters/4/chapter4.tex" 1721057786 19244 8aa6769dadee5bb0db5f40c114f79b3a ""
   "chapters/4/image/1.png" 1715111367 88677 1b1e8b2da9bbb3e41e5c2e8d5ca3cc66 ""
   "chapters/4/image/2.png" 1715111400 23639 2f5a2f4d885952968c0672d177a83b9c ""
   "chapters/4/image/5.png" 1715982804 86215 789f24ffff9f619b26bbe2550bf8c6db ""
@@ -154,12 +154,12 @@
   "chapters/4/image/stiffb.png" 1720797281 62150 1f2a0c98a17a052dff104a9d91424569 ""
   "chapters/4/image/stiifa.png" 1720797137 33105 dbd7305279ebd4ab832d33f59ebf6a98 ""
   "chapters/5/chapter5.tex" 1720800932 6715 5b03a3ce66e539c54d6ffce638d6e43a ""
-  "fyp.aux" 1720813861 20722 6a4241195f1408f9f8cd42c455d56aec "pdflatex"
-  "fyp.bbl" 1720811562 24026 cddde04ea0d2dc924fb4f9fcaffcbdf5 "bibtex fyp"
-  "fyp.lof" 1720813861 2373 a927068363d22b2a64ee91cd4be7f1f7 "pdflatex"
-  "fyp.lot" 1720813861 397 36b3ced96567884b12d9d20805514537 "pdflatex"
-  "fyp.tex" 1720813854 5952 51c70d145b9cefda28159cdf280c7af5 ""
-  "fyp.toc" 1720813861 3887 5c2acf80fd8bb1696da353b9faa8bf2c "pdflatex"
+  "fyp.aux" 1721077371 20740 2bb8ed08bd53337662b5c14620f27e04 "pdflatex"
+  "fyp.bbl" 1721077331 24026 cddde04ea0d2dc924fb4f9fcaffcbdf5 "bibtex fyp"
+  "fyp.lof" 1721077371 2388 a611d7571bb1be7d2ad74a17760b433d "pdflatex"
+  "fyp.lot" 1721077371 400 097a6253a417d028d60ec352ec6cf758 "pdflatex"
+  "fyp.tex" 1721077361 7699 2f1bb44f093a8d033516e09140fc6d07 ""
+  "fyp.toc" 1721077371 3887 5c2acf80fd8bb1696da353b9faa8bf2c "pdflatex"
   (generated)
   "fyp.aux"
   "fyp.lof"
