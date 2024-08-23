@@ -1,0 +1,183 @@
+\documentclass[a4paper]{report}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{apacite}
+\usepackage{url}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{tabularx}
+\usepackage{textcase} % For \MakeTextUppercase
+\usepackage{fontsize}
+\usepackage{setspace}
+\usepackage{appendix}
+\usepackage{tocloft}
+
+% Page layout
+\geometry{a4paper, width=160mm, top=20.5mm, bindingoffset=6mm}
+\setlength{\parskip}{1em}
+\onehalfspacing
+
+% Chapter formatting
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\centering} % Center the chapter title
+  {\MakeUppercase{\chaptertitlename\ \ifcase\value{chapter}\or ONE\or TWO\or THREE\or FOUR\or FIVE\or SIX\or SEVEN\or EIGHT\or NINE\or TEN\or ELEVEN\or TWELVE\or THIRTEEN\or FOURTEEN\or FIFTEEN\or SIXTEEN\or SEVENTEEN\or EIGHTEEN\or NINETEEN\or TWENTY\fi}} % Chapter number in uppercase words
+  {20pt}                                % Spacing between number and title
+  {\Huge\MakeUppercase} % Title font size and uppercase
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE,LO]{\leftmark}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Define code listing style
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{keywordcolor}{rgb}{0.0, 0.0, 0.6}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{keywordcolor},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+% Custom TOC formatting
+\renewcommand{\cftchapfont}{\bfseries} % Make chapter titles bold
+\renewcommand{\cftsecfont}{\normalfont} % Normal font for sections
+\renewcommand{\cftchapnumwidth}{2em} % Adjust width for chapter numbers
+\renewcommand{\cftsecnumwidth}{2em} % Adjust width for section numbers
+\renewcommand{\cftsecindent}{1em} % Indent sections
+
+% Custom appendix title format
+\renewcommand{\appendixname}{Appendix}
+
+% Adjust section numbering
+\renewcommand\thesection{\arabic{chapter}.\arabic{section}}
+% Redefine contentsname
+\renewcommand{\contentsname}{Table of Contents}
+
+% Begin document
+\begin{document}
+\fontsize{13}{15}\selectfont
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.4\textwidth]{aul_logo.png}\par
+    \vspace{1.5cm}
+    {\scshape\LARGE Anchor University Lagos \par}
+    \vspace{1cm}
+    \vspace{1.5cm}
+    {\huge\bfseries Unified Code for Collocation Multistep Methods in Solving Systems of Ordinary Differential Equations\par}
+    \vspace{2cm}
+    {\Large OKWHAROBO, Solomon Monday\par}
+    \vfill
+   
+    \text{ Department of Mathematics, Faculty of Science, Anchor University Lagos} \\
+    In partial fulfillment of the requirement for the award of Bachelor of Science(B.Sc.) Degree in Mathematics.
+ 
+    \vfill
+ 
+    % Bottom of the page
+    {\large July, 2024 \par}
+ \end{titlepage}
+
+% Front matter with Roman numerals
+\pagenumbering{roman}
+
+\clearpage
+
+% Declaration
+\chapter*{Declaration}
+\addcontentsline{toc}{chapter}{Declaration}
+\input{frontmatter/declaration.tex}
+
+% Certification
+\chapter*{Certification}
+\addcontentsline{toc}{chapter}{Certification}
+\input{frontmatter/certification.tex}
+
+% Dedication
+\chapter*{Dedication}
+\addcontentsline{toc}{chapter}{Dedication}
+\input{frontmatter/dedication.tex}
+
+% Acknowledgements
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+\input{frontmatter/acknowledgements.tex}
+
+% Abstract
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\input{frontmatter/abstract.tex}
+
+\pagebreak
+% Table of Contents
+\tableofcontents
+\newpage
+% List of Figures
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+
+% List of Tables
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+
+% List of Abbreviations
+\chapter*{List of Abbreviations}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\input{frontmatter/abbreviations.tex}
+
+% Change to Arabic numerals
+\clearpage
+\pagenumbering{arabic}
+
+% Chapters
+\input{chapters/1/chapter1.tex}
+\input{chapters/2/chapter2.tex}
+\input{chapters/3/chapter3.tex}
+\input{chapters/4/chapter4.tex}
+\input{chapters/5/chapter5.tex}
+
+% Bibliography
+\bibliographystyle{apacite}
+\bibliography{bib/Proposal}
+
+
+% Appendices start here
+\begin{appendices}
+\chapter*{Appendix A: Dart Code for Linear Multistep Analysis}
+\addcontentsline{toc}{section}{Appendix A: Dart Code for Linear Multistep Analysis}
+
+    \lstinputlisting[caption={Dart code for Linear Multistep Analysis}]{analysis_implementation.dart}
+\end{appendices}
+\end{document}

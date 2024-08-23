@@ -1,4 +1,5 @@
-\documentclass[a4paper, twoside]{report}
+\documentclass[a4paper, twoside]{report} % Use extsizes package for 15pt
+% Setting the base font size 
 \usepackage{geometry}
 \usepackage{setspace}
 \usepackage{graphicx}
@@ -16,17 +17,22 @@
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{tabularx}
+\usepackage{textcase} % For \MakeTextUppercase
+\usepackage{fontsize}
+\usepackage{setspace}
 
-\geometry{top=2.5cm, bottom=2.5cm, left=3.5cm, right=2.5cm}
+\geometry{a4paper, width=150mm, top=27.5mm, bindingoffset=6mm}
 \setlength{\parskip}{1em}
 \onehalfspacing
+
+% Set the base font size to 13pt
 
 % Chapter formatting
 \titleformat{\chapter}[display]
   {\normalfont\huge\bfseries\centering} % Center the chapter title
-  {\chaptertitlename\ \thechapter}      % Chapter number
+  {\MakeUppercase{\chaptertitlename\ \ifcase\value{chapter}\or ONE\or TWO\or THREE\or FOUR\or FIVE\or SIX\or SEVEN\or EIGHT\or NINE\or TEN\or ELEVEN\or TWELVE\or THIRTEEN\or FOURTEEN\or FIFTEEN\or SIXTEEN\or SEVENTEEN\or EIGHTEEN\or NINETEEN\or TWENTY\fi}} % Chapter number in uppercase words
   {20pt}                                % Spacing between number and title
-  {\Huge}                               % Title font size
+  {\Huge\MakeUppercase}                 % Title font size and uppercase
 
 % Header and Footer
 \pagestyle{fancy}
@@ -43,40 +49,110 @@
 % \renewcommand\thesection{\arabic{section}}
 % \renewcommand\thechapter{\arabic{chapter}}
 \renewcommand\thesection{\arabic{chapter}.\arabic{section}}
+% Redefine contentsname
+\renewcommand{\contentsname}{Table of Contents}
 
 \begin{document}
+\fontsize{13}{15}\selectfont
+
+% Switch to Roman numerals for the preliminary sections
+\pagenumbering{roman}
+\fancyfoot[C]{\thepage} % Add this line to display the Roman page numbers in the footer
+
+% Title page
 \begin{titlepage}
    \centering
    \vspace*{1cm}
-   \includegraphics[width=0.3\textwidth]{aul_logo.png}\par
+   \includegraphics[width=0.4\textwidth]{aul_logo.png}\par
    \vspace{1.5cm}
    {\scshape\LARGE Anchor University Lagos \par}
    \vspace{1cm}
    \vspace{1.5cm}
-   {\huge\bfseries Unified Code for Collocation Multistep Methods in Solving Stiff Systems of Ordinary Differential Equations\par}
+   {\huge\bfseries Unified Code for Collocation Multistep Methods in Solving Systems of Ordinary Differential Equations\par}
    \vspace{2cm}
-   {\Large\itshape OKWHAROBO, Solomon Monday\par}
+   {\Large OKWHAROBO, Solomon Monday\par}
    \vfill
-   supervised by\par
-   \textsc{Prof J.O Fatokun}
   
    
-   \text{Department Of Mathematics} \\
-   \text{In Partial Fulfillment Of The Requirement For The Award Of The Bachelor Of Science}
+   \text{ Department of Mathematics, Faculty of Science, Anchor University Lagos} \\
+   In partial fulfillment of the requirement for the award of Bachelor of Science(B.Sc.) Degree in Mathematics.
    
 
    \vfill
 
    % Bottom of the page
-   {\large \today\par}
+   {\large July, 2024 \par}
 \end{titlepage}
 
+% Blank page for title page (unnumbered)
+\newpage
+\thispagestyle{empty}
+\mbox{}
 
-%Acknowledgements
+% Declaration page starts from ii
+\addcontentsline{toc}{chapter}{Declaration}
 \begin{titlepage}
-  \centering
+  \begin{center}
+    \textbf{\huge DECLARATION}
+\end{center}
+
+\vspace{1cm}
+
+\noindent
+I hereby declare that this Project was written by me and is a correct record of my research work. It has not been presented in any previous application for any degree of this or any other University. All citations and sources of information are acknowledged using references.
+
+\vfill
+
+\noindent
+\makebox[3in]{\hrulefill} \\
+OKWHAROBO, SOLOMON M \\
+
+\vspace{1cm}
+
+\noindent
+\textbf{Date:} \makebox[2in]{\hrulefill}
+\end{titlepage}
+
+\addcontentsline{toc}{chapter}{Certification}
+\begin{titlepage}
+  \begin{center}
+    \textbf{\huge CERTIFICATION}
+\end{center}
+
+\vspace{1cm}
+
+\noindent
+I hereby certify that this project work entitled \textbf{“Unified Code for Collocation Multistep Methods in Solving Systems of Ordinary Differential Equations”} was carried out by \textbf{OKWHAROBO Solomon Monday}, with a matric number \textbf{AUL/SCI/20/00605}, under the supervision of Supervisor and has not been submitted in part or full to this university or other institutions for the award of a degree.
+
+\vfill
+
+\noindent
+\begin{tabbing}
+    \hspace{8cm} \= \hspace{8cm} \kill
+    \makebox[6cm]{\hrulefill} \> \makebox[6cm]{\hrulefill} \\
+    \textbf{Prof. J.O Fatokun} \> \textbf{Date} \\
+    \textit{Supervisor} \\
+    \\
+    \\
+    \makebox[6cm]{\hrulefill} \> \makebox[6cm]{\hrulefill} \\
+    \textbf{Dr. P.O Evans} \> \textbf{Date} \\
+    \textit{Head of Department} \\
+    \\
+    \\
+    \makebox[6cm]{\hrulefill} \> \makebox[6cm]{\hrulefill} \\
+    \textbf{Prof. S.A Okunuga} \> \textbf{Date} \\
+    \textit{External Supervisor} \\
+\end{tabbing}
+\end{titlepage}
+
+\addcontentsline{toc}{chapter}{Acknowledgements}
+\begin{titlepage}
+  
   \vspace*{2cm}
-  \LARGE\textbf{Acknowledgments}
+  \begin{center}
+    {\LARGE\textbf{Acknowledgments}}
+  \end{center}
+ 
   
   \vspace{1cm}
   \large
@@ -86,16 +162,16 @@
   My heartfelt thanks go to my mother, whose unwavering support, encouragement, and sacrifices have been the driving force behind my success.
 
   \vspace{0.5cm}
-  I am immensely grateful to my supervisor, Prof J.O Fatokun, for their invaluable guidance, mentorship, and expertise. Their insights and encouragement significantly contributed to the completion of this project.
+  I am immensely grateful to my supervisor, Prof J.O Fatokun, for his invaluable guidance, mentorship, and expertise. His insights and encouragement significantly contributed to the completion of this project.
 
   \vspace{0.5cm}
-  Special thanks to Dr. Akewe, Dr. Okoro, Dr. Evans, and Dr. Akinnukawe for their support, constructive feedback, and contributions to my academic and personal development.
+  Special thanks to Dr. H. Akewe, Dr. S.I Okoro, Dr. Evans, and Dr. B Akinnukawe for their support, constructive feedback, and contributions to my academic and personal development.
 
   \vspace{2cm}
   \textit{Your support has been instrumental, and I am deeply appreciative.}
 \end{titlepage}
 
-% Abstract
+\addcontentsline{toc}{chapter}{Abstract}
 \begin{abstract}
   In this research, we present a Solver developed using Flutter aimed at solving stiff systems of ordinary differential equations (ODEs) through a unified implementation of collocation multistep methods. The application not only provides solutions to differential equations but also offers comprehensive analysis of Linear Multistep Methods (LMM). It calculates error constants, checks for zero stability, and assesses convergence. Numerical examples illustrate the accuracy and functionality of the solver, showcasing its performance across various scenarios. Detailed analyses of methods such as Quade’s method, Adams-Bashforth, Adams-Moulton, and Backward Differentiation Formula confirm the theoretical results with computational outputs. The results demonstrate the solver's effectiveness and robustness, establishing it as a valuable tool for numerical analysis in practical applications. solving both non-stiff and stiff differential equations.
   \end{abstract}
@@ -103,15 +179,16 @@
 % Table of Contents
 \tableofcontents
 
-
-\newpage
 % List of Figures (optional)
 \listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
 
 % List of Tables (optional)
 \listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
 
 \chapter*{List of Abbreviations}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
 \begin{tabular}{ll}
     ODE : & Ordinary Differential Equation \\
     BVP : & Boundary Value Problem \\
@@ -123,6 +200,10 @@
     ELMM: & Explicit Linear Multistep Method
     % Add more abbreviations as needed
 \end{tabular}
+
+% Switch to Arabic numerals for the main content
+\clearpage
+\pagenumbering{arabic}
 
 \input{chapters/1/chapter1.tex}
 \input{chapters/2/chapter2.tex}

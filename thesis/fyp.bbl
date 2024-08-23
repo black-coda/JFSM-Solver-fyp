@@ -276,6 +276,32 @@ Dattani, N\BPBI S.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Deborah~.I.A%
+}{%
+Deborah~.I.A%
+}{%
+{\protect \APACyear {2021}}%
+}]{%
+2021Deborah}
+\APACinsertmetastar {%
+2021Deborah}%
+\begin{APACrefauthors}%
+Deborah~.I.A, J\BPBI F.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Development of a Generalized Online Computer Program for
+  Mathematical Analysis of Linear Multistep Methods} {Development of a
+  generalized online computer program for mathematical analysis of linear
+  multistep methods}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Anchor University Journal of Science and
+  Technology}{1}{}{4}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Emmanuel%
 }{%
 Emmanuel%
