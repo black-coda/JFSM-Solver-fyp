@@ -27,22 +27,12 @@
 
 % Set the base font size to 13pt
 
-
 % Chapter formatting
 \titleformat{\chapter}[display]
   {\normalfont\huge\bfseries\centering} % Center the chapter title
   {\MakeUppercase{\chaptertitlename\ \ifcase\value{chapter}\or ONE\or TWO\or THREE\or FOUR\or FIVE\or SIX\or SEVEN\or EIGHT\or NINE\or TEN\or ELEVEN\or TWELVE\or THIRTEEN\or FOURTEEN\or FIFTEEN\or SIXTEEN\or SEVENTEEN\or EIGHTEEN\or NINETEEN\or TWENTY\fi}} % Chapter number in uppercase words
   {20pt}                                % Spacing between number and title
   {\Huge\MakeUppercase}                 % Title font size and uppercase
-                             % Title font size without uppercase
-
-% Chapter formatting
-% \titleformat{\chapter}[display]
-%   {\normalfont\huge\bfseries\centering} % Center the chapter title
-%   {\MakeUppercase{\chaptertitlename\ \Numberstring{chapter}}}      % Chapter number in uppercase
-%   {20pt}                                % Spacing between number and title
-%   {\Huge\MakeUppercase}                               % Title font size and uppercase
-
 
 % Header and Footer
 \pagestyle{fancy}
@@ -64,6 +54,12 @@
 
 \begin{document}
 \fontsize{13}{15}\selectfont
+
+% Switch to Roman numerals for the preliminary sections
+\pagenumbering{roman}
+\fancyfoot[C]{\thepage} % Add this line to display the Roman page numbers in the footer
+
+% Title page
 \begin{titlepage}
    \centering
    \vspace*{1cm}
@@ -76,21 +72,25 @@
    \vspace{2cm}
    {\Large OKWHAROBO, Solomon Monday\par}
    \vfill
-   supervised by\par
-   \textsc{Prof J.O Fatokun}
   
    
-   \text{ Department of Mathematics} \\
+   \text{ Department of Mathematics, Faculty of Science, Anchor University Lagos} \\
    In partial fulfillment of the requirement for the award of Bachelor of Science(B.Sc.) Degree in Mathematics.
    
 
    \vfill
 
    % Bottom of the page
-   {\large \today\par}
+   {\large July, 2024 \par}
 \end{titlepage}
 
+% Blank page for title page (unnumbered)
+\newpage
+\thispagestyle{empty}
+\mbox{}
 
+% Declaration page starts from ii
+\addcontentsline{toc}{chapter}{Declaration}
 \begin{titlepage}
   \begin{center}
     \textbf{\huge DECLARATION}
@@ -113,8 +113,7 @@ OKWHAROBO, SOLOMON M \\
 \textbf{Date:} \makebox[2in]{\hrulefill}
 \end{titlepage}
 
-
-
+\addcontentsline{toc}{chapter}{Certification}
 \begin{titlepage}
   \begin{center}
     \textbf{\huge CERTIFICATION}
@@ -132,7 +131,7 @@ I hereby certify that this project work entitled \textbf{“Unified Code for Col
     \hspace{8cm} \= \hspace{8cm} \kill
     \makebox[6cm]{\hrulefill} \> \makebox[6cm]{\hrulefill} \\
     \textbf{Prof. J.O Fatokun} \> \textbf{Date} \\
-    \textit{(Supervisor)} \\
+    \textit{Supervisor} \\
     \\
     \\
     \makebox[6cm]{\hrulefill} \> \makebox[6cm]{\hrulefill} \\
@@ -146,8 +145,7 @@ I hereby certify that this project work entitled \textbf{“Unified Code for Col
 \end{tabbing}
 \end{titlepage}
 
-
-%Acknowledgements
+\addcontentsline{toc}{chapter}{Acknowledgements}
 \begin{titlepage}
   
   \vspace*{2cm}
@@ -167,13 +165,13 @@ I hereby certify that this project work entitled \textbf{“Unified Code for Col
   I am immensely grateful to my supervisor, Prof J.O Fatokun, for his invaluable guidance, mentorship, and expertise. His insights and encouragement significantly contributed to the completion of this project.
 
   \vspace{0.5cm}
-  Special thanks to Dr. Akewe, Dr. Okoro, Dr. Evans, and Dr. Akinnukawe for their support, constructive feedback, and contributions to my academic and personal development.
+  Special thanks to Dr. H. Akewe, Dr. S.I Okoro, Dr. Evans, and Dr. B Akinnukawe for their support, constructive feedback, and contributions to my academic and personal development.
 
   \vspace{2cm}
   \textit{Your support has been instrumental, and I am deeply appreciative.}
 \end{titlepage}
 
-% Abstract
+\addcontentsline{toc}{chapter}{Abstract}
 \begin{abstract}
   In this research, we present a Solver developed using Flutter aimed at solving stiff systems of ordinary differential equations (ODEs) through a unified implementation of collocation multistep methods. The application not only provides solutions to differential equations but also offers comprehensive analysis of Linear Multistep Methods (LMM). It calculates error constants, checks for zero stability, and assesses convergence. Numerical examples illustrate the accuracy and functionality of the solver, showcasing its performance across various scenarios. Detailed analyses of methods such as Quade’s method, Adams-Bashforth, Adams-Moulton, and Backward Differentiation Formula confirm the theoretical results with computational outputs. The results demonstrate the solver's effectiveness and robustness, establishing it as a valuable tool for numerical analysis in practical applications. solving both non-stiff and stiff differential equations.
   \end{abstract}
@@ -181,15 +179,16 @@ I hereby certify that this project work entitled \textbf{“Unified Code for Col
 % Table of Contents
 \tableofcontents
 
-
-\newpage
 % List of Figures (optional)
 \listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
 
 % List of Tables (optional)
 \listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
 
 \chapter*{List of Abbreviations}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
 \begin{tabular}{ll}
     ODE : & Ordinary Differential Equation \\
     BVP : & Boundary Value Problem \\
@@ -201,6 +200,10 @@ I hereby certify that this project work entitled \textbf{“Unified Code for Col
     ELMM: & Explicit Linear Multistep Method
     % Add more abbreviations as needed
 \end{tabular}
+
+% Switch to Arabic numerals for the main content
+\clearpage
+\pagenumbering{arabic}
 
 \input{chapters/1/chapter1.tex}
 \input{chapters/2/chapter2.tex}

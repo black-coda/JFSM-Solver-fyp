@@ -1,45 +1,45 @@
 
-\chapter{Summary and Conclusion}
+\chapter{Summary, Conclusion and Recommendations}
 
 \section{Summary}
 The aim of this study was to develop, validate, and optimize algorithms for the numerical analysis of linear multistep methods, particularly for solving stiff ordinary differential equations (ODEs). This was accomplished through a structured approach comprising three main objectives: Algorithm Development and Software Implementation, Validation and Error Analysis, and Optimization and Documentation. The achievements in each of these areas are thoroughly discussed in Chapter 3 of this study, and the accuracy is examined in Chapter 4.
 
-This project focuses on the development of a desktop application called JF-Solver, designed to analyze and solve ordinary differential equations (ODEs) using Linear Multistep Methods (LMM). The application is built using Flutter and Dart, ensuring a modern, responsive, and cross-platform user experience. The key features of JF-Solver include the analysis of LMMs for any number of steps, the ability to solve both stiff and non-stiff ODEs using appropriate methods, and the implementation of graphing functionalities for visualizing solutions.
+This project focuses on the development of a desktop application called JF-SM Solver, designed to analyze and solve ordinary differential equations (ODEs) using Linear Multistep Methods (LMM). The application is built using Flutter and Dart, ensuring a modern, responsive, and cross-platform user experience. The key features of JF-SM Solver include the analysis of LMMs for any number of steps, the ability to solve both stiff and non-stiff ODEs using appropriate methods, and the implementation of graphing functionalities for visualizing solutions.
 
 \section{Key Features and Implementation}
 
 \subsection{Linear Multistep Method (LMM) Analysis}
 
-JF-Solver provides comprehensive tools for analyzing the numerical properties of LMMs. Users can specify the number of steps for the LMM, and the application performs detailed analyses, including stability and accuracy assessments. This feature is crucial for researchers and engineers who need to understand the behavior and performance of different LMM configurations.
+JF-SM Solver provides comprehensive tools for analyzing the numerical properties of LMMs. Users can specify the number of steps for the LMM, and the application performs detailed analyses, including stability and accuracy assessments. This feature is crucial for researchers and engineers who need to understand the behavior and performance of different LMM configurations.
 
 \subsection{Solving Ordinary Differential Equations}
 
-The core functionality of JF-Solver is its ability to solve ODEs using both implicit and explicit LMMs:
+The core functionality of JF-SM Solver is its ability to solve ODEs using both implicit and explicit LMMs:
 
 \begin{itemize}
-  \item \textbf{Implicit LMM for Stiff ODEs}: For stiff ODE problems, JF-Solver employs implicit LMMs, utilizing the Predictor-Corrector Algorithm. This approach ensures stability and accuracy in the numerical solutions of stiff equations, which are often challenging to solve using explicit methods.
+  \item \textbf{Implicit LMM for Stiff ODEs}: For stiff ODE problems, JF-SM Solver employs implicit LMMs, utilizing the Predictor-Corrector Algorithm. This approach ensures stability and accuracy in the numerical solutions of stiff equations, which are often challenging to solve using explicit methods.
   
   \item \textbf{Explicit LMM for Non-Stiff ODEs}: For non-stiff ODEs, the solver uses explicit LMMs, providing efficient and accurate solutions. This flexibility allows users to tackle a wide range of ODE problems within a single application.
 \end{itemize}
 
 \subsection{Graphing Functionality}
 
-To aid in the interpretation and analysis of solutions, JF-Solver includes robust graphing functionalities. After solving an ODE, users can visualize the results through interactive graphs. This feature allows users to see the behavior of the solution over time, facilitating a deeper understanding of the underlying dynamics of the ODE.
+To aid in the interpretation and analysis of solutions, JF-SM Solver includes robust graphing functionalities. After solving an ODE, users can visualize the results through interactive graphs. This feature allows users to see the behavior of the solution over time, facilitating a deeper understanding of the underlying dynamics of the ODE.
 
 \section{Development and User Experience}
 
-Developed using Flutter and Dart, JF-Solver benefits from a modern, responsive user interface that works seamlessly across various desktop platforms. Flutter’s rich set of widgets and Dart’s efficient performance contribute to a smooth and intuitive user experience, making advanced numerical analysis accessible to both novice and experienced users.
+Developed using Flutter and Dart, JF-SM Solver benefits from a modern, responsive user interface that works seamlessly across various desktop platforms. Flutter’s rich set of widgets and Dart’s efficient performance contribute to a smooth and intuitive user experience, making advanced numerical analysis accessible to both novice and experienced users.
 
 \section{Conclusion}
 
-JF-Solver represents a significant advancement in desktop applications for solving and analyzing ODEs using LMMs. By combining the power of implicit and explicit LMMs with the flexibility of the Predictor-Corrector Algorithm and enhanced graphing capabilities, JF-Solver provides a comprehensive tool for both academic and practical applications in numerical analysis. The use of Flutter and Dart ensures that the application is both user-friendly and highly functional, catering to the needs of a diverse user base.
+JF-SM Solver represents a significant advancement in desktop applications for solving and analyzing ODEs using LMMs. By combining the power of implicit and explicit LMMs with the flexibility of the Predictor-Corrector Algorithm and enhanced graphing capabilities, JF-SM Solver provides a comprehensive tool for both academic and practical applications in numerical analysis. The use of Flutter and Dart ensures that the application is both user-friendly and highly functional, catering to the needs of a diverse user base.
 
-Future enhancements may include expanding the range of numerical methods available, integrating additional visualization tools, and refining the user interface based on user feedback. JF-Solver sets a strong foundation for ongoing development and application in the field of numerical ODE solving.
+Future enhancements may include expanding the range of numerical methods available, integrating additional visualization tools, and refining the user interface based on user feedback. JF-SM Solver sets a strong foundation for ongoing development and application in the field of numerical ODE solving.
 
 
 \section{Limitations of the Study}
 \begin{itemize}
-  \item \textbf{Stability Issues with Stiff Equations}: The JF-Solver's performance in solving stiff equations relies heavily on the stability properties of the Linear Multistep Methods (LMM) that are analyzed and used. In particular, the A-stability and L-stability of the LMMs are crucial for effectively managing stiff problems. If the chosen LMM does not possess these stability characteristics, the app may struggle to handle stiff equations properly, which could result in inaccuracies or failures in the solutions.
+  \item \textbf{Stability Issues with Stiff Equations}: The JF-SM Solver's performance in solving stiff equations relies heavily on the stability properties of the Linear Multistep Methods (LMM) that are analyzed and used. In particular, the A-stability and L-stability of the LMMs are crucial for effectively managing stiff problems. If the chosen LMM does not possess these stability characteristics, the app may struggle to handle stiff equations properly, which could result in inaccuracies or failures in the solutions.
   \item \textbf{Predictor-Corrector Algorithm}: The predictor and corrector must have the same order, which can limit the flexibility of the solver in some cases.
 \end{itemize}
 
@@ -55,9 +55,9 @@ Based on the findings and developments in this study, the following recommendati
   \item \textbf{User Interface Improvements}: Continuously refine the user interface based on user feedback to enhance usability and functionality.
   
   \item \textbf{Performance Optimization}: Further optimize the performance of the application to handle even larger and more complex ODE problems efficiently.The implementation of variable step size control and adaptive methods can improve the efficiency of the solver.
-  \item \textbf{Integration with Other Tools}: Explore the integration of JF-Solver with other mathematical and engineering software to create a more comprehensive toolkit for researchers and practitioners.
-  \item \textbf{Educational Resources}: Develop educational resources and tutorials to help users, especially those new to numerical analysis, to effectively use JF-Solver.
+  \item \textbf{Integration with Other Tools}: Explore the integration of JF-SM Solver with other mathematical and engineering software to create a more comprehensive toolkit for researchers and practitioners.
+  \item \textbf{Educational Resources}: Develop educational resources and tutorials to help users, especially those new to numerical analysis, to effectively use JF-SM Solver.
   \item \textbf{Implementing a Step-Size Control System}: To enhance the app's capability in handling stiff equations, it is recommended to integrate an adaptive step-size control system. This system would dynamically adjust the time step based on the stiffness of the problem, ensuring stability and accuracy. By implementing step-size control, the app can better manage the challenges posed by stiff equations, improving overall performance and reliability.
 \end{itemize}
 
-By addressing these recommendations, future versions of JF-Solver can become even more powerful and versatile tools for the numerical analysis and solution of ODEs.
+By addressing these recommendations, future versions of JF-SM Solver can become even more powerful and versatile tools for the numerical analysis and solution of ODEs.

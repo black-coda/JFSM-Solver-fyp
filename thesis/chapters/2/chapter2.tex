@@ -70,18 +70,6 @@ The figure (right) illustrates the numerical issues for various numerical integr
     where $y' = f(x,y)$. Applying this method instead of Euler's method gives a much better result (blue). The numerical results decrease monotonically to zero, just as the exact solution does.
 \end{itemize}
 
-Here is the image of stiff equation numerical solvers:
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\textwidth]{chapters/2/StiffEquationNumericalSolvers.svg.png}
-  \caption{Explicit numerical methods exhibiting instability when integrating a stiff ordinary differential equation}
-  \label{fig:stiff_equation}
-\end{figure}
-
-
-
-
 \section{Multistep Methods}
 Multistep methods are a category of numerical methods used to solve ordinary differential equations (ODEs), including stiff systems. They are called "multistep" because they use information from multiple previous steps to compute the next step. This makes them particularly effective for problems with stiff behavior, where the slope of the solution changes rapidly \cite{math7121158}.
 One of the main strengths of multistep methods is their ability to handle temporal evolution. Because they use information from previous steps, they can adapt to changes in the behavior of the solution over time. This makes them particularly effective for problems where the solution evolves in a complex way, such as stiff systems \cite{math7121158}.
